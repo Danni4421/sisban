@@ -35,7 +35,6 @@ class Keluarga extends Model
         'daya_listrik',
         'biaya_listrik',
         'biaya_air',
-        'tabungan',
         'hutang',
         'pengeluaran',
         'foto_kk'
