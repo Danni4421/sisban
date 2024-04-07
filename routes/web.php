@@ -34,7 +34,7 @@ Route::get('/login', [AuthenticationController::class, 'login'])
 Route::post('/login', [AuthenticationController::class, 'authenticate']);
 Route::post('/logout', [AuthenticationController::class, 'logout']);
 
-Route::prefix('rt')->group(function() {
+Route::prefix('rt')->middleware(['auth', 'auth.session'])->group(function() {
   Route::get('/', [RTDashboardController::class, 'index']);
   Route::prefix('/pengajuan')->group(function() {
     Route::get('/masuk', [RTPengajuanController::class, 'incoming']);
@@ -44,9 +44,9 @@ Route::prefix('rt')->group(function() {
     Route::get('/jenis', [RTBansosController::class, 'types']);
     Route::get('/penerima', [RTBansosController::class, 'recipients']);
   });
-})->middleware(['auth', 'auth.session']);
+});
 
-Route::prefix('rw')->group(function() {
+Route::prefix('rw')->middleware(['auth', 'auth.session'])->group(function() {
   Route::get('/', [RWDashboardController::class, 'index']);
   Route::get('/data-rt', [RWMemberController::class, 'main']);
   Route::prefix('/pengajuan')->group(function() {
@@ -54,9 +54,9 @@ Route::prefix('rw')->group(function() {
     Route::get('/disetujui', [RWPengajuanController::class, 'approved']);
   });
   Route::get('/bansos/penerima', [RWBansosController::class, 'recipients']);
-})->middleware(['auth', 'auth.session']);
+});
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function() {
   Route::get('/data-rw', [AdminRWController::class, 'index']);
   Route::get('/data-rt', [AdminRTController::class, 'index']);
   Route::get('/pemohon', [AdminAplicantController::class, 'index']);
@@ -64,7 +64,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/jenis', [AdminBansosController::class, 'types']);
     Route::get('/penerima', [AdminBansosController::class, 'recipients']);
   });
-})->middleware(['auth', 'auth.session']);
+});
 
 Route::get('/notifikasi', [NotificationController::class, 'index']);
 Route::get('/settings', [SettingController::class, 'index']);
