@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kriteria_penerima', function (Blueprint $table) {
-            $table->id('id_kriteria')->primary();
+            $table->id('id_kriteria');
             $table->string('nama_kriteria', 100);
             $table->double('bobot', 1);
             $table->timestamps();

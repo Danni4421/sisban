@@ -49,6 +49,12 @@ Route::prefix('rt')->middleware(['auth', 'auth.session'])->group(function() {
 Route::prefix('rw')->middleware(['auth', 'auth.session'])->group(function() {
   Route::get('/', [RWDashboardController::class, 'index']);
   Route::get('/data-rt', [RWMemberController::class, 'main']);
+  Route::get('/data-rt', [RWMemberController::class, 'main']);
+  Route::get('/data-rt/create', [RWMemberController::class, 'create']);
+  Route::post('/data-rt/store', [RWMemberController::class, 'store']); 
+  Route::get('/data-rt/edit/{id}', [RWMemberController::class, 'edit']); 
+  Route::put('/data-rt/update/{id}', [RWMemberController::class, 'update']); 
+  Route::get('/data-rt/delete/{id}', [RWMemberController::class, 'delete']); 
   Route::prefix('/pengajuan')->group(function() {
     Route::get('/masuk', [RWPengajuanController::class, 'incoming']);
     Route::get('/disetujui', [RWPengajuanController::class, 'approved']);
