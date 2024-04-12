@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use App\Http\Controllers\RT\DashboardController as RTDashboardController;
 use App\Http\Controllers\RT\PengajuanController as RTPengajuanController;
 use App\Http\Controllers\RT\BansosController as RTBansosController;
@@ -14,7 +15,8 @@ use App\Http\Controllers\RW\BansosController as RWBansosController;
 use App\Http\Controllers\Admin\RWController as AdminRWController;
 use App\Http\Controllers\Admin\RTController as AdminRTController;
 use App\Http\Controllers\Admin\AplicantController as AdminAplicantController;
-use App\Http\Controllers\Admin\BansosController as AdminBansosController;
+use App\Http\Controllers\Admin\Bansos\TypeController as AdminBansosTypesController;
+use App\Http\Controllers\Admin\Bansos\RecipientController as AdminBansosRecipientsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +36,8 @@ Route::get('/login', [AuthenticationController::class, 'login'])
 Route::post('/login', [AuthenticationController::class, 'authenticate']);
 Route::post('/logout', [AuthenticationController::class, 'logout']);
 
+Route::get('/', [GuestDashboardController::class, 'index']);
+
 Route::prefix('rt')->middleware(['auth', 'auth.session'])->group(function() {
   Route::get('/', [RTDashboardController::class, 'index']);
   Route::prefix('/pengajuan')->group(function() {
@@ -48,13 +52,7 @@ Route::prefix('rt')->middleware(['auth', 'auth.session'])->group(function() {
 
 Route::prefix('rw')->middleware(['auth', 'auth.session'])->group(function() {
   Route::get('/', [RWDashboardController::class, 'index']);
-  Route::get('/data-rt', [RWMemberController::class, 'main']);
-  Route::get('/data-rt', [RWMemberController::class, 'main']);
-  Route::get('/data-rt/create', [RWMemberController::class, 'create']);
-  Route::post('/data-rt/store', [RWMemberController::class, 'store']); 
-  Route::get('/data-rt/edit/{id}', [RWMemberController::class, 'edit']); 
-  Route::put('/data-rt/update/{id}', [RWMemberController::class, 'update']); 
-  Route::get('/data-rt/delete/{id}', [RWMemberController::class, 'delete']); 
+  Route::resource('/data-rt', RWMemberController::class);
   Route::prefix('/pengajuan')->group(function() {
     Route::get('/masuk', [RWPengajuanController::class, 'incoming']);
     Route::get('/disetujui', [RWPengajuanController::class, 'approved']);
@@ -63,12 +61,23 @@ Route::prefix('rw')->middleware(['auth', 'auth.session'])->group(function() {
 });
 
 Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function() {
-  Route::get('/data-rw', [AdminRWController::class, 'index']);
-  Route::get('/data-rt', [AdminRTController::class, 'index']);
-  Route::get('/pemohon', [AdminAplicantController::class, 'index']);
+  Route::prefix('/data-rw')->group(function() {
+    Route::get('/', [AdminRWController::class, 'index']);
+    Route::put('/{id}', [AdminRWController::class, 'update']);
+  });
+  Route::resource('/data-rt', AdminRTController::class);
+  Route::prefix('/pemohon')->group(function() {
+    Route::get('/', [AdminAplicantController::class, 'index']);
+    Route::post('/{no_kk}', [AdminAplicantController::class, 'show']);
+    Route::put('/{no_kk}/approve', [AdminAplicantController::class, 'approve']);
+    Route::put('/{no_kk}/decline', [AdminAplicantController::class, 'decline']);
+  });
   Route::prefix('/bansos')->group(function() {
-    Route::get('/jenis', [AdminBansosController::class, 'types']);
-    Route::get('/penerima', [AdminBansosController::class, 'recipients']);
+    Route::resource('/jenis', AdminBansosTypesController::class);
+    Route::resource('/penerima', AdminBansosRecipientsController::class);
+    Route::get('/{id_bansos}/penerima/{nik}/edit', [AdminBansosRecipientsController::class, 'edit_recipient']);
+    Route::put('/{id_bansos}/penerima/{nik}', [AdminBansosRecipientsController::class, 'update_recipient']);
+    Route::delete('/{id_bansos}/penerima/{nik}', [AdminBansosRecipientsController::class, 'delete_recipient']);
   });
 });
 
