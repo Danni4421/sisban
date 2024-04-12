@@ -51,4 +51,9 @@ class Warga extends Model
     {
         return $this->belongsTo(Keluarga::class, 'no_kk', 'no_kk');
     }
+
+    public function bansos()
+    {
+        return $this->hasMany(PenerimaBansos::class, 'nik', 'nik');
+    }
 }

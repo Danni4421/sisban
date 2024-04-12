@@ -30,6 +30,7 @@ class Pengajuan extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'no_kk',
         'status_pengajuan'
     ];
 

@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PenerimaBansos extends Model
@@ -19,41 +21,33 @@ class PenerimaBansos extends Model
     protected $table = 'penerima_bansos';
 
     /**
-     * Primary key attribute
-     * 
-     * @var array<int, string>
-     */
-    protected $primaryKey = [
-        'nik',
-        'id_bansos'
-    ];
-
-    /**
      * Fillable attribute
      * 
      * @var array<int, string>
      */
     protected $fillable = [
+        'nik',
+        'id_bansos',
         'tanggal_penerimaan'
     ];
 
     /** 
      * Model relationship with warga
      * 
-     * @return HasMany
+     * @return HasOne
      */
-    public function penerima()
+    public function warga()
     {
-        return $this->hasMany(Warga::class, 'nik', 'nik');
+        return $this->hasOne(Warga::class, 'nik', 'nik');
     }
 
     /**
      * Model relationship with Bansos
      * 
-     * @return BelongsTo
+     * @return HasOne
      */
     public function bansos()
     {
-        return $this->belongsTo(Bansos::class, 'id_bansos', 'id_bansos');
+        return $this->hasOne(Bansos::class, 'id_bansos', 'id_bansos');
     }
 }
