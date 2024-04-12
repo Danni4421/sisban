@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\RW;
 
+use App\Traits\ManageRT;
 use App\Http\Controllers\Controller;
-use App\Models\Pengurus;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
-    public function main()
+    use ManageRT;
+
+    public function index()
     {
-        $data = DB::table("pengurus")->get();
+        $data = $this->getRT();
         return view('rw.pages.rt.member', ['data' => $data]);
     }
 
@@ -23,51 +23,25 @@ class MemberController extends Controller
 
     public function store(Request $request)
     {
-        $user = User::make([
-            'username' => $request->username,
-            'email'=> $request->email,
-            'password'=> bcrypt($request->password),
-            'level' => $request->level
-        ]);
-
-        $user->save();
-
-        Pengurus::create([
-            'id_user' => $user->id_user,
-            'nama' => $request->nama,
-            'jabatan' => $request->jabatan,
-            'nomor_telepon' => $request->nomor_telepon,
-            'alamat' => $request->alamat
-        ]);
-
+        $this->storeRT(request: $request);
         return redirect('rw/data-rt');
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
-        $rt = Pengurus::find($id);
+        $rt = $this->getRT($id);
         return view('rw.pages.rt.member_ubah', ['data' => $rt]);
     }
 
-    public function update($id, Request $request)
+    public function update(Request $request, int $id)
     {
-        $rt = Pengurus::find($id);
-
-        $rt->nama = $request->nama;
-        $rt->jabatan = $request->jabatan;
-        $rt->nomor_telepon = $request->nomor_telepon;
-        $rt->alamat = $request->alamat;
-
-        $rt->save();
-
+        $this->updateRT(request: $request, id: $id);
         return redirect('rw/data-rt');
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
-        $rt = Pengurus::find($id);
-        $rt->delete();
-
+        $this->deleteRT(id: $id);
         return redirect('rw/data-rt');
     }
 }

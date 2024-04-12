@@ -87,8 +87,8 @@
                 <img src="{{ asset('adminlte/dist/img/avatar.png') }}" alt="User Account Profile"
                     class="img-circle elevation-3 img-profile">
                 <div class="user-details-body">
-                    <span class="brand-text font-weight-bold">Eko Wahyuono</span>
-                    <span class="brand-text font-weight-light">RT031</span>
+                    <span class="brand-text font-weight-bold">{{ auth()->user()->username }}</span>
+                    {{-- <span class="brand-text font-weight-light">RT031</span> --}}
                 </div>
             </div>
             <i class="fas fa-angle-left right" id="arrow-sidebar-account"></i>

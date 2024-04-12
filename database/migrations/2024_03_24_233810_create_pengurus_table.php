@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('alamat', 100);
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id_user')->on('users');
+            $table->foreign('id_user')->references('id_user')->on('users')
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
