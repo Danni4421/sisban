@@ -8,10 +8,12 @@ use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use App\Http\Controllers\RT\DashboardController as RTDashboardController;
 use App\Http\Controllers\RT\PengajuanController as RTPengajuanController;
 use App\Http\Controllers\RT\BansosController as RTBansosController;
+use App\Http\Controllers\RW\Bansos\RecipientController;
 use App\Http\Controllers\RW\DashboardController as RWDashboardController;
 use App\Http\Controllers\RW\MemberController as RWMemberController;
 use App\Http\Controllers\RW\PengajuanController as RWPengajuanController;
-use App\Http\Controllers\RW\BansosController as RWBansosController;
+use App\Http\Controllers\RW\Bansos\RecipientController as RWBansosRecipientsController;
+use App\Http\Controllers\RW\AplicantController as RWAplicantController;
 use App\Http\Controllers\Admin\RWController as AdminRWController;
 use App\Http\Controllers\Admin\RTController as AdminRTController;
 use App\Http\Controllers\Admin\AplicantController as AdminAplicantController;
@@ -36,7 +38,7 @@ Route::get('/login', [AuthenticationController::class, 'login'])
 Route::post('/login', [AuthenticationController::class, 'authenticate']);
 Route::post('/logout', [AuthenticationController::class, 'logout']);
 
-Route::get('/', [GuestDashboardController::class, 'index']);
+// Route::get('/', [GuestDashboardController::class, 'index']);
 
 Route::prefix('rt')->middleware(['auth', 'auth.session'])->group(function() {
   Route::get('/', [RTDashboardController::class, 'index']);
@@ -57,7 +59,12 @@ Route::prefix('rw')->middleware(['auth', 'auth.session'])->group(function() {
     Route::get('/masuk', [RWPengajuanController::class, 'incoming']);
     Route::get('/disetujui', [RWPengajuanController::class, 'approved']);
   });
-  Route::get('/bansos/penerima', [RWBansosController::class, 'recipients']);
+  Route::prefix('/bansos')->group(function() {
+    Route::resource('/penerima', RWBansosRecipientsController::class);
+    Route::get('/{id_bansos}/penerima/{nik}/edit', [RWBansosRecipientsController::class, 'edit_recipient']);
+    Route::put('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'update_recipient']);
+    Route::delete('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'delete_recipient']);
+  });
 });
 
 Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function() {
