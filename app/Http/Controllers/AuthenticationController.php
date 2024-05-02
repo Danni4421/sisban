@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengurus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,24 +23,29 @@ class AuthenticationController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if (auth()->user()->level === 'admin') {
+            $authedUser = Auth::user();
+
+            session()->put('level', $authedUser->level);
+
+            if ($authedUser->level === 'admin') {
                 return redirect()->intended('/admin/data-rw');
             }
-            
-            return redirect()->intended(auth()->user()->level);
+
+
+            return redirect()->intended($authedUser->level);
         }
-        
+
         return back()->with('error', 'Login gagal');
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
- 
+
         $request->session()->invalidate();
-    
+
         $request->session()->regenerateToken();
-    
+
         return redirect('/login');
     }
 }

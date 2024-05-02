@@ -23,7 +23,7 @@ return new class extends Migration
             $table->char('no_hp', 13)->unique()->nullable();
             $table->double('penghasilan', 7);
             $table->enum('level', ['kepala_keluarga', 'anggota']);
-            $table->text('foto_ktp');
+            $table->text('foto_ktp')->nullable();
             $table->timestamps();
 
             $table->foreign('no_kk')->references('no_kk')->on('keluarga');

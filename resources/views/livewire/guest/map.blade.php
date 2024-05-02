@@ -4,5 +4,6 @@
         <p>Denah RW07</p>
     </div>
 
-    <x-maps-leaflet :centerPoint="['lat' => -7.9224435, 'long' => 112.6065386]" :zoomLevel=15></x-maps-leaflet>
+    {{-- <x-maps-leaflet :centerPoint="[]" :zoomLevel=15></x-maps-leaflet> --}}
+    <x-maps-google :centerPoint="['lat' => -7.9224435, 'long' => 112.6065386]"></x-maps-google>
 </section>

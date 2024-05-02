@@ -73,7 +73,7 @@
                 <li class="nav-item">
                     <form action="/logout" method="POST" class="nav-link">
                         @csrf
-                        <button type="submit" class="bg-transparent border-0">
+                        <button type="submit" class="bg-transparent border-0 w-100 text-start">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             Logout
                         </button>

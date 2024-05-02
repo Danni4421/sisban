@@ -1,10 +1,7 @@
 <div>
     <section id="jenis-bansos" class="counts">
         <div class="container">
-            <div class="section-title mb-5" data-aos="fade-up">
-                <h2>Jenis</h2>
-                <p>Bantuan Sosial</p>
-            </div>
+            
             <div class="row" data-aos="fade-up">
 
                 <div class="col-lg-3 col-md-6">
@@ -48,7 +45,7 @@
         </div>
 
     </section>
-    <section id="counts" class="counts">
+    <section id="jenis-bansos" class="counts">
         <div class="container">
 
             <div class="row" data-aos="fade-up">

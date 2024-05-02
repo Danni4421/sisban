@@ -5,6 +5,9 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
+use App\Http\Controllers\Guest\PengajuanController as GuestPengajuanController;
+use App\Http\Controllers\Guest\Bansos\AplicantController as GuestAplicantController;
+use App\Http\Controllers\Guest\Bansos\RecipientController as GuestRecipientController;
 use App\Http\Controllers\RT\DashboardController as RTDashboardController;
 use App\Http\Controllers\RT\PengajuanController as RTPengajuanController;
 use App\Http\Controllers\RT\BansosController as RTBansosController;
@@ -19,6 +22,7 @@ use App\Http\Controllers\Admin\RTController as AdminRTController;
 use App\Http\Controllers\Admin\AplicantController as AdminAplicantController;
 use App\Http\Controllers\Admin\Bansos\TypeController as AdminBansosTypesController;
 use App\Http\Controllers\Admin\Bansos\RecipientController as AdminBansosRecipientsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,54 +36,76 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/login', [AuthenticationController::class, 'login'])
-  ->name('login')
-  ->middleware('guest');
+  ->name('login');
 Route::post('/login', [AuthenticationController::class, 'authenticate']);
 Route::post('/logout', [AuthenticationController::class, 'logout']);
 
-// Route::get('/', [GuestDashboardController::class, 'index']);
+Route::middleware('guest')->group(function () {
+  Route::get('/', [GuestDashboardController::class, 'index']);
+  Route::get('/pengajuan', [GuestPengajuanController::class, 'main']);
+  Route::prefix('informasi')->group(function () {
+    Route::get('/pemohon', [GuestAplicantController::class, 'index'])->name('guest.aplicant');
+    Route::get('/penerima', [GuestRecipientController::class, 'index'])->name('guest.recipient');
+  });
+});
 
-Route::prefix('rt')->middleware(['auth', 'auth.session'])->group(function() {
+/*****************************************
+ * RT Routes
+ *****************************************/
+Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->group(function () {
   Route::get('/', [RTDashboardController::class, 'index']);
-  Route::prefix('/pengajuan')->group(function() {
+  Route::prefix('/pengajuan')->group(function () {
     Route::get('/masuk', [RTPengajuanController::class, 'incoming']);
     Route::get('/disetujui', [RTPengajuanController::class, 'approved']);
   });
-  Route::prefix('/bansos')->group(function() {
+  Route::prefix('/bansos')->group(function () {
     Route::get('/jenis', [RTBansosController::class, 'types']);
     Route::get('/penerima', [RTBansosController::class, 'recipients']);
   });
 });
+/*****************************************
+ * End RT Routes
+ *****************************************/
 
-Route::prefix('rw')->middleware(['auth', 'auth.session'])->group(function() {
+/*****************************************
+ * RW Routes
+ *****************************************/
+Route::prefix('rw')->middleware(['auth', 'auth.session', 'level.validate'])->group(function () {
   Route::get('/', [RWDashboardController::class, 'index']);
   Route::resource('/data-rt', RWMemberController::class);
-  Route::prefix('/pengajuan')->group(function() {
+  Route::prefix('/pengajuan')->group(function () {
     Route::get('/masuk', [RWPengajuanController::class, 'incoming']);
     Route::get('/disetujui', [RWPengajuanController::class, 'approved']);
   });
-  Route::prefix('/bansos')->group(function() {
+  Route::prefix('/bansos')->group(function () {
     Route::resource('/penerima', RWBansosRecipientsController::class);
     Route::get('/{id_bansos}/penerima/{nik}/edit', [RWBansosRecipientsController::class, 'edit_recipient']);
     Route::put('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'update_recipient']);
     Route::delete('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'delete_recipient']);
   });
 });
+/*****************************************
+ * End RW Routes
+ *****************************************/
 
-Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function() {
-  Route::prefix('/data-rw')->group(function() {
+/*****************************************
+ * Admin Routes
+ *****************************************/
+Route::prefix('admin')->middleware(['auth', 'auth.session', 'level.validate'])->group(function () {
+  Route::prefix('/data-rw')->group(function () {
     Route::get('/', [AdminRWController::class, 'index']);
     Route::put('/{id}', [AdminRWController::class, 'update']);
   });
   Route::resource('/data-rt', AdminRTController::class);
-  Route::prefix('/pemohon')->group(function() {
+  Route::prefix('/pemohon')->group(function () {
     Route::get('/', [AdminAplicantController::class, 'index']);
     Route::post('/{no_kk}', [AdminAplicantController::class, 'show']);
     Route::put('/{no_kk}/approve', [AdminAplicantController::class, 'approve']);
     Route::put('/{no_kk}/decline', [AdminAplicantController::class, 'decline']);
   });
-  Route::prefix('/bansos')->group(function() {
+  Route::prefix('/bansos')->group(function () {
     Route::resource('/jenis', AdminBansosTypesController::class);
     Route::resource('/penerima', AdminBansosRecipientsController::class);
     Route::get('/{id_bansos}/penerima/{nik}/edit', [AdminBansosRecipientsController::class, 'edit_recipient']);
@@ -87,7 +113,12 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function() {
     Route::delete('/{id_bansos}/penerima/{nik}', [AdminBansosRecipientsController::class, 'delete_recipient']);
   });
 });
+/*****************************************
+ * End Admin Routes
+ *****************************************/
 
 Route::get('/notifikasi', [NotificationController::class, 'index']);
 Route::get('/settings', [SettingController::class, 'index']);
 Route::get('/faq', [FaqController::class, 'index']);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -46,7 +46,7 @@ trait ManageRT {
       $request->validate([
         'username' => ['required', 'string', 'min:4', 'max:50', 'unique:users,username'],
         'email' => ['required', 'email:dns', 'max:100', 'unique:users,email'],
-        'password' => ['required', 'min:8' ,'max:20'],
+        'password' => ['required', 'min:8', 'max:20'],
         'jabatan' => ['required', 'string', 'max:11', 'unique:pengurus,jabatan'],
         'nama' => ['required', 'string', 'max:100'],
         'nomor_telepon' => ['required', 'max:13', 'unique:pengurus,nomor_telepon'],

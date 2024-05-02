@@ -31,6 +31,7 @@ class Keluarga extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'no_kk',
         'rt',
         'daya_listrik',
         'biaya_listrik',
@@ -48,6 +49,16 @@ class Keluarga extends Model
     public function anggota_keluarga()
     {
         return $this->hasMany(Warga::class, 'no_kk', 'no_kk');
+    }
+
+    /**
+     * Model relationship with kepala keluarga
+     * 
+     * @return hasOne
+     */
+    public function kepala_keluarga()
+    {
+        return $this->hasOne(Warga::class, 'no_kk', 'no_kk')->where('level', 'kepala_keluarga');
     }
 
     /**

@@ -5,7 +5,7 @@
                 <div data-aos="zoom-out" class="text-center">
                     <h1>Mau Mendapatkan Bantuan Dengan Mudah? Pakai <span>Sisban</span></h1>
                     <h2>Sistem Informasi Seputar Bantuan Sosial RW 07 Warga Sejahtera adalah Motivasi Kita</h2>
-                    <button class="btn btn-primary px-3 py-1">Ajukan Bantuan Sosial</button>
+                    <a href="/pengajuan" class="btn btn-main">Ajukan Bantuan Sosial</a>
                 </div>
             </div>
         </div>

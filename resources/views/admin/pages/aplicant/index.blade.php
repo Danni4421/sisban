@@ -90,7 +90,7 @@
                                 </tr>
                                 <tr>
                                     <th>NIK</th>
-                                    <td id="modal_nik_kepala_keluarga">83198371928379</td>
+                                    <td id="modal_nik_kepala_keluarga">8319837192837</td>
                                 </tr>
                                 <tr>
                                     <th>Nama Kepala Keluarga</th>

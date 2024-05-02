@@ -11,7 +11,7 @@ class Warga extends Model
     use HasFactory;
 
     /**
-     * Table model
+     * Table model 
      * 
      * @var string
      */
@@ -30,13 +30,14 @@ class Warga extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'nik',
         'no_kk',
         'nama',
         'jenis_kelamin',
         'tempat_tanggal_lahir',
         'umur',
         'no_hp',
-        'pekerjaan',
+        // 'pekerjaan',
         'penghasilan',
         'level',
         'foto_ktp'

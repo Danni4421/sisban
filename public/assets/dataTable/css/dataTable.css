@@ -1,0 +1,26 @@
+.dt-length {
+    display: flex !important;
+    justify-content: start !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.dt-search {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.dt-paging {
+    color: #ffffff !important;
+}
+
+.dt-paging .dt-paging-button.current {
+    border: none !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    background-color: #0a73b0 !important;
+}

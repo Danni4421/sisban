@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Yajra\DataTables\Html\Builder;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +13,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**
@@ -19,6 +20,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Blade::component('components.form-group', 'form-group');
+
+        // Inputs
+        Blade::component('components.input.input-field', 'input');
+        Blade::component('components.input.radio', 'input.radio');
+        Blade::component('components.button', 'button');
+        Blade::component('components.label', 'label');
+
+        // Forms
+        Blade::component('components.forms.form-data-anggota', 'input.form-anggota');
+
+        // Datatables
+        Builder::useVite();
     }
 }
