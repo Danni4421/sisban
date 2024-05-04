@@ -11,7 +11,8 @@ use App\Http\Controllers\Guest\Bansos\RecipientController as GuestRecipientContr
 use App\Http\Controllers\RT\DashboardController as RTDashboardController;
 use App\Http\Controllers\RT\PengajuanController as RTPengajuanController;
 use App\Http\Controllers\RT\BansosController as RTBansosController;
-use App\Http\Controllers\RW\Bansos\RecipientController;
+use App\Http\Controllers\RT\Bansos\TypeController as RTBansosTypesController;
+use App\Http\Controllers\RT\Bansos\RecipientController as RTBansosRecipientsController;
 use App\Http\Controllers\RW\DashboardController as RWDashboardController;
 use App\Http\Controllers\RW\MemberController as RWMemberController;
 use App\Http\Controllers\RW\PengajuanController as RWPengajuanController;
@@ -59,10 +60,16 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
   Route::prefix('/pengajuan')->group(function () {
     Route::get('/masuk', [RTPengajuanController::class, 'incoming']);
     Route::get('/disetujui', [RTPengajuanController::class, 'approved']);
+    Route::post('/{no_kk}', [RTPengajuanController::class, 'show']);
+    Route::put('/approve/{no_kk}', [RTPengajuanController::class, 'approvePengajuan'])->name('pengajuan.approve');
+    Route::put('/decline/{no_kk}', [RTPengajuanController::class, 'declinePengajuan'])->name('pengajuan.decline');
   });
-  Route::prefix('/bansos')->group(function () {
-    Route::get('/jenis', [RTBansosController::class, 'types']);
-    Route::get('/penerima', [RTBansosController::class, 'recipients']);
+  Route::prefix('/bansos')->group(function() {
+    Route::resource('/jenis', RTBansosTypesController::class);
+    Route::resource('/penerima', RTBansosRecipientsController::class);
+    Route::get('/{id_bansos}/penerima/{nik}/edit', [RTBansosRecipientsController::class, 'edit_recipient']);
+    Route::put('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'update_recipient']);
+    Route::delete('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'delete_recipient']);
   });
 });
 /*****************************************
@@ -120,5 +127,3 @@ Route::prefix('admin')->middleware(['auth', 'auth.session', 'level.validate'])->
 Route::get('/notifikasi', [NotificationController::class, 'index']);
 Route::get('/settings', [SettingController::class, 'index']);
 Route::get('/faq', [FaqController::class, 'index']);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

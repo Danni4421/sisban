@@ -20,7 +20,7 @@
 
             <div class="content-wrapper py-4 px-3">
 
-                <div class="card">
+                <div class="card card-info card-outline">
                     {{-- Header --}}
                     <div class="content-header">
                         <div class="container-fluid">
