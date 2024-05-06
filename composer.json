@@ -9,12 +9,19 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "larswiegers/laravel-maps": "^0.18.0",
+        "livewire/livewire": "^3.4",
+        "predis/predis": "^2.2",
+        "spatie/laravel-livewire-wizard": "^2.2",
+        "spatie/laravel-permission": "^6.4",
+        "yajra/laravel-datatables": "^10.1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
+        "laravel/ui": "^4.5",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.1",

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->char('no_kk', 16)->primary();
-            $table->enum('status_pengajuan', ['diterima', 'ditolak', 'proses']);
+            $table->enum('status_pengajuan', ['diterima', 'ditolak', 'proses'])->default('proses');
             $table->timestamps();
 
             $table->foreign('no_kk')->references('no_kk')->on('keluarga');

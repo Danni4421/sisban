@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('penerima_bansos', function (Blueprint $table) {
             $table->char('nik', 16)->index();
             $table->unsignedBigInteger('id_bansos')->index();
-            $table->dateTime('tanggal_penerimaan');
+            $table->date('tanggal_penerimaan');
             $table->timestamps();
 
             $table->primary(['nik', 'id_bansos']);

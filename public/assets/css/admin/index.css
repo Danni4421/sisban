@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno&family=Poppins&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+    --bg-account: #ffffff;
+    --bg-account-hover: #fbfafa;
+}
+
+.sidebar-account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 15.625rem;
+    max-height: 4.225rem;
+    height: 40px;
+    padding: 2.4rem 1.2rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: var(--bg-account);
+    font-family: "Roboto", sans-serif;
+    font-size: 0.965rem;
+    font-style: normal;
+}
+
+.collapse-sidebar-account {
+    position: absolute;
+    left: 0;
+    min-width: 15.625rem;
+    min-height: 5rem;
+    transition: bottom 0.2s ease-in-out;
+    bottom: 0;
+}
+
+.collapse-sidebar-account-active {
+    bottom: 4.225rem;
+}
+
+.collapse-sidebar-account-disabled {
+    bottom: -2.225rem;
+}
+
+
+.sidebar-account:hover {
+    background: var(--bg-account-hover);
+    cursor: pointer;
+}
+
+.user-details {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.user-details-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-profile {
+    width: 2.5rem;
+    height: 2.5rem;
+    box-shadow: none !important;
+}

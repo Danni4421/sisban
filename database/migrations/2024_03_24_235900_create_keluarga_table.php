@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('keluarga', function (Blueprint $table) {
             $table->char('no_kk', 16)->primary();
             $table->char('rt', 3);
-            $table->enum('daya_listrik', [450, 900, 1300]);
+            $table->enum('daya_listrik', ['none', 450, 900, 1300]);
             $table->double('biaya_listrik', 7);
             $table->double('biaya_air', 7);
-            $table->double('tabungan', 8);
             $table->double('hutang', 8);
             $table->double('pengeluaran', 8);
             $table->text('foto_kk');
