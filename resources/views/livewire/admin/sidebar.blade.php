@@ -3,7 +3,7 @@
     <a href="index3.html" class="brand-link">
         <img src="{{ asset('assets/img/Logo1.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8; box-shadow: none !important;">
-        <span class="brand-text font-weight-light">Sisban</span>
+        <span class="brand-text font-weight-light">{{$brand}}</span>
     </a>
 
     <!-- Sidebar -->
@@ -32,8 +32,15 @@
                     @if (!empty($menu->children))
                         @foreach ($menu->children as $navItem)
                             <li class="nav-item">
-                                <a href="{{ $navItem->with_level ? url($level . '/' . $navItem->href) : url($navItem->href) }}"
-                                    class="nav-link">
+                                <button
+                                    type="button"
+                                    class="nav-link text-start @if(in_array($activeItem, $navItem->active)) active @endif"
+                                    
+                                    @if (empty($navItem->children))
+                                        wire:click="updateActiveItem('/{{$navItem->href}}', {{$navItem->with_level}})"
+                                    @endif
+
+                                    >
                                     <i class="nav-icon {{ $navItem->icon }}"></i>
                                     <p>
                                         {{ $navItem->label }}
@@ -41,16 +48,20 @@
                                             <i class="fas fa-angle-left right"></i>
                                         @endif
                                     </p>
-                                </a>
+                                </button>
 
                                 @if (!empty($navItem->children))
                                     <ul class="nav nav-treeview">
                                         @foreach ($navItem->children as $childItem)
                                             <li class="nav-item">
-                                                <a href="{{ url($level . '/' . $childItem->href) }}" class="nav-link">
+                                                <button
+                                                    type="button"
+                                                    class="nav-link text-start"
+                                                    wire:click="updateActiveItem('/{{$childItem->href}}', {{$childItem->with_level}})"
+                                                    >
                                                     <i class="nav-icon {{ $childItem->icon }}"></i>
                                                     <p>{{ $childItem->label }}</p>
-                                                </a>
+                                                </button>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -88,7 +99,7 @@
                     class="img-circle elevation-3 img-profile">
                 <div class="user-details-body">
                     <span class="brand-text font-weight-bold">{{ auth()->user()->username }}</span>
-                    {{-- <span class="brand-text font-weight-light">RT031</span> --}}
+                    <span class="brand-text font-weight-light">RT031</span>
                 </div>
             </div>
             <i class="fas fa-angle-left right" id="arrow-sidebar-account"></i>

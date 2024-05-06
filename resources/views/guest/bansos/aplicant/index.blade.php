@@ -24,7 +24,7 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/dataTable.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
 @endpush
 
 @push('scripts')

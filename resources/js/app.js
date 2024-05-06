@@ -1,2 +1,3 @@
-import './bootstrap';
-import 'laravel-datatables-vite';
+import "bootstrap";
+import "@popperjs/core";
+import "laravel-datatables-vite";

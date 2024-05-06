@@ -6,11 +6,10 @@
   <h1>Dashboard</h1>
 @endsection
 
-@section('content_body')
-  
+@section('content')
+  <canvas id="barchart"></canvas>
 @endsection
 
 @push('styles')
   {{-- Custom styles --}}
 @endpush
-

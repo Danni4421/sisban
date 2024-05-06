@@ -64,7 +64,7 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
     Route::put('/approve/{no_kk}', [RTPengajuanController::class, 'approvePengajuan'])->name('pengajuan.approve');
     Route::put('/decline/{no_kk}', [RTPengajuanController::class, 'declinePengajuan'])->name('pengajuan.decline');
   });
-  Route::prefix('/bansos')->group(function() {
+  Route::prefix('/bansos')->group(function () {
     Route::resource('/jenis', RTBansosTypesController::class);
     Route::resource('/penerima', RTBansosRecipientsController::class);
     Route::get('/{id_bansos}/penerima/{nik}/edit', [RTBansosRecipientsController::class, 'edit_recipient']);
@@ -125,5 +125,5 @@ Route::prefix('admin')->middleware(['auth', 'auth.session', 'level.validate'])->
  *****************************************/
 
 Route::get('/notifikasi', [NotificationController::class, 'index']);
-Route::get('/settings', [SettingController::class, 'index']);
+Route::get('/pengaturan', [SettingController::class, 'index']);
 Route::get('/faq', [FaqController::class, 'index']);
