@@ -14,7 +14,7 @@ trait ManagePengajuan
     public function updatePengajuanToApproved($no_kk)
     {
         Pengajuan::whereNotIn('status_pengajuan', ['diterima', 'ditolak'])
-            ->find($no_kk)
+            ->first()
             ->update(['status_pengajuan' => 'diterima']);
     }
 

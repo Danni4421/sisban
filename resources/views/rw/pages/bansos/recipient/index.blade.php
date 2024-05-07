@@ -9,11 +9,13 @@
 @endsection
 
 @section('content')
+<div class="container-md">
     <main class="px-3">
         <hr>
         <div class="d-flex justify-content-end mb-3">
-            <a href="{{ url('rw/bansos/penerima/create') }}" class="btn btn-primary">Tambah Penerima Bansos</a>
+            <a href="{{ url('rw/bansos/penerima/create') }}" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Penerima</a>
         </div>
+        <div class="table-responsive">
         <table class="table table-striped table-hover">
             <thead>
                 <th>Nama</th>
@@ -44,7 +46,9 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </main>
+</div>
 @endsection
 
 @push('styles')
