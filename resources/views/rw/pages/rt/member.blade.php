@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header')
-    <h2>Data Ketua RT</h2>
+    <h1>Data Ketua RT</h1>
 @endsection
 
 @section('content')
@@ -20,44 +20,45 @@
                     data
                 </div>
                 <div class="col-4 text-right">
-                    <a href="{{ url('rw/data-rt/create') }}" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah
-                        Data</a>
+                    <a href="{{ url('rw/data-rt/create') }}" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Data</a>
                 </div>
             </div>
 
             <!-- Table -->
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped table-hover">
                     <!-- Headers -->
-                    <tr>
+                    <thead>
                         <th>ID</th>
                         <th>Nama</th>
                         <th>Jabatan</th>
                         <th>No.Telp</th>
                         <th>Alamat</th>
                         <th>Aksi</th>
-                    </tr>
+                    </thead>
 
                     <!-- Data Rows -->
-                    @foreach ($data as $d)
-                        @if (strpos($d->jabatan, 'RT') !== false)
-                            <tr>
-                                <td>{{ $d->id_pengurus }}</td>
-                                <td>{{ $d->nama }}</td>
-                                <td>{{ $d->jabatan }}</td>
-                                <td>{{ $d->nomor_telepon }}</td>
-                                <td>{{ $d->alamat }}</td>
-                                <td>
-                                    <a href="{{ url('rw/data-rt/' . $d->id_pengurus . '/edit/') }}"
-                                        class="btn btn-warning btn-sm">Edit</a>
-                                    <!-- Added btn-sm class for smaller button -->
-                                    <a href="{{ url('rw/data-rt/delete/' . $d->id_pengurus) }}"
-                                        class="btn btn-danger btn-sm">Hapus</a>
-                                    <!-- Added btn-sm class for smaller button -->
-                                </td>
-                            </tr>
-                        @endif
-                    @endforeach
+                    <tbody>
+                        @foreach ($data as $d)
+                            @if (strpos($d->jabatan, 'RT') !== false)
+                                <tr>
+                                    <td>{{ $d->id_pengurus }}</td>
+                                    <td>{{ $d->nama }}</td>
+                                    <td>{{ $d->jabatan }}</td>
+                                    <td>{{ $d->nomor_telepon }}</td>
+                                    <td>{{ $d->alamat }}</td>
+                                    <td>
+                                        <a href="{{ url('rw/data-rt/' . $d->id_pengurus . '/edit/') }}"
+                                            class="btn btn-warning btn-sm">Edit</a>
+                                        <!-- Added btn-sm class for smaller button -->
+                                        <a href="{{ url('rw/data-rt/delete/' . $d->id_pengurus) }}"
+                                            class="btn btn-danger btn-sm">Hapus</a>
+                                        <!-- Added btn-sm class for smaller button -->
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         @endsection

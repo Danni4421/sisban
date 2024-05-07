@@ -4,21 +4,49 @@ namespace App\Http\Controllers\RW;
 
 use App\Http\Controllers\Controller;
 use App\Models\PenerimaBansos;
+use App\Models\Pengajuan;
+use App\Traits\ManagePengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class PengajuanController extends Controller
 {
-    public function incoming()
-    {
-        return view('rw.pages.pengajuan.incoming_data');
-    }
-
+    use ManagePengajuan;
     public function approved()
     {
-        $data = DB::table('penerima_bansos');
-        return view('rw.pages.pengajuan.approved_data');
+        $dataPengajuan = $this->getDataPengajuan();
+        return view('rw.pages.pengajuan.approved_data')->with('dataPengajuan', $dataPengajuan);
     }
+
+    public function show(string $no_kk)
+    {
+        return Pengajuan::with(['keluarga' => function ($query) {
+            $query->with('anggota_keluarga');
+        }])
+        ->where('no_kk', $no_kk)
+        ->first();
+    }
+
+    public function cetakPDF($no_kk)
+    {
+        // Ambil data pengajuan berdasarkan nomor KK
+        $pengajuan = Pengajuan::where('no_kk', $no_kk)->first();
+    
+        // Load view 'pdf' dengan data pengajuan
+        $pdf = new Dompdf();
+        $pdf->loadHtml(view('rw.pages.pengajuan.pdf', compact('pengajuan')));
+    
+        // Render PDF
+        $pdf->render();
+    
+        // Mengatur nama file
+        $filename = 'dokumen_' . $no_kk . '.pdf';
+    
+        // Mengembalikan respons dengan file PDF yang diunduh
+        return $pdf->stream($filename);
+    }    
 
     public function main()
     {

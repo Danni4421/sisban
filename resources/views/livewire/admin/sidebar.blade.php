@@ -65,7 +65,7 @@
         <div id="collapse-sidebar-account" class="collapse-sidebar-account collapse-sidebar-account-disabled">
             <ul class="nav nav-pills nav-sidebar flex-column pl-2 pb-3">
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('informasi_akun') }}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>Informasi Akun</p>
                     </a>
@@ -87,8 +87,8 @@
                 <img src="{{ asset('adminlte/dist/img/avatar.png') }}" alt="User Account Profile"
                     class="img-circle elevation-3 img-profile">
                 <div class="user-details-body">
-                    <span class="brand-text font-weight-bold">{{ auth()->user()->username }}</span>
-                    {{-- <span class="brand-text font-weight-light">RT031</span> --}}
+                    <span class="brand-text font-weight-bold">{{ ucfirst(auth()->user()->username) }}</span>
+                    <span class="brand-text font-weight-light">Ketua {{ strtoupper(auth()->user()->pengurus->jabatan) }}</span>
                 </div>
             </div>
             <i class="fas fa-angle-left right" id="arrow-sidebar-account"></i>

@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\RTController as AdminRTController;
 use App\Http\Controllers\Admin\AplicantController as AdminAplicantController;
 use App\Http\Controllers\Admin\Bansos\TypeController as AdminBansosTypesController;
 use App\Http\Controllers\Admin\Bansos\RecipientController as AdminBansosRecipientsController;
+use App\Http\Controllers\RW\AkunController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -82,15 +83,18 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
 Route::prefix('rw')->middleware(['auth', 'auth.session', 'level.validate'])->group(function () {
   Route::get('/', [RWDashboardController::class, 'index']);
   Route::resource('/data-rt', RWMemberController::class);
-  Route::prefix('/pengajuan')->group(function () {
-    Route::get('/masuk', [RWPengajuanController::class, 'incoming']);
-    Route::get('/disetujui', [RWPengajuanController::class, 'approved']);
-  });
+  Route::get('/pemohon', [RWPengajuanController::class, 'approved']);
+  Route::post('/pengajuan/{no_kk}', [RWPengajuanController::class, 'show']);
+  Route::get('/pengajuan/{no_kk}/cetak', [RWPengajuanController::class, 'cetakPDF'])->name('rw.pengajuan.cetak');  
   Route::prefix('/bansos')->group(function () {
     Route::resource('/penerima', RWBansosRecipientsController::class);
     Route::get('/{id_bansos}/penerima/{nik}/edit', [RWBansosRecipientsController::class, 'edit_recipient']);
     Route::put('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'update_recipient']);
     Route::delete('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'delete_recipient']);
+  });
+  Route::prefix('/akun')->group(function () {
+    Route::get('/informasi', [AkunController::class, 'index'])->name('informasi_akun');
+    Route::put('/{id}', [AkunController::class, 'update']);
   });
 });
 /*****************************************

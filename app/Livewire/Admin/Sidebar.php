@@ -165,29 +165,11 @@ class Sidebar extends Component
                             'with_level' => true,
                         ],
                         'pengajuan' => (object) [
-                            'label' => 'Pengajuan',
-                            'href' => 'pengajuan',
+                            'label' => 'Data Pemohon',
+                            'href' => 'pemohon',
                             'icon' => 'far fa-envelope',
-                            'active' => (object) [
-                                '/pengajuan',
-                                '/pengajuan/masuk',
-                                '/pengajuan/disetujui'
-                            ],
+                            'active' => ['/pemohon'],
                             'with_level' => true,
-                            'children' => (object) [
-                                'dataMasuk' => (object) [
-                                    'label' => 'Data Masuk',
-                                    'href' => 'pengajuan/masuk',
-                                    'func' => 'nav-item',
-                                    'icon' => 'far fa-circle'
-                                ],
-                                'dataDisetujui' => (object) [
-                                    'label' => 'Data Disetujui',
-                                    'href' => 'pengajuan/disetujui',
-                                    'func' => 'nav-item',
-                                    'icon' => 'far fa-circle'
-                                ],
-                            ]
                         ],
                         'penerima' => (object) [
                             'label' => 'Data Penerima',
