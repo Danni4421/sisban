@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\RW\Bansos;
 
+use App\DataTables\RW\Bansos\RecipientDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Bansos;
 use App\Models\Keluarga;
@@ -13,13 +14,19 @@ class RecipientController extends Controller
 {
     use ManageBansos;
 
+    public ?RecipientDataTable $dataTable;
+
+    public function __construct()
+    {
+        $this->dataTable = app()->make(RecipientDataTable::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $recipients = $this->getPenerimaBansos();
-        return view('rw.pages.bansos.recipient.index')->with('recipients', $recipients);
+        return $this->dataTable->render("rw.pages.bansos.recipient.index");
     }
 
     /**
@@ -56,7 +63,7 @@ class RecipientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit_recipient(int $id_bansos, string $nik)
+    public function edit(int $id_bansos, string $nik)
     {
         $bansos = Bansos::all();
         $kandidatPenerima = $this->getKandidatPenerimaBansos();
@@ -71,7 +78,7 @@ class RecipientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update_recipient(Request $request, int $id_bansos, string $nik)
+    public function update(Request $request, int $id_bansos, string $nik)
     {
         $this->updatePenerimaBansos(request: $request, nik: $nik, idBansos: $id_bansos);
         return redirect('rw/bansos/penerima');
@@ -80,9 +87,8 @@ class RecipientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete_recipient(int $id_bansos, string $nik)
+    public function destroy(int $id_bansos, string $nik)
     {
         $this->deletePenerimaBansos(nik: $nik, idBansos: $id_bansos);
-        return redirect('rw/bansos/penerima');
     }
 }

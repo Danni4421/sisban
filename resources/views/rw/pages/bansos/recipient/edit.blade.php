@@ -24,6 +24,11 @@
                             </option>
                         @endforeach
                     </select>
+
+                    @error('nik')
+                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @enderror
+                
                 </div>
                 <div class="mb-3">
                     <label for="penerima" class="form-label">Bansos</label>
@@ -33,12 +38,22 @@
                                 {{ $bs->nama_bansos }}</option>
                         @endforeach
                     </select>
+
+                    @error('id_bansos')
+                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @enderror
+
                 </div>
                 <div class="mb-3">
                     <label for="tanggal_penerimaan" class="form-label">Tanggal Penerimaan</label>
                     <input type="date" class="form-control" id="tanggal_penerimaan" name="tanggal_penerimaan"
                         aria-describedby="Tanggal Penerimaan Bantuan Sosial" value="{{ $recipient->tanggal_penerimaan }}"
                         required>
+
+                    @error('tanggal_penerimaan')
+                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @enderror
+
                 </div>
                 <div class="table-footer">
                     <button type="submit" class="btn btn-warning">Ubah</button>

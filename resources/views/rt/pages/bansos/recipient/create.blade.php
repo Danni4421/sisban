@@ -17,11 +17,16 @@
                     <select class="form-select" id="nik" name="nik" aria-label="Penerima Bantuan Sosial">
                         <option selected value="">Pilih Calon Penerima Bansos</option>
                         @foreach ($members as $member)
-                            <option value="{{ $member->anggota_keluarga[0]->nik }}">
-                                {{ $member->no_kk }} - {{ $member->anggota_keluarga[0]->nama }}
+                            <option value="{{ $member->kepala_keluarga->nik }}">
+                                {{ $member->no_kk }} - {{ $member->kepala_keluarga->nama }}
                             </option>
                         @endforeach
                     </select>
+
+                    @error('nik')
+                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @enderror                    
+
                 </div>
                 <div class="mb-3">
                     <label for="id_bansos" class="form-label">Bansos</label>
@@ -31,12 +36,22 @@
                             <option value="{{ $bs->id_bansos }}">{{ $bs->nama_bansos }}</option>
                         @endforeach
                     </select>
+
+                    @error('id_bansos')
+                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @enderror 
+
                 </div>
                 <div class="mb-3">
                     <label for="tanggal_penerimaan" class="form-label">Tanggal Penerimaan</label>
                     <input type="date" class="form-control" id="tanggal_penerimaan" name="tanggal_penerimaan"
                         aria-describedby="Tanggal Penerimaan Bantuan Sosial" value="{{ old('tanggal_penerimaan') }}"
                         required>
+
+                    @error('tanggal_penerimaan')
+                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @enderror
+                    
                 </div>
                 <div class="table-footer">
                     <button type="submit" class="btn btn-primary" id="submit_button">Tambah</button>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Bansos;
 
+use App\DataTables\Admin\Bansos\RecipientDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Bansos;
 use App\Models\Keluarga;
@@ -13,13 +14,19 @@ class RecipientController extends Controller
 {
     use ManageBansos;
 
+    public ?RecipientDataTable $dataTable;
+
+    public function __construct()
+    {
+        $this->dataTable = app()->make(RecipientDataTable::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $recipients = $this->getPenerimaBansos();
-        return view('admin.pages.bansos.recipient.index')->with('recipients', $recipients);
+        return $this->dataTable->render("admin.pages.bansos.recipient.index");
     }
 
     /**

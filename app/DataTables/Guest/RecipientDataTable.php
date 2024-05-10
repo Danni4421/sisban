@@ -61,7 +61,8 @@ class RecipientDataTable extends DataTable
             ->orderBy(1)
             ->selectStyleSingle()
             ->addTableClass('table-striped')
-            ->language(asset('assets/dataTable/lang/id.json'));
+            ->language(asset('assets/dataTable/lang/id.json'))
+            ->buttons([]);
     }
 
     /**

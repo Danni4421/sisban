@@ -7,26 +7,35 @@
 @endsection
 
 @section('content')
-    <main class="px-3 pb-4">
+    <div class="container-fluid">
         <hr>
-        <div class="container">
-            <form class="form" action="{{ url('/rt/bansos/jenis/' . $bansos->id_bansos) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="mb-3">
-                    <label for="nama_bansos" class="form-label">Nama Bansos</label>
-                    <input type="text" class="form-control" id="nama_bansos" name="nama_bansos"
-                        aria-describedby="Nama Bansos" maxlength="100"
-                        value="{{ old('nama_bansos', $bansos->nama_bansos) }}">
-                    <div id="nama_bansos_help" class="form-text">Masukkan nama untuk Bantuan Sosial baru.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="keterangan">keterangan</label>
-                    <textarea class="form-control" id="keterangan" style="height: 100px" name="keterangan">{{ old('keterangan', $bansos->keterangan) }}</textarea>
-                </div>
-                <button type="submit" class="btn btn-warning">Ubah</button>
-            </form>
-        </div>
+        <form class="form" action="{{ url('/rt/bansos/jenis/' . $bansos->id_bansos) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="mb-3">
+                <label for="nama_bansos" class="form-label">Nama Bansos</label>
+                <input type="text" class="form-control" id="nama_bansos" name="nama_bansos"
+                    aria-describedby="Nama Bansos" maxlength="100"
+                    value="{{ old('nama_bansos', $bansos->nama_bansos) }}">
+                <div id="nama_bansos_help" class="form-text">Masukkan nama untuk Bantuan Sosial baru.</div>
+
+                @error('nama_bansos')
+                    @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                @enderror
+
+            </div>
+            <div class="mb-3">
+                <label for="keterangan">keterangan</label>
+                <textarea class="form-control" id="keterangan" style="height: 100px" name="keterangan">{{ old('keterangan', $bansos->keterangan) }}</textarea>
+
+                @error('keterangan')
+                    @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                @enderror
+
+            </div>
+            <button type="submit" class="btn btn-warning">Ubah</button>
+            <a href="{{ url('rt/bansos/jenis') }}" class="btn btn-secondary">Kembali</a>
+        </form>
     </main>
 
 @endsection

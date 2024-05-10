@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use function PHPUnit\Framework\matches;
+
 class ValidateLevel
 {
     /**
@@ -17,9 +19,9 @@ class ValidateLevel
     {
         $requestName = $request->getUri();
 
-        if (preg_match('/0\/(.*)/', $requestName, $matches))
+        if (preg_match('/\/\/[^\/]+\/([^\/]+)/', $requestName, $matches))
         {
-            $role = explode('/', $matches[1])[0];
+            $role = $matches[1];
 
             if ($user_role = $this->validateLevel(role: $role)) {
                 return redirect()->to(

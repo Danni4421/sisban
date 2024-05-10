@@ -46,7 +46,7 @@
 
 </head>
 <body>
-    <section class="vh-100">
+    <section class="vh-100 d-flex justify-content-center align-items-center">
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-4 col-sm-6 d-flex flex-column justify-content-center text-black">
@@ -63,17 +63,39 @@
                     </div>
                 </div>
 
+                @if(isset($error))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Login Gagal!</strong> 
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                   
-                <form action="{{ url('/login') }}" method="POST">
+                <form action="{{ route('authenticate') }}" method="POST">
                     @csrf
                     <div class="mb-3 px-2">
                         <x-label for="email" class="fs-5">Email</x-label>
                         <x-input type="email" name="email" placeholder="Masukkan Email Anda"/>
+
+                        @error('email')
+                            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                                <strong>Terdapat Kesalahan!</strong> {{$message}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @enderror
                     </div>
+
                     <div class="mb-3 px-2">
                         <x-label for="password" class="fs-5">Password</x-label>
                         <x-input type="password" name="password" placeholder="Masukkan Password Anda"/>
+
+                        @error('password')
+                            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                                <strong>Terdapat Kesalahan!</strong> {{$message}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @enderror
                     </div>
+
                     <div class="px-2">
                         <button type="submit" class="btn btn-main w-100">Login</button>
                     </div>
@@ -92,5 +114,8 @@
           </div>
         </div>
       </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>

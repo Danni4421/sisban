@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\RT\Bansos;
 
+use App\DataTables\RT\Bansos\RecipientDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Bansos;
 use App\Traits\ManageBansos;
@@ -11,13 +12,18 @@ class RecipientController extends Controller
 {
     use ManageBansos;
 
+    public ?RecipientDataTable $dataTable;
+
+    public function __construct() {
+        $this->dataTable = app()->make(RecipientDataTable::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $recipients = $this->getPenerimaBansos();
-        return view('rt.pages.bansos.recipient.index')->with('recipients', $recipients);
+        return $this->dataTable->render("rt.pages.bansos.recipient.index");
     }
 
     /**
@@ -26,7 +32,9 @@ class RecipientController extends Controller
     public function create()
     {
         $bansos = Bansos::all();
-        $kandidatPenerima = $this->getKandidatPenerimaBansos();
+
+        $rt = substr(auth()->user()->pengurus->jabatan, 2);
+        $kandidatPenerima = $this->getKandidatPenerimaBansosByRt(rt: $rt);
 
         return view('rt.pages.bansos.recipient.create')
             ->with('bansos', $bansos)
@@ -81,6 +89,5 @@ class RecipientController extends Controller
     public function delete_recipient(int $id_bansos, string $nik)
     {
         $this->deletePenerimaBansos(nik: $nik, idBansos: $id_bansos);
-        return redirect('rt/bansos/penerima');
     }
 }

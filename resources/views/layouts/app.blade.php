@@ -19,23 +19,17 @@
 
 
             <div class="content-wrapper py-4 px-3">
-
-                <div class="card card-info card-outline">
-                    {{-- Header --}}
-                    <div class="content-header">
-                        <div class="container-fluid">
-                            <div class="row mb-2">
-                                <div class="col-sm-6">
-                                    @yield('content_header')
-                                </div>
-                            </div>
-                        </div>
+               <div class="card card-info card-outline p-3">
+                <div class="content-header">
+                    <div class="container-fluid">
+                        @yield('content_header')
                     </div>
-
-                    <section class="content">
-                        @yield('content')
-                    </section>
-                </div>
+               </div>
+               
+                <section class="content">
+                    @yield('content')
+                </section>
+               </div>
             </div>
         </div>
 

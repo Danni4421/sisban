@@ -17,14 +17,25 @@
                     <input type="text" class="form-control" id="nama_bansos" name="nama_bansos"
                         aria-describedby="Nama Bansos" maxlength="100" value="{{ old('nama_bansos') }}">
                     <div id="nama_bansos_help" class="form-text">Masukkan nama untuk Bantuan Sosial baru.</div>
+
+                    @error('nama_bansos')
+                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @enderror
+
                 </div>
                 <div class="mb-3">
                     <label for="keterangan" class="form-label">Keterangan</label>
                     <textarea class="form-control text-start" id="keterangan" name="keterangan">
                       {{ old('keterangan') }}
                     </textarea>
+
+                    @error('keterangan')
+                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @enderror
+
                 </div>
                 <button type="submit" class="btn btn-primary">Tambah</button>
+                <a href="{{ url('rt/bansos/jenis') }}" class="btn btn-secondary">Kembali</a>
             </form>
         </div>
     </main>
