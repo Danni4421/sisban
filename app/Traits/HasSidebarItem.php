@@ -249,6 +249,20 @@ trait HasSidebarItem
                         ],
                     ],
                 ],
+                'other' => (object) [
+                    'label' => 'OTHER',
+                    'func' => 'root',
+                    'children' => (object) [
+                        'pertanyaan' => (object) [
+                            'label' => 'Pertanyaan',
+                            'href' => 'pertanyaan',
+                            'active' => ['/pertanyaan'],
+                            'func' => 'nav-item',
+                            'icon' => 'far fa-folder',
+                            'with_level' => true,
+                        ],
+                    ],
+                ],
             ];
         }
     }

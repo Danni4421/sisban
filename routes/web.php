@@ -115,6 +115,9 @@ Route::prefix('admin')->middleware(['auth', 'auth.session', 'level.validate'])->
     Route::put('/{id_bansos}/penerima/{nik}', [AdminBansosRecipientsController::class, 'update_recipient'])->name('admin.update.bansos.recipient');
     Route::delete('/{id_bansos}/penerima/{nik}', [AdminBansosRecipientsController::class, 'delete_recipient'])->name('admin.delete.bansos.recipient');
   });
+  Route::get('/pertanyaan', [FaqController::class, 'admin_index'])->name('admin.faq.index');
+  Route::post('/pertanyaan/{id_faq}', [FaqController::class, 'admin_show'])->name('admin.faq.show');
+  Route::put('/pertanyaan/{id_faq}', [FaqController::class, 'admin_update'])->name('admin.faq.update');
 });
 /*****************************************
  * End Admin Routes
@@ -131,6 +134,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/notifikasi', [NotificationController::class, 'index'])->name('general.notifikasi');
   Route::get('/pengaturan', [SettingController::class, 'index'])->name('general.pengaturan');
   Route::get('/faq', [FaqController::class, 'index'])->name('general.faq');
+  Route::post('/faq', [FaqController::class, 'store'])->name('general.store.faq');
   Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 });
 /*****************************************

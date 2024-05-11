@@ -28,7 +28,6 @@
                                 display: true,
                                 position: 'bottom',
                                 labels: {
-                                fontColor: 'black',
                                 fontSize: 16,
                             },
                         },

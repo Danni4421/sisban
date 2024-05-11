@@ -3,6 +3,55 @@
 :root {
     --bg-account: #ffffff;
     --bg-account-hover: #fbfafa;
+    --bg-account-dark: #2a2e31;
+    --bg-account-dark-hover: #222427;
+}
+
+[data-theme="dark"] {
+    .sidebar-account {
+        color: var(--bg-account);
+        background: var(--bg-account-dark);
+    }
+
+    .sidebar-account:hover {
+        background: var(--bg-account-dark-hover);
+    }
+
+    canvas {
+        color: #ffffff !important;
+    }
+}
+
+[data-theme="light"] {
+    #sidebar-navigation {
+        background: #fff;
+    }
+}
+
+[data-font="roboto"] {
+    * {
+        font-family: 'Roboto';
+    }
+}
+
+[data-font="poppins"] {
+    * {
+        font-family: 'Poppins';
+    }
+}
+
+[data-font="monserrat"] {
+    * {
+        font-family: 'Monserrat';
+    }
+}
+
+[data-font="roboto"],
+[data-font="poppins"],
+[data-font="monserrat"] {
+    i {
+        font-family: "Font Awesome 6 Free" !important;
+    }
 }
 
 .sidebar-account {

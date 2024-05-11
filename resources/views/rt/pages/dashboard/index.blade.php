@@ -61,14 +61,14 @@
       {{-- END INFORMATION --}}
 
       {{-- START INCOMING DATA PENGAJUAN --}}
-      <div class="col-3 card card-secondary card-outline bg-light overflow-auto">
+      <div class="col-12 col-md-3 card card-secondary card-outline bg-light overflow-auto">
         <div class="card-header">
           Data Pengajuan Masuk
         </div>
         <div class="row px-2">
           @foreach ($latestPengajuan as $data)
               <div class="col-12">
-                <a href="/rt/pengajuan/masuk" class="card" wire:click="updateSidebarItem('/pengajuan/masuk', true)">
+                <a href="/rt/pengajuan/masuk" class="card" wire:click="updateActiveItem('/pengajuan/masuk', true)">
                   <div class="card-body">
                     <h5 class="card-title">{{ $data->nama }}</h5>
                     <p class="card-text">{{ date_format($data->created_at, 'D, d-m-Y') }}</p>

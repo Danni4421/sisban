@@ -1,6 +1,6 @@
-<aside class="main-sidebar sidebar-light-primary elevation-4">
+<aside class="main-sidebar elevation-4" id="main-sidebar">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="/" class="brand-link">
         <img src="{{ asset('assets/img/Logo1.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8; box-shadow: none !important;">
         <span class="brand-text font-weight-light">{{ $brand }}</span>
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <nav class="mt-2">
+        <nav class="mt-2" id="sidebar-navigation">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 @foreach ($NAVIGATION_ITEM as $menu)

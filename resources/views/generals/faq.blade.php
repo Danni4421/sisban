@@ -6,11 +6,12 @@
   <h1>Bantuan & Pertanyaan</h1>
 @endsection
 
-@section('content_body')
-  
+@section('content')
+  <div class="container-fluid">
+    @livewire('admin.faq', ['faqs' => $faqs])
+  </div>
 @endsection
 
-@push('styles')
-  {{-- Custom styles --}}
+@push('scripts')
+    
 @endpush
-

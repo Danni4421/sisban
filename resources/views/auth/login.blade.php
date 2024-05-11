@@ -49,7 +49,7 @@
     <section class="vh-100 d-flex justify-content-center align-items-center">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-4 col-sm-6 d-flex flex-column justify-content-center text-black">
+            <div class="col-lg-4 col-12 d-flex flex-column justify-content-center text-black">
       
               <div class="d-flex flex-column justify-content-start gap-2 px-5">
                 <div class="d-flex flex-column align-items-start">
@@ -107,7 +107,7 @@
               </div>
       
             </div>
-            <div class="background col-lg-8 col-sm-6 px-0 d-none d-sm-flex align-items-center justify-content-center vh-100">
+            <div class="background col-lg-8 px-0 d-none d-lg-flex align-items-center justify-content-center vh-100">
               <img src="{{ asset('assets/img/LoginPage.png') }}"
                 alt="Login image" style="object-fit: cover; object-position: left; width: 85%">
             </div>

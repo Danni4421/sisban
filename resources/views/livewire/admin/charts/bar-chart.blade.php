@@ -4,7 +4,7 @@
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>;
-            new Chart(document.getElementById('barchart'), {
+            $chart = new Chart(document.getElementById('barchart'), {
                 type: 'bar',
                 data: {
                     labels: {!! json_encode($labels) !!},
