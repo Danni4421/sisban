@@ -33,6 +33,7 @@ class PengajuanController extends Controller
 
     public function show(string $no_kk)
     {
+        return $no_kk;
         return Pengajuan::with(['keluarga' => function ($query) {
             $query->with('anggota_keluarga');
         }])

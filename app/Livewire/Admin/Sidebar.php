@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire\Admin;
 
 use App\Models\User;
@@ -11,12 +10,10 @@ use Livewire\Component;
 class Sidebar extends Component
 {
     use HasSidebarItem;
-
     /**
      * @var string
      */
     public $brand = 'Sisban';
-
     /**
      * @var User
      */

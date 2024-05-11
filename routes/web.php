@@ -88,6 +88,10 @@ Route::prefix('rw')->middleware(['auth', 'auth.session', 'level.validate'])->gro
     Route::put('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'update'])->name('rw.update.bansos.recipient');
     Route::delete('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'destroy'])->name('rw.delete.bansos.recipient');
   });
+  Route::prefix('/akun')->group(function () {
+    Route::get('/informasi', [AkunController::class, 'index'])->name('informasi_akun');
+    Route::put('/{id}', [AkunController::class, 'update']);
+  });
 });
 /*****************************************
  * End RW Routes
