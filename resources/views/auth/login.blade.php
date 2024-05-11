@@ -46,10 +46,10 @@
 
 </head>
 <body>
-    <section class="vh-100">
+    <section class="vh-100 d-flex justify-content-center align-items-center">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-4 col-sm-6 d-flex flex-column justify-content-center text-black">
+            <div class="col-lg-4 col-12 d-flex flex-column justify-content-center text-black">
       
               <div class="d-flex flex-column justify-content-start gap-2 px-5">
                 <div class="d-flex flex-column align-items-start">
@@ -63,17 +63,39 @@
                     </div>
                 </div>
 
+                @if(isset($error))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Login Gagal!</strong> 
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                   
-                <form action="{{ url('/login') }}" method="POST">
+                <form action="{{ route('authenticate') }}" method="POST">
                     @csrf
                     <div class="mb-3 px-2">
                         <x-label for="email" class="fs-5">Email</x-label>
                         <x-input type="email" name="email" placeholder="Masukkan Email Anda"/>
+
+                        @error('email')
+                            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                                <strong>Terdapat Kesalahan!</strong> {{$message}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @enderror
                     </div>
+
                     <div class="mb-3 px-2">
                         <x-label for="password" class="fs-5">Password</x-label>
                         <x-input type="password" name="password" placeholder="Masukkan Password Anda"/>
+
+                        @error('password')
+                            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                                <strong>Terdapat Kesalahan!</strong> {{$message}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @enderror
                     </div>
+
                     <div class="px-2">
                         <button type="submit" class="btn btn-main w-100">Login</button>
                     </div>
@@ -85,12 +107,15 @@
               </div>
       
             </div>
-            <div class="background col-lg-8 col-sm-6 px-0 d-none d-sm-flex align-items-center justify-content-center vh-100">
+            <div class="background col-lg-8 px-0 d-none d-lg-flex align-items-center justify-content-center vh-100">
               <img src="{{ asset('assets/img/LoginPage.png') }}"
                 alt="Login image" style="object-fit: cover; object-position: left; width: 85%">
             </div>
           </div>
         </div>
       </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>

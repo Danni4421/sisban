@@ -1,9 +1,9 @@
-<aside class="main-sidebar sidebar-light-primary elevation-4">
+<aside class="main-sidebar elevation-4" id="main-sidebar">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="/" class="brand-link">
         <img src="{{ asset('assets/img/Logo1.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8; box-shadow: none !important;">
-        <span class="brand-text font-weight-light">{{$brand}}</span>
+        <span class="brand-text font-weight-light">{{ $brand }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -21,10 +21,10 @@
             </div>
         </div>
 
-        <nav class="mt-2">
+        <nav class="mt-2" id="sidebar-navigation">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                @foreach ($data as $menu)
+                @foreach ($NAVIGATION_ITEM as $menu)
                     @if ($menu->func === 'root')
                         <li class="nav-header">{{ $menu->label }}</li>
                     @endif
@@ -33,14 +33,12 @@
                         @foreach ($menu->children as $navItem)
                             <li class="nav-item">
                                 <button
-                                    type="button"
-                                    class="nav-link text-start @if(in_array($activeItem, $navItem->active)) active @endif"
-                                    
-                                    @if (empty($navItem->children))
-                                        wire:click="updateActiveItem('/{{$navItem->href}}', {{$navItem->with_level}})"
-                                    @endif
-
-                                    >
+                                type="button"
+                                class="nav-link text-start @if(in_array($activeItem, $navItem->active)) active @endif"
+                                @if (empty($navItem->children))
+                                    wire:click="updateActiveItem('/{{$navItem->href}}' @if ($navItem->with_level), {{$navItem->with_level}}@endif)"                                    
+                                @endif
+                                >
                                     <i class="nav-icon {{ $navItem->icon }}"></i>
                                     <p>
                                         {{ $navItem->label }}
@@ -54,14 +52,12 @@
                                     <ul class="nav nav-treeview">
                                         @foreach ($navItem->children as $childItem)
                                             <li class="nav-item">
-                                                <button
-                                                    type="button"
-                                                    class="nav-link text-start"
-                                                    wire:click="updateActiveItem('/{{$childItem->href}}', {{$childItem->with_level}})"
+                                                <a class="nav-link" style="cursor: pointer"
+                                                    wire:click="updateActiveItem('/{{$childItem->href}}' @if ($childItem->with_level), {{$childItem->with_level}}@endif)"                                    
                                                     >
                                                     <i class="nav-icon {{ $childItem->icon }}"></i>
                                                     <p>{{ $childItem->label }}</p>
-                                                </button>
+                                                </a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -75,31 +71,32 @@
 
         <div id="collapse-sidebar-account" class="collapse-sidebar-account collapse-sidebar-account-disabled">
             <ul class="nav nav-pills nav-sidebar flex-column pl-2 pb-3">
+                @if ($level != 'admin')
+                    <li class="nav-item">
+                        <a href="{{ route('account.information') }}" class="nav-link" wire:click="updateActiveItem()">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>Informasi Akun</p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
-                    <a href="{{ route('informasi_akun') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Informasi Akun</p>
+                    <a href="#" class="nav-link" wire:click="logout">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        Logout
                     </a>
-                </li>
-                <li class="nav-item">
-                    <form action="/logout" method="POST" class="nav-link">
-                        @csrf
-                        <button type="submit" class="bg-transparent border-0 w-100 text-start">
-                            <i class="nav-icon fas fa-sign-out-alt"></i>
-                            Logout
-                        </button>
-                    </form>
                 </li>
             </ul>
         </div>
 
         <div class="sidebar-account" id="sidebar-account">
             <div class="user-details">
-                <img src="{{ asset('adminlte/dist/img/avatar.png') }}" alt="User Account Profile"
-                    class="img-circle elevation-3 img-profile">
+                <img src="{{ asset('assets/img/avatar.png') }}" alt="User Account Profile"
+                    class="img-circle elevation-1 img-profile">
                 <div class="user-details-body">
                     <span class="brand-text font-weight-bold">{{ ucfirst(auth()->user()->username) }}</span>
-                    <span class="brand-text font-weight-light">Ketua {{ strtoupper(auth()->user()->pengurus->jabatan) }}</span>
+                    @if (!is_null(auth()->user()))
+                        {{-- <span class="brand-text font-weight-light">Ketua {{ strtoupper(auth()->user()->pengurus->jabatan) }}</span> --}}
+                    @endif
                 </div>
             </div>
             <i class="fas fa-angle-left right" id="arrow-sidebar-account"></i>

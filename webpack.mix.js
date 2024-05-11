@@ -10,6 +10,9 @@ mix.js(
     "dist/js/app.js"
 );
 
+mix.js("resources/js/datatable.js", "dist/js/datatable.js");
+mix.js("resources/js/sweetalert.js", "dist/js/sweetalert.js");
+
 mix.sass("resources/sass/app.scss", "dist/css/app.css")
     .sass("resources/sass/bootstrap.scss", "dist/css/bootstrap.css")
     .sass("resources/sass/boxicons.scss", "dist/css/boxicons.css")

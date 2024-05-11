@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\RW;
 
+use App\DataTables\RW\DataRtDataTable;
 use App\Traits\ManageRT;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,10 +11,16 @@ class MemberController extends Controller
 {
     use ManageRT;
 
+    public ?DataRtDataTable $dataTable;
+
+    public function __construct()
+    {
+        $this->dataTable = app()->make(DataRtDataTable::class);
+    }
+
     public function index()
     {
-        $data = $this->getRT();
-        return view('rw.pages.rt.member', ['data' => $data]);
+        return $this->dataTable->render('rw.pages.rt.member');
     }
 
     public function create()
@@ -39,10 +46,9 @@ class MemberController extends Controller
         return redirect('rw/data-rt');
     }
 
-    public function delete(int $id)
+    public function destroy(int $id)
     {
         $this->deleteRT(id: $id);
-        return redirect('rw/data-rt');
     }
 }
 

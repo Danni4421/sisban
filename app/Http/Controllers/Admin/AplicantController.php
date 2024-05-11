@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\Admin\PemohonDataTable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pengajuan;
@@ -11,16 +12,16 @@ class AplicantController extends Controller
 {
     use ManagePengajuan;
 
+    public ?PemohonDataTable $dataTable;
+
+    public function __construct()
+    {
+        $this->dataTable = app()->make(PemohonDataTable::class);
+    }
+
     public function index()
     {
-        $aplicants = Pengajuan::with(['keluarga' => function ($query) {
-            $query->with(['anggota_keluarga' => function ($query) {
-                $query->where('level', 'kepala_keluarga');
-            }]);
-        }])->get();
-
-        return view('admin.pages.aplicant.index')
-            ->with('aplicants', $aplicants);
+        return $this->dataTable->render("admin.pages.aplicant.index");
     }
 
     public function show(string $no_kk)

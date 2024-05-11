@@ -52,7 +52,8 @@ class AplicantsDataTable extends DataTable
             ->minifiedAjax()
             ->selectStyleSingle()
             ->addTableClass('table-striped')
-            ->language(asset('assets/dataTable/lang/id.json'));
+            ->language(asset('assets/dataTable/lang/id.json'))
+            ->buttons([]);
     }
 
     public function getColumns(): array

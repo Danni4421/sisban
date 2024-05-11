@@ -9,48 +9,54 @@
 @endsection
 
 @section('content')
-<div class="container-md">
-    <main class="px-3">
-        <hr>
-        <div class="d-flex justify-content-end mb-3">
+<div class="container-fluid">
+
+    <div>
+        <div class="d-flex justify-content-end">
             <a href="{{ url('rw/bansos/penerima/create') }}" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Penerima</a>
         </div>
-        <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <thead>
-                <th>Nama</th>
-                <th>NIK</th>
-                <th>No.WA</th>
-                <th>Jenis Bansos</th>
-                <th>Aksi</th>
-            </thead>
-            <tbody>
-                @foreach ($recipients as $recipient)
-                    <tr>
-                        <td>{{ $recipient->warga->nama }}</td>
-                        <td>{{ $recipient->warga->nik }}</td>
-                        <td>{{ $recipient->warga->no_hp }}</td>
-                        <td>{{ $recipient->bansos->nama_bansos }}</td>
-                        <td class="d-flex gap-2">
-                            <a href="{{ url('/rw/bansos/' . $recipient->bansos->id_bansos . '/penerima/' . $recipient->warga->nik . '/edit') }}"
-                                class="btn btn-warning">Edit</a>
-                            <form
-                                action="{{ url('/rw/bansos/' . $recipient->bansos->id_bansos . '/penerima/' . $recipient->warga->nik) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submite" class="btn btn-danger">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        </div>
-    </main>
+
+        {{ $dataTable->table() }}
+    </div>
 </div>
 @endsection
 
-@push('styles')
-    {{-- Custom styles --}}
+@push('scripts')
+    <script>
+        function confirmDelete(nik, idBansos) {
+            Swal.fire({
+                title: "Yakin untuk menghapus penerima bantuan sosial?",
+                text: "Tindakan ini akan menghapus penerimaan bantuan sosial!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Hapus"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: `{{ url('rw/bansos/${idBansos}/penerima/${nik}') }}`,
+                        headers: {
+                            'X-CSRF-TOKEN': "{{csrf_token()}}",
+                            contentType: 'application/json'
+                        },
+                        success: function () {
+                            Swal.fire({
+                                title: "Penerima Bansos dihapus!",
+                                text: "Penerima bansos berhasil dihapus.",
+                                icon: "success"
+                            });
+                            
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1000)
+                        }
+                    })
+                }
+            });
+        }
+    </script>
+
+    {{ $dataTable->scripts() }}
 @endpush

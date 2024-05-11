@@ -11,8 +11,8 @@
     "paginate": {
         "first": "<<",
         "last": ">>",
-        "next": ">",
-        "previous": "<"
+        "next": "Selanjutnya",
+        "previous": "Sebelumnya"
     },
     "aria": {
         "sortAscending": ": aktifkan untuk mengurutkan kolom ke atas",

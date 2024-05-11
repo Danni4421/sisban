@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pengurus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AuthenticationController extends Controller
 {
@@ -15,10 +16,26 @@ class AuthenticationController extends Controller
 
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email:dns|exists:users,email',
-            'password' => 'required|min:8|max:20'
-        ]);
+        $validator = Validator::make(request()->all(), 
+            rules: [
+                'email' => 'required|email:dns|exists:users,email',
+                'password' => 'required|min:8|max:20'
+            ],
+            messages: [
+                'email.required' => 'Wajib untuk mengisi Email.',
+                'email.email' => 'Email tidak valid.',
+                'email.exists' => 'Email tidak valid.',
+                'password.required' => 'Wajib untuk mengisi Password.',
+                'password.min' => 'Minimal password harus 8 karakter.',
+                'password.max' => 'Maximal password harus 20 karakter.'
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $credentials = $request->only('email','password');
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -31,21 +48,9 @@ class AuthenticationController extends Controller
                 return redirect()->intended('/admin/data-rw');
             }
 
-
             return redirect()->intended($authedUser->level);
         }
 
-        return back()->with('error', 'Login gagal');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/login');
+        return redirect()->to('login')->with('error', 'Login gagal.');
     }
 }

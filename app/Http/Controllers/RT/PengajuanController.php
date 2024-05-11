@@ -2,24 +2,33 @@
 
 namespace App\Http\Controllers\RT;
 
+use App\DataTables\RT\Pengajuan\ApprovedDataDataTable;
+use App\DataTables\RT\Pengajuan\IncomingDataDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Pengajuan;
 use App\Traits\ManagePengajuan;
-use Illuminate\Http\Request;
 
 class PengajuanController extends Controller
 {
     use ManagePengajuan;
+
+    public ?IncomingDataDataTable $incomingDatatable;
+    public ?ApprovedDataDataTable $approvedDatatable;
+
+    public function __construct()
+    {
+        $this->incomingDatatable = app()->make(IncomingDataDataTable::class);
+        $this->approvedDatatable = app()->make(ApprovedDataDataTable::class);
+    }
+
     public function incoming()
     {
-        $dataPengajuan = $this->getDataPengajuan();
-        return view('rt.pages.pengajuan.incoming_data')->with('dataPengajuan', $dataPengajuan);
+        return $this->incomingDatatable->render('rt.pages.pengajuan.incoming_data');
     }
 
     public function approved()
     {
-        $dataPengajuan = $this->getDataPengajuan();
-        return view('rt.pages.pengajuan.approved_data')->with('dataPengajuan', $dataPengajuan);
+        return $this->approvedDatatable->render('rt.pages.pengajuan.approved_data');
     }
 
     public function show(string $no_kk)
@@ -34,21 +43,11 @@ class PengajuanController extends Controller
 
     public function approvePengajuan($no_kk)
     {
-        try {
-            $this->updatePengajuanToApproved($no_kk);
-            return redirect('/rt/pengajuan/masuk')->with('success', 'Pengajuan telah disetujui.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal menyetujui pengajuan: ' . $e->getMessage());
-        }
+        $this->updatePengajuanToApproved($no_kk);
     }
 
     public function declinePengajuan($no_kk)
     {
-        try {
-            $this->updatePengajuanToDeclined($no_kk);
-            return redirect('/rt/pengajuan/masuk')->with('success', 'Pengajuan telah ditolak.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal menolak pengajuan: ' . $e->getMessage());
-        }
+        $this->updatePengajuanToDeclined($no_kk);
     }
 }

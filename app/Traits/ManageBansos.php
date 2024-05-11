@@ -77,6 +77,14 @@ trait ManageBansos {
         ->get();
   }
 
+  public function getKandidatPenerimaBansosByRt(string $rt)
+  {
+    return Keluarga::select('no_kk')
+        ->where('rt', $rt)
+        ->with('kepala_keluarga') 
+        ->get();
+  }
+
   /**
    * @param string $nik
    * @param int $idBansos

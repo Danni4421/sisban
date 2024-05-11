@@ -4,6 +4,8 @@
 /public/hot
 /public/storage
 /public/assets/temp
+/public/dist
+/public/fonts
 /storage/*.key
 /vendor
 .env
