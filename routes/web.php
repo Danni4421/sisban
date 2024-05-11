@@ -65,9 +65,8 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
   Route::prefix('/bansos')->group(function() {
     Route::resource('/jenis', RTBansosTypesController::class);
     Route::resource('/penerima', RTBansosRecipientsController::class);
-    Route::get('/{id_bansos}/penerima/{nik}/edit', [RTBansosRecipientsController::class, 'edit_recipient'])->name('rt.page.edit.bansos.recipient');
-    Route::put('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'update_recipient'])->name('rt.update.bansos.recipient');
     Route::delete('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'delete_recipient'])->name('rt.delete.bansos.recipient');
+    Route::post('/penerima/{nik}/{id_bansos}', [RTBansosRecipientsController::class, 'show']);
   });
 });
 /*****************************************

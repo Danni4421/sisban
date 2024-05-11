@@ -4,6 +4,7 @@ namespace App\Http\Controllers\RT;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Livewire\Admin\Charts\BarChart;
 use App\Livewire\Admin\Charts\PieChart;
 use App\Models\PenerimaBansos;
 use App\Models\Pengajuan;
@@ -12,92 +13,125 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    public $CHART_COLOR = [];
+    public $BORDER_CHART_COLOR = [];
+
+    public $RT = [
+        'RT025', 'RT026', 'RT027', 'RT028', 'RT029', 'RT030', 'RT031'
+    ];
+
+    public function __construct()
+    {
+        $this->CHART_COLOR = (object) [
+            "RED" => "rgba(239, 107, 107, 0.5)",
+            "BLUE" => "rgba(107, 152, 239, 0.5)",
+            "GREEN" => "rgba(107, 239, 223, 0.5)"
+        ];
+
+        $this->BORDER_CHART_COLOR = (object) [
+            "RED" => "rgba(239, 107, 107, 1)",
+            "BLUE" => "rgba(107, 152, 239, 1)",
+            "GREEN" => "rgba(107, 239, 223, 1)"
+        ];
+    }
+
     public function index()
     {
-        $rt = substr(Auth::user()->pengurus->jabatan, 2);
-        $acceptantPieChart = $this->__getAcceptantPieChart(rt: $rt);
-        $recipientPieChart = $this->__getRecipientPieChart(rt: $rt);
-        $latestPengajuan = $this->__getLatestPengajuan(rt: $rt);
-
-        return view('rt.pages.dashboard.index')
-            ->with('acceptantPieChart', $acceptantPieChart)
-            ->with('recipientPieChart', $recipientPieChart)
-            ->with('latestPengajuan', $latestPengajuan);
+        return view('rw.pages.dashboard.index')
+            ->with('barChart', $this->__getPengajuanBarChart())
+            ->with('cards', $this->__getPengajuanInformation());
     }
 
-    public function __getLatestPengajuan($rt)
+    public function __getPengajuanInformation()
     {
-        return Pengajuan::leftJoin('keluarga as k', 'k.no_kk', '=', 'pengajuan.no_kk')
-            ->leftJoin('warga as w', 'w.no_kk', '=', 'k.no_kk')
-            ->where('k.rt', $rt)
-            ->where('w.level', 'kepala_keluarga')
-            ->orderBy('pengajuan.created_at', 'desc')
-            ->select('w.nama', 'w.nik', 'w.no_hp', 'pengajuan.created_at')
-            ->get();
 
+        $incomingDataAmount = Pengajuan::all()->count();
+        $acceptedDataAmount = Pengajuan::where('status_pengajuan', 'diterima')->count();
+        $sendtedDataAmount = Pengajuan::where('is_printed', 1)->count();
+
+        return (object) [
+            'rt' => (object) [
+                'title' => 'Jumlah RT',
+                'backgroundColor' => 'primary',
+                'icon' => 'bxs-user',
+                'data' => 7
+            ],
+            'incomingData' => (object) [
+                'title' => 'Data Masuk',
+                'backgroundColor' => 'danger',
+                'icon' => 'bx-book-content',
+                'data' => $incomingDataAmount
+            ],
+            'acceptedData' => (object) [
+                'title' => 'Data Disetujui',
+                'backgroundColor' => 'success',
+                'icon' => 'bx-user-pin',
+                'data' => $acceptedDataAmount
+            ],
+            'sendtedData' => (object) [
+                'title' => 'Data Diajukan',
+                'backgroundColor' => 'warning',
+                'icon' => 'bx-file',
+                'data' => $sendtedDataAmount
+            ]
+        ];
     }
 
-    public function __getAcceptantPieChart(string $rt)
+    public function __getPengajuanBarChart()
     {
-        $acceptantPerRt = array_fill(0, 7, 0);
-        $listRt = ['RT025', 'RT026', 'RT027', 'RT028', 'RT029', 'RT030', 'RT031'];
-        $acceptantAmountByRt = Pengajuan::getAcceptantAmountPerRt();
+        $incomingData = Pengajuan::getIncomingDataAmount();
+        $acceptedData = Pengajuan::getAllAcceptantAmount();
+        $sentedData = Pengajuan::getAllSentedDataAmount();
 
-        foreach ($acceptantAmountByRt as $acceptant) {
-            $index = array_search("RT" . $acceptant->rt, $listRt);
-            $acceptantPerRt[$index] = $acceptant->total;
+        $barChartData = array_fill(0, 3, array_fill(0, 7, 0));
+
+        foreach ($incomingData as $data) {
+            $index = array_search("RT" . $data->rt, $this->RT);
+            $barChartData[0][$index] = $data->total;
         }
 
-        $pieChart = app()->make(PieChart::class, [
-            'title' => 'Persentase Penerimaan Pengajuan RT' . $rt . ' dari RT lain',
-            'id' => 'acceptant'
-        ]);
+        foreach ($acceptedData as $data) {
+            $index = array_search("RT" . $data->rt, $this->RT);
+            $barChartData[1][$index] = $data->total;
+        }
 
-        $pieChart->setLabels(
-            labels: $listRt
-        );
+        foreach ($sentedData as $data) {
+            $index = array_search("RT" . $data->rt, $this->RT);
+            $barChartData[2][$index] = $data->total;
+        }
 
-        $pieChart->setDataset(
+        $barChart = app()->make(BarChart::class);
+        $barChart->setLabels(labels: $this->RT);
+
+        $barChart->setDataset(
             datasets: [
                 [
-                    'label' => 'data',
-                    'data' => $acceptantPerRt
+                    'label' => 'Data Masuk',
+                    'data' => $barChartData[0],
+                    'backgroundColor' => $this->CHART_COLOR->RED,
+                    'borderColor' => $this->BORDER_CHART_COLOR->RED,
+                    'borderRadius' => 10,
+                    'borderWidth' => 2
                 ],
-            ]
-        );
-
-        return $pieChart;
-    }
-
-    public function __getRecipientPieChart(string $rt)
-    {
-        $recipientAmountByRt = PenerimaBansos::getRecipientAmountByRt(rt: $rt);
-        $recipientAmount = PenerimaBansos::getRecipientAmount();
-
-        $pieChart = app()->make(PieChart::class, [
-            'title' => 'Persentase Penerima Bansos RT' . $rt,
-            'id' => 'bansos_recipient',
-        ]);
-
-        $pieChart->setLabels(
-            labels: [
-                'Penerima Bansos RT' . $rt,
-                'Penerima dari RT lain',
-            ]
-        );
-
-        $pieChart->setDataset(
-            datasets: [
                 [
-                    'label' => 'Penerima Bansos',
-                    'data' => [
-                        $recipientAmountByRt,
-                        $recipientAmount - $recipientAmountByRt
-                    ]
+                    'label' => 'Data Disetujui',
+                    'data' => $barChartData[1],
+                    'backgroundColor' => $this->CHART_COLOR->BLUE,
+                    'borderColor' => $this->BORDER_CHART_COLOR->BLUE,
+                    'borderRadius' => 10,
+                    'borderWidth' => 2
+                ],
+                [
+                    'label' => 'Data Diajukan',
+                    'data' => $barChartData[2],
+                    'backgroundColor' => $this->CHART_COLOR->GREEN,
+                    'borderColor' => $this->BORDER_CHART_COLOR->GREEN,
+                    'borderRadius' => 10,
+                    'borderWidth' => 2
                 ]
             ]
         );
 
-        return $pieChart;
+        return $barChart;
     }
 }

@@ -28,14 +28,13 @@ class RecipientDataTable extends DataTable
             ->addColumn('aksi', function (PenerimaBansos $penerimaBansos) {
                 return "
                     <div class='d-flex gap-2'>
-                        <a href='/rt/bansos/{$penerimaBansos->bansos->id_bansos}/penerima/{$penerimaBansos->warga->nik}/edit' class='btn btn-warning'>
-                            Edit
-                        </a>
                         <button type='button' onclick='confirmDelete({$penerimaBansos->bansos->id_bansos}, {$penerimaBansos->warga->nik})' class='btn btn-danger'>
                             Hapus
                         </button>
-                    </div>
-                ";
+                        <button type='button' class='btn btn-primary detail_pengajuan_button' onclick='getDetailPenerima({$penerimaBansos->warga->nik}, {$penerimaBansos->bansos->id_bansos})' data-bs-toggle='modal' data-bs-target='#modalInformasiPenerima' data-pengajuan='{$penerimaBansos->warga->nik}' data-bansos='{$penerimaBansos->bansos->id_bansos}'>
+                            <i class='fas fa-search'></i>
+                        </button>
+                    </div>";
             })
             ->rawColumns(['aksi']);
     }
@@ -59,13 +58,13 @@ class RecipientDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('recipient-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->selectStyleSingle()
-                    ->addTableClass('table-striped table-hover')
-                    ->language(asset('assets/dataTable/lang/id.json'))
-                    ->buttons([]);;
+            ->setTableId('recipient-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->selectStyleSingle()
+            ->addTableClass('table-striped table-hover')
+            ->language(asset('assets/dataTable/lang/id.json'))
+            ->buttons([]);;
     }
 
     /**
