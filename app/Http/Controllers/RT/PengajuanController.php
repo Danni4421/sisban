@@ -7,6 +7,7 @@ use App\DataTables\RT\Pengajuan\IncomingDataDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Pengajuan;
 use App\Traits\ManagePengajuan;
+use Illuminate\Http\Request;
 
 class PengajuanController extends Controller
 {
@@ -23,6 +24,11 @@ class PengajuanController extends Controller
 
     public function incoming()
     {
+        if (session()->has('aplicant')) {
+            $this->incomingDatatable->query(session()->get('aplicant'));
+            return $this->incomingDatatable->render('rt.pages.pengajuan.incoming_data');
+        }
+
         return $this->incomingDatatable->render('rt.pages.pengajuan.incoming_data');
     }
 

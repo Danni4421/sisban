@@ -32,7 +32,7 @@ class Pengajuan extends Model
      */
     protected $fillable = [
         'no_kk',
-        'status_pengajuan'
+        'status_pengajuan',
     ];
 
     /**
@@ -43,6 +43,16 @@ class Pengajuan extends Model
     public function keluarga()
     {
         return $this->belongsTo(Keluarga::class, 'no_kk', 'no_kk');
+    }
+
+    /**
+     * Model relationship with Keluarga
+     * 
+     * @return HasOne
+     */
+    public function notification()
+    {
+        return $this->hasOne(Notification::class, 'no_kk', 'no_kk');
     }
 
     public static function getIncomingDataAmount()

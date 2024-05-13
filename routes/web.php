@@ -8,10 +8,12 @@ use App\Http\Controllers\RT\DashboardController as RTDashboardController;
 use App\Http\Controllers\RT\PengajuanController as RTPengajuanController;
 use App\Http\Controllers\RT\Bansos\TypeController as RTBansosTypesController;
 use App\Http\Controllers\RT\Bansos\RecipientController as RTBansosRecipientsController;
+use App\Http\Controllers\RT\NotifikasiController as RTNotifikasiController;
 use App\Http\Controllers\RW\DashboardController as RWDashboardController;
 use App\Http\Controllers\RW\MemberController as RWMemberController;
 use App\Http\Controllers\RW\PengajuanController as RWPengajuanController;
 use App\Http\Controllers\RW\Bansos\RecipientController as RWBansosRecipientsController;
+use App\Http\Controllers\RW\NotifikasiController as RWNotifikasiController;
 use App\Http\Controllers\Admin\RWController as AdminRWController;
 use App\Http\Controllers\Admin\RTController as AdminRTController;
 use App\Http\Controllers\Admin\AplicantController as AdminAplicantController;
@@ -68,6 +70,7 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
     Route::delete('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'delete_recipient'])->name('rt.delete.bansos.recipient');
     Route::post('/penerima/{nik}/{id_bansos}', [RTBansosRecipientsController::class, 'show']);
   });
+  Route::get('/notifikasi', [RTNotifikasiController::class, 'index'])->name('notifikasiRt');
 });
 /*****************************************
  * End RT Routes
@@ -88,10 +91,7 @@ Route::prefix('rw')->middleware(['auth', 'auth.session', 'level.validate'])->gro
     Route::put('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'update'])->name('rw.update.bansos.recipient');
     Route::delete('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'destroy'])->name('rw.delete.bansos.recipient');
   });
-  Route::prefix('/akun')->group(function () {
-    Route::get('/informasi', [AkunController::class, 'index'])->name('informasi_akun');
-    Route::put('/{id}', [AkunController::class, 'update']);
-  });
+  Route::get('/notifikasi', [RWNotifikasiController::class, 'index'])->name('notifikasiRw');
 });
 /*****************************************
  * End RW Routes

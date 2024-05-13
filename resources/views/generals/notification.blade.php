@@ -3,11 +3,13 @@
 @section('title', 'Notifikasi')
 
 @section('content_header')
-  <h1>Notifikasi</h1>
+  <header>
+    <h1>Notifikasi</h1>
+  </header>
 @endsection
 
 @section('content_body')
-  
+
 @endsection
 
 @push('styles')
