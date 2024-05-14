@@ -21,8 +21,8 @@
             </div>
         </div>
 
-        <nav class="mt-2" id="sidebar-navigation">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" id="sidebar-navigation"
                 data-accordion="false">
                 @foreach ($NAVIGATION_ITEM as $menu)
                     @if ($menu->func === 'root')

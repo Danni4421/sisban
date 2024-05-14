@@ -10,7 +10,7 @@ class Notification extends Component
 {
     public Collection $aplicants;
 
-    public function mount($aplicants){
+    public function mount(Collection $aplicants){
         $this->aplicants = $aplicants;
     }
 
@@ -20,7 +20,9 @@ class Notification extends Component
         $aplicant->notification->is_readed_rt = true;
         $aplicant->notification->save();
 
-        return redirect()->route('rt.pengajuan.incoming')->with('aplicant', $aplicant);
+        session()->put('redirected_notification_rt_no_kk', $aplicant->no_kk);
+
+        return redirect()->route('rt.pengajuan.incoming');
     }
 
     public function render()

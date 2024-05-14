@@ -4,7 +4,7 @@ mix.js(
     [
         "resources/js/app.js",
         "resources/js/aos.js",
-        "resources/js/bootstrap.js",
+        "resources/js/axios.js",
         "resources/js/jquery.js",
     ],
     "dist/js/app.js"

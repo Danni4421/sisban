@@ -24,7 +24,7 @@
 
 [data-theme="light"] {
     #sidebar-navigation {
-        background: #fff;
+        background: #fff !important;
     }
 }
 

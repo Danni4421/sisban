@@ -2,13 +2,13 @@
     <div class="mx-auto my-5" style="width: 95%">
 
         {{-- Data Pemohon --}}
-        <div class="card mb-3">
+        <div class="card  mb-3">
             <div class="card-header">
                 Data Pemohon
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-12 col-sm-6">
                         <div class="mb-3">
                             <x-label for="nik_pemohon">NIK</x-label>
                             <x-input type="text" class="mb-3" model="nik_pemohon" disabled="true" />
@@ -25,7 +25,7 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-12 col-sm-6">
                         <div class="row">
                             <div class="col">
                                 <x-label for="jenis_kelamin_pemohon">Jenis Kelamin</x-label>
@@ -38,6 +38,7 @@
                             </div>
 
                             <div class="col">
+                                <x-label for="foto_ktp">Foto Kartu Tanda Kependudukan</x-label>
                                 <img 
                                     src="{{ asset('assets/' . $foto_ktp_pemohon) }}" 
                                     alt="Foto KTP"
@@ -76,7 +77,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="row col-12">
-                        <div class="col-9 mb-3">
+                        <div class="col-12 col-sm-9 mb-3">
                             <div class="mb-3">
                                 <x-label for="no_kk">Nomor Kartu Keluarga</x-label>
                                 <x-input type="text" model="no_kk" disabled="true" />
@@ -86,7 +87,8 @@
                                 <x-input type="text" model="rt" disabled="true" />
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-sm-3">
+                            <x-label for="foto_kk">Foto Kartu Keluarga</x-label>
                             <img 
                                 src="{{ asset('assets/' . $foto_kk) }}" 
                                 alt="Foto KTP Kepala Keluarga" 
@@ -263,26 +265,26 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="row col-12 mb-3">
-                        <div class="col-4">
+                    <div class="row col-12">
+                        <div class="col-12 col-sm-4 mb-3">
                             <x-label for="daya_listrik">Daya Listrik</x-label>
                             <x-input type="text" model="daya_listrik" disabled="true" />
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-sm-4 mb-3">
                             <x-label for="biaya_listrik">Biaya Listrik</x-label>
                             <x-input type="text" model="biaya_listrik" disabled="true" />
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 col-sm-4 mb-3">
                             <x-label for="biaya_air">Biaya Air</x-label>
                             <x-input type="text" model="biaya_air" disabled="true" />
                         </div>
                     </div>
-                    <div class="row col-12 mb-3">
-                        <div class="col-6">
+                    <div class="row col-12">
+                        <div class="col-12 col-sm-6 mb-3">
                             <x-label for="hutang">Hutang</x-label>
                             <x-input type="text" model="hutang" disabled="true" />
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-sm-6 mb-3">
                             <x-label for="pengeluaran">pengeluaran</x-label>
                             <x-input type="text" model="pengeluaran" disabled="true" />
                         </div>

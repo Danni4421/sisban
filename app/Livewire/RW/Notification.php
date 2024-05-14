@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\RW;
+namespace App\Livewire\Rw;
 
 use App\Models\Notification as NotificationModel;
 use App\Models\Pengajuan;
@@ -22,14 +22,20 @@ class Notification extends Component
                 $query->where('rt', $rt);
             });
         })->update([
-            'is_readed_rw'=> 0
+            'is_readed_rw'=> 1,
         ]);
         
         $aplicants = Pengajuan::whereHas('keluarga', function ($query) use ($rt) {
             $query->where('rt', $rt);
         })->with(['keluarga.anggota_keluarga'])->get();
 
-        return  redirect('rw/pengajuan/masuk')->with('aplicants', $aplicants);
+        $aplicants_no_kk = array_map(function ($aplicant) {
+                return $aplicant["no_kk"];
+            }, $aplicants->toArray());
+
+        session()->put('redirected_notification_rw_no_kk', $aplicants_no_kk);
+
+        return  redirect()->route('rw.aplicant.approved');
     }
 
     public function render()

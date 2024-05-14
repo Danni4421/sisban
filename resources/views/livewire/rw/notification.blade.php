@@ -1,5 +1,9 @@
 <div>
     <ul class="list-group">
+            @if (empty($applicantsByRT))
+                <div>test</div>
+            @endif
+
             @foreach($applicantsByRT as $applicantByRT)
             {{-- @dd($applicantByRT->rt) --}}
             <button style="background: none; border: none; outline: none; width: 100%" wire:click="update('{{$applicantByRT->rt}}')">

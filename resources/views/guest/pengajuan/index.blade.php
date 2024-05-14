@@ -5,7 +5,7 @@
         <div class="pt-5">
             <div class="section-title px-5 w-100" data-aos="fade-up">
                 <h2>Pengajuan</h2>
-                <p>Formulir Pengajuan Bantuan Sosial</p>
+                <p class="fs-3">Formulir Pengajuan Bantuan Sosial</p>
             </div>
 
             @if (isset($success))
@@ -19,6 +19,20 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ url('assets/css/guest/form-wizard.css') }}">
+
+    <style>
+        @media (max-width: 576px) {
+            .form-step {
+                width: 90%;
+            }
+        }
+
+        @media (min-width: 576px) {
+            .form-step {
+                width: 75%;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')

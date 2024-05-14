@@ -91,6 +91,10 @@
 </div>
 @endsection
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
+@endpush
+
 @push('scripts')
     <script>
         function getDetailPengajuan(no_kk) {

@@ -32,7 +32,7 @@ class FamilyDataStep extends StepComponent
         $this->validate();
         $this->validate_image_request();
 
-        DeleteImageJob::dispatch($this->foto_kk)->delay(now()->addMinutes(360));
+        DeleteImageJob::dispatch($this->foto_kk)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
 
         $this->update_keluarga();
         $this->nextStep();

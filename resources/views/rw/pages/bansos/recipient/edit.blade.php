@@ -57,7 +57,7 @@
                 </div>
                 <div class="table-footer">
                     <button type="submit" class="btn btn-warning">Ubah</button>
-                    <a href="{{ url('admin/bansos/penerima') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ url('rw/bansos/penerima') }}" class="btn btn-secondary">Kembali</a>
                 </div>
             </form>
         </section>

@@ -21,7 +21,7 @@ class AplicantBiodataStep extends StepComponent
         $this->validate();
         $this->validate_image_request();
 
-        DeleteImageJob::dispatch($this->foto_ktp)->delay(now()->addMinutes(120));
+        DeleteImageJob::dispatch($this->foto_ktp)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
 
         $this->put_form_session();
 

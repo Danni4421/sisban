@@ -1,5 +1,8 @@
 import AOS from "aos";
 
 AOS.init({
-    easing: "ease-in-out-sine",
+    duration: 500,
+    easing: "ease-in-out",
+    once: true,
+    mirror: false,
 });

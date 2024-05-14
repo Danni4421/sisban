@@ -24,11 +24,6 @@ class PengajuanController extends Controller
 
     public function incoming()
     {
-        if (session()->has('aplicant')) {
-            $this->incomingDatatable->query(session()->get('aplicant'));
-            return $this->incomingDatatable->render('rt.pages.pengajuan.incoming_data');
-        }
-
         return $this->incomingDatatable->render('rt.pages.pengajuan.incoming_data');
     }
 
@@ -39,7 +34,6 @@ class PengajuanController extends Controller
 
     public function show(string $no_kk)
     {
-        return $no_kk;
         return Pengajuan::with(['keluarga' => function ($query) {
             $query->with('anggota_keluarga');
         }])

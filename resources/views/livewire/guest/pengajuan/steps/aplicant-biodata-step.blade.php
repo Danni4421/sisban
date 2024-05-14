@@ -1,8 +1,8 @@
 <div>
     @livewire('guest.wizard', ['formIndex' => 1])
 
-    <div class="row mx-auto mt-5" style="width: 75%">
-        <div class="col">
+    <div class="row mx-auto my-5 form-step">
+        <div class="col-12 col-sm-6">
             {{-- Input NIK --}}
             <x-form-group errorName="nik" class="mb-4">
                 <x-label for="nik" class="mb-2">NIK</x-label>
@@ -25,7 +25,7 @@
             </x-form-group>
         </div>
 
-        <div class="col">
+        <div class="col-12 col-sm-6">
             {{-- Input Jenis Kelamin --}}
             <x-form-group errorName="jenis_kelamin" class="mb-4">
                 <x-label for="jenis_kelamin" class="mb-2">Jenis Kelamin</x-label>

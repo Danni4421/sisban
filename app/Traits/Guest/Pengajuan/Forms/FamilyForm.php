@@ -40,11 +40,11 @@ trait FamilyForm
 
     #[Validate(
         rule: [
-            'nik' => 'required|array|max:15',
+            'nik' => 'array|max:15|min:0',
             'nik.*' => 'required|numeric|digits:16|unique:warga,nik',
         ], 
         message: [
-            'nik' => 'NIK perlu untuk diisi',
+            'nik.max' => 'Maksimal anggota keluarga adalah 15',
             'nik.*.required' => 'NIK perlu untuk diisi',
             'nik.*.numeric' => 'NIK harus terdiri dari kombinasi Angka',
             'nik.*.digits' => 'Panjang NIK adalah 16 karakter',
@@ -55,11 +55,11 @@ trait FamilyForm
 
     #[Validate( 
         rule: [
-            'nama' => 'required|array|max:15',
+            'nama' => 'array|max:15|min:0',
             'nama.*' => 'required|string|max:100',
         ], 
         message: [
-            'nama' => 'Nama perlu untuk diisi',
+            'nama.max' => 'Maksimal anggota keluarga adalah 15',
             'nama.*.required' => 'Nama perlu untuk diisi',
             'nama.*.string' => 'Nama harus berupa karakter',
             'nama.*.max' => 'Panjang Nama hanya boleh sampai 100 karakter',
@@ -69,11 +69,11 @@ trait FamilyForm
 
     #[Validate(
         rule: [
-            'jenis_kelamin' => 'required|array|max:15',
+            'jenis_kelamin' => 'array|max:15|min:0',
             'jenis_kelamin.*' => 'required|string|in:lk,pr',
         ], 
         message: [
-            'jenis_kelamin' => 'Jenis kelamin perlu untuk diisi',
+            'jenis_kelamin.max' => 'Maksimal anggota keluarga adalah 15',
             'jenis_kelamin.*.required' => 'Jenis kelamin perlu untuk diisi',
             'jenis_kelamin.*.string' => 'Jenis kelamin harus berupa karakter',
             'jenis_kelamin.*.in' => 'Jenis kelamin yang boleh dimasukkan hanya Laki Laki dan Perempuan',
@@ -83,11 +83,11 @@ trait FamilyForm
 
     #[Validate(
         rule: [
-            'tempat_tanggal_lahir' => 'required|array|max:15',
+            'tempat_tanggal_lahir' => 'array|max:15|min:0',
             'tempat_tanggal_lahir.*' => 'required|string|max:100',
         ],
         message: [
-            'tempat_tanggal_lahir' => 'Tempat tanggal lahir perlu untuk diisi',
+            'tempat_tanggal_lahir.max' => 'Maksimal anggota keluarga adalah 15',
             'tempat_tanggal_lahir.*.required' => 'Tempat tanggal lahir perlu untuk diisi',
             'tempat_tanggal_lahir.*.string' => 'Tempat tanggal lahir harus berupa karakter',
             'tempat_tanggal_lahir.*.max' => 'Panjang tempat tanggal lahir hanya boleh sampai 100 karakter',
@@ -97,11 +97,11 @@ trait FamilyForm
 
     #[Validate(
         rule: [
-            'umur' => 'required|array|max:15',
+            'umur' => 'array|max:15|min:0',
             'umur.*' => 'required|numeric',
         ],
         message: [
-            'umur' => 'Umur perlu untuk diisi',
+            'umur.max' => 'Maksimal anggota keluarga adalah 15',
             'umur.*.required' => 'Umur perlu untuk diisi',
             'umur.*.numeric' => 'Umur harus terdiri dari Angka',
         ]
@@ -110,11 +110,11 @@ trait FamilyForm
 
     #[Validate(
         rule: [
-            'nomor_telepon' => 'required|array|max:15',
+            'nomor_telepon' => 'array|max:15|min:0',
             'nomor_telepon.*' => 'required|numeric|max_digits:13|unique:warga,no_hp',
         ],
         message: [
-            'nomor_telepon' => 'Nomor telepon perlu untuk diisi',
+            'nomor_telepon.max' => 'Maksimal anggota keluarga adalah 15',
             'nomor_telepon.*.required' => 'Nomor telepon perlu untuk diisi',
             'nomor_telepon.*.numeric' => 'Nomor telepon harus terdiri dari Angka',
             'nomor_telepon.*.max' => 'Panjang nomor telepon maksimal adalah 13 digit',
@@ -125,11 +125,11 @@ trait FamilyForm
 
     #[Validate(
         rule: [
-            'penghasilan' => 'required|array|max:15',
+            'penghasilan' => 'array|max:15|min:0',
             'penghasilan.*'=> 'required|integer',
         ],
         message: [
-            'penghasilan' => 'Penghasilan perlu untuk diisi',
+            'penghasilan.max' => 'Maksimal anggota keluarga adalah 15',
             'penghasilan.*.required' => 'Penghasilan perlu untuk diisi',
             'penghasilan.*.integer' => 'Penghasilan harus berupa Angka'
         ]
@@ -186,8 +186,7 @@ trait FamilyForm
 
             $this->foto_kk = $this->foto_kk->storeAs(
                 path: 'temp/images/kk', 
-                name: $image_name,
-                options: [],
+                name: $image_name
             );
         }
     }

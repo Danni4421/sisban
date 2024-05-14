@@ -50,10 +50,6 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
-            // 'prune' => [
-            //     'interval' => 1800,
-            //     'enabled' => true,
-            // ],
         ],
         
         's3' => [

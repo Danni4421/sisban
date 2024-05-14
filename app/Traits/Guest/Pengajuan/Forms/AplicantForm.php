@@ -109,14 +109,13 @@ trait AplicantForm {
             ]);
         }
 
-        if (!is_null($this->foto_ktp) && !is_string($this->foto_ktp)) {
+        if (!is_null($this->foto_ktp) && $this->foto_ktp instanceof UploadedFile) {
             $original_image_name = $this->foto_ktp->getClientOriginalName();
             $image_name = Str::uuid() . '-' . $original_image_name;   
 
             $this->foto_ktp = $this->foto_ktp->storeAs(
-                path: 'temp/images/ktp', 
+                path: 'temp/images/ktp',
                 name: $image_name,
-                options: [],
             );
         }
     }

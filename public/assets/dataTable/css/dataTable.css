@@ -24,3 +24,20 @@
     cursor: pointer !important;
     background-color: #0a73b0 !important;
 }
+
+input[type="search"] {
+    padding: 8px 18px !important;
+}
+
+.dataTables_wrapper {
+    padding: 24px 0 !important;
+    gap: 20px !important;
+}
+
+.dataTables_wrapper .row:nth-child(1) {
+    display: none !important;
+}
+
+.dataTables_wrapper .row:nth-child(3) {
+    overflow: auto !important;
+}

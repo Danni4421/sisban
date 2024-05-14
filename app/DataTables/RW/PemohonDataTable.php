@@ -59,7 +59,15 @@ class PemohonDataTable extends DataTable
      */
     public function query(Pengajuan $model): QueryBuilder
     {
-        return $model->newQuery()->with('keluarga.kepala_keluarga')->orderBy('created_at', 'desc');
+        $query = $model->newQuery()->with('keluarga.kepala_keluarga')->orderBy('created_at', 'desc');
+
+        if (session()->has('redirected_notification_rw_no_kk')) {
+            $data = session()->get('redirected_notification_rw_no_kk');
+            session()->remove('redirected_notification_rw_no_kk');
+            $query->whereIn('pengajuan.no_kk', $data);
+        }
+
+        return $query;
     }
 
     /**

@@ -1,12 +1,12 @@
 <div>
     @livewire('guest.wizard', ['formIndex' => 4])
     
-    <div class="mx-auto mt-5" style="width: 75%">
+    <div class="mx-auto my-5 form-step">
         
         {{-- Form --}}
-        <div class="row mb-3">
+        <div class="row">
             {{-- Input Daya Listrik --}}
-            <x-form-group errorName="daya_listrik">
+            <x-form-group errorName="daya_listrik" class="mb-3">
                 <x-label for="daya_listrik">Daya Listrik</x-label>
                 <select name="daya_listrik" id="daya_listrik" class="form-control p-3" wire:model="daya_listrik">
                     <option selected>Pilih Daya Listrik...</option>
@@ -19,7 +19,7 @@
             {{-- End Input Daya Listrik --}}
 
              {{-- Input Biaya Listrik --}}
-             <x-form-group errorName="biaya_listrik">
+             <x-form-group errorName="biaya_listrik" class="mb-3">
                 <x-label for="biaya_listrik">Biaya Listrik</x-label>
                 <x-input 
                     type="text" 
@@ -31,7 +31,7 @@
             {{-- End Input Biaya Listrik --}}
 
             {{-- Input Biaya Air --}}
-            <x-form-group errorName="biaya_air">
+            <x-form-group errorName="biaya_air" class="mb-3">
                 <x-label for="biaya_air">Biaya Air</x-label>
                 <x-input 
                     type="text" 
@@ -43,7 +43,7 @@
             {{-- End Input Biaya Air --}}
 
             {{-- Input Hutang --}}
-            <x-form-group errorName="hutang">
+            <x-form-group errorName="hutang" class="mb-3">
                 <x-label for="hutang">Hutang</x-label>
                 <x-input 
                     type="text" 
@@ -54,7 +54,7 @@
             </x-form-group>
             {{-- End Input Hutang --}}
 
-            <x-form-group errorName="pengeluaran">
+            <x-form-group errorName="pengeluaran" class="mb-3">
                 <x-label for="pengeluaran">Pengeluaran per Bulan</x-label>
                 <x-input 
                     type="text" 
@@ -67,7 +67,7 @@
         </div>
         
         {{-- Navigation Buttons --}}
-        <div class="row mx-auto px-3 gap-3">
+        <div class="row mx-auto mt-3 gap-3">
             <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
             <x-button type="button" class="col" action="save" buttonColor="main">Ajukan</x-button>
         </div>

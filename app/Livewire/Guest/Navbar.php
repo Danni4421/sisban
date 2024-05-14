@@ -59,6 +59,11 @@ class Navbar extends Component
                     ],
                 ]
             ],
+            'pengurus' => (object) [
+                'label' => 'Pengurus',
+                'href' => '/login',
+                'active' => 'login',
+            ]
         ];
     }
 

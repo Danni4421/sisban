@@ -42,10 +42,19 @@ class IncomingDataDataTable extends DataTable
      */
     public function query(Pengajuan $model): QueryBuilder
     {
-        return $model->newQuery()->with('keluarga.kepala_keluarga')
-        ->whereHas('keluarga', function ($query) {
-            $query->where('rt', substr(auth()->user()->pengurus->jabatan, 2));
-        });
+        $query = $model->newQuery()->with('keluarga.kepala_keluarga');
+
+        if (session()->has('redirected_notification_rt_no_kk')) {
+            $no_kk = session()->get('redirected_notification_rt_no_kk');
+            session()->remove('redirected_notification_rt_no_kk');
+            $query->where('pengajuan.no_kk', $no_kk);
+        } else {
+            $query->whereHas('keluarga', function ($query) {
+                $query->where('rt', substr(auth()->user()->pengurus->jabatan, 2));
+            });
+        }
+
+        return $query;
     }
 
     /**

@@ -2,8 +2,8 @@
     @livewire('guest.wizard', ['formIndex' => 2])
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
 
-    <div class="row mx-auto mt-5" style="width: 75%">
-        <div class="col mb-3">
+    <div class="row mx-auto my-5 form-step">
+        <div class="col-12 col-6 mb-3">
             {{-- Input Nomor KK --}}
             <x-form-group errorName="no_kk" class="mb-3">
                 <x-label for="no_kk" class="mb-3">Nomor Kartu Keluarga</x-label>
@@ -30,7 +30,7 @@
                 />
             </x-form-group>
         </div>
-        <div class="col mb-3">
+        <div class="col-12 col-6 mb-3">
             {{-- Input Foto KK --}}
 
             @if (!is_null($foto_kk))
@@ -54,7 +54,7 @@
 
             {{-- Kepala Keluarga --}}
             <div class="row">
-                <div class="col">
+                <div class="col-12 col-sm-6">
                     <div class="mb-4">
                         <x-label for="nik">NIK</x-label>
                         <x-input type="text" name="nik" value="{{ $aplicant['nik'] }}"
@@ -66,7 +66,7 @@
                             value="{{ $aplicant['nama'] }}" disabled="true" />
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-12 col-sm-6">
                     <div class="mb-4">
                         <x-label for="jenis_kelamin" class="mb-2">Jenis Kelamin</x-label>
                         <div class="d-flex items-center gap-3 pt-3">
@@ -109,12 +109,13 @@
                 @endforeach
             </div>
 
-            <button type="button" wire:click="addInput" class="btn btn-main">
+            <button type="button" wire:click="addInput" class="btn btn-main d-flex align-items-center gap-2">
+                <i class='bx bxs-user-plus fs-1'></i>
                 Tambah Data Keluarga
             </button>
         </div>
 
-        <div class="row mx-auto px-3 gap-3">
+        <div class="row mx-auto mt-3 gap-3">
             <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
             <x-button type="button" class="col" action="save" buttonColor="main">Selanjutnya</x-button>
         </div>

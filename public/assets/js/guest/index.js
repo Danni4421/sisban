@@ -143,7 +143,7 @@
      */
     on(
         "click",
-        ".scrollto",
+        ".navbar .nav-link > a",
         function (e) {
             if (select(this.hash)) {
                 e.preventDefault();
@@ -152,8 +152,8 @@
                 if (navbar.classList.contains("navbar-mobile")) {
                     navbar.classList.remove("navbar-mobile");
                     let navbarToggle = select(".mobile-nav-toggle");
-                    navbarToggle.classList.toggle("bi-list");
-                    navbarToggle.classList.toggle("bi-x");
+                    navbarToggle.classList.toggle("bx-menu");
+                    navbarToggle.classList.toggle("bx-x");
                 }
                 scrollto(this.hash);
             }
@@ -181,53 +181,4 @@
             preloader.remove();
         });
     }
-
-    /**
-     * Initiate glightbox
-     */
-    const glightbox = GLightbox({
-        selector: ".glightbox",
-    });
-
-    /**
-     * Initiate gallery lightbox
-     */
-    const galleryLightbox = GLightbox({
-        selector: ".gallery-lightbox",
-    });
-
-    /**
-     * Testimonials slider
-     */
-    new Swiper(".testimonials-slider", {
-        speed: 600,
-        loop: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-        },
-        slidesPerView: "auto",
-        pagination: {
-            el: ".swiper-pagination",
-            type: "bullets",
-            clickable: true,
-        },
-    });
-
-    /**
-     * Animation on scroll
-     */
-    window.addEventListener("load", () => {
-        AOS.init({
-            duration: 1000,
-            easing: "ease-in-out",
-            once: true,
-            mirror: false,
-        });
-    });
-
-    /**
-     * Initiate Pure Counter
-     */
-    new PureCounter();
 })();

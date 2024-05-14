@@ -3,7 +3,7 @@
     
     @props(['inputs'])
 
-    <div class="mx-auto mt-5" style="width: 75%">
+    <div class="mx-auto mb-5 form-step">
         @foreach ($inputs as $formIndex)
             <div class="row">
                 <div class="col-12">
@@ -16,7 +16,7 @@
                     <hr>
 
                     {{-- Input Nama Aset --}}
-                    <x-form-group errorName="nama_aset.{{$formIndex}}" otherErrorName="nama_aset">
+                    <x-form-group errorName="nama_aset.{{$formIndex}}" otherErrorName="nama_aset" class="mb-3">
                         <x-label for="nama_aset.{{$formIndex}}">Nama Aset</x-label>
                         <x-input 
                             type="text" 
@@ -28,7 +28,7 @@
                     {{-- End Input Nama Aset --}}
                     
                     {{-- Input Tahun Beli Aset --}}
-                    <x-form-group errorName="tahun_beli.{{$formIndex}}" otherErrorName="tahun_beli">
+                    <x-form-group errorName="tahun_beli.{{$formIndex}}" otherErrorName="tahun_beli" class="mb-3">
                         <x-label for="tahun_beli.{{$formIndex}}">Tahun Beli</x-label>
                         <x-input 
                             type="text"
@@ -41,7 +41,7 @@
                     {{-- End Input Tahun Beli Aset --}}
 
                     {{-- Input Harga Jual Aset --}}
-                    <x-form-group errorName="harga_jual.{{$formIndex}}" otherErrorName="harga_jual">
+                    <x-form-group errorName="harga_jual.{{$formIndex}}" otherErrorName="harga_jual" class="mb-3">
                         <x-label for="harga_jual.{{$formIndex}}">Harga Jual (Rp.)</x-label>
                         <x-input 
                             type="number"
@@ -57,12 +57,13 @@
         @endforeach
         
         {{-- CTA Button Tambah Form Aset --}}
-        <button type="button" wire:click="addInput" class="btn btn-main my-4">
+        <button type="button" wire:click="addInput" class="btn btn-main d-flex align-items-center gap-2">
+            <i class='bx bx-list-plus fs-1'></i>
             Tambah Data Aset
         </button>
         
         {{-- Navigation Buttons --}}
-        <div class="row mx-auto px-3 gap-3">
+        <div class="row mx-auto mt-5 gap-3">
             <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
             <x-button type="button" class="col" action="save" buttonColor="main">Selanjutnya</x-button>
         </div>
