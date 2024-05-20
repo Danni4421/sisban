@@ -12,7 +12,7 @@
       {{-- START INFORMATION --}}
       <div class="col-12 col-md-8">
         <div class="row">
-
+ 
           {{-- START BOX 1 --}}
           <div class="col-12 col-md-6">
             <div class="small-box bg-warning">

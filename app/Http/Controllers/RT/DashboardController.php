@@ -34,7 +34,6 @@ class DashboardController extends Controller
             ->orderBy('pengajuan.created_at', 'desc')
             ->select('w.nama', 'w.nik', 'w.no_hp', 'pengajuan.created_at')
             ->get();
-
     }
 
     public function __getAcceptantPieChart(string $rt)
