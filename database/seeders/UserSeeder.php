@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User as UserModel;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,7 +21,7 @@ class UserSeeder extends Seeder
             'level' => 'rt',
             'created_at' => date('Y-m-d')
         ]);
-        
+
         UserModel::updateOrCreate([
             'id_user' => 2,
             'username' => 'bambang',

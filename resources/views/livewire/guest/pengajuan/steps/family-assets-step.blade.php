@@ -10,8 +10,8 @@
 
                     {{-- Header Form Per Index --}}
                     <h6 class="text-secondary mt-5">
-                        Data Keluarga
-                        <span>(Anggota Keluarga {{ $formIndex + 1 }})</span>
+                        Data Aset Keluarga
+                        <span>(Aset {{ $formIndex + 1 }})</span>
                     </h6>
                     <hr>
 
@@ -52,6 +52,36 @@
                     </x-form-group>
                     {{-- End Input Harga Jual Aset --}}
 
+                    {{-- Input Foto Aset --}}
+                    <x-form-group errorName="foto_aset.{{$formIndex}}" otherErrorName="foto_aset" class="mb-4">
+
+                        <x-label for="foto_aset">Foto Aset</x-label>
+                
+                        @if (!empty($foto_aset)) 
+                            @if (isset($foto_aset[$formIndex]))
+                                <div>
+                                    <img 
+                                        src="{{ asset('assets/' . $foto_aset[$formIndex]) }}" 
+                                        alt="Foto Aset"
+                                        width="256.8" height="161.88" class="m-2"
+                                        data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                        onclick="showImage('assets/{{$foto_aset[$formIndex]}}')"
+                                    />
+                                </div>
+                            @endif
+                        @endif
+                
+                        <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
+                            x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
+                            x-on:livewire-upload-progress="progress = $event.detail.progress">
+                            <x-input type="file" model="foto_aset.{{$formIndex}}" value="{{ old('foto_aset'.$formIndex) }}"/>
+                
+                            <div x-show="isUploading">
+                                <progress max="100" x-bind:value="progress"></progress>
+                            </div>
+                        </div>
+                    </x-form-group>
+                    {{-- End Input Foto Aset --}}
                 </div>
             </div>
         @endforeach

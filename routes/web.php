@@ -38,9 +38,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware('guest')->group(function() {
-    Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
-    Route::post('/login', [AuthenticationController::class, 'authenticate'])->name('authenticate');
+Route::middleware('guest')->group(function () {
+  Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
+  Route::post('/login', [AuthenticationController::class, 'authenticate'])->name('authenticate');
 });
 
 Route::middleware('guest')->group(function () {
@@ -64,8 +64,9 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
     Route::put('/approve/{no_kk}', [RTPengajuanController::class, 'approvePengajuan'])->name('rt.pengajuan.approve');
     Route::put('/decline/{no_kk}', [RTPengajuanController::class, 'declinePengajuan'])->name('rt.pengajuan.decline');
   });
-  Route::prefix('/bansos')->group(function() {
+  Route::prefix('/bansos')->group(function () {
     Route::resource('/jenis', RTBansosTypesController::class);
+    Route::post('/jenis/show/{id_bansos}', [RTBansosTypesController::class, 'show_detail'])->name('rt.bansos.jenis.show.detail');
     Route::resource('/penerima', RTBansosRecipientsController::class);
     Route::delete('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'delete_recipient'])->name('rt.delete.bansos.recipient');
     Route::post('/penerima/{nik}/{id_bansos}', [RTBansosRecipientsController::class, 'show']);
@@ -84,7 +85,7 @@ Route::prefix('rw')->middleware(['auth', 'auth.session', 'level.validate'])->gro
   Route::resource('/data-rt', RWMemberController::class);
   Route::get('/pemohon', [RWPengajuanController::class, 'approved'])->name('rw.aplicant.approved');
   Route::post('/pengajuan/{no_kk}', [RWPengajuanController::class, 'show'])->name('rw.aplicant.show');
-  Route::get('/pengajuan/{no_kk}/cetak', [RWPengajuanController::class, 'print_pdf'])->name('rw.pengajuan.cetak');  
+  Route::get('/pengajuan/{no_kk}/cetak', [RWPengajuanController::class, 'print_pdf'])->name('rw.pengajuan.cetak');
   Route::prefix('/bansos')->group(function () {
     Route::resource('/penerima', RWBansosRecipientsController::class);
     Route::get('/{id_bansos}/penerima/{nik}/edit', [RWBansosRecipientsController::class, 'edit'])->name('rw.page.edit.bansos.recipient');

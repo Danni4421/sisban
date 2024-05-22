@@ -46,6 +46,11 @@ class TypeController extends Controller
         return $bansos;
     }
 
+    public function show_detail(int $id_bansos)
+    {
+        return Bansos::find($id_bansos)->load('kandidat');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

@@ -88,4 +88,29 @@
             value="{{ old('penghasilan.'.$model) }}"
             placeholder="Mohon masukkan penghasilan dalam tiap bulan" />
     </x-form-group>
+
+    <x-form-group errorName="slip_gaji.{{$model}}" otherErrorName="slip_gaji" class="mb-4">
+
+        <x-label for="slip_gaji">Slip Gaji</x-label>
+
+        @if (!is_null($slipGaji))
+            <div>
+                <img 
+                    src="{{ asset('assets/' . $slipGaji) }}" 
+                    alt="Slip Gaji Anggota Keluarga" 
+                    width="256.8" height="161.88" class="m-2"
+                />
+            </div>
+        @endif
+
+        <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
+            x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
+            x-on:livewire-upload-progress="progress = $event.detail.progress">
+            <x-input type="file" model="slip_gaji.{{$model}}" value="{{ old('slip_gaji'.$model) }}"/>
+
+            <div x-show="isUploading">
+                <progress max="100" x-bind:value="progress"></progress>
+            </div>
+        </div>
+    </x-form-group>
 </div>

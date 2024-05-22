@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Keluarga;
 use App\Models\Pengajuan;
 use App\Models\Warga;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PengajuanSeeder extends Seeder
@@ -21,7 +20,6 @@ class PengajuanSeeder extends Seeder
             'daya_listrik' => '450',
             'biaya_listrik' => 33000,
             'biaya_air' => 5000,
-            'hutang' => 800000,
             'pengeluaran' => 780000,
             'foto_kk' => 'none',
             'created_at' => date('Y-m-d')

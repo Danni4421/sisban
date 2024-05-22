@@ -5,8 +5,10 @@ namespace App\Traits\Guest\Pengajuan\Forms;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Str;
 
-trait FamilyAssetForm {
+trait FamilyAssetForm
+{
 
     #[Validate(
         rule: [
@@ -52,12 +54,48 @@ trait FamilyAssetForm {
     )]
     public $harga_jual = [];
 
+    /**
+     * @var array<int, string> | array<int, UploadedFile>
+     */
+    public $foto_aset = [];
+
+    public function validate_image_request()
+    {
+        if (!empty($this->foto_aset)) {
+            foreach ($this->foto_aset as $key => $value) {
+                if ($value instanceof UploadedFile) {
+                    Validator::validate(
+                        data: ['foto_aset' => $value],
+                        rules: [
+                            'foto_aset' => 'required|image|mimetypes:image/*|max:1024',
+                        ],
+                        messages: [
+                            'required' => 'Mohon untuk menambahkan Foto Aset',
+                            'image' => 'Anda hanya boleh menambahkan gambar',
+                            'mimetypes' => 'Anda hanya boleh menambahkan file berupa gambar',
+                            'max' => 'Maksimal ukuran dari foto ktp adalah 2 MB'
+                        ]
+                    );
+
+                    $original_image_name = $value->getClientOriginalName();
+                    $image_name = Str::uuid() . '-' . $original_image_name;
+
+                    $this->foto_aset[$key] = $value->storeAs(
+                        path: 'temp/images/aset',
+                        name: $image_name,
+                    );
+                }
+            }
+        }
+    }
+
     public function put_form_session()
     {
         session()->put('aset-keluarga', [
             'nama_aset' => $this->nama_aset,
-            'tahun_beli'=> $this->tahun_beli,
-            'harga_jual'=> $this->harga_jual
+            'tahun_beli' => $this->tahun_beli,
+            'harga_jual' => $this->harga_jual,
+            'foto_aset' => $this->foto_aset
         ]);
     }
 
@@ -69,6 +107,7 @@ trait FamilyAssetForm {
             $this->nama_aset = $sessionData['nama_aset'];
             $this->tahun_beli = $sessionData['tahun_beli'];
             $this->harga_jual = $sessionData['harga_jual'];
+            $this->foto_aset = $sessionData['foto_aset'];
         }
     }
 }

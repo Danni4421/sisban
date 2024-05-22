@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Warga as WargaModel;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class WargaSeeder extends Seeder
@@ -25,7 +24,8 @@ class WargaSeeder extends Seeder
                 'penghasilan' => 1000000,
                 'level' => 'kepala_keluarga',
                 'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '2345678901234567',
@@ -38,7 +38,8 @@ class WargaSeeder extends Seeder
                 'penghasilan' => 0,
                 'level' => 'anggota',
                 'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '3456789012345678',
@@ -51,7 +52,8 @@ class WargaSeeder extends Seeder
                 'penghasilan' => 0,
                 'level' => 'anggota',
                 'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '4567890123456789',
@@ -64,7 +66,8 @@ class WargaSeeder extends Seeder
                 'penghasilan' => 1200000,
                 'level' => 'kepala_keluarga',
                 'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '5678901234567890',
@@ -77,7 +80,8 @@ class WargaSeeder extends Seeder
                 'penghasilan' => 0,
                 'level' => 'anggota',
                 'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '6789012345678901',
@@ -90,7 +94,8 @@ class WargaSeeder extends Seeder
                 'penghasilan' => 1300000,
                 'level' => 'kepala_keluarga',
                 'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ]
         ]);
     }

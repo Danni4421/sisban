@@ -43,4 +43,14 @@ class Bansos extends Model
     {
         return $this->hasMany(PenerimaBansos::class, 'id_bansos', 'id_bansos');
     }
+
+    /**
+     * Model relationship with Kandidat
+     * 
+     * @return HasMany
+     */
+    public function kandidat()
+    {
+        return $this->hasMany(Kandidat::class, 'id_bansos', 'id_bansos');
+    }
 }

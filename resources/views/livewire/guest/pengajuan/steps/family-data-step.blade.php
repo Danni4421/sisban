@@ -20,22 +20,24 @@
             {{-- RT --}}
             <x-form-group errorName="rt" class="mb-3">
                 <x-label for="rt" class="mb-3">Rukun Tetangga</x-label>
-                <x-input 
-                    type="number" 
-                    name="rt" 
-                    model="rt" 
-                    minLength="3"
-                    maxLength="3"
-                    placeholder="Masukkan masukan RT Anda" 
-                />
+                <select class="form-select p-3" name="rt" id="rt" wire:model="rt">
+                    @foreach ($list_rt as $rt)
+                        <option value="{{$rt}}">{{'RT' . $rt}}</option>
+                    @endforeach
+                </select>
             </x-form-group>
         </div>
         <div class="col-12 col-6 mb-3">
             {{-- Input Foto KK --}}
 
             @if (!is_null($foto_kk))
-                <img src="{{ asset('assets/' . $foto_kk) }}" alt="Foto KTP Kepala Keluarga" width="256.8"
-                    height="161.88" class="m-2">
+                <img src="{{ asset('assets/' . $foto_kk) }}" 
+                    alt="Foto KTP Kepala Keluarga" 
+                    width="256.8"
+                    height="161.88" class="m-2"
+                    data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                    onclick="showImage('assets/{{$foto_kk}}')"
+                >
             @endif
 
             <x-form-group errorName="foto_kk" class="mb-3">
@@ -58,12 +60,12 @@
                     <div class="mb-4">
                         <x-label for="nik">NIK</x-label>
                         <x-input type="text" name="nik" value="{{ $aplicant['nik'] }}"
-                            disabled="true" />
+                            readonly="true" />
                     </div>
                     <div class="mb-4">
                         <x-label for="nama">Nama</x-label>
                         <x-input type="text" name="nama"
-                            value="{{ $aplicant['nama'] }}" disabled="true" />
+                            value="{{ $aplicant['nama'] }}" readonly="true" />
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
@@ -71,41 +73,41 @@
                         <x-label for="jenis_kelamin" class="mb-2">Jenis Kelamin</x-label>
                         <div class="d-flex items-center gap-3 pt-3">
                             <x-input.radio type="radio" name="jenis_kelamin" value="lk" content="Laki Laki"
-                                checked="{{ $aplicant['jenis_kelamin'] }}" disabled="true" />
+                                checked="{{ $aplicant['jenis_kelamin'] }}" readonly="true" />
                             <x-input.radio type="radio" name="jenis_kelamin" value="pr" content="Perempuan"
-                                checked="{{ $aplicant['jenis_kelamin'] }}" disabled="true" />
+                                checked="{{ $aplicant['jenis_kelamin'] }}" readonly="true" />
                         </div>
                     </div>
                     <div class="mb-4">
                         <x-label for="umur" class="mb-2">Umur</x-label>
                         <x-input type="number" name="umur"
-                            value="{{ $aplicant['umur'] }}" disabled="true" />
+                            value="{{ $aplicant['umur'] }}" readonly="true" />
                     </div>
                 </div>
 
                 <div class="mb-4">
                     <x-label for="tempat_tanggal_lahir">Tempat Tanggal Lahir</x-label>
                     <x-input type="text" name="tempat_tanggal_lahir"
-                        value="{{ $aplicant['tempat_tanggal_lahir'] }}" disabled="true" />
+                        value="{{ $aplicant['tempat_tanggal_lahir'] }}" readonly="true" />
                 </div>
 
                 <div class="mb-4">
                     <x-label for="nomor_telepon">Nomor Telpon Aktif</x-label>
                     <x-input type="text" maxLength="13" name="nomor_telepon"
-                        value="{{ $aplicant['nomor_telepon'] }}" disabled="true" />
+                        value="{{ $aplicant['nomor_telepon'] }}" readonly="true" />
                 </div>
 
                 <div class="mb-4">
                     <x-label for="penghasilan">Penghasilan</x-label>
                     <x-input type="text" name="penghasilan"
-                        value="{{ $aplicant['penghasilan'] }}" disabled="true" />
+                        value="{{ $aplicant['penghasilan'] }}" readonly="true" />
                 </div>
             </div>
 
             <div id="container-anggota-keluarga">
                 {{-- Form Keluarga --}}
-                @foreach ($forms as $formIndex)
-                    <x-input.form-anggota model="{{ $formIndex }}" index="{{ $formIndex + 1 }}" />
+                @foreach ($inputs as $formIndex)
+                    <x-input.form-anggota model="{{ $formIndex }}" index="{{ $formIndex + 1 }}" slipGaji="{{ $slip_gaji[$formIndex] ?? null }}"/>
                 @endforeach
             </div>
 

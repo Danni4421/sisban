@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Jenis Bansos')
 
 @section('content_header')
     <h1>Jenis Bansos</h1>
@@ -26,7 +26,7 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
             @foreach ($bansos as $bs)
                 <div class="col">
-                    <div class="card card-primary card-outline shadow">
+                    <div class="card card-primary card-outline shadow-md">
                         <div class="d-flex align-items-center">
                             <div>
                                 <img src="{{ asset('assets/img/details-1.png') }}" class="img-fluid rounded-start"
@@ -34,7 +34,9 @@
                             </div>
                             <div class="flex-grow-1">
                                 <div class="card-header">
-                                    <h5 class="card-title">{{ $bs->nama_bansos }}</h5>
+                                    <h5 class="card-title" style="cursor: pointer;">
+                                        {{ $bs->nama_bansos }}
+                                    </h5>
                                 </div>
                                 <div class="card-body d-flex gap-2">
                                     <a href="{{ url('rt/bansos/jenis/' . $bs->id_bansos . '/edit') }}"
@@ -50,6 +52,7 @@
                     </div>
                 </div>
             @endforeach
+
         </div>
     </main>
 

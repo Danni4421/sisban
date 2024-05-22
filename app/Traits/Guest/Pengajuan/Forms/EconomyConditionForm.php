@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Str;
 
-trait EconomyConditionForm {
+trait EconomyConditionForm
+{
 
     #[Validate(
         rule: [
@@ -41,17 +42,34 @@ trait EconomyConditionForm {
         ]
     )]
     public $biaya_air;
-    
+
     #[Validate(
         rule: [
-            'hutang' => 'required|integer',
+            'hutang' => 'required|array|max:15',
+            'hutang.*' => 'required|numeric'
         ],
         message: [
             'required' => 'Hutang perlu untuk diisi',
-            'integer' => 'Hutang harus berupa angka'
+            'max' => 'Maksimal hutang yang boleh dimasukan adalah 15',
+            'hutang.*.required' => 'Hutang ini wajib untuk diisi',
+            'hutang.*.numeric' => 'Nilai hutang harus berupa angka',
         ]
     )]
-    public $hutang;
+    public $hutang = [];
+
+    #[Validate(
+        rule: [
+            'deskripsi_hutang' => 'required|array|max:15',
+            'deskripsi_hutang.*' => 'required|string'
+        ],
+        message: [
+            'required' => 'Hutang perlu untuk diisi',
+            'max' => 'Maksimal hutang yang boleh dimasukan adalah 15',
+            'deskripsi_hutang.*.required' => 'Hutang ini wajib untuk diisi',
+            'deskripsi_hutang.*.string' => 'Nilai hutang harus berupa karakter',
+        ]
+    )]
+    public $deskripsi_hutang = [];
 
     #[Validate(
         rule: [
@@ -64,14 +82,102 @@ trait EconomyConditionForm {
     )]
     public $pengeluaran;
 
+    public UploadedFile | string $foto_tagihan_listrik = "";
+
+    public UploadedFile | string  $foto_tagihan_air = "";
+
+    /**
+     * @var array<int, string> | array<int, UploadedFile>
+     */
+    public $foto_hutang = [];
+
+    public function validate_image_request()
+    {
+        if ($this->foto_tagihan_listrik instanceof UploadedFile) {
+            Validator::validate(
+                data: ['foto_tagihan_listrik' => $this->foto_tagihan_listrik],
+                rules: [
+                    'foto_tagihan_listrik' => 'required|image|mimetypes:image/*|max:2048'
+                ],
+                messages: [
+                    'required' => 'Mohon untuk menambahkan foto tagihan listrik',
+                    'image' => 'Anda hanya boleh menambahkan gambar',
+                    'mimetypes' => 'Anda hanya boleh menambahkan file berupa gambar',
+                    'max' => 'Maksimal ukuran dari foto ktp adalah 2 MB'
+                ]
+            );
+
+            $original_image_name = $this->foto_tagihan_listrik->getClientOriginalName();
+            $image_name = Str::uuid() . '-' . $original_image_name;
+
+            $this->foto_tagihan_listrik = $this->foto_tagihan_listrik->storeAs(
+                path: 'temp/images/tagihan_listrik',
+                name: $image_name,
+            );
+        }
+
+        if ($this->foto_tagihan_air instanceof UploadedFile) {
+            Validator::validate(
+                data: ['foto_tagihan_air' => $this->foto_tagihan_air],
+                rules: [
+                    'foto_tagihan_air' => 'required|image|mimetypes:image/*|max:2048'
+                ],
+                messages: [
+                    'required' => 'Mohon untuk menambahkan foto tagihan air',
+                    'image' => 'Anda hanya boleh menambahkan gambar',
+                    'mimetypes' => 'Anda hanya boleh menambahkan file berupa gambar',
+                    'max' => 'Maksimal ukuran dari foto ktp adalah 2 MB'
+                ]
+            );
+
+            $original_image_name = $this->foto_tagihan_air->getClientOriginalName();
+            $image_name = Str::uuid() . '-' . $original_image_name;
+
+            $this->foto_tagihan_air = $this->foto_tagihan_air->storeAs(
+                path: 'temp/images/tagihan_air',
+                name: $image_name,
+            );
+        }
+
+        if (!empty($this->foto_hutang)) {
+            foreach ($this->foto_hutang as $key => $value) {
+                if ($value instanceof UploadedFile) {
+                    Validator::validate(
+                        data: ['foto_hutang' => $value],
+                        rules: [
+                            'foto_hutang' => 'image|mimetypes:image/*|max:1024',
+                        ],
+                        messages: [
+                            'image' => 'Anda hanya boleh menambahkan gambar',
+                            'mimetypes' => 'Anda hanya boleh menambahkan file berupa gambar',
+                            'max' => 'Maksimal ukuran dari foto ktp adalah 1 MB'
+                        ]
+                    );
+
+                    $original_image_name = $value->getClientOriginalName();
+                    $image_name = Str::uuid() . '-' . $original_image_name;
+
+                    $this->foto_hutang[$key] = $value->storeAs(
+                        path: 'temp/images/tagihan_air',
+                        name: $image_name,
+                    );
+                }
+            }
+        }
+    }
+
     public function put_form_session()
     {
         session()->put('kondisi-ekonomi-keluarga', [
             'daya_listrik' => $this->daya_listrik,
-            'biaya_listrik'=> $this->biaya_listrik,
+            'biaya_listrik' => $this->biaya_listrik,
             'biaya_air' => $this->biaya_air,
             'hutang' => $this->hutang,
-            'pengeluaran' => $this->pengeluaran
+            'deskripsi_hutang' => $this->deskripsi_hutang,
+            'pengeluaran' => $this->pengeluaran,
+            'foto_tagihan_listrik' => $this->foto_tagihan_listrik,
+            'foto_tagihan_air' => $this->foto_tagihan_air,
+            'foto_hutang' => $this->foto_hutang
         ]);
     }
 
@@ -84,7 +190,11 @@ trait EconomyConditionForm {
             $this->biaya_listrik = $sessionData['biaya_listrik'];
             $this->biaya_air = $sessionData['biaya_air'];
             $this->hutang = $sessionData['hutang'];
+            $this->deskripsi_hutang = $sessionData['deskripsi_hutang'];
             $this->pengeluaran = $sessionData['pengeluaran'];
+            $this->foto_tagihan_listrik = $sessionData['foto_tagihan_listrik'];
+            $this->foto_tagihan_air = $sessionData['foto_tagihan_air'];
+            $this->foto_hutang = $sessionData['foto_hutang'];
         }
     }
 }

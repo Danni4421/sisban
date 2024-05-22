@@ -3,17 +3,20 @@
 namespace App\Livewire\Guest\Pengajuan\Steps;
 
 use App\Traits\Guest\Pengajuan\Forms\FamilyAssetForm;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Spatie\LivewireWizard\Components\StepComponent;
 
 class FamilyAssetsStep extends StepComponent
 {
-    use FamilyAssetForm;
+    use WithFileUploads, FamilyAssetForm;
 
     public array $inputs = [];
     public int $inputIndex = 0;
 
     public function __construct()
     {
+        $this->inputIndex = session()->get('form-aset-input-index') ?? 0;
+
         if (session()->has('form-aset-input-index')) {
             $this->inputs = session()->get('form-aset-input-index');
         } else {
@@ -27,7 +30,8 @@ class FamilyAssetsStep extends StepComponent
     public function addInput()
     {
         $this->inputs[] = $this->inputIndex;
-        session()->put('form-aset-input-index', $this->inputs);
+        session()->put('form-aset-inputs', $this->inputs);
+        session()->put('form-aset-input-index', $this->inputIndex);
 
         $this->inputIndex++;
     }
@@ -35,6 +39,8 @@ class FamilyAssetsStep extends StepComponent
     public function save()
     {
         $this->validate();
+        $this->validate_image_request();
+
         $this->put_form_session();
 
         $this->nextStep();

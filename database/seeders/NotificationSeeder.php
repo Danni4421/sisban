@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Notification as NotificationModel;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class NotificationSeeder extends Seeder
@@ -17,7 +16,7 @@ class NotificationSeeder extends Seeder
             [
                 'no_kk' => '3564787598748567',
                 'is_readed_rt' => '0',
-                'is_readed_rw'=> '0'
+                'is_readed_rw' => '0'
             ]
         ]);
     }
