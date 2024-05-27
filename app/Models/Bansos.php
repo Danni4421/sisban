@@ -31,7 +31,8 @@ class Bansos extends Model
      */
     protected $fillable = [
         'nama_bansos',
-        'keterangan'
+        'keterangan',
+        'jumlah'
     ];
 
     /**
@@ -45,12 +46,12 @@ class Bansos extends Model
     }
 
     /**
-     * Model relationship with Kandidat
+     * Model relationship with alternative
      * 
      * @return HasMany
      */
-    public function kandidat()
+    public function alternative()
     {
-        return $this->hasMany(Kandidat::class, 'id_bansos', 'id_bansos');
+        return $this->hasMany(Alternative::class, 'no_kk', 'no_kk');
     }
 }

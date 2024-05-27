@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('tempat_tanggal_lahir', 100);
             $table->smallInteger('umur');
             $table->char('no_hp', 13)->unique()->nullable();
-            $table->double('penghasilan', 7);
+            $table->enum('status', ['bekerja', 'tidak_bekerja', 'sekolah']);
+            $table->double('penghasilan', 7)->default(0);
             $table->enum('level', ['kepala_keluarga', 'anggota']);
             $table->text('foto_ktp')->nullable();
             $table->timestamps();

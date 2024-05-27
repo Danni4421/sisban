@@ -8,3 +8,12 @@
 <script src="{{ asset('assets/js/admin/dashboard.js') }}"></script>
 
 @stack('scripts')
+
+<script>
+    $(document).ready(function() {
+        $(document).on('init.dt', function(e, settings) {
+            var table = $(settings.nTable);
+            table.removeClass('table-hover table-striped table-bordered no-footer');
+        });
+    });
+</script>

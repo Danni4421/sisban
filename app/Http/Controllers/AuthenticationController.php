@@ -16,7 +16,8 @@ class AuthenticationController extends Controller
 
     public function authenticate(Request $request)
     {
-        $validator = Validator::make(request()->all(), 
+        $validator = Validator::make(
+            request()->all(),
             rules: [
                 'email' => 'required|email:dns|exists:users,email',
                 'password' => 'required|min:8|max:20'
@@ -35,10 +36,10 @@ class AuthenticationController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        $credentials = $request->only('email','password');
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            session()->regenerate();
 
             $authedUser = Auth::user();
 

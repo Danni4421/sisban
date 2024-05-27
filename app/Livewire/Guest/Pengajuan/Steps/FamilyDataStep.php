@@ -44,7 +44,7 @@ class FamilyDataStep extends StepComponent
         DeleteImageJob::dispatch($this->foto_kk)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
 
         if (!empty($this->slip_gaji)) {
-            foreach ($this->slip_gaji as $key => $value) {
+            foreach ($this->slip_gaji as $value) {
                 DeleteImageJob::dispatch($value)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
             }
         }
@@ -61,7 +61,7 @@ class FamilyDataStep extends StepComponent
     public function mergeDataKeluarga($familiesData)
     {
         return array_map(
-            function ($nik, $nama, $jenis_kelamin, $tempat_tanggal_lahir, $umur, $nomor_telepon, $penghasilan) {
+            function ($nik, $nama, $jenis_kelamin, $tempat_tanggal_lahir, $umur, $nomor_telepon, $status, $penghasilan) {
                 return [
                     'nik' => $nik,
                     'nama' => $nama,
@@ -69,6 +69,7 @@ class FamilyDataStep extends StepComponent
                     'tempat_tanggal_lahir' => $tempat_tanggal_lahir,
                     'umur' => $umur,
                     'nomor_telepon' => $nomor_telepon,
+                    'status' => $status,
                     'penghasilan' => $penghasilan,
                 ];
             },
@@ -78,6 +79,7 @@ class FamilyDataStep extends StepComponent
             $familiesData["tempat_tanggal_lahir"],
             $familiesData["umur"],
             $familiesData["nomor_telepon"],
+            $familiesData["status"],
             $familiesData["penghasilan"],
         );
     }

@@ -80,6 +80,24 @@ trait AplicantForm
 
     #[Validate(
         rule: [
+            'status' => 'required|string|in:bekerja,tidak_bekerja,sekolah'
+        ],
+        message: [
+            'status.required' => 'Status pekerjaan perlu untuk diisi',
+            'status.string' => 'Status harus berupa karakter',
+            'status.in' => 'Status harus antara Bekerja, Tidak Bekerja, atau Sekolah'
+        ]
+    )]
+    public string $status;
+    public array $available_status = [
+        'bekerja' => 'Bekerja',
+        'tidak_bekerja' => 'Tidak Bekerja',
+        'sekolah' => 'Sekolah'
+    ];
+
+
+    #[Validate(
+        rule: [
             'penghasilan' => 'required|integer'
         ],
         message: [
@@ -157,6 +175,7 @@ trait AplicantForm
             'tempat_tanggal_lahir' => $this->tempat_tanggal_lahir,
             'umur' => $this->umur,
             'nomor_telepon' => $this->nomor_telepon,
+            'status' => $this->status,
             'penghasilan' => $this->penghasilan,
             'slip_gaji' => $this->slip_gaji,
             'foto_ktp' => $this->foto_ktp,
@@ -174,6 +193,7 @@ trait AplicantForm
             $this->tempat_tanggal_lahir = $sessionData['tempat_tanggal_lahir'];
             $this->umur = $sessionData['umur'];
             $this->nomor_telepon = $sessionData['nomor_telepon'];
+            $this->status = $sessionData['status'];
             $this->penghasilan = $sessionData['penghasilan'];
             $this->slip_gaji = $sessionData['slip_gaji'];
             $this->foto_ktp = $sessionData['foto_ktp'];

@@ -8,7 +8,8 @@ use App\Models\PenerimaBansos;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
-trait ManageBansos {
+trait ManageBansos
+{
 
   /**
    * @param Request $request
@@ -20,11 +21,13 @@ trait ManageBansos {
     $request->validate([
       'nama_bansos' => ['required', 'string', 'max:100', 'unique:bansos,nama_bansos'],
       'keterangan' => ['required', 'string'],
+      'jumlah' => ['required', 'numeric', 'min:0']
     ]);
 
     Bansos::create([
       'nama_bansos' => $request->nama_bansos,
       'keterangan' => $request->keterangan,
+      'jumlah' => $request->jumlah
     ]);
   }
 
@@ -39,11 +42,13 @@ trait ManageBansos {
     $request->validate([
       'nama_bansos' => ['required', 'string', 'max:100', 'unique:bansos,nama_bansos,' . $id . ',id_bansos'],
       'keterangan' => ['required', 'string'],
+      'jumlah' => ['required', 'numeric', 'min:0']
     ]);
 
     Bansos::find($id)->update([
       'nama_bansos' => $request->nama_bansos,
       'keterangan' => $request->keterangan,
+      'jumlah' => $request->jumlah
     ]);
   }
 
@@ -71,18 +76,18 @@ trait ManageBansos {
   public function getKandidatPenerimaBansos()
   {
     return Keluarga::select('no_kk')
-        ->with(['anggota_keluarga' => function ($query) {
-            $query->where('level', 'kepala_keluarga');
-        }]) 
-        ->get();
+      ->with(['anggota_keluarga' => function ($query) {
+        $query->where('level', 'kepala_keluarga');
+      }])
+      ->get();
   }
 
   public function getKandidatPenerimaBansosByRt(string $rt)
   {
     return Keluarga::select('no_kk')
-        ->where('rt', $rt)
-        ->with('kepala_keluarga') 
-        ->get();
+      ->where('rt', $rt)
+      ->with('kepala_keluarga')
+      ->get();
   }
 
   /**

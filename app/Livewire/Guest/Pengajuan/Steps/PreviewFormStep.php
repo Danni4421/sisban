@@ -5,8 +5,10 @@ namespace App\Livewire\Guest\Pengajuan\Steps;
 use App\Models\Aset;
 use App\Models\Hutang;
 use App\Models\Keluarga;
+use App\Models\Notification;
 use App\Models\Pengajuan;
 use App\Models\Warga;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Spatie\LivewireWizard\Components\StepComponent;
 
@@ -21,6 +23,7 @@ class PreviewFormStep extends StepComponent
         $jenis_kelamin_pemohon,
         $tempat_tanggal_lahir_pemohon,
         $nomor_telepon_pemohon,
+        $status_pemohon,
         $penghasilan_pemohon,
         $foto_slip_gaji_pemohon,
         $foto_ktp_pemohon;
@@ -44,6 +47,7 @@ class PreviewFormStep extends StepComponent
         $umur = [],
         $tempat_tanggal_lahir = [],
         $nomor_telepon = [],
+        $status = [],
         $slip_gaji = [],
         $penghasilan = [];
 
@@ -94,6 +98,7 @@ class PreviewFormStep extends StepComponent
             $this->umur_pemohon = $data['umur'];
             $this->tempat_tanggal_lahir_pemohon = $data['tempat_tanggal_lahir'];
             $this->nomor_telepon_pemohon = $data['nomor_telepon'];
+            $this->status_pemohon = $data['status'];
             $this->penghasilan_pemohon = $data['penghasilan'];
             $this->foto_slip_gaji_pemohon = $data['slip_gaji'];
             $this->foto_ktp_pemohon = $data['foto_ktp'];
@@ -105,6 +110,8 @@ class PreviewFormStep extends StepComponent
 
         if (session()->has('form-aset-inputs')) {
             $this->inputAset = session()->get('form-aset-inputs');
+        } else {
+            $this->inputAset[] = 0;
         }
 
         /**
@@ -121,6 +128,7 @@ class PreviewFormStep extends StepComponent
             $this->umur = $data['umur'];
             $this->tempat_tanggal_lahir = $data['tempat_tanggal_lahir'];
             $this->nomor_telepon = $data['nomor_telepon'];
+            $this->status = $data['status'];
             $this->slip_gaji = $data['slip_gaji'];
             $this->penghasilan = $data['penghasilan'];
         }
@@ -158,7 +166,7 @@ class PreviewFormStep extends StepComponent
         /**
          * Generate new path for Foto KK
          */
-        $new_path_foto_kk = 'public/kk/' . last(explode('/', $this->foto_kk));
+        $new_path_foto_kk = 'public/images/kk/' . last(explode('/', $this->foto_kk));
         Storage::move($this->foto_kk, $new_path_foto_kk);
 
         /**
@@ -167,7 +175,7 @@ class PreviewFormStep extends StepComponent
         global $new_path_foto_tagihan_listrik;
 
         if ($this->foto_tagihan_listrik != "") {
-            $new_path_foto_tagihan_listrik = 'public/tagihan_listrik' . last(explode('/', $this->foto_tagihan_listrik));
+            $new_path_foto_tagihan_listrik = 'images/kandidat/tagihan_listrik/' . last(explode('/', $this->foto_tagihan_listrik));
             Storage::move($this->foto_tagihan_listrik, $new_path_foto_tagihan_listrik);
         }
 
@@ -177,7 +185,7 @@ class PreviewFormStep extends StepComponent
         global $new_path_foto_tagihan_air;
 
         if ($this->foto_tagihan_air != "") {
-            $new_path_foto_tagihan_air = 'public/tagihan_air' . last(explode('/', $this->foto_tagihan_air));
+            $new_path_foto_tagihan_air = 'images/kandidat/tagihan_air/' . last(explode('/', $this->foto_tagihan_air));
             Storage::move($this->foto_tagihan_air, $new_path_foto_tagihan_air);
         }
 
@@ -200,8 +208,12 @@ class PreviewFormStep extends StepComponent
          * Iterating for each hutang
          */
         foreach ($this->map_hutang_keluarga() as $hutang) {
-            $new_path_image_hutang = 'public/hutang' . last(explode('/', $hutang->bukti_hutang));
-            Storage::move($hutang->bukti_hutang, $new_path_image_hutang);
+            global $new_path_image_hutang;
+
+            if (!is_null($hutang->bukti_hutang)) {
+                $new_path_image_hutang = 'images/kandidat/hutang/' . last(explode('/', $hutang->bukti_hutang));
+                Storage::move($hutang->bukti_hutang, $new_path_image_hutang);
+            }
 
             Hutang::create([
                 'no_kk' => $this->no_kk,
@@ -214,14 +226,18 @@ class PreviewFormStep extends StepComponent
         /**
          * Generate new path for foto KTP pemohon
          */
-        $new_path_foto_ktp = 'public/ktp/' . last(explode('/', $this->foto_ktp_pemohon));
+        $new_path_foto_ktp = 'images/kandidat/ktp/' . last(explode('/', $this->foto_ktp_pemohon));
         Storage::move($this->foto_ktp_pemohon, $new_path_foto_ktp);
 
         /**
          * Generate new path for foto slip gaji pemohon
          */
-        $new_path_slip_gaji_pemohon = 'public/slip_gaji' . last(explode('/', $this->foto_slip_gaji_pemohon));
-        Storage::move($this->foto_slip_gaji_pemohon, $new_path_slip_gaji_pemohon);
+        global $new_path_slip_gaji_pemohon;
+
+        if ($this->foto_slip_gaji_pemohon != "") {
+            $new_path_slip_gaji_pemohon = 'images/kandidat/slip_gaji/' . last(explode('/', $this->foto_slip_gaji_pemohon));
+            Storage::move($this->foto_slip_gaji_pemohon, $new_path_slip_gaji_pemohon);
+        }
 
         /**
          * Insert new data pemohon as kepala keluarga in database
@@ -235,6 +251,7 @@ class PreviewFormStep extends StepComponent
             'no_hp' => $this->nomor_telepon_pemohon,
             'umur' => $this->umur_pemohon,
             'penghasilan' => $this->penghasilan_pemohon,
+            'status' => $this->status_pemohon,
             'foto_ktp' => $new_path_foto_ktp,
             'slip_gaji' => $new_path_slip_gaji_pemohon,
             'level' => 'kepala_keluarga',
@@ -249,8 +266,13 @@ class PreviewFormStep extends StepComponent
             /**
              * Generating new path for slip gaji anggota keluarga
              */
-            $new_path_slip_gaji_anggota = 'public/slip_gaji' . last(explode('/', $anggota_keluarga->slip_gaji));
-            Storage::move($anggota_keluarga->slip_gaji, $new_path_slip_gaji_anggota);
+
+            global $new_path_slip_gaji_anggota;
+
+            if (!is_null($anggota_keluarga->slip_gaji)) {
+                $new_path_slip_gaji_anggota = '/images/kandidat/slip_gaji/' . last(explode('/', $anggota_keluarga->slip_gaji));
+                Storage::move($anggota_keluarga->slip_gaji, $new_path_slip_gaji_anggota);
+            }
 
             Warga::create([
                 'nik' => $anggota_keluarga->nik,
@@ -260,6 +282,7 @@ class PreviewFormStep extends StepComponent
                 'tempat_tanggal_lahir' => $anggota_keluarga->tempat_tanggal_lahir,
                 'no_hp' => $anggota_keluarga->no_hp,
                 'umur' => $anggota_keluarga->umur,
+                'status' => $anggota_keluarga->status,
                 'penghasilan' => $anggota_keluarga->penghasilan,
                 'slip_gaji' => $new_path_slip_gaji_anggota,
                 'level' => 'anggota',
@@ -270,7 +293,7 @@ class PreviewFormStep extends StepComponent
          * Iterating for each asset of keluarga and insert into database
          */
         foreach ($this->map_aset_keluarga() as $aset_keluarga) {
-            $new_path_aset = 'public/slip_gaji' . last(explode('/', $aset_keluarga->foto_aset));
+            $new_path_aset = '/images/kandidat/aset/' . last(explode('/', $aset_keluarga->foto_aset));
             Storage::move($aset_keluarga->foto_aset, $new_path_aset);
 
             Aset::create([
@@ -283,6 +306,44 @@ class PreviewFormStep extends StepComponent
         }
 
         /**
+         * Remove session for pengajuan
+         */
+        session()->remove('kepala-keluarga');
+        session()->remove('form-keluarga-inputs');
+        session()->remove('form-keluarga-input-index');
+        session()->remove('form-aset-inputs');
+        session()->remove('form-aset-input-index');
+        session()->remove('keluarga');
+        session()->remove('aset-keluarga');
+        session()->remove('kondisi-ekonomi-keluarga');
+        session()->remove('currentStepIndex');
+        session()->remove('form-economy-loan');
+        session()->remove('form-economy-loan-index');
+
+        Storage::disk('local')->deleteDirectory('livewire-tmp');
+        Storage::disk('local')->deleteDirectory('temp');
+
+        /**
+         * If the submiter is rt then redirect to index of candidate
+         */
+        if (Auth::check()) {
+            if (Auth::user()->level == "rt") {
+
+                /**
+                 * Assume that if the user is RT then it is likely that he is adding a new candidate
+                 */
+                Keluarga::find($this->no_kk)->update([
+                    'is_kandidat' => 1,
+                ]);
+
+                /**
+                 * Redirecting to the index of candidate page
+                 */
+                return redirect()->route('rt.kandidat')->with('success', 'Kandidat berhasil ditambahkan!');
+            }
+        }
+
+        /**
          * Make new pengajuan on table pengajuan
          */
         Pengajuan::create([
@@ -291,15 +352,11 @@ class PreviewFormStep extends StepComponent
         ]);
 
         /**
-         * Remove session for pengajuan
+         * Generate notification for RT and RW
          */
-        session()->remove('kepala-keluarga');
-        session()->remove('form-keluarga-input-index');
-        session()->remove('form-aset-input-index');
-        session()->remove('keluarga');
-        session()->remove('aset-keluarga');
-        session()->remove('kondisi-ekonomi-keluarga');
-        session()->remove('currentStepIndex');
+        Notification::create([
+            'no_kk' => $this->no_kk,
+        ]);
 
         /**
          * Redirecting back to first page
@@ -313,7 +370,7 @@ class PreviewFormStep extends StepComponent
     private function map_anggota_keluarga()
     {
         return array_map(
-            function ($nik, $nama, $jenis_kelamin, $tempat_tanggal_lahir, $umur, $nomor_telepon, $penghasilan, $slip_gaji) {
+            function ($nik, $nama, $jenis_kelamin, $tempat_tanggal_lahir, $umur, $nomor_telepon, $status,  $penghasilan, $slip_gaji) {
                 return (object) [
                     'nik' => $nik,
                     'nama' => $nama,
@@ -321,6 +378,7 @@ class PreviewFormStep extends StepComponent
                     'tempat_tanggal_lahir' => $tempat_tanggal_lahir,
                     'umur' => $umur,
                     'no_hp' => $nomor_telepon,
+                    'status' => $status,
                     'penghasilan' => $penghasilan,
                     'slip_gaji' => $slip_gaji,
                 ];
@@ -331,6 +389,7 @@ class PreviewFormStep extends StepComponent
             $this->tempat_tanggal_lahir,
             $this->umur,
             $this->nomor_telepon,
+            $this->status,
             $this->penghasilan,
             $this->slip_gaji,
         );

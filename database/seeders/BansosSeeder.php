@@ -17,13 +17,15 @@ class BansosSeeder extends Seeder
                 'id_bansos' => 1,
                 'nama_bansos' => 'Bantuan Pangan Non Tunai',
                 'keterangan' => 'Memberikan bantuan pangan non tunai',
-                'created_at' => date('Y-m-d')
+                'jumlah' => 2,
+                'created_at' => now()
             ],
             [
                 'id_bansos' => 2,
                 'nama_bansos' => 'Program Keluarga Harapan',
                 'keterangan' => 'Program pemberian bantuan sosial bersyarat kepada Keluarga Miskin',
-                'created_at' => date('Y-m-d')
+                'jumlah' => 1,
+                'created_at' => now()
             ]
         ]);
     }

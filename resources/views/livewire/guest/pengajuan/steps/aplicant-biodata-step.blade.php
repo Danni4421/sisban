@@ -59,6 +59,17 @@
                 placeholder="Masukkan nomor telepon Anda yang sedang aktif" value="{{ $nomor_telepon }}" />
         </x-form-group>
 
+        {{-- Input Status  --}}
+        <x-form-group errorName="rt" class="mb-3">
+            <x-label for="status">Status</x-label>
+            <select class="form-select p-3" name="status" id="status" wire:model="status">
+                <option selected>Pilih Status Pekerjaan Anda</option>
+                @foreach ($available_status as $key => $status)
+                    <option value="{{$key}}">{{ $status }}</option>
+                @endforeach
+            </select>
+        </x-form-group>
+
         {{-- Input Penghasilan --}}
         <x-form-group errorName="penghasilan" class="mb-4">
             <x-label for="penghasilan">Penghasilan per Bulan</x-label>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('biaya_listrik', 7);
             $table->double('biaya_air', 7);
             $table->double('pengeluaran', 8);
+            $table->boolean('is_kandidat')->default(false);
             $table->text('foto_kk');
             $table->timestamps();
         });

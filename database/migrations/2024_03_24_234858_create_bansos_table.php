@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_bansos');
             $table->string('nama_bansos', 100);
             $table->text('keterangan');
+            $table->integer('jumlah')->default(0);
             $table->timestamps();
         });
     }

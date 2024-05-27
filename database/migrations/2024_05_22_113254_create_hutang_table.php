@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('no_kk')->index();
             $table->double('jumlah');
             $table->text('keterangan');
-            $table->string('bukti_hutang');
+            $table->string('bukti_hutang')->nullable();
             $table->timestamps();
 
             $table->foreign('no_kk')->references('no_kk')->on('keluarga');

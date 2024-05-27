@@ -18,11 +18,11 @@
 
     <div class="modal fade" id="modal_image_show" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
-          <div class="modal-content">
+            <div class="modal-content">
             <img src="#" id="image_show">
-          </div>
+            </div>
         </div>
-      </div>
+    </div>
 @endsection
 
 @push('styles')
@@ -48,7 +48,6 @@
         integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script>
         function showImage(name) {
-            console.log(name);
             $('#image_show').attr('src', name);
         }
     </script>

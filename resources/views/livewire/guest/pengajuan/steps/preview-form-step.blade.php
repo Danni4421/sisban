@@ -62,9 +62,15 @@
                             disabled="true" />
                     </div>
 
+                    <div class="col-12 mb-3">
+                        <x-label for="status_pemohon">Status</x-label>
+                        <x-input type="text" model="status_pemohon"
+                            disabled="true" />
+                    </div>
+
                     <div class="col-12">
                         <x-label for="penghasilan_pemohon">Penghasilan</x-label>
-                        <x-input type="text" model="penghasilan_pemohon" minLength="16" maxLength="16"
+                        <x-input type="text" model="penghasilan_pemohon"
                             disabled="true" />
                     </div>
                 </div>
@@ -132,7 +138,7 @@
                                                 disabled="true" 
                                             />
                                         </div>
-                                        <div>
+                                        <div class="mb-3">
                                             <x-label for="umur.{{$anggotaIndex}}">Umur</x-label>
                                             <x-input 
                                                 type="number" 
@@ -163,16 +169,18 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col">
-                                                <x-label for="slip_gaji">Foto Slip Gaji</x-label>
-                                                <img src="{{ asset('assets/' . $slip_gaji[$anggotaIndex]) }}"
-                                                    alt="Foto slip gaji anggota keluarga" 
-                                                    width="256.8" height="161.88" 
-                                                    class="m-2"
-                                                    data-bs-toggle="modal" data-bs-target="#modal_image_show"
-                                                    onclick="showImage('assets/{{$slip_gaji[$anggotaIndex]}}')"
-                                                >
-                                            </div>
+                                            @if (isset($slip_gaji[$anggotaIndex]))
+                                                <div class="col">
+                                                    <x-label for="slip_gaji">Foto Slip Gaji</x-label>
+                                                    <img src="{{ asset('assets/' . $slip_gaji[$anggotaIndex]) }}"
+                                                        alt="Foto slip gaji anggota keluarga" 
+                                                        width="256.8" height="161.88" 
+                                                        class="m-2"
+                                                        data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                                        onclick="showImage('assets/{{$slip_gaji[$anggotaIndex]}}')"
+                                                    >
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -196,13 +204,23 @@
                                         />
                                     </div>
 
+                                    <div class="col-12 mb-3">
+                                        <x-label for="status.{{$anggotaIndex}}">Status</x-label>
+                                        <x-input 
+                                            type="text" 
+                                            name="status.{{$anggotaIndex}}"
+                                            model="status.{{$anggotaIndex}}" 
+                                            disabled="true" 
+                                        />
+                                    </div>
+
                                     <div class="col-12">
                                         <x-label for="penghasilan.{{$anggotaIndex}}">Penghasilan</x-label>
                                         <x-input 
                                             type="text" 
                                             name="penghasilan.{{$anggotaIndex}}"
                                             model="penghasilan.{{$anggotaIndex}}" 
-                                            minLength="16" maxLength="16" disabled="true" 
+                                            disabled="true" 
                                         />
                                     </div>
                                 </div>
@@ -260,16 +278,18 @@
                                         />
                                     </div>
 
-                                    <div class="col-12 mb-3">
-                                        <x-label for="foto_aset.{{$assetIndex}}">Foto Aset</x-label>
-                                        <img src="{{ asset('assets/' . $foto_aset[$assetIndex]) }}"
-                                            alt="Foto aset" 
-                                            width="256.8" height="161.88" 
-                                            class="m-2"
-                                            data-bs-toggle="modal" data-bs-target="#modal_image_show"
-                                            onclick="showImage('assets/{{$foto_aset[$assetIndex]}}')"
-                                        >
-                                    </div>
+                                    @if (isset($foto_aset[$assetIndex]))
+                                        <div class="col-12 mb-3">
+                                            <x-label for="foto_aset.{{$assetIndex}}">Foto Aset</x-label>
+                                            <img src="{{ asset('assets/' . $foto_aset[$assetIndex]) }}"
+                                                alt="Foto aset" 
+                                                width="256.8" height="161.88" 
+                                                class="m-2"
+                                                data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                                onclick="showImage('assets/{{$foto_aset[$assetIndex]}}')"
+                                            >
+                                        </div>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -344,16 +364,19 @@
                                         <x-label for="hutang">Keterangan</x-label>
                                         <x-input type="text" model="deskripsi_hutang.{{$key}}" disabled="true" />
                                     </div> 
-                                    <div class="col-12 mb-3">
-                                        <x-label for="foto_tagihan_air">Foto Hutang</x-label>
-                                        <img src="{{ asset('assets/' . $foto_hutang[$key]) }}"
-                                            alt="Foto tagihan air" 
-                                            width="256.8" height="161.88" 
-                                            class="m-2"
-                                            data-bs-toggle="modal" data-bs-target="#modal_image_show"
-                                            onclick="showImage('assets/{{$foto_hutang[$key]}}')"
-                                        >   
-                                    </div>
+
+                                    @if (isset($foto_hutang[$key]))
+                                        <div class="col-12 mb-3">
+                                            <x-label for="foto_tagihan_air">Foto Hutang</x-label>
+                                            <img src="{{ asset('assets/' . $foto_hutang[$key]) }}"
+                                                alt="Foto tagihan air" 
+                                                width="256.8" height="161.88" 
+                                                class="m-2"
+                                                data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                                onclick="showImage('assets/{{$foto_hutang[$key]}}')"
+                                            >   
+                                        </div>
+                                    @endif
                                 </div>   
                             @endforeach
                         </div>

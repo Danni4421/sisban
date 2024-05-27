@@ -133,6 +133,20 @@ trait FamilyForm
 
     #[Validate(
         rule: [
+            'status' => 'array|max:15|min:0',
+            'status.*' => 'required|string|in:bekerja,tidak_bekerja,sekolah',
+        ],
+        message: [
+            'status.max' => 'Maksimal anggota keluarga adalah 15',
+            'status.*.required' => 'Status pekerjaan perlu untuk diisi',
+            'status.*.string' => 'Status harus berupa karakter',
+            'status.*.in' => 'Status harus antara Bekerja, Tidak Bekerja, atau Sekolah'
+        ]
+    )]
+    public array $status = [];
+
+    #[Validate(
+        rule: [
             'penghasilan' => 'array|max:15|min:0',
             'penghasilan.*' => 'required|integer',
         ],
@@ -161,6 +175,7 @@ trait FamilyForm
             'tempat_tanggal_lahir' => $this->tempat_tanggal_lahir,
             'umur' => $this->umur,
             'nomor_telepon' => $this->nomor_telepon,
+            'status' => $this->status,
             'penghasilan' => $this->penghasilan,
             'slip_gaji' => $this->slip_gaji
         ]);
@@ -180,6 +195,7 @@ trait FamilyForm
             $this->tempat_tanggal_lahir = $sessionData["tempat_tanggal_lahir"];
             $this->umur = $sessionData["umur"];
             $this->nomor_telepon = $sessionData["nomor_telepon"];
+            $this->status = $sessionData["status"];
             $this->penghasilan = $sessionData["penghasilan"];
             $this->slip_gaji = $sessionData["slip_gaji"];
         }
