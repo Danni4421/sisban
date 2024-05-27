@@ -19,10 +19,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <section class="col-12 col-lg-4" id="image">
-                            <img src="" alt="nothing" width="300" height="400">
+                        <section class="col-12 mx-auto" id="image">
+                            <img id="modal_foto_kk" class="w-100">
                         </section>
-                        <section class="col-12 col-lg-8">
+                        <section class="col-12">
                             <table class="table table-striped">
                                 <tr>
                                     <th>No KK</th>
@@ -50,7 +50,7 @@
                                     <th>Biaya Listrik</th>
                                     <td>
                                         Rp.
-                                        <span id="modal_biaya_listrik">0</span>
+                                        <span id="modal_biaya_listrik"></span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -108,6 +108,7 @@
                     contentType: 'application/json'
                 },
                 success: function(response) {
+                    console.log(response)
                     updateInformasiPermohonan(response);
                     setAnggotaKeluarga(response.keluarga.anggota_keluarga);
                 }
@@ -119,6 +120,7 @@
                 return anggota.level === 'kepala_keluarga';
             })[0];
 
+            $('#modal_foto_kk').attr('src', `{{ asset('assets/${pengajuan.keluarga.foto_kk}') }}`)
             $('#modal_no_kk').text(pengajuan.no_kk);
             $('#modal_nik_kepala_keluarga').text(kepalaKeluarga.nik);
             $('#modal_nama_kepala_keluarga').text(kepalaKeluarga.nama);
@@ -126,22 +128,17 @@
             $('#modal_daya_listrik').text(pengajuan.keluarga.daya_listrik);
             $('#modal_biaya_listrik').text(pengajuan.keluarga.biaya_listrik);
             $('#modal_biaya_air').text(pengajuan.keluarga.biaya_air);
-            $('#modal_hutang').text(pengajuan.keluarga.hutang);
+            $('#modal_hutang').text(pengajuan.keluarga.jumlah_hutang);
             $('#modal_pengeluaran').text(pengajuan.keluarga.pengeluaran);
         }
 
         function setAnggotaKeluarga(anggota_keluarga) {
             $('#modal_anggota_keluarga').html('');
-
             anggota_keluarga.forEach((anggota) => {
                 $('#modal_anggota_keluarga').append(`
                     <div class="col">
                         <div class="card">
                             <div class="d-flex align-items-center">
-                                <div>
-                                    <img src="${anggota.foto_kk}" class="img-fluid rounded-start"
-                                        alt="Gambar Bansos">
-                                </div>
                                 <div class="flex-grow-1">
                                     <div class="card-body">
                                         <table class="table">

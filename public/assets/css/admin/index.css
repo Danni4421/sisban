@@ -30,19 +30,19 @@
 
 [data-font="roboto"] {
     * {
-        font-family: 'Roboto';
+        font-family: "Roboto";
     }
 }
 
 [data-font="poppins"] {
     * {
-        font-family: 'Poppins';
+        font-family: "Poppins";
     }
 }
 
 [data-font="monserrat"] {
     * {
-        font-family: 'Monserrat';
+        font-family: "Monserrat";
     }
 }
 
@@ -88,7 +88,6 @@
     bottom: -2.225rem;
 }
 
-
 .sidebar-account:hover {
     background: var(--bg-account-hover);
     cursor: pointer;
@@ -108,4 +107,25 @@
     width: 2.5rem;
     height: 2.5rem;
     box-shadow: none !important;
+}
+
+.badge {
+    padding: 0.5em 0.9em !important;
+    border-radius: 18px !important;
+    font-weight: bolder !important;
+}
+
+.badge.text-bg-warning {
+    color: rgb(185, 147, 22) !important;
+    background-color: rgb(255, 255, 189) !important;
+}
+
+.badge.text-bg-success {
+    color: #1b771b !important;
+    background-color: #cfffcf !important;
+}
+
+.badge.text-bg-danger {
+    color: #c03530 !important;
+    background-color: #ffcccb !important;
 }

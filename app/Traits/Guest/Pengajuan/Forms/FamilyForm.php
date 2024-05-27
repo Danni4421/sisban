@@ -12,7 +12,8 @@ trait FamilyForm
     #[Validate(
         rule: [
             'no_kk' => 'required|numeric|digits:16|unique:keluarga,no_kk'
-        ], message: [
+        ],
+        message: [
             'no_kk.required' => 'Nomor Kartu Keluarga perlu untuk diisi',
             'no_kk.numeric' => 'Nomor Kartu Keluarga harus terdiri dari kombinasi Angka',
             'no_kk.digits' => 'Panjang Nomor Kartu Keluarga adalah 16 karakter',
@@ -28,10 +29,17 @@ trait FamilyForm
         message: [
             'rt.required' => 'RT perlu untuk diisi',
             'rt.numeric' => 'RT harus berupa angka',
-            'rt.digits' => 'RT hanya boleh terdiri dari 3 digit' 
+            'rt.digits' => 'RT hanya boleh terdiri dari 3 digit'
         ]
     )]
     public string $rt = '';
+
+    /**
+     * @var array<int, string>
+     */
+    public $list_rt = [
+        '025', '026', '027', '028', '029', '030', '031'
+    ];
 
     /**
      * @var \Illuminate\Http\UploadedFile | string
@@ -42,7 +50,7 @@ trait FamilyForm
         rule: [
             'nik' => 'array|max:15|min:0',
             'nik.*' => 'required|numeric|digits:16|unique:warga,nik',
-        ], 
+        ],
         message: [
             'nik.max' => 'Maksimal anggota keluarga adalah 15',
             'nik.*.required' => 'NIK perlu untuk diisi',
@@ -53,11 +61,11 @@ trait FamilyForm
     )]
     public array $nik = [];
 
-    #[Validate( 
+    #[Validate(
         rule: [
             'nama' => 'array|max:15|min:0',
             'nama.*' => 'required|string|max:100',
-        ], 
+        ],
         message: [
             'nama.max' => 'Maksimal anggota keluarga adalah 15',
             'nama.*.required' => 'Nama perlu untuk diisi',
@@ -71,7 +79,7 @@ trait FamilyForm
         rule: [
             'jenis_kelamin' => 'array|max:15|min:0',
             'jenis_kelamin.*' => 'required|string|in:lk,pr',
-        ], 
+        ],
         message: [
             'jenis_kelamin.max' => 'Maksimal anggota keluarga adalah 15',
             'jenis_kelamin.*.required' => 'Jenis kelamin perlu untuk diisi',
@@ -125,8 +133,22 @@ trait FamilyForm
 
     #[Validate(
         rule: [
+            'status' => 'array|max:15|min:0',
+            'status.*' => 'required|string|in:bekerja,tidak_bekerja,sekolah',
+        ],
+        message: [
+            'status.max' => 'Maksimal anggota keluarga adalah 15',
+            'status.*.required' => 'Status pekerjaan perlu untuk diisi',
+            'status.*.string' => 'Status harus berupa karakter',
+            'status.*.in' => 'Status harus antara Bekerja, Tidak Bekerja, atau Sekolah'
+        ]
+    )]
+    public array $status = [];
+
+    #[Validate(
+        rule: [
             'penghasilan' => 'array|max:15|min:0',
-            'penghasilan.*'=> 'required|integer',
+            'penghasilan.*' => 'required|integer',
         ],
         message: [
             'penghasilan.max' => 'Maksimal anggota keluarga adalah 15',
@@ -135,6 +157,11 @@ trait FamilyForm
         ]
     )]
     public array $penghasilan = [];
+
+    /**
+     * @var array<int, string> | array<int, UploadedFile>
+     */
+    public $slip_gaji = [];
 
     public function update_keluarga(): void
     {
@@ -148,7 +175,9 @@ trait FamilyForm
             'tempat_tanggal_lahir' => $this->tempat_tanggal_lahir,
             'umur' => $this->umur,
             'nomor_telepon' => $this->nomor_telepon,
+            'status' => $this->status,
             'penghasilan' => $this->penghasilan,
+            'slip_gaji' => $this->slip_gaji
         ]);
     }
 
@@ -166,28 +195,61 @@ trait FamilyForm
             $this->tempat_tanggal_lahir = $sessionData["tempat_tanggal_lahir"];
             $this->umur = $sessionData["umur"];
             $this->nomor_telepon = $sessionData["nomor_telepon"];
+            $this->status = $sessionData["status"];
             $this->penghasilan = $sessionData["penghasilan"];
+            $this->slip_gaji = $sessionData["slip_gaji"];
         }
     }
 
     public function validate_image_request()
     {
         if ($this->foto_kk instanceof UploadedFile) {
-            Validator::validate(['foto_kk' => $this->foto_kk], [
-                'foto_kk' => [
-                    'required', 'image', 'mimetypes:image/*', 'max:2048',
+            Validator::validate(
+                data: ['foto_kk' => $this->foto_kk],
+                rules: [
+                    'foto_kk' => [
+                        'required', 'image', 'mimetypes:image/*', 'max:2048',
+                    ],
                 ],
-            ]);
-        }
+                messages: [
+                    'required' => 'Mohon untuk menambahkan Foto KK',
+                    'image' => 'Anda hanya boleh menambahkan gambar',
+                    'mimetypes' => 'Anda hanya boleh menambahkan file berupa gambar',
+                    'max' => 'Maksimal ukuran dari foto ktp adalah 2 MB'
+                ]
+            );
 
-        if (!is_null($this->foto_kk) && !is_string($this->foto_kk)) {
             $original_image_name = $this->foto_kk->getClientOriginalName();
-            $image_name = Str::uuid() . '-' . $original_image_name;   
+            $image_name = Str::uuid() . '-' . $original_image_name;
 
             $this->foto_kk = $this->foto_kk->storeAs(
-                path: 'temp/images/kk', 
+                path: 'temp/images/kk',
                 name: $image_name
             );
+        }
+
+        foreach ($this->slip_gaji as $key => $value) {
+            if ($value instanceof UploadedFile) {
+                Validator::validate(
+                    data: ['slip_gaji' . $key => $value],
+                    rules: [
+                        'slip_gaji' . $key => 'image|mimetypes:image/*|max:1024'
+                    ],
+                    messages: [
+                        'image' => 'Anda hanya boleh menambahkan gambar',
+                        'mimetypes' => 'Anda hanya boleh menambahkan file berupa gambar',
+                        'max' => 'Maksimal ukuran dari foto ktp adalah 2 MB'
+                    ]
+                );
+
+                $original_image_name = $value->getClientOriginalName();
+                $image_name = Str::uuid() . '-' . $original_image_name;
+
+                $this->slip_gaji[$key] = $value->storeAs(
+                    path: 'temp/images/slip_gaji',
+                    name: $image_name
+                );
+            }
         }
     }
 }

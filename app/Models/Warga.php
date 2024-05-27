@@ -37,10 +37,10 @@ class Warga extends Model
         'tempat_tanggal_lahir',
         'umur',
         'no_hp',
-        // 'pekerjaan',
         'penghasilan',
         'level',
-        'foto_ktp'
+        'foto_ktp',
+        'slip_gaji',
     ];
 
     /**

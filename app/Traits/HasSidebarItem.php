@@ -34,6 +34,7 @@ trait HasSidebarItem
                             'with_level' => true,
                             'active' => [
                                 '/pengajuan',
+                                
                                 '/pengajuan/masuk',
                                 '/pengajuan/disetujui'
                             ],
@@ -53,6 +54,15 @@ trait HasSidebarItem
                                     'with_level' => true
                                 ],
                             ]
+                        ],
+                        'kandidat' => (object) [
+                            'label' => 'Kandidat',
+                            'href' => 'kandidat',
+                            'icon' => 'fas fa-user-friends',
+                            'active' => [
+                                '/kandidat'
+                            ],
+                            'with_level' => true,
                         ],
                         'bansos' => (object) [
                             'label' => 'Bansos',
@@ -146,6 +156,16 @@ trait HasSidebarItem
                                 '/pemohon',
                             ],
                             'with_level' => true,
+                        ],
+                        'bansos' => (object) [
+                            'label' => 'Bansos',
+                            'href' => 'bansos/jenis',
+                            'icon' => 'fas fa-boxes',
+                            'with_level' => true,
+                            'active' => [
+                                '/bansos',
+                                '/bansos/jenis'
+                            ],
                         ],
                         'penerima' => (object) [
                             'label' => 'Data Penerima',

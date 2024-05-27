@@ -44,6 +44,8 @@
                                     alt="Foto KTP"
                                     width="256.8" height="161.88" 
                                     class="m-2"
+                                    data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                    onclick="showImage('assets/{{$foto_ktp_pemohon}}')"
                                 >
                             </div>
                         </div>
@@ -60,9 +62,15 @@
                             disabled="true" />
                     </div>
 
+                    <div class="col-12 mb-3">
+                        <x-label for="status_pemohon">Status</x-label>
+                        <x-input type="text" model="status_pemohon"
+                            disabled="true" />
+                    </div>
+
                     <div class="col-12">
                         <x-label for="penghasilan_pemohon">Penghasilan</x-label>
-                        <x-input type="text" model="penghasilan_pemohon" minLength="16" maxLength="16"
+                        <x-input type="text" model="penghasilan_pemohon"
                             disabled="true" />
                     </div>
                 </div>
@@ -94,6 +102,8 @@
                                 alt="Foto KTP Kepala Keluarga" 
                                 width="256.8" height="161.88" 
                                 class="m-2"
+                                data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                onclick="showImage('assets/{{$foto_kk}}')"
                             >
                         </div>
                     </div>
@@ -128,6 +138,15 @@
                                                 disabled="true" 
                                             />
                                         </div>
+                                        <div class="mb-3">
+                                            <x-label for="umur.{{$anggotaIndex}}">Umur</x-label>
+                                            <x-input 
+                                                type="number" 
+                                                name="umur.{{$anggotaIndex}}"
+                                                model="umur.{{$anggotaIndex}}" 
+                                                disabled="true" 
+                                            />
+                                        </div>
                                     </div>
 
                                     <div class="col">
@@ -150,19 +169,18 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col">
-                                                <img src="" alt="KTP">
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <x-label for="umur.{{$anggotaIndex}}">Umur</x-label>
-                                            <x-input 
-                                                type="number" 
-                                                name="umur.{{$anggotaIndex}}"
-                                                model="umur.{{$anggotaIndex}}" 
-                                                disabled="true" 
-                                            />
+                                            @if (isset($slip_gaji[$anggotaIndex]))
+                                                <div class="col">
+                                                    <x-label for="slip_gaji">Foto Slip Gaji</x-label>
+                                                    <img src="{{ asset('assets/' . $slip_gaji[$anggotaIndex]) }}"
+                                                        alt="Foto slip gaji anggota keluarga" 
+                                                        width="256.8" height="161.88" 
+                                                        class="m-2"
+                                                        data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                                        onclick="showImage('assets/{{$slip_gaji[$anggotaIndex]}}')"
+                                                    >
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -186,13 +204,23 @@
                                         />
                                     </div>
 
+                                    <div class="col-12 mb-3">
+                                        <x-label for="status.{{$anggotaIndex}}">Status</x-label>
+                                        <x-input 
+                                            type="text" 
+                                            name="status.{{$anggotaIndex}}"
+                                            model="status.{{$anggotaIndex}}" 
+                                            disabled="true" 
+                                        />
+                                    </div>
+
                                     <div class="col-12">
                                         <x-label for="penghasilan.{{$anggotaIndex}}">Penghasilan</x-label>
                                         <x-input 
                                             type="text" 
                                             name="penghasilan.{{$anggotaIndex}}"
                                             model="penghasilan.{{$anggotaIndex}}" 
-                                            minLength="16" maxLength="16" disabled="true" 
+                                            disabled="true" 
                                         />
                                     </div>
                                 </div>
@@ -224,7 +252,6 @@
                                         <x-label for="nama_aset.{{$assetIndex}}">Nama Aset</x-label>
                                         <x-input 
                                             type="text" 
-                                            class="mb-3" 
                                             name="nama_aset.{{$assetIndex}}" 
                                             model="nama_aset.{{$assetIndex}}"
                                             disabled="true" 
@@ -250,6 +277,19 @@
                                             disabled="true" 
                                         />
                                     </div>
+
+                                    @if (isset($foto_aset[$assetIndex]))
+                                        <div class="col-12 mb-3">
+                                            <x-label for="foto_aset.{{$assetIndex}}">Foto Aset</x-label>
+                                            <img src="{{ asset('assets/' . $foto_aset[$assetIndex]) }}"
+                                                alt="Foto aset" 
+                                                width="256.8" height="161.88" 
+                                                class="m-2"
+                                                data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                                onclick="showImage('assets/{{$foto_aset[$assetIndex]}}')"
+                                            >
+                                        </div>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -266,27 +306,79 @@
             <div class="card-body">
                 <div class="row">
                     <div class="row col-12">
-                        <div class="col-12 col-sm-4 mb-3">
+                        <div class="col-12 col-sm-6">
                             <x-label for="daya_listrik">Daya Listrik</x-label>
                             <x-input type="text" model="daya_listrik" disabled="true" />
                         </div>
-                        <div class="col-12 col-sm-4 mb-3">
+                        <div class="col-12 col-sm-6">
                             <x-label for="biaya_listrik">Biaya Listrik</x-label>
                             <x-input type="text" model="biaya_listrik" disabled="true" />
                         </div>
-                        <div class="col-12 col-sm-4 mb-3">
-                            <x-label for="biaya_air">Biaya Air</x-label>
-                            <x-input type="text" model="biaya_air" disabled="true" />
+                        <div class="col-12">
+                            <x-label for="foto_tagihan_listrik">Foto Tagihan Listrik</x-label>
+                            <img src="{{ asset('assets/' . $foto_tagihan_listrik) }}"
+                                alt="Foto tagihan listrik" 
+                                width="256.8" height="161.88" 
+                                class="m-2"
+                                data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                onclick="showImage('assets/{{$foto_tagihan_listrik}}')"
+                            >
                         </div>
                     </div>
                     <div class="row col-12">
-                        <div class="col-12 col-sm-6 mb-3">
-                            <x-label for="hutang">Hutang</x-label>
-                            <x-input type="text" model="hutang" disabled="true" />
+                        <div class="col-12">
+                            <x-label for="biaya_air">Biaya Air</x-label>
+                            <x-input type="text" model="biaya_air" disabled="true" />
                         </div>
-                        <div class="col-12 col-sm-6 mb-3">
+                        <div class="col-12">
+                            <x-label for="foto_tagihan_air">Foto Tagihan Air</x-label>
+                            <img src="{{ asset('assets/' . $foto_tagihan_air) }}"
+                                alt="Foto tagihan air" 
+                                width="256.8" height="161.88" 
+                                class="m-2"
+                                data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                onclick="showImage('assets/{{$foto_tagihan_air}}')"
+                            >   
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-12">
                             <x-label for="pengeluaran">pengeluaran</x-label>
                             <x-input type="text" model="pengeluaran" disabled="true" />
+                        </div>
+                        <div class="row mt-5">
+                            @foreach ($hutang as $key => $ht)
+                               <div class="row col-12">
+                                    {{-- Header Form Per Index --}}
+                                    <h6 class="text-secondary mt-3">
+                                        Data Hutang
+                                        <span>(Hutang ke-{{ $key + 1 }})</span>
+                                    </h6>
+                                    <hr>
+
+                                    <div class="col-12 mb-3">
+                                        <x-label for="hutang">Jumlah Hutang</x-label>
+                                        <x-input type="text" model="hutang.{{$key}}" disabled="true" />
+                                    </div> 
+                                    <div class="col-12 mb-3">
+                                        <x-label for="hutang">Keterangan</x-label>
+                                        <x-input type="text" model="deskripsi_hutang.{{$key}}" disabled="true" />
+                                    </div> 
+
+                                    @if (isset($foto_hutang[$key]))
+                                        <div class="col-12 mb-3">
+                                            <x-label for="foto_tagihan_air">Foto Hutang</x-label>
+                                            <img src="{{ asset('assets/' . $foto_hutang[$key]) }}"
+                                                alt="Foto tagihan air" 
+                                                width="256.8" height="161.88" 
+                                                class="m-2"
+                                                data-bs-toggle="modal" data-bs-target="#modal_image_show"
+                                                onclick="showImage('assets/{{$foto_hutang[$key]}}')"
+                                            >   
+                                        </div>
+                                    @endif
+                                </div>   
+                            @endforeach
                         </div>
                     </div>
                 </div>

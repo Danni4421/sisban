@@ -2,7 +2,9 @@
 
 namespace App\Traits;
 
+use App\Models\Keluarga;
 use App\Models\Pengajuan;
+use Illuminate\Support\Facades\DB;
 
 trait ManagePengajuan
 {
@@ -17,6 +19,11 @@ trait ManagePengajuan
             ->where('no_kk', $no_kk)
             ->first()
             ->update(['status_pengajuan' => 'diterima']);
+
+        Keluarga::where('no_kk', $no_kk)
+            ->update([
+                'is_kandidat' => 1,
+            ]);
     }
 
     /**
@@ -38,6 +45,12 @@ trait ManagePengajuan
             $query->with(['anggota_keluarga' => function ($query) {
                 $query->where('level', 'kepala_keluarga');
             }]);
-        }])->get();
+
+            $query
+                ->leftJoin('hutang', 'hutang.no_kk', '=', 'keluarga.no_kk')
+                ->select('keluarga.no_kk', DB::raw('SUM(hutang.jumlah) as jumlah_hutang'))
+                ->groupBy('keluarga.no_kk');
+        }])
+            ->get();
     }
 }

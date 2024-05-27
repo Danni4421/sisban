@@ -33,7 +33,8 @@ class Aset extends Model
         'no_kk',
         'nama_aset',
         'harga_jual',
-        'tahun_beli'
+        'tahun_beli',
+        'image'
     ];
 
     /**

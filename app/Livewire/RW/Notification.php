@@ -11,7 +11,8 @@ class Notification extends Component
 {
     public $applicantsByRT;
 
-    public function mount($applicantsByRT){
+    public function mount($applicantsByRT)
+    {
         $this->applicantsByRT = $applicantsByRT;
     }
 
@@ -22,17 +23,18 @@ class Notification extends Component
                 $query->where('rt', $rt);
             });
         })->update([
-            'is_readed_rw'=> 1,
+            'is_readed_rw' => 1,
         ]);
-        
+
         $aplicants = Pengajuan::whereHas('keluarga', function ($query) use ($rt) {
             $query->where('rt', $rt);
         })->with(['keluarga.anggota_keluarga'])->get();
 
         $aplicants_no_kk = array_map(function ($aplicant) {
-                return $aplicant["no_kk"];
-            }, $aplicants->toArray());
+            return $aplicant["no_kk"];
+        }, $aplicants->toArray());
 
+        session()->put('activeSidebarItem', '/pemohon');
         session()->put('redirected_notification_rw_no_kk', $aplicants_no_kk);
 
         return  redirect()->route('rw.aplicant.approved');

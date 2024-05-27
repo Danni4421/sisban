@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Str;
 
-trait AplicantForm {
+trait AplicantForm
+{
     #[Validate(
         rule: [
             'nik' => 'required|numeric|digits:16|unique:warga,nik',
@@ -79,6 +80,24 @@ trait AplicantForm {
 
     #[Validate(
         rule: [
+            'status' => 'required|string|in:bekerja,tidak_bekerja,sekolah'
+        ],
+        message: [
+            'status.required' => 'Status pekerjaan perlu untuk diisi',
+            'status.string' => 'Status harus berupa karakter',
+            'status.in' => 'Status harus antara Bekerja, Tidak Bekerja, atau Sekolah'
+        ]
+    )]
+    public string $status;
+    public array $available_status = [
+        'bekerja' => 'Bekerja',
+        'tidak_bekerja' => 'Tidak Bekerja',
+        'sekolah' => 'Sekolah'
+    ];
+
+
+    #[Validate(
+        rule: [
             'penghasilan' => 'required|integer'
         ],
         message: [
@@ -91,27 +110,54 @@ trait AplicantForm {
     /**
      * @var \Illuminate\Http\UploadedFile | string
      */
+    public $slip_gaji;
+
+    /**
+     * @var \Illuminate\Http\UploadedFile | string
+     */
     public $foto_ktp;
 
     public function validate_image_request()
     {
-        if ($this->foto_ktp instanceof UploadedFile) {
-            Validator::validate(['foto_ktp' => $this->foto_ktp], [
-                'foto_ktp' => [
-                    'required', 'image', 'mimetypes:image/*', 'max:2048'
+        if ($this->slip_gaji instanceof UploadedFile) {
+            Validator::validate(
+                data: ['slip_gaji' => $this->slip_gaji],
+                rules: [
+                    'slip_gaji' => 'required|image|mimetypes:image/*|max:1024'
                 ],
-                [
-                    'Mohon untuk menambahkan foto KTP',
-                    'Anda hanya boleh menambahkan gambar',
-                    'Anda hanya boleh menambahkan file berupa gambar',
-                    'Maksimal ukuran dari foto ktp adalah 2 MB'
+                messages: [
+                    'required' => 'Mohon untuk menambahkan slip gaji',
+                    'image' => 'Anda hanya boleh menambahkan gambar',
+                    'mimetypes' => 'Anda hanya boleh menambahkan file berupa gambar',
+                    'max' => 'Maksimal ukuran dari slip gaji adalah 1 MB'
                 ]
-            ]);
+            );
+
+            $original_slip_gaji_name = $this->slip_gaji->getClientOriginalName();
+            $image_name = Str::uuid() . '-' . $original_slip_gaji_name;
+
+            $this->slip_gaji = $this->slip_gaji->storeAs(
+                path: 'temp/images/slip_gaji',
+                name: $image_name
+            );
         }
 
-        if (!is_null($this->foto_ktp) && $this->foto_ktp instanceof UploadedFile) {
+        if ($this->foto_ktp instanceof UploadedFile) {
+            Validator::validate(
+                data: ['foto_ktp' => $this->foto_ktp],
+                rules: [
+                    'foto_ktp' => 'required|image|mimetypes:image/*|max:2048'
+                ],
+                messages: [
+                    'required' => 'Mohon untuk menambahkan foto KTP',
+                    'image' => 'Anda hanya boleh menambahkan gambar',
+                    'mimetypes' => 'Anda hanya boleh menambahkan file berupa gambar',
+                    'max' => 'Maksimal ukuran dari foto ktp adalah 2 MB'
+                ]
+            );
+
             $original_image_name = $this->foto_ktp->getClientOriginalName();
-            $image_name = Str::uuid() . '-' . $original_image_name;   
+            $image_name = Str::uuid() . '-' . $original_image_name;
 
             $this->foto_ktp = $this->foto_ktp->storeAs(
                 path: 'temp/images/ktp',
@@ -129,7 +175,9 @@ trait AplicantForm {
             'tempat_tanggal_lahir' => $this->tempat_tanggal_lahir,
             'umur' => $this->umur,
             'nomor_telepon' => $this->nomor_telepon,
+            'status' => $this->status,
             'penghasilan' => $this->penghasilan,
+            'slip_gaji' => $this->slip_gaji,
             'foto_ktp' => $this->foto_ktp,
         ]);
     }
@@ -145,7 +193,9 @@ trait AplicantForm {
             $this->tempat_tanggal_lahir = $sessionData['tempat_tanggal_lahir'];
             $this->umur = $sessionData['umur'];
             $this->nomor_telepon = $sessionData['nomor_telepon'];
+            $this->status = $sessionData['status'];
             $this->penghasilan = $sessionData['penghasilan'];
+            $this->slip_gaji = $sessionData['slip_gaji'];
             $this->foto_ktp = $sessionData['foto_ktp'];
         }
     }

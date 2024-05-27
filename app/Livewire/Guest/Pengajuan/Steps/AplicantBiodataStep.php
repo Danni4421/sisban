@@ -9,7 +9,7 @@ use Spatie\LivewireWizard\Components\StepComponent;
 
 class AplicantBiodataStep extends StepComponent
 {
-    use WithFileUploads, AplicantForm;    
+    use WithFileUploads, AplicantForm;
 
     public function __construct()
     {
@@ -21,6 +21,7 @@ class AplicantBiodataStep extends StepComponent
         $this->validate();
         $this->validate_image_request();
 
+        DeleteImageJob::dispatch($this->slip_gaji)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
         DeleteImageJob::dispatch($this->foto_ktp)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
 
         $this->put_form_session();

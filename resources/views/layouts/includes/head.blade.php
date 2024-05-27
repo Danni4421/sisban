@@ -10,7 +10,7 @@
    <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.css') }}">
    <link rel="stylesheet" href="{{ asset('dist/css/boxicons.css') }}">
    <link rel="stylesheet" href="{{ asset('dist/css/fontawesome.css') }}">
-   <link rel="stylesheet" href="{{ asset('assets/css/admin/adminlte.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('assets/css/admin/adminlte.css') }}">
    <link rel="stylesheet" href="{{ asset('assets/css/admin/index.css') }}">
 
     @stack('styles')

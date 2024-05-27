@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Warga as WargaModel;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class WargaSeeder extends Seeder
@@ -23,9 +22,11 @@ class WargaSeeder extends Seeder
                 'umur' => 34,
                 'no_hp' => '081234567890',
                 'penghasilan' => 1000000,
+                'status' => 'tidak_bekerja',
                 'level' => 'kepala_keluarga',
-                'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'foto_ktp' => 'img/person/kepala_keluarga_1.jpg',
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '2345678901234567',
@@ -36,9 +37,11 @@ class WargaSeeder extends Seeder
                 'umur' => 31,
                 'no_hp' => '087654321098',
                 'penghasilan' => 0,
+                'status' => 'tidak_bekerja',
                 'level' => 'anggota',
                 'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '3456789012345678',
@@ -49,9 +52,11 @@ class WargaSeeder extends Seeder
                 'umur' => 39,
                 'no_hp' => '082345678901',
                 'penghasilan' => 0,
+                'status' => 'tidak_bekerja',
                 'level' => 'anggota',
                 'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '4567890123456789',
@@ -62,9 +67,11 @@ class WargaSeeder extends Seeder
                 'umur' => 36,
                 'no_hp' => '085678901234',
                 'penghasilan' => 1200000,
+                'status' => 'bekerja',
                 'level' => 'kepala_keluarga',
-                'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'foto_ktp' => 'img/person/kepala_keluarga_2.jpg',
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '5678901234567890',
@@ -75,9 +82,11 @@ class WargaSeeder extends Seeder
                 'umur' => 29,
                 'no_hp' => '089012345678',
                 'penghasilan' => 0,
+                'status' => 'sekolah',
                 'level' => 'anggota',
                 'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ],
             [
                 'nik' => '6789012345678901',
@@ -88,9 +97,11 @@ class WargaSeeder extends Seeder
                 'umur' => 33,
                 'no_hp' => '086789012345',
                 'penghasilan' => 1300000,
+                'status' => 'bekerja',
                 'level' => 'kepala_keluarga',
-                'foto_ktp' => 'none',
-                'created_at' => date('Y-m-d')
+                'foto_ktp' => 'img/person/kepala_keluarga_3.jpg',
+                'created_at' => date('Y-m-d'),
+                'slip_gaji' => null,
             ]
         ]);
     }

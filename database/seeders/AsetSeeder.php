@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Aset as AsetModel;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AsetSeeder extends Seeder
@@ -20,7 +19,8 @@ class AsetSeeder extends Seeder
                 'nama_aset' => 'Sepeda Motor',
                 'harga_jual' => 2000000,
                 'tahun_beli' => 2012,
-                'created_at' => date('Y-m-d')
+                'created_at' => date('Y-m-d'),
+                'image' => null
             ]
         ]);
     }

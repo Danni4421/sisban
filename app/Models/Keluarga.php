@@ -23,7 +23,7 @@ class Keluarga extends Model
      * 
      * @var string
      */
-    protected $primaryKey = 'no_kk';
+    protected $primaryKey = 'id_keluarga';
 
     /**
      * Fillable attribute
@@ -31,14 +31,17 @@ class Keluarga extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id_keluarga',
         'no_kk',
         'rt',
         'daya_listrik',
         'biaya_listrik',
         'biaya_air',
-        'hutang',
         'pengeluaran',
-        'foto_kk'
+        'foto_kk',
+        'is_kandidat',
+        'bukti_biaya_listrik',
+        'bukti_biaya_air',
     ];
 
     /**
@@ -79,5 +82,22 @@ class Keluarga extends Model
     public function pengajuan()
     {
         return $this->hasOne(Pengajuan::class, 'no_kk', 'no_kk');
+    }
+
+    /**
+     * Verify is candidate
+     * 
+     * @return bool
+     */
+    public function is_candidate(string $no_kk)
+    {
+        $keluarga = $this->where('no_kk', $no_kk)->load('pengajuan')->first();
+
+
+        if ($keluarga->is_kandidat) {
+            return !$keluarga->pengajuan || $keluarga->pengajuan->status_pengajuan == "diterima";
+        }
+
+        return false;
     }
 }

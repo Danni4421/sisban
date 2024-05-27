@@ -78,6 +78,16 @@
             value="{{ old('nomor_telepon.'.$model) }}"
             placeholder="Masukkan nomor telepon Anda yang sedang aktif" />
     </x-form-group>
+
+    <x-form-group errorName="status.{{$model}}" otherErrorName="status" class="mb-3">
+        <x-label for="status">Status</x-label>
+        <select class="form-select p-3" name="status" wire:model="status.{{$model}}">
+            <option selected>Pilih Status Pekerjaan Anda</option>
+            <option value="bekerja">Bekerja</option>
+            <option value="tidak_bekerja">Tidak Bekerja</option>
+            <option value="sekolah">Sekolah</option>
+        </select>
+    </x-form-group>
     
     <x-form-group errorName="penghasilan.{{$model}}" otherErrorName="penghasilan" class="mb-4">
         <x-label for="penghasilan">Penghasilan per Bulan</x-label>
@@ -87,5 +97,30 @@
             model="penghasilan.{{$model}}"
             value="{{ old('penghasilan.'.$model) }}"
             placeholder="Mohon masukkan penghasilan dalam tiap bulan" />
+    </x-form-group>
+
+    <x-form-group errorName="slip_gaji.{{$model}}" otherErrorName="slip_gaji" class="mb-4">
+
+        <x-label for="slip_gaji">Slip Gaji</x-label>
+
+        @if (!is_null($slipGaji))
+            <div>
+                <img 
+                    src="{{ asset('assets/' . $slipGaji) }}" 
+                    alt="Slip Gaji Anggota Keluarga" 
+                    width="256.8" height="161.88" class="m-2"
+                />
+            </div>
+        @endif
+
+        <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
+            x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
+            x-on:livewire-upload-progress="progress = $event.detail.progress">
+            <x-input type="file" model="slip_gaji.{{$model}}" value="{{ old('slip_gaji'.$model) }}"/>
+
+            <div x-show="isUploading">
+                <progress max="100" x-bind:value="progress"></progress>
+            </div>
+        </div>
     </x-form-group>
 </div>

@@ -11,7 +11,11 @@
 @section('content')
 <div class="container-fluid">
   <hr>
-  @livewire('r-w.notification', ['applicantsByRT' => $applicantsByRT])
+  @if (count($applicantsByRT) != 0)
+    @livewire('r-w.notification', ['applicantsByRT' => $applicantsByRT])
+  @else
+    <span>Tidak ada notifikasi</span>
+  @endif
 </div>
 
 

@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notification', function (Blueprint $table) 
-        {
+        Schema::create('notification', function (Blueprint $table) {
             $table->char('no_kk', 16)->primary();
             $table->boolean('is_readed_rt')->default(false);
             $table->boolean('is_readed_rw')->default(false);
             $table->timestamps();
 
             $table->foreign('no_kk')->references('no_kk')->on('pengajuan');
-
         });
     }
 
