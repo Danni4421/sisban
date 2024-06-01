@@ -10,9 +10,8 @@ use App\Models\Bansos;
 use App\Models\Hutang;
 use App\Models\Keluarga;
 use App\Models\Warga;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
 
 class AlternativeBansosController extends Controller
 {
@@ -55,66 +54,52 @@ class AlternativeBansosController extends Controller
 
     public function to_alternative(int $id_bansos, string $no_kk)
     {
-        $alternative = Alternative::where(['id_bansos' => $id_bansos, 'no_kk' => $no_kk])
-            ->first();
+        /**
+         * Verify alternative should not exists
+         */
+        $alternative = Alternative::where(['id_bansos' => $id_bansos, 'no_kk' => $no_kk])->first();
 
+        /**
+         * If alternative has been already exists then return response success == 'false'
+         */
         if ($alternative) {
-            return response()->json([
-                'success' => false
-            ]);
+            return response()->json(['success' => false]);
         }
 
+        /**
+         * Create new model for new alternative
+         */
         $new_alternative = Alternative::make([
             'id_bansos' => $id_bansos,
             'no_kk' => $no_kk,
             'is_qualified' => 1
         ]);
 
-        $alternatives = Alternative::where('id_bansos', $id_bansos)
-            ->with('kandidat.kepala_keluarga')
-            ->get();
-
-        $alternatives[] = $new_alternative;
+        /**
+         * Retrieves the previous alternative and push new alternative
+         */
+        $alternatives = Alternative::where('id_bansos', $id_bansos)->with('kandidat.kepala_keluarga')->get();
+        $alternatives->push($new_alternative);
 
         $bansos = Bansos::find($id_bansos);
 
+        /**
+         * If the alternative is less than equal jumlah bansos, Then save the alternative
+         * Else return to calculate the alternative
+         */
         if (count($alternatives) <= $bansos->jumlah) {
             $new_alternative->save();
-
-            return response()->json([
-                'success' => true
-            ]);
+            return response()->json(['success' => true]);
         }
 
-        $data = [];
+        /**
+         * Assign alternative data
+         */
+        $data = $this->get_alternative_data($alternatives);
 
-        foreach ($alternatives as $alternative) {
-            $tanggungan = Warga::where('no_kk', $alternative->no_kk)
-                ->whereIn('status', ['tidak_bekerja', 'sekolah'])
-                ->count();
-
-            $total_aset = Aset::where('no_kk', $alternative->no_kk)
-                ->sum('harga_jual');
-
-            $total_gaji = Warga::where('no_kk', $alternative->no_kk)
-                ->sum('penghasilan');
-
-            $total_hutang = Hutang::where('no_kk', $alternative->no_kk)
-                ->sum('jumlah');
-
-            $data[] = [
-                "alternatif" => $alternative->no_kk,
-                "kepala_keluarga" => $alternative->kandidat->kepala_keluarga->nama,
-                "gaji" => $total_gaji,
-                "pengeluaran" => $alternative->kandidat->pengeluaran,
-                "tanggungan" => $tanggungan,
-                "hutang" => $total_hutang,
-                "aset" => $total_aset,
-                "biaya_listrik" => $alternative->kandidat->biaya_listrik,
-                "biaya_air" => $alternative->kandidat->biaya_air
-            ];
-        }
-
+        /**
+         * Request to calculate decission system
+         */
         $response = Http::post(
             url: env('DSS_URL') . 'calculate',
             data: $data,
@@ -151,5 +136,77 @@ class AlternativeBansosController extends Controller
         return response()->json([
             'success' => false
         ]);
+    }
+
+    public function delete_alternative(int $id_bansos, string $no_kk)
+    {
+        /**
+         * Delete alternatif
+         */
+        Alternative::find(['id_bansos' => $id_bansos, 'no_kk' => $no_kk])->delete();
+
+        $bansos = Bansos::where('id_bansos', $id_bansos);
+        $new_alternatives = Alternative::where('id_bansos', $id_bansos)->get();
+
+        $data = $this->get_alternative_data($new_alternatives);
+        $data['bansos'] = $id_bansos;
+
+        /**
+         * Request to calculate decission system
+         */
+        $response = Http::post(
+            url: env('DSS_URL') . 'calculate',
+            data: $data,
+        );
+
+        $response = json_decode($response);
+
+        if ($response->status_code == 200) {
+            /**
+             * Update is qualified bansos
+             */
+            foreach ($response->data as $key => $res) {
+                $new_alternatives[$key]->update([
+                    'is_qualified' => $res->rank <= $bansos->jumlah,
+                ]);
+            }
+
+            /**
+             * Return response if success
+             */
+            return response()->json([
+                'success' => true
+            ]);
+        }
+
+        /**
+         * Return response if success
+         */
+        return response()->json([
+            'success' => false
+        ]);
+    }
+
+    private function get_alternative_data(Collection $alternatives)
+    {
+        return $alternatives->map(function ($alternative) {
+            $no_kk = $alternative->no_kk;
+            return [
+                'alternatif' => $no_kk,
+                'kepala_keluarga' => $alternative->kandidat->kepala_keluarga->nama,
+                'penghasilan' => Warga::where('no_kk', $alternative->no_kk)->sum('penghasilan'),
+                'pengeluaran' => $alternative->kandidat->pengeluaran,
+                'tanggungan' => Warga::where('no_kk', $alternative->no_kk)->whereIn('status', ['tidak_bekerja', 'sekolah'])->count(),
+                'hutang' => Hutang::where('no_kk', $alternative->no_kk)->sum('jumlah'),
+                'aset' => Aset::where('no_kk', $alternative->no_kk)->sum('harga_jual'),
+                'biaya_listrik' => $alternative->kandidat->biaya_listrik,
+                'biaya_air' => $alternative->kandidat->biaya_air
+            ];
+        })->toArray();
+    }
+
+    public function perhitunganFuzzy(string $no_kk)
+    {
+        return view('rt.pages.bansos.alternative.perhitunganFuzzy');
     }
 }

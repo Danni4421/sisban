@@ -82,6 +82,7 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
       Route::get('/alternative', [RTAlternativeBansosController::class, 'main'])->name('rt.bansos.alternative');
       Route::post('/kandidat/list', [RTAlternativeBansosController::class, 'list_candidate'])->name('rt.bansos.kandidat.list');
       Route::post('/kandidat/{no_kk}/to/alternative', [RTAlternativeBansosController::class, 'to_alternative'])->name('rt.bansos.kandidat.to.alternative');
+      Route::get('/perhitunganFuzzy/{no_kk}', [RTAlternativeBansosController::class, 'perhitunganFuzzy'])->name('rt.bansos.perhitunganFuzzy');
     });
     Route::resource('/penerima', RTBansosRecipientsController::class);
     Route::delete('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'delete_recipient'])->name('rt.delete.bansos.recipient');

@@ -24,11 +24,11 @@ class AlternativeDataTable extends DataTable
             ->addColumn('kandidat.kepala_keluarga.foto_ktp', function (Alternative $query) {
                 $imageUrl = asset('assets/' . $query->kandidat->kepala_keluarga->foto_ktp);
                 $onclickModal = "showImage('{$imageUrl}')";
-                return "<img 
-                        src='{$imageUrl}' 
-                        width='85.69px' 
-                        height='53.98px' 
-                        data-bs-toggle='modal' 
+                return "<img
+                        src='{$imageUrl}'
+                        width='85.69px'
+                        height='53.98px'
+                        data-bs-toggle='modal'
                         data-bs-target='#modal_image_show'
                         onclick=\"{$onclickModal}\"
                     />";
@@ -40,7 +40,12 @@ class AlternativeDataTable extends DataTable
                     return "<span class='badge text-bg-danger'>Kurang Tepat</span>";
                 }
             })
-            ->rawColumns(['kandidat.kepala_keluarga.foto_ktp', 'is_qualified']);
+            ->addColumn('action', function (Alternative $query) {
+                $url = route('rt.bansos.perhitunganFuzzy', ['id_bansos' => $query->id_bansos, 'no_kk' => $query->no_kk]);
+                return "<a href='$url' class='btn btn-info btn-sm'><i class='fas fa-calculator'></i> Perhitungan Fuzzy</a>";
+            })
+            ->rawColumns(['kandidat.kepala_keluarga.foto_ktp', 'is_qualified', 'action']);
+
     }
 
     /**
@@ -78,7 +83,8 @@ class AlternativeDataTable extends DataTable
             Column::make('no_kk')->title('Nomor Kartu Keluarga'),
             Column::make('kandidat.kepala_keluarga.nama')->title('Nama Alternatif')->orderable(false),
             Column::computed('kandidat.kepala_keluarga.foto_ktp')->title('Foto KTP'),
-            Column::computed('is_qualified')->title('Status')->orderable(false)
+            Column::computed('is_qualified')->title('Status')->orderable(false),
+            Column::computed('action')->title('Aksi')->orderable(false)
         ];
     }
 
