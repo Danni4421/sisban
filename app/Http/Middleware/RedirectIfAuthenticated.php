@@ -18,14 +18,21 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
         $guards = empty($guards) ? [null] : $guards;
+        $requestName = $request->getUri();
+        $uri = last(explode('/', $requestName));
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 $user = Auth::user();
 
                 switch ($user->level) {
+                    case "warga":
+                        if ($uri === "login") {
+                            return redirect()->to('/');
+                        }
+                        break;
                     case "admin":
-                        return redirect('/data-rw');
+                        return redirect()->to('/data-rw');
                     case "rt" || "rw":
                         return redirect($user->level);
                 }

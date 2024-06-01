@@ -57,5 +57,41 @@ class UserSeeder extends Seeder
             'level' => 'admin',
             'created_at' => now()
         ]);
+
+        UserModel::updateOrCreate([
+            'id_user' => 6,
+            'username' => 'arif',
+            'email' => 'arif@gmail.com',
+            'password' => Hash::make('sipalingkiller'),
+            'level' => 'warga',
+            'created_at' => now()
+        ]);
+
+        UserModel::updateOrCreate([
+            'id_user' => 7,
+            'username' => '1477759869647912',
+            'email' => 'johndoe@gmail.com',
+            'password' => Hash::make('1477759869647912'),
+            'level' => 'warga',
+            'created_at' => now()
+        ]);
+
+        UserModel::updateOrCreate([
+            'id_user' => 8,
+            'username' => '5399152957256167',
+            'email' => 'alicesmith@gmail.com',
+            'password' => Hash::make('5399152957256167'),
+            'level' => 'warga',
+            'created_at' => now()
+        ]);
+
+        UserModel::updateOrCreate([
+            'id_user' => 9,
+            'username' => '6816673839192525',
+            'email' => 'davidlee@gmail.com',
+            'password' => Hash::make('6816673839192525'),
+            'level' => 'warga',
+            'created_at' => now()
+        ]);
     }
 }

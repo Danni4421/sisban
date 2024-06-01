@@ -48,12 +48,13 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('guest')->group(function () {
   Route::get('/', [GuestDashboardController::class, 'index'])->name('guest.dashboard');
-  Route::get('/pengajuan', [GuestPengajuanController::class, 'main'])->name('guest.pengajuan');
   Route::prefix('informasi')->group(function () {
     Route::get('/pemohon', [GuestAplicantController::class, 'index'])->name('guest.aplicant.information');
     Route::get('/penerima', [GuestRecipientController::class, 'index'])->name('guest.recipient.information');
   });
 });
+
+Route::get('/pengajuan', [GuestPengajuanController::class, 'main'])->middleware(['auth', 'auth.session'])->name('guest.pengajuan');
 
 /*****************************************
  * RT Routes

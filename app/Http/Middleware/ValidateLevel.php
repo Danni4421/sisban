@@ -24,6 +24,10 @@ class ValidateLevel
             $role = $matches[1];
 
             if ($user_role = $this->validateLevel(role: $role)) {
+                if ($user_role === "warga") {
+                    return redirect()->to('/');
+                }
+
                 return redirect()->to(
                     $user_role === "admin" ? "admin/data-rw" : $user_role
                 )->with('routeErrorMessage', 'Kamu tidak bisa mengakses yang bukan hak kamu');

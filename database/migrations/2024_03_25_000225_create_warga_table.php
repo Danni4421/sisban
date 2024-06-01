@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('warga', function (Blueprint $table) {
             $table->char('nik', 16)->primary();
+            $table->unsignedBigInteger('id_user')->index()->nullable()->default(null);
             $table->char('no_kk', 16)->index();
             $table->string('nama', 100);
             $table->enum('jenis_kelamin', ['lk', 'pr']);
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('no_kk')->references('no_kk')->on('keluarga');
+            $table->foreign('id_user')->references('id_user')->on('users');
         });
     }
 

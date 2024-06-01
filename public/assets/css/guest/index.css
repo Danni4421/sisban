@@ -268,7 +268,8 @@ h6 {
     min-width: 100px;
 }
 
-.navbar .dropdown ul a {
+.navbar .dropdown ul a,
+.navbar .dropdown ul button {
     padding: 10px 20px;
     font-size: 14px;
     font-weight: 500;
@@ -276,13 +277,18 @@ h6 {
     color: #01036f;
 }
 
-.navbar .dropdown ul a i {
+.navbar .dropdown ul a i,
+.navbar .dropdown ul button i {
     font-size: 12px;
 }
 
 .navbar .dropdown ul a:hover,
 .navbar .dropdown ul .active:hover,
-.navbar .dropdown ul li:hover > a {
+.navbar .dropdown ul li:hover > a,
+.navbar .dropdown ul button:hover,
+.navbar .dropdown ul li:hover > button {
+    background: none;
+    transition: .3s;
     color: #1acc8d;
 }
 

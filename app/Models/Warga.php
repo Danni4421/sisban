@@ -31,6 +31,7 @@ class Warga extends Model
      */
     protected $fillable = [
         'nik',
+        'id_user',
         'no_kk',
         'nama',
         'jenis_kelamin',

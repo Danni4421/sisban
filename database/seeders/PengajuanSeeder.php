@@ -27,6 +27,7 @@ class PengajuanSeeder extends Seeder
 
         Warga::updateOrCreate([
             'nik' => '3564738909876789',
+            'id_user' => 6,
             'no_kk' => '3564787598748567',
             'nama' => 'Arif',
             'jenis_kelamin' => 'lk',

@@ -15,6 +15,7 @@ class WargaSeeder extends Seeder
         WargaModel::insert([
             [
                 'nik' => '1234567890123456',
+                'id_user' => 7,
                 "no_kk" => '1477759869647912',
                 'nama' => 'John Doe',
                 'jenis_kelamin' => 'lk',
@@ -30,6 +31,7 @@ class WargaSeeder extends Seeder
             ],
             [
                 'nik' => '2345678901234567',
+                'id_user' => null,
                 'no_kk' => '1477759869647912',
                 'nama' => 'Jane Doe',
                 'jenis_kelamin' => 'pr',
@@ -45,6 +47,7 @@ class WargaSeeder extends Seeder
             ],
             [
                 'nik' => '3456789012345678',
+                'id_user' => 8,
                 'no_kk' => '5399152957256167',
                 'nama' => 'Alice Smith',
                 'jenis_kelamin' => 'pr',
@@ -60,6 +63,7 @@ class WargaSeeder extends Seeder
             ],
             [
                 'nik' => '4567890123456789',
+                'id_user' => null,
                 'no_kk' => '5399152957256167',
                 'nama' => 'Michael Johnson',
                 'jenis_kelamin' => 'lk',
@@ -75,6 +79,7 @@ class WargaSeeder extends Seeder
             ],
             [
                 'nik' => '5678901234567890',
+                'id_user' => null,
                 'no_kk' => '6816673839192525',
                 'nama' => 'Emily Brown',
                 'jenis_kelamin' => 'pr',
@@ -90,6 +95,7 @@ class WargaSeeder extends Seeder
             ],
             [
                 'nik' => '6789012345678901',
+                'id_user' => 9,
                 'no_kk' => '6816673839192525',
                 'nama' => 'David Lee',
                 'jenis_kelamin' => 'lk',
