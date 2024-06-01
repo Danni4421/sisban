@@ -8,6 +8,7 @@ use App\Http\Controllers\RT\DashboardController as RTDashboardController;
 use App\Http\Controllers\RT\PengajuanController as RTPengajuanController;
 use App\Http\Controllers\RT\KandidatController as RTKandidatController;
 use App\Http\Controllers\RT\AlternativeBansosController as RTAlternativeBansosController;
+use App\Http\Controllers\RT\Bansos\TopsisController as RTBansosTopsisController;
 use App\Http\Controllers\RT\Bansos\TypeController as RTBansosTypesController;
 use App\Http\Controllers\RT\Bansos\RecipientController as RTBansosRecipientsController;
 use App\Http\Controllers\RT\NotifikasiController as RTNotifikasiController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\RT\Bansos\TopsisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,6 +78,7 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
     Route::get('/jenis', [RTBansosTypesController::class, 'index']);
     Route::post('/jenis/show/{id_bansos}', [RTBansosTypesController::class, 'show_detail'])->name('rt.bansos.jenis.show.detail');
     Route::prefix('/{id_bansos}')->group(function () {
+      Route::get('/topsis', [RTBansosTopsisController::class, 'index'])->name('topsis.index');
       Route::get('/alternative', [RTAlternativeBansosController::class, 'main'])->name('rt.bansos.alternative');
       Route::post('/kandidat/list', [RTAlternativeBansosController::class, 'list_candidate'])->name('rt.bansos.kandidat.list');
       Route::post('/kandidat/{no_kk}/to/alternative', [RTAlternativeBansosController::class, 'to_alternative'])->name('rt.bansos.kandidat.to.alternative');

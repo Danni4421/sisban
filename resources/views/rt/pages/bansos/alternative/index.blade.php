@@ -21,6 +21,12 @@
                 <i class="fas fa-plus"></i>
                 Tambah Alternatif
             </button>
+            <!-- Tombol Perhitungan Topsis -->
+            <a href="{{ route('topsis.index', ['id_bansos' => $bansos->id_bansos]) }}" 
+                class="btn btn-success ms-2">
+                <i class="fas fa-calculator"></i>
+                Perhitungan Topsis
+            </a>
         </div>
 
         <div>
