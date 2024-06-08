@@ -73,9 +73,9 @@
                             </div>
                         </div>
 
-                        @if (isset($error))
+                        @if (session()->has('error'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Login Gagal!</strong>
+                                <strong>{{ session()->get('error') }}</strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
                             </div>

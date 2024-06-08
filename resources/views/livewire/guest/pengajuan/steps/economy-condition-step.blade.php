@@ -7,7 +7,7 @@
         <div class="row">
             {{-- Input Daya Listrik --}}
             <x-form-group errorName="daya_listrik" class="mb-4">
-                <x-label for="daya_listrik">Daya Listrik</x-label>
+                <x-label class="mb-3 required" for="daya_listrik">Daya Listrik</x-label>
                 <select name="daya_listrik" id="daya_listrik" class="form-control p-3" wire:model="daya_listrik">
                     <option selected>Pilih daya listrik...</option>
                     <option value="none">Tidak Punya Listrik</option>
@@ -20,7 +20,7 @@
 
              {{-- Input Biaya Listrik --}}
              <x-form-group errorName="biaya_listrik" class="mb-4">
-                <x-label for="biaya_listrik">Biaya Listrik</x-label>
+                <x-label class="mb-3 required" for="biaya_listrik">Biaya Listrik</x-label>
                 <x-input 
                     type="text" 
                     name="biaya_listrik" 
@@ -33,7 +33,7 @@
             {{-- Input Foto Tagihan Listrik --}}
             <x-form-group errorName="foto_tagihan_listrik" class="mb-4">
 
-                <x-label for="foto_tagihan_listrik">Foto Tagihan Listrik</x-label>
+                <x-label class="mb-3" for="foto_tagihan_listrik">Foto Tagihan Listrik</x-label>
         
                 @if (!is_null($foto_tagihan_listrik)) 
                     <div>
@@ -50,7 +50,7 @@
                 <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
                     x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
                     x-on:livewire-upload-progress="progress = $event.detail.progress">
-                    <x-input type="file" model="foto_tagihan_listrik" value="{{ old('foto_tagihan_listrik') }}"/>
+                    <x-input type="file" model="foto_tagihan_listrik" value="{{ old('foto_tagihan_listrik') }}" wireInput="save_image_tagihan"/>
         
                     <div x-show="isUploading">
                         <progress max="100" x-bind:value="progress"></progress>
@@ -61,7 +61,7 @@
 
             {{-- Input Biaya Air --}}
             <x-form-group errorName="biaya_air" class="mb-4">
-                <x-label for="biaya_air">Biaya Air</x-label>
+                <x-label class="mb-3 required" for="biaya_air">Biaya Air</x-label>
                 <x-input 
                     type="text" 
                     name="biaya_air" 
@@ -74,7 +74,7 @@
             {{-- Input Foto Tagihan Air --}}
             <x-form-group errorName="foto_tagihan_air" class="mb-4">
 
-                <x-label for="foto_tagihan_air">Foto Tagihan Air</x-label>
+                <x-label class="mb-3" for="foto_tagihan_air">Foto Tagihan Air</x-label>
         
                 @if (!is_null($foto_tagihan_air)) 
                     <div>
@@ -92,7 +92,7 @@
                 <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
                     x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"
                     x-on:livewire-upload-progress="progress = $event.detail.progress">
-                    <x-input type="file" model="foto_tagihan_air" value="{{ old('foto_tagihan_air') }}"/>
+                    <x-input type="file" model="foto_tagihan_air" value="{{ old('foto_tagihan_air') }}" wireInput="save_image_tagihan"/>
         
                     <div x-show="isUploading">
                         <progress max="100" x-bind:value="progress"></progress>
@@ -103,7 +103,7 @@
 
             {{-- Input Pengeluaran --}}
             <x-form-group errorName="pengeluaran" class="mb-4">
-                <x-label for="pengeluaran">Pengeluaran per Bulan</x-label>
+                <x-label class="mb-3 required" for="pengeluaran">Pengeluaran per Bulan</x-label>
                 <x-input 
                     type="text" 
                     name="pengeluaran" 
@@ -123,8 +123,8 @@
                     <hr>
 
                     {{-- Input Hutang --}}
-                    <x-form-group errorName="hutang" class="mb-4">
-                        <x-label for="hutang">Hutang</x-label>
+                    <x-form-group errorName="hutang.{{$hutangIndex}}" class="mb-4">
+                        <x-label class="mb-3 required" for="hutang.{{$hutangIndex}}">Hutang</x-label>
                         <x-input 
                             type="text" 
                             name="hutang.{{$hutangIndex}}" 
@@ -135,8 +135,8 @@
                     {{-- End Input Hutang --}}
 
                     {{-- Input Hutang --}}
-                    <x-form-group errorName="hutang" class="mb-4">
-                        <x-label for="hutang">Hutang</x-label>
+                    <x-form-group errorName="hutang.{{$hutangIndex}}" class="mb-4">
+                        <x-label class="mb-3 required" for="hutang.{{$hutangIndex}}">Keterangan Hutang</x-label>
                         <x-input 
                             type="text" 
                             name="deskripsi_hutang.{{$hutangIndex}}" 
@@ -149,7 +149,7 @@
                     {{-- Input Foto Aset --}}
                     <x-form-group errorName="foto_hutang.{{$hutangIndex}}" otherErrorName="foto_hutang" class="mb-4">
 
-                        <x-label for="foto_aset">Foto Hutang</x-label>
+                        <x-label class="mb-3" for="foto_aset.{{$hutangIndex}}">Foto Hutang</x-label>
                 
                         @if (!empty($foto_hutang)) 
                             @if (isset($foto_hutang[$hutangIndex]))
@@ -189,7 +189,25 @@
         {{-- Navigation Buttons --}}
         <div class="row mx-auto mt-3 gap-3">
             <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
-            <x-button type="button" class="col" action="save" buttonColor="main">Ajukan</x-button>
+            <x-button type="button" class="col" action="saveAndNext" buttonColor="main">Ajukan</x-button>
         </div>
+
+        <x-button type="button" class="col btn-save shadow-sm" action="save" buttonColor="main">
+            <i class='bx bxs-save' ></i>
+        </x-button>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (e) => {
+            Livewire.on('alert', function (message) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+        });
+    </script>
 </div>

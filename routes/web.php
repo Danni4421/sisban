@@ -5,6 +5,7 @@ use App\Http\Controllers\Guest\PengajuanController as GuestPengajuanController;
 use App\Http\Controllers\Guest\Bansos\AplicantController as GuestAplicantController;
 use App\Http\Controllers\Guest\Bansos\RecipientController as GuestRecipientController;
 use App\Http\Controllers\RT\DashboardController as RTDashboardController;
+use App\Http\Controllers\RT\KeluargaController as RTKeluargaController;
 use App\Http\Controllers\RT\PengajuanController as RTPengajuanController;
 use App\Http\Controllers\RT\KandidatController as RTKandidatController;
 use App\Http\Controllers\RT\AlternativeBansosController as RTAlternativeBansosController;
@@ -42,12 +43,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+/*****************************************
+ * AUTHENTICATION
+ *****************************************/
 Route::middleware('guest')->group(function () {
   Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
   Route::post('/login', [AuthenticationController::class, 'authenticate'])->name('authenticate');
 });
+/*****************************************
+ * END AUTHENTICATION
+ *****************************************/
 
+
+ /*****************************************
+ * GUEST ROUTES
+ *****************************************/
 Route::middleware('guest')->group(function () {
   Route::get('/', [GuestDashboardController::class, 'index'])->name('guest.dashboard');
   Route::prefix('informasi')->group(function () {
@@ -55,8 +65,19 @@ Route::middleware('guest')->group(function () {
     Route::get('/penerima', [GuestRecipientController::class, 'index'])->name('guest.recipient.information');
   });
 });
+/*****************************************
+ * END GUEST ROUTES
+ *****************************************/
 
+
+ /*****************************************
+ * WARGA ROUTES
+ *****************************************/
 Route::get('/pengajuan', [GuestPengajuanController::class, 'main'])->middleware(['auth', 'auth.session'])->name('guest.pengajuan');
+/*****************************************
+ * END WARGA ROUTES
+ *****************************************/
+
 
 /*****************************************
  * RT Routes
@@ -73,48 +94,64 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
   Route::prefix('/kandidat')->group(function () {
     Route::get('/', [RTKandidatController::class, 'index'])->name('rt.kandidat');
     Route::get('/add', [RTKandidatController::class, 'create'])->name('rt.kandidat.add');
+    Route::post('/', [RTKandidatController::class, 'store'])->name('rt.kandidat.store');
   });
+  Route::resource('/keluarga', RTKeluargaController::class)->names([
+    'index' => 'rt.keluarga',
+    'create' => 'rt.keluarga.create'
+  ]);
   Route::prefix('/bansos')->group(function () {
-    Route::get('/jenis', [RTBansosTypesController::class, 'index']);
+    Route::get('/jenis', [RTBansosTypesController::class, 'index'])->name('rt.bansos');
     Route::post('/jenis/show/{id_bansos}', [RTBansosTypesController::class, 'show_detail'])->name('rt.bansos.jenis.show.detail');
     Route::prefix('/{id_bansos}')->group(function () {
-      Route::get('/topsis', [RTBansosTopsisController::class, 'index'])->name('topsis.index');
+      Route::get('/topsis', [RTBansosTopsisController::class, 'main'])->name('topsis.index');
       Route::get('/alternative', [RTAlternativeBansosController::class, 'main'])->name('rt.bansos.alternative');
       Route::post('/kandidat/list', [RTAlternativeBansosController::class, 'list_candidate'])->name('rt.bansos.kandidat.list');
       Route::post('/kandidat/{no_kk}/to/alternative', [RTAlternativeBansosController::class, 'to_alternative'])->name('rt.bansos.kandidat.to.alternative');
-      Route::get('/perhitunganFuzzy/{no_kk}', [RTAlternativeBansosController::class, 'perhitunganFuzzy'])->name('rt.bansos.perhitunganFuzzy');
+      Route::prefix('/alternative/{no_kk}')->group(function() {
+        Route::get('/fuzzy', [RTAlternativeBansosController::class, 'fuzzy_calculation'])->name('rt.bansos.fuzzy');
+        Route::delete('/', [RTAlternativeBansosController::class, 'delete_alternative'])->name('rt.bansos.alternative.delete');
+      });
     });
     Route::resource('/penerima', RTBansosRecipientsController::class);
     Route::delete('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'delete_recipient'])->name('rt.delete.bansos.recipient');
     Route::post('/penerima/{nik}/{id_bansos}', [RTBansosRecipientsController::class, 'show']);
   });
-  Route::get('/notifikasi', [RTNotifikasiController::class, 'index'])->name('notifikasiRt');
 });
 /*****************************************
  * End RT Routes
  *****************************************/
+
 
 /*****************************************
  * RW Routes
  *****************************************/
 Route::prefix('rw')->middleware(['auth', 'auth.session', 'level.validate'])->group(function () {
   Route::get('/', [RWDashboardController::class, 'index'])->name('rw.dashboard');
-  Route::resource('/data-rt', RWMemberController::class);
+  Route::resource('/data-rt', RWMemberController::class)->names([
+    'index' => 'rw.data-rt',
+    'create' => 'rw.data-rt.create',
+    'edit' => 'rw.data-rt.edit'
+  ]);
   Route::get('/pemohon', [RWPengajuanController::class, 'approved'])->name('rw.aplicant.approved');
   Route::post('/pengajuan/{no_kk}', [RWPengajuanController::class, 'show'])->name('rw.aplicant.show');
   Route::get('/pengajuan/{no_kk}/cetak', [RWPengajuanController::class, 'print_pdf'])->name('rw.pengajuan.cetak');
   Route::prefix('/bansos')->group(function () {
-    Route::resource('/jenis', RWBansosTypeController::class);
-    Route::resource('/penerima', RWBansosRecipientsController::class);
+    Route::resource('/jenis', RWBansosTypeController::class)->names([
+      'index' => 'rw.bansos'
+    ]);
+    Route::resource('/penerima', RWBansosRecipientsController::class)->names([
+      'index' => 'rw.penerima.bansos'
+    ]);
     Route::get('/{id_bansos}/penerima/{nik}/edit', [RWBansosRecipientsController::class, 'edit'])->name('rw.page.edit.bansos.recipient');
     Route::put('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'update'])->name('rw.update.bansos.recipient');
     Route::delete('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'destroy'])->name('rw.delete.bansos.recipient');
   });
-  Route::get('/notifikasi', [RWNotifikasiController::class, 'index'])->name('notifikasiRw');
 });
 /*****************************************
  * End RW Routes
  *****************************************/
+
 
 /*****************************************
  * Admin Routes
@@ -146,13 +183,14 @@ Route::prefix('admin')->middleware(['auth', 'auth.session', 'level.validate'])->
  * End Admin Routes
  *****************************************/
 
+ 
 /*****************************************
  * General Routes
  *****************************************/
 Route::middleware(['auth'])->group(function () {
   Route::prefix('/akun')->group(function () {
-    Route::get('/informasi', [AccountController::class, 'index'])->name('account.information');
-    Route::put('/informasi/{id}', [AccountController::class, 'update'])->name('account.information.update');
+    Route::get('/', [AccountController::class, 'main'])->name('account.information');
+    Route::put('/update/{id}', [AccountController::class, 'update'])->name('account.information.update');
   });
   Route::get('/notifikasi', [NotificationController::class, 'index'])->name('general.notifikasi');
   Route::get('/pengaturan', [SettingController::class, 'index'])->name('general.pengaturan');

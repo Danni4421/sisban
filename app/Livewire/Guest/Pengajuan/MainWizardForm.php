@@ -33,17 +33,12 @@ class MainWizardForm extends Component
         $this->currentStep = session()->get('current-form-step') ?? 1;
 
         $this->formWizard = app()->make(FormWizard::class, ['formIndex' => $this->currentStep]);
-        $this->load_kepala_keluarga_session();
     }
 
     public function updateStep($direction)
     {
         $this->currentStep = max(1, min($this->totalSteps, $this->currentStep + $direction));
         session()->put('current-form-step', $this->currentStep);
-
-        if ($this->currentStep == 1) {
-            $this->put_kepala_keluarga_into_session();
-        }
 
         $this->formWizard->update(newFormIndex: $this->currentStep);
     }

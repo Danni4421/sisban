@@ -15,7 +15,7 @@ class NotifikasiController extends Controller
             ->selectRaw('keluarga.rt as rt, count(*) as jumlah')
             ->where('notification.is_readed_rw', '0') // Perhatikan penggunaan operator '=' tanpa tanda kutip ganda di '0'
             ->groupBy('keluarga.rt')
-            ->get();
+            ->get();    
 
         return view("rw.pages.notification")
             ->with('applicantsByRT', $applicantsByRT);

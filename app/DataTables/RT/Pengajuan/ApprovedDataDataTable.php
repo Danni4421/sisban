@@ -27,6 +27,7 @@ class ApprovedDataDataTable extends DataTable
                 return "<button type='button' class='btn btn-primary detail_pengajuan_button' onclick='getDetailPengajuan({$pengajuan->no_kk})'  data-bs-toggle='modal'
                     data-bs-target='#modal_detail_pengajuan' data-pengajuan='{$pengajuan->no_kk}'>
                     <i class='fas fa-search'></i>
+                    <span class='ms-1'>Lihat</span>
                 </button>";
             })
             ->rawColumns(['status_pengajuan', 'aksi']);

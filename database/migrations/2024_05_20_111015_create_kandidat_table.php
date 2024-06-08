@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('alternative', function (Blueprint $table) {
             $table->id('id_alternative');
             $table->unsignedBigInteger('id_bansos')->index();
-            $table->string('no_kk')->index();
+            $table->char('no_kk', 16)->index();
             $table->boolean('is_qualified')->default(false);
             $table->timestamps();
 

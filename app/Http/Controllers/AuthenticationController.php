@@ -46,14 +46,14 @@ class AuthenticationController extends Controller
 
             if ($authedUser->level === 'admin') {
                 return redirect()->intended('/admin/data-rw');
-            } else if($authedUser->level === 'warga ') {
+            } else if($authedUser->level === 'warga') {
                 return redirect()->intended('/');
             }
 
             return redirect()->intended($authedUser->level);
         }
 
-        return redirect()->to('login')->with('error', 'Login gagal.');
+        return redirect()->to('login')->with('error', 'Login gagal');
     }
 
     public function logout()

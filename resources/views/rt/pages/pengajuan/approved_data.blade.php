@@ -1,13 +1,22 @@
 @extends('layouts.app')
 
+@section('title', 'Pengajuan Disetujui')
+
 @section('content_header')
     <h1>Data Disetujui</h1>
 @endsection
 
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Pengajuan Disetujui'
+    ])
+@endsection
+
 @section('content')
-    <main class="px-3">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         {{ $dataTable->table() }}
-    </main>
+    </div>
 
     <div class="modal fade" id="modal_detail_pengajuan" tabindex="-1" aria-labelledby="modalPengajuanBansos"
         aria-hidden="true">
@@ -91,7 +100,13 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
+    <style>
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -15px;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')

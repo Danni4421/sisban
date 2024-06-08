@@ -31,6 +31,7 @@ class DashboardController extends Controller
             ->leftJoin('warga as w', 'w.no_kk', '=', 'k.no_kk')
             ->where('k.rt', $rt)
             ->where('w.level', 'kepala_keluarga')
+            ->where('status_pengajuan', 'proses')
             ->orderBy('pengajuan.created_at', 'desc')
             ->select('w.nama', 'w.nik', 'w.no_hp', 'pengajuan.created_at')
             ->get();

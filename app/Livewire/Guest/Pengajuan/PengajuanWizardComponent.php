@@ -34,6 +34,12 @@ class PengajuanWizardComponent extends WizardComponent
     public function previousStep(array $currentStepState)
     {
         $this->decreaseStepIndex();
+        $this->dispatch('stepChanged');
+        $this->dispatch('showLoadingOverlay');
+
+        sleep(0.5);
+
+        $this->dispatch('hideLoadingOverlay');
 
         parent::previousStep($currentStepState);
     }
@@ -42,6 +48,7 @@ class PengajuanWizardComponent extends WizardComponent
     public function nextStep(array $currentStepState)
     {
         $this->increaseStepIndex();
+        $this->dispatch('stepChanged');
         
         parent::nextStep($currentStepState);
     }

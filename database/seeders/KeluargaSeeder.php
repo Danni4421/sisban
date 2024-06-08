@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Keluarga as KeluargaModel;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class KeluargaSeeder extends Seeder
 {
@@ -53,5 +54,21 @@ class KeluargaSeeder extends Seeder
                 'bukti_biaya_air' => null,
             ]
         ]);
+
+        $json_data = File::get(database_path('seeders/data_rt.json'));
+        $data = json_decode($json_data, true);
+
+        foreach ($data['keluarga'] as $keluarga) {
+            KeluargaModel::insert([
+                'no_kk' => $keluarga['no_kk'],
+                'rt' => '0' . $keluarga['rt'],
+                'daya_listrik' => strval($keluarga['daya_listrik']),
+                'biaya_listrik' => $keluarga['biaya_listrik'],
+                'biaya_air' => $keluarga['biaya_air'],
+                'foto_kk' => $keluarga['foto_kk'],
+                'is_kandidat' => $keluarga['is_kandidat'],
+                'created_at' => now()
+            ]);
+        }
     }
 }

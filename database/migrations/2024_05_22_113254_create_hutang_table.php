@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('hutang', function (Blueprint $table) {
             $table->id('id_hutang');
-            $table->string('no_kk')->index();
+            $table->char('no_kk', 16)->index();
             $table->double('jumlah');
             $table->text('keterangan');
-            $table->string('bukti_hutang')->nullable();
+            $table->text('bukti_hutang')->nullable();
             $table->timestamps();
 
-            $table->foreign('no_kk')->references('no_kk')->on('keluarga');
+            $table->foreign('no_kk')->references('no_kk')->on('keluarga')
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

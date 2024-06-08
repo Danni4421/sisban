@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Warga as WargaModel;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class WargaSeeder extends Seeder
 {
@@ -110,5 +113,52 @@ class WargaSeeder extends Seeder
                 'slip_gaji' => null,
             ]
         ]);
+
+        $json_data = File::get(database_path('seeders/data_rt.json'));
+        $data = json_decode($json_data, true);
+
+        $kepala_keluarga = array_filter($data['warga'], fn ($warga) => $warga['level'] == 'kepala_keluarga');
+        $kepala_keluarga = array_values($kepala_keluarga);
+
+        $anggotas = array_filter($data['warga'], fn ($user) => $user['level'] == "anggota");
+
+        foreach ($data['users'] as $index => $user) {
+            $user = User::create([
+                'username' => $user['username'],
+                'email' => $user['email'],
+                'password' => Hash::make($user['password']),
+                'level' => $user['level'],
+            ]);
+
+            $data_kepala = $kepala_keluarga[$index];
+
+            WargaModel::create([
+                'nik' => $data_kepala['nik'],
+                'no_kk' => $data_kepala['no_kk'],
+                'id_user' => $user->id_user,
+                'nama' => $data_kepala['nama'],
+                'jenis_kelamin' => $data_kepala['jenis_kelamin'],
+                'tempat_tanggal_lahir' => $data_kepala['tempat_tanggal_lahir'],
+                'umur' => $data_kepala['umur'],
+                'status' => $data_kepala['status'],
+                'penghasilan' => $data_kepala['penghasilan'] ?? 0,
+                'level' => $data_kepala['level']
+            ]);
+        }
+
+        foreach ($anggotas as $anggota) {
+            WargaModel::create([
+                'nik' => $anggota['nik'],
+                'no_kk' => $anggota['no_kk'],
+                'id_user' => null,
+                'nama' => $anggota['nama'],
+                'jenis_kelamin' => $anggota['jenis_kelamin'],
+                'tempat_tanggal_lahir' => $anggota['tempat_tanggal_lahir'],
+                'umur' => $anggota['umur'],
+                'status' => $anggota['status'],
+                'penghasilan' => $anggota['penghasilan'],
+                'level' => $anggota['level']
+            ]);
+        }
     }
 }

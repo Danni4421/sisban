@@ -16,7 +16,8 @@ return new class extends Migration
             $table->enum('status_pengajuan', ['diterima', 'ditolak', 'proses'])->default('proses');
             $table->timestamps();
 
-            $table->foreign('no_kk')->references('no_kk')->on('keluarga');
+            $table->foreign('no_kk')->references('no_kk')->on('keluarga')
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

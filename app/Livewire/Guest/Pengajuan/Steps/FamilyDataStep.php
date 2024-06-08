@@ -4,6 +4,7 @@ namespace App\Livewire\Guest\Pengajuan\Steps;
 
 use App\Jobs\DeleteImageJob;
 use App\Traits\Guest\Pengajuan\Forms\FamilyForm;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Spatie\LivewireWizard\Components\StepComponent;
 
@@ -14,17 +15,16 @@ class FamilyDataStep extends StepComponent
     public array $inputs = [];
     public int $inputIndex = 0;
 
+
     public function __construct()
     {
-        $this->put_form_session();
+        $this->load_data();
 
         if (session()->has('form-keluarga-input-index')) {
             $this->inputIndex = session()->get('form-keluarga-input-index');
         }
 
-        if (session()->has('form-keluarga-inputs')) {
-            $this->inputs = session()->get('form-keluarga-inputs');
-        }
+        $this->inputs = $this->inputIndex > 0 ? range(0, $this->inputIndex - 1) : [];
     }
 
     public function addInput()
@@ -40,15 +40,15 @@ class FamilyDataStep extends StepComponent
     {
         $this->validate();
         $this->validate_image_request();
+        $this->update_keluarga();
 
-        DeleteImageJob::dispatch($this->foto_kk)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
+        $this->dispatch('alert', 'Data keluarga berhasil disimpan!');
+    }
 
-        if (!empty($this->slip_gaji)) {
-            foreach ($this->slip_gaji as $value) {
-                DeleteImageJob::dispatch($value)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
-            }
-        }
-
+    public function saveAndNext()
+    {
+        $this->validate();
+        $this->validate_image_request();
         $this->update_keluarga();
         $this->nextStep();
     }
@@ -86,12 +86,6 @@ class FamilyDataStep extends StepComponent
 
     public function render()
     {
-        $familiesData = $this->getSessionData();
-        $applicantData = session()->get('kepala-keluarga');
-
-        return view('livewire.guest.pengajuan.steps.family-data-step', $familiesData ? [
-            'families' => $this->mergeDataKeluarga($familiesData)
-        ] : [])
-            ->with('aplicant', $applicantData);
+        return view('livewire.guest.pengajuan.steps.family-data-step');
     }
 }

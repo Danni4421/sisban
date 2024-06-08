@@ -2,16 +2,11 @@
 
 namespace App\DataTables\Guest;
 
-use App\Models\Keluarga;
 use App\Models\Pengajuan;
-use App\Models\Warga;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class AplicantsDataTable extends DataTable
@@ -32,7 +27,21 @@ class AplicantsDataTable extends DataTable
                 return 'RT' . $pengajuan->keluarga->rt;
             })
             ->addColumn('status_pengajuan', function (Pengajuan $pengajuan) {
-                return "<span class='badge text-bg-warning'>{$pengajuan->status_pengajuan}</span>";
+                $pengajuanClass = "";
+
+                switch ($pengajuan->status_pengajuan) {
+                    case "diterima":
+                        $pengajuanClass = "success";
+                        break;
+                    case "ditolak":
+                        $pengajuanClass = "danger";
+                        break;
+                    case "proses":
+                        $pengajuanClass = "warning";
+                        break;    
+                }
+
+                return "<span class='badge text-bg-{$pengajuanClass}'>{$pengajuan->status_pengajuan}</span>";
             })
             ->rawColumns(['status_pengajuan']);
     }
@@ -41,7 +50,7 @@ class AplicantsDataTable extends DataTable
     {
         return $model->newQuery()->with(['keluarga' => function ($query) {
             $query->with('kepala_keluarga');
-        }])->where('status_pengajuan', 'proses');
+        }]);
     }
 
     public function html(): HtmlBuilder
@@ -51,7 +60,7 @@ class AplicantsDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->selectStyleSingle()
-            ->addTableClass('table-striped')
+            ->addTableClass('table-striped table-hover')
             ->language(asset('assets/dataTable/lang/id.json'))
             ->buttons([]);
     }
@@ -65,7 +74,8 @@ class AplicantsDataTable extends DataTable
             Column::make('keluarga.rt')->title('RT')->searchable()->orderable(),
             Column::computed('status_pengajuan')
                 ->title('Status Pengajuan')
-                ->addClass('text-center')
+                ->addClass('text-center'),
+            Column::make('message')->title('Pesan')
         ];
     }
 

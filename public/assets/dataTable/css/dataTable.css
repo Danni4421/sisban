@@ -30,6 +30,7 @@ input[type="search"] {
 }
 
 .dataTables_wrapper {
+    margin: 0;
     padding: 24px 0 !important;
     gap: 20px !important;
 }
@@ -38,6 +39,61 @@ input[type="search"] {
     display: none !important;
 }
 
+.dataTables_wrapper .row:nth-child(2) {
+    max-width: fit-content !important;
+    align-items: center;
+}
+
 .dataTables_wrapper .row:nth-child(3) {
     overflow: auto !important;
+}
+    
+.dataTables_wrapper .row:nth-child(3) div {
+    margin: 0 !important;  
+    padding: 0 !important;
+    overflow-x: auto;
+}
+
+.dataTables_length  {
+    width: 0 !important;
+}
+
+.dataTables_length > label > select {
+    padding: 12px 18px !important;
+    border-radius: 16px;
+}
+
+.dataTables_filter {
+    justify-content: flex-start !important;
+}
+
+@media (min-width: 576px) {
+    .dataTables_filter {
+        margin-left: -10px;
+    }
+}
+
+.dataTables_filter > label {
+    font-size: 1.35rem;
+    color: #717171;
+}
+
+.dataTables_filter > label > input {
+    width: 285px !important;
+    border-radius: 16px;
+    padding: 12px 22px !important;
+}
+
+.dataTables_filter > label > input::placeholder {
+    opacity: 0.5;
+}
+
+.btn {
+    z-index: 99;
+}
+
+/* Custom table */
+
+.table > thead {
+    background-color: #7f7f80 !important;
 }

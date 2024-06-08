@@ -5,6 +5,7 @@ namespace App\DataTables\RW\Bansos;
 use App\Models\PenerimaBansos;
 use App\Models\Recipient;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -25,16 +26,22 @@ class RecipientDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->setRowId('nik')
             ->addColumn('aksi', function (PenerimaBansos $penerimaBansos) {
+                $no_kk = Crypt::encrypt($penerimaBansos->warga->nik);
+                $nik = Crypt::encrypt($penerimaBansos->warga->nik);
+
                 return "
                     <div>
-                        <a href='/rw/bansos/{$penerimaBansos->bansos->id_bansos}/penerima/{$penerimaBansos->warga->nik}/edit'
-                            class='btn btn-warning'>Edit
+                        <a href='/rw/bansos/{$penerimaBansos->bansos->id_bansos}/penerima/{$no_kk}/edit'
+                            class='btn btn-warning'>
+                            <i class='fa-regular fa-pen-to-square'></i>
+                            <span class='ms-1'>Edit</span>
                         </a>
                         <button 
                             type='button' 
-                            onclick='confirmDelete({$penerimaBansos->warga->nik},{$penerimaBansos->bansos->id_bansos})' 
+                            onclick='confirmDelete(\"{$nik}\", {$penerimaBansos->bansos->id_bansos})' 
                             class='btn btn-danger'>
-                            Hapus
+                             <i class='fa-solid fa-trash'></i>
+                             <span class='ms-1'>Hapus</span>
                         </button>
                     </div>
                 ";
@@ -62,7 +69,7 @@ class RecipientDataTable extends DataTable
                     ->selectStyleSingle()
                     ->addTableClass('table-striped table-hover')
                     ->language(asset('assets/dataTable/lang/id.json'))
-                    ->buttons([]);;
+                    ->buttons([]);
     }
 
     /**

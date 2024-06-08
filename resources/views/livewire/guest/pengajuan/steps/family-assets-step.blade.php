@@ -7,7 +7,6 @@
         @foreach ($inputs as $formIndex)
             <div class="row">
                 <div class="col-12">
-
                     {{-- Header Form Per Index --}}
                     <h6 class="text-secondary mt-5">
                         Data Aset Keluarga
@@ -17,7 +16,7 @@
 
                     {{-- Input Nama Aset --}}
                     <x-form-group errorName="nama_aset.{{$formIndex}}" otherErrorName="nama_aset" class="mb-3">
-                        <x-label for="nama_aset.{{$formIndex}}">Nama Aset</x-label>
+                        <x-label class="mb-3 required" for="nama_aset.{{$formIndex}}">Nama Aset</x-label>
                         <x-input 
                             type="text" 
                             name="nama_aset.{{$formIndex}}" 
@@ -29,7 +28,7 @@
                     
                     {{-- Input Tahun Beli Aset --}}
                     <x-form-group errorName="tahun_beli.{{$formIndex}}" otherErrorName="tahun_beli" class="mb-3">
-                        <x-label for="tahun_beli.{{$formIndex}}">Tahun Beli</x-label>
+                        <x-label class="mb-3 required" for="tahun_beli.{{$formIndex}}">Tahun Beli</x-label>
                         <x-input 
                             type="text"
                             maxLength="4"
@@ -42,7 +41,7 @@
 
                     {{-- Input Harga Jual Aset --}}
                     <x-form-group errorName="harga_jual.{{$formIndex}}" otherErrorName="harga_jual" class="mb-3">
-                        <x-label for="harga_jual.{{$formIndex}}">Harga Jual (Rp.)</x-label>
+                        <x-label class="mb-3 required" for="harga_jual.{{$formIndex}}">Harga Jual (Rp.)</x-label>
                         <x-input 
                             type="number"
                             name="harga_jual.{{$formIndex}}"
@@ -55,7 +54,7 @@
                     {{-- Input Foto Aset --}}
                     <x-form-group errorName="foto_aset.{{$formIndex}}" otherErrorName="foto_aset" class="mb-4">
 
-                        <x-label for="foto_aset">Foto Aset</x-label>
+                        <x-label class="mb-3" for="foto_aset">Foto Aset</x-label>
                 
                         @if (!empty($foto_aset)) 
                             @if (isset($foto_aset[$formIndex]))
@@ -95,7 +94,25 @@
         {{-- Navigation Buttons --}}
         <div class="row mx-auto mt-5 gap-3">
             <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
-            <x-button type="button" class="col" action="save" buttonColor="main">Selanjutnya</x-button>
+            <x-button type="button" class="col" action="saveAndNext" buttonColor="main">Selanjutnya</x-button>
         </div>
+
+        <x-button type="button" class="col btn-save shadow-sm" action="save" buttonColor="main">
+            <i class='bx bxs-save' ></i>
+        </x-button>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (e) => {
+            Livewire.on('alert', function (message) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+        });
+    </script>
 </div>

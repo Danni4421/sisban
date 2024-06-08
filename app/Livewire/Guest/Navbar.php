@@ -20,8 +20,10 @@ class Navbar extends Component
 
     public function __construct()
     {
-        $this->is_user_authed = Auth::check();
-        $this->user = Auth::user()->warga;
+        if (Auth::check()) {
+            $this->is_user_authed = true;
+            $this->user = Auth::user()->warga;
+        }
 
         $this->NAVIGATION_ITEMS = (object) [
             'beranda' => (object) [
@@ -44,7 +46,7 @@ class Navbar extends Component
             ],
             'pengajuan' => (object) [
                 'label' => 'Pengajuan',
-                'href' => '/#pengajuan',
+                'href' => '/pengajuan',
                 'active' => 'pengajuan',
                 'on_user_logged_in' => 'd-inline'
             ],

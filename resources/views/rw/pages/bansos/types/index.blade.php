@@ -3,12 +3,18 @@
 @section('title', 'Jenis Bansos')
 
 @section('content_header')
-    <h1>Jenis Bansos</h1>
+    <h4>Jenis Bansos</h4>
+@endsection
+
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Bantuan Sosial'
+    ])
 @endsection
 
 @section('content')
-    <main class="px-3">
-        <hr>
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <div class="d-flex justify-content-end mb-3">
             <a class="btn btn-primary" href="{{ url('rw/bansos/jenis/create') }}">
                 <i class="fas fa-plus"></i>
@@ -43,11 +49,17 @@
                                 </div>
                                 <div class="card-body d-flex gap-2">
                                     <a href="{{ url('rw/bansos/jenis/' . $bs->id_bansos . '/edit') }}"
-                                        class="btn btn-warning">Edit</a>
+                                        class="btn btn-warning">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                        <span class="ms-1">Edit</span>
+                                    </a>
                                     <form action="{{ url('rw/bansos/jenis/' . $bs->id_bansos) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash"></i> 
+                                            <span class="ms-1">Hapus</span>
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -57,7 +69,7 @@
             @endforeach
 
         </div>
-    </main>
+    </div>
 
 @endsection
 

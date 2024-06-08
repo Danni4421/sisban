@@ -19,8 +19,10 @@ return new class extends Migration
 
             $table->primary(['nik', 'id_bansos']);
 
-            $table->foreign('nik')->references('nik')->on('warga');
-            $table->foreign('id_bansos')->references('id_bansos')->on('bansos');
+            $table->foreign('nik')->references('nik')->on('warga')
+                ->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_bansos')->references('id_bansos')->on('bansos')
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

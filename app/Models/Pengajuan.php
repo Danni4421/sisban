@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 
 class Pengajuan extends Model
@@ -33,6 +34,7 @@ class Pengajuan extends Model
     protected $fillable = [
         'no_kk',
         'status_pengajuan',
+        'message',
     ];
 
     /**

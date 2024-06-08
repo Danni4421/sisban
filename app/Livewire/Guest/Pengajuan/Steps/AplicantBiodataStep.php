@@ -2,10 +2,9 @@
 
 namespace App\Livewire\Guest\Pengajuan\Steps;
 
-use App\Jobs\DeleteImageJob;
 use App\Traits\Guest\Pengajuan\Forms\AplicantForm;
-use Livewire\WithFileUploads;
 use Spatie\LivewireWizard\Components\StepComponent;
+use Livewire\WithFileUploads;
 
 class AplicantBiodataStep extends StepComponent
 {
@@ -13,18 +12,15 @@ class AplicantBiodataStep extends StepComponent
 
     public function __construct()
     {
-        $this->load_from_session();
+        $this->load_data();
     }
 
     public function save()
     {
         $this->validate();
         $this->validate_image_request();
+        $this->put_data();
 
-        DeleteImageJob::dispatch($this->slip_gaji)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
-        DeleteImageJob::dispatch($this->foto_ktp)->delay(now()->addMinutes(env('QUEUE_DELETING_IMAGE_TIME', 360)));
-
-        $this->put_form_session();
 
         $this->nextStep();
     }

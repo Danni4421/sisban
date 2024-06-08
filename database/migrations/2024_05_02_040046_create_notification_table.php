@@ -17,7 +17,8 @@ return new class extends Migration
             $table->boolean('is_readed_rw')->default(false);
             $table->timestamps();
 
-            $table->foreign('no_kk')->references('no_kk')->on('pengajuan');
+            $table->foreign('no_kk')->references('no_kk')->on('pengajuan')
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

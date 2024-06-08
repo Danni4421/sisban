@@ -23,7 +23,7 @@ class Keluarga extends Model
      * 
      * @var string
      */
-    protected $primaryKey = 'id_keluarga';
+    protected $primaryKey = 'no_kk';
 
     /**
      * Fillable attribute
@@ -31,7 +31,6 @@ class Keluarga extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_keluarga',
         'no_kk',
         'rt',
         'daya_listrik',
@@ -51,7 +50,7 @@ class Keluarga extends Model
      */
     public function anggota_keluarga()
     {
-        return $this->hasMany(Warga::class, 'no_kk', 'no_kk');
+        return $this->hasMany(Warga::class, 'no_kk', 'no_kk')->where('level', 'anggota');
     }
 
     /**
@@ -82,6 +81,14 @@ class Keluarga extends Model
     public function pengajuan()
     {
         return $this->hasOne(Pengajuan::class, 'no_kk', 'no_kk');
+    }
+
+    /**
+     * Model relationship with Hutang
+     */
+    public function hutang()
+    {
+        return $this->hasMany(Hutang::class, 'no_kk', 'no_kk');
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Models\Pengajuan;
 use App\Traits\ManagePengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PengajuanController extends Controller
 {
@@ -36,7 +37,7 @@ class PengajuanController extends Controller
     public function show(string $no_kk)
     {
         return Pengajuan::with(['keluarga' => function ($query) {
-            $query->with('anggota_keluarga')
+            $query->with('anggota_keluarga', 'kepala_keluarga')
                 ->leftJoin('hutang', 'hutang.no_kk', '=', 'keluarga.no_kk')
                 ->select(
                     'keluarga.foto_kk',
@@ -58,8 +59,24 @@ class PengajuanController extends Controller
         $this->updatePengajuanToApproved($no_kk);
     }
 
-    public function declinePengajuan($no_kk)
+    public function declinePengajuan(Request $request, string $no_kk)
     {
-        $this->updatePengajuanToDeclined($no_kk);
+        $validator = Validator::make(
+            $request->all(), 
+            [
+                'message' => 'required|string'
+            ], 
+            [
+                'required' => 'Perlu untuk memberikan pesan penolakan',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        $this->updatePengajuanToDeclined($no_kk, $request->message);
     }
 }

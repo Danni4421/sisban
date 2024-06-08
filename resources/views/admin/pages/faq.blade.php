@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Pertanyaan')
 
 @section('content_header')
     <h1>Pertanyaan</h1>

@@ -1,135 +1,95 @@
 <nav class="main-header navbar navbar-expand">
-    <!-- Left navbar links -->
+
+    {{-- Left Navigation Bar --}}
     <ul class="navbar-nav">
+
+        {{-- Hamburges List Open Close Sidebar --}}
         <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
     </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-        <!-- Navbar Search -->
-        <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-            <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-            <form class="form-inline">
-            <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                    <i class="fas fa-times"></i>
-                </button>
-                </div>
-            </div>
-            </form>
-        </div>
-        </li>
+    {{-- Right Navigation Bar --}}
+    <ul class="navbar-nav ml-auto mr-3 align-items-center">
+        @if (auth()->user()->level != "admin")
+                {{-- Notification Menu --}}
+                <li class="nav-item dropdown">
+                    @if ($notification_element_user_level == 'rt')
+                        @livewire('r-t.notification')
+                    @elseif ($notification_element_user_level == 'rw')
+                        @livewire('r-w.notification')
+                    @endif
+                </li>
 
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-comments"></i>
-            <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                <div class="media-body">
-                <h3 class="dropdown-item-title">
-                    Brad Diesel
-                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-            </div>
-            <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                <h3 class="dropdown-item-title">
-                    John Pierce
-                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-            </div>
-            <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-                <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                <h3 class="dropdown-item-title">
-                    Nora Silvester
-                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-            </div>
-            <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-        </li>
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-            <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-            <i class="fas fa-th-large"></i>
-        </a>
-        </li>
+                {{-- Fullscreen --}}
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+
+                {{-- Account --}}
+                <li class="nav-item dropdown">
+                    <div class="ml-1" id="account_dropdown_menu_link">
+                        <span class="mr-1 profile_text">{{ $user->pengurus->nama }}</span>
+                        <img 
+                            src="{{ asset('assets/img/person/kepala_keluarga_1.jpg') }}" 
+                            class="rounded-circle dropdown-toggle"
+                            id="profile_image"
+                            alt="Profile Picture" 
+                            role="button" 
+                            width="36px" 
+                            height="36px"
+                        >
+                        <span class="is_active_image_profile"></span>
+                    </div>
+                    <ul class="dropdown-menu" id="account_dropdown_menu">
+                        <li class="nav-item d-flex justify-content-start align-items-center gap-0">
+                            <a class="dropdown-item" href="{{ route('account.information', ['tab' => 'info']) }}">
+                                <i class="fa-solid fa-user"></i>
+                                Informasi Akun
+                            </a>
+                        </li>
+                        <div class="dropdown-divider"></div>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            @else
+                {{-- Account --}}
+                <li class="nav-item dropdown">
+                    <div class="ml-1" id="account_dropdown_menu_link">
+                        <span class="mr-1 profile_text">{{ $user->username }}</span>
+                        <img 
+                            src="{{ asset('assets/img/person/kepala_keluarga_1.jpg') }}" 
+                            class="rounded-circle dropdown-toggle"
+                            id="profile_image"
+                            alt="Profile Picture" 
+                            role="button" 
+                            width="36px" 
+                            height="36px"
+                        >
+                        <span class="is_active_image_profile"></span>
+                    </div>
+                    <ul class="dropdown-menu" id="account_dropdown_menu">
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+        @endif
     </ul>
 </nav>

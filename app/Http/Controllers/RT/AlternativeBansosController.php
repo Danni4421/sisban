@@ -102,7 +102,10 @@ class AlternativeBansosController extends Controller
          */
         $response = Http::post(
             url: env('DSS_URL') . 'calculate',
-            data: $data,
+            data: [
+                'bansos' => $id_bansos,
+                'alternatives' => $data
+            ],
         );
 
         $response = json_decode($response);
@@ -138,55 +141,6 @@ class AlternativeBansosController extends Controller
         ]);
     }
 
-    public function delete_alternative(int $id_bansos, string $no_kk)
-    {
-        /**
-         * Delete alternatif
-         */
-        Alternative::find(['id_bansos' => $id_bansos, 'no_kk' => $no_kk])->delete();
-
-        $bansos = Bansos::where('id_bansos', $id_bansos);
-        $new_alternatives = Alternative::where('id_bansos', $id_bansos)->get();
-
-        $data = $this->get_alternative_data($new_alternatives);
-        $data['bansos'] = $id_bansos;
-
-        /**
-         * Request to calculate decission system
-         */
-        $response = Http::post(
-            url: env('DSS_URL') . 'calculate',
-            data: $data,
-        );
-
-        $response = json_decode($response);
-
-        if ($response->status_code == 200) {
-            /**
-             * Update is qualified bansos
-             */
-            foreach ($response->data as $key => $res) {
-                $new_alternatives[$key]->update([
-                    'is_qualified' => $res->rank <= $bansos->jumlah,
-                ]);
-            }
-
-            /**
-             * Return response if success
-             */
-            return response()->json([
-                'success' => true
-            ]);
-        }
-
-        /**
-         * Return response if success
-         */
-        return response()->json([
-            'success' => false
-        ]);
-    }
-
     private function get_alternative_data(Collection $alternatives)
     {
         return $alternatives->map(function ($alternative) {
@@ -205,8 +159,29 @@ class AlternativeBansosController extends Controller
         })->toArray();
     }
 
-    public function perhitunganFuzzy(string $no_kk)
+    public function fuzzy_calculation(int $id_bansos, string $no_kk)
     {
-        return view('rt.pages.bansos.alternative.perhitunganFuzzy');
+        $response = Http::post(env('DSS_URL') . '/fuzzy', [
+            'alternative' => $no_kk
+        ]);
+
+        $alternative = Warga::with('keluarga')->where([
+            'no_kk' => $no_kk, 
+            'level' => 'kepala_keluarga'
+        ])->first();
+
+        $data = json_decode($response)->data;
+
+        if (is_null($data)) {
+            abort(404);
+        }
+
+        return view('rt.pages.bansos.alternative.fuzzy', ['id_bansos' => $id_bansos])
+            ->with('data', $data)
+            ->with('warga', $alternative)
+            ->with('fuzzy_data', (object) [
+                'penghasilan' => Warga::where('no_kk', $alternative->no_kk)->sum('penghasilan'),
+                'pengeluaran' => $alternative->keluarga->pengeluaran
+            ]);
     }
 }

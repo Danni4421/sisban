@@ -12,6 +12,7 @@
    <link rel="stylesheet" href="{{ asset('dist/css/fontawesome.css') }}">
    <link rel="stylesheet" href="{{ asset('assets/css/admin/adminlte.css') }}">
    <link rel="stylesheet" href="{{ asset('assets/css/admin/index.css') }}">
+   <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
 
     @stack('styles')
 </head>

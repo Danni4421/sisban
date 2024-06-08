@@ -2,14 +2,10 @@
 
 namespace App\Livewire\Guest\Pengajuan\Steps;
 
-use App\Models\Aset;
-use App\Models\Hutang;
 use App\Models\Keluarga;
 use App\Models\Notification;
 use App\Models\Pengajuan;
-use App\Models\Warga;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Spatie\LivewireWizard\Components\StepComponent;
 
 class PreviewFormStep extends StepComponent
@@ -17,25 +13,25 @@ class PreviewFormStep extends StepComponent
     /**
      * Data Pemohon
      */
-    public string
-        $nik_pemohon,
-        $nama_pemohon,
-        $jenis_kelamin_pemohon,
-        $tempat_tanggal_lahir_pemohon,
-        $nomor_telepon_pemohon,
-        $status_pemohon,
-        $penghasilan_pemohon,
-        $foto_slip_gaji_pemohon,
-        $foto_ktp_pemohon;
-    public int $umur_pemohon;
+    public ?string
+        $nik_kepala_keluarga,
+        $nama_kepala_keluarga,
+        $jenis_kelamin_kepala_keluarga,
+        $tempat_tanggal_lahir_kepala_keluarga,
+        $nomor_telepon_kepala_keluarga,
+        $status_kepala_keluarga,
+        $penghasilan_kepala_keluarga,
+        $foto_slip_gaji_kepala_keluarga = '',
+        $foto_ktp_kepala_keluarga = '';
+    public int $umur_kepala_keluarga;
 
     /**
      * Data Keluarga
      */
     public string
         $no_kk,
-        $rt,
-        $foto_kk;
+        $rt;
+    public ?string $foto_kk;
 
     /**
      * Data Anggota Keluarga
@@ -63,7 +59,7 @@ class PreviewFormStep extends StepComponent
     /**
      * Data Ekonomi Keluarga
      */
-    public string
+    public ?string
         $daya_listrik,
         $foto_tagihan_listrik,
         $foto_tagihan_air;
@@ -87,348 +83,140 @@ class PreviewFormStep extends StepComponent
 
     public function __construct()
     {
-        /**
-         * Get session pemohon pengajuan
-         */
-        if (session()->has('kepala-keluarga')) {
-            $data = session()->get('kepala-keluarga');
-            $this->nik_pemohon = $data['nik'];
-            $this->nama_pemohon = $data['nama'];
-            $this->jenis_kelamin_pemohon = $data['jenis_kelamin'];
-            $this->umur_pemohon = $data['umur'];
-            $this->tempat_tanggal_lahir_pemohon = $data['tempat_tanggal_lahir'];
-            $this->nomor_telepon_pemohon = $data['nomor_telepon'];
-            $this->status_pemohon = $data['status'];
-            $this->penghasilan_pemohon = $data['penghasilan'];
-            $this->foto_slip_gaji_pemohon = $data['slip_gaji'];
-            $this->foto_ktp_pemohon = $data['foto_ktp'];
-        }
-
-        if (session()->has('form-keluarga-inputs')) {
-            $this->inputKeluarga = session()->get('form-keluarga-inputs');
-        }
-
-        if (session()->has('form-aset-inputs')) {
-            $this->inputAset = session()->get('form-aset-inputs');
-        } else {
-            $this->inputAset[] = 0;
-        }
-
-        /**
-         * Get session data keluarga and anggota keluarga
-         */
-        if (session()->has('keluarga')) {
-            $data = session()->get('keluarga');
-            $this->no_kk = $data['no_kk'];
-            $this->rt = $data['rt'];
-            $this->foto_kk = $data['foto_kk'];
-            $this->nik = $data['nik'];
-            $this->nama = $data['nama'];
-            $this->jenis_kelamin = $data['jenis_kelamin'];
-            $this->umur = $data['umur'];
-            $this->tempat_tanggal_lahir = $data['tempat_tanggal_lahir'];
-            $this->nomor_telepon = $data['nomor_telepon'];
-            $this->status = $data['status'];
-            $this->slip_gaji = $data['slip_gaji'];
-            $this->penghasilan = $data['penghasilan'];
-        }
-
-        /**
-         * Get session data aset keluarga
-         */
-        if (session()->has('aset-keluarga')) {
-            $data = session()->get('aset-keluarga');
-            $this->nama_aset = $data['nama_aset'];
-            $this->tahun_beli = $data['tahun_beli'];
-            $this->harga_jual = $data['harga_jual'];
-            $this->foto_aset = $data['foto_aset'];
-        }
-
-        /**
-         * Get session data kondisi ekonomi keluarga
-         */
-        if (session()->has('kondisi-ekonomi-keluarga')) {
-            $data = session()->get('kondisi-ekonomi-keluarga');
-            $this->daya_listrik = $data['daya_listrik'];
-            $this->biaya_listrik = $data['biaya_listrik'];
-            $this->foto_tagihan_listrik = $data['foto_tagihan_listrik'];
-            $this->biaya_air = $data['biaya_air'];
-            $this->foto_tagihan_air = $data['foto_tagihan_air'];
-            $this->hutang = $data['hutang'];
-            $this->deskripsi_hutang = $data['deskripsi_hutang'];
-            $this->foto_hutang = $data['foto_hutang'];
-            $this->pengeluaran = $data['pengeluaran'];
-        }
+        $this->load_data();
     }
 
     public function submit()
     {
-        /**
-         * Generate new path for Foto KK
-         */
-        $new_path_foto_kk = 'public/images/kk/' . last(explode('/', $this->foto_kk));
-        Storage::move($this->foto_kk, $new_path_foto_kk);
+        $this->dispatch('submit');
+
+        $no_kk = Auth::user()->warga->no_kk;
+        $pengajuan = Pengajuan::where(['no_kk' => $no_kk])->first();
 
         /**
-         * Generate new path for Foto Tagihan Listrik
+         * If pengajuan data is exists and have current status value is not either "diterima" | "proses"
          */
-        global $new_path_foto_tagihan_listrik;
-
-        if ($this->foto_tagihan_listrik != "") {
-            $new_path_foto_tagihan_listrik = 'images/kandidat/tagihan_listrik/' . last(explode('/', $this->foto_tagihan_listrik));
-            Storage::move($this->foto_tagihan_listrik, $new_path_foto_tagihan_listrik);
-        }
-
-        /**
-         * Generate new path for Foto Tagihan Air
-         */
-        global $new_path_foto_tagihan_air;
-
-        if ($this->foto_tagihan_air != "") {
-            $new_path_foto_tagihan_air = 'images/kandidat/tagihan_air/' . last(explode('/', $this->foto_tagihan_air));
-            Storage::move($this->foto_tagihan_air, $new_path_foto_tagihan_air);
-        }
-
-        /**
-         * Insert new data keluarga in database
-         */
-        Keluarga::create([
-            'no_kk' => $this->no_kk,
-            'rt' => $this->rt,
-            'daya_listrk' => $this->daya_listrik,
-            'biaya_listrik' => $this->biaya_listrik,
-            'bukti_biaya_listrik' => $new_path_foto_tagihan_listrik,
-            'biaya_air' => $this->biaya_air,
-            'bukti_biaya_air' => $new_path_foto_tagihan_air,
-            'pengeluaran' => $this->pengeluaran,
-            'foto_kk' => $new_path_foto_kk,
-        ]);
-
-        /**
-         * Iterating for each hutang
-         */
-        foreach ($this->map_hutang_keluarga() as $hutang) {
-            global $new_path_image_hutang;
-
-            if (!is_null($hutang->bukti_hutang)) {
-                $new_path_image_hutang = 'images/kandidat/hutang/' . last(explode('/', $hutang->bukti_hutang));
-                Storage::move($hutang->bukti_hutang, $new_path_image_hutang);
-            }
-
-            Hutang::create([
-                'no_kk' => $this->no_kk,
-                'jumlah' => $hutang->jumlah,
-                'keterangan' => $hutang->keterangan,
-                'bukti_hutang' => $new_path_image_hutang,
+        if ($pengajuan && $pengajuan->status_pengajuan == "ditolak") {
+            $pengajuan->update([
+                'status_pengajuan' => 'proses'
             ]);
-        }
-
-        /**
-         * Generate new path for foto KTP pemohon
-         */
-        $new_path_foto_ktp = 'images/kandidat/ktp/' . last(explode('/', $this->foto_ktp_pemohon));
-        Storage::move($this->foto_ktp_pemohon, $new_path_foto_ktp);
-
-        /**
-         * Generate new path for foto slip gaji pemohon
-         */
-        global $new_path_slip_gaji_pemohon;
-
-        if ($this->foto_slip_gaji_pemohon != "") {
-            $new_path_slip_gaji_pemohon = 'images/kandidat/slip_gaji/' . last(explode('/', $this->foto_slip_gaji_pemohon));
-            Storage::move($this->foto_slip_gaji_pemohon, $new_path_slip_gaji_pemohon);
-        }
-
-        /**
-         * Insert new data pemohon as kepala keluarga in database
-         */
-        Warga::create([
-            'nik' => $this->nik_pemohon,
-            'no_kk' => $this->no_kk,
-            'nama' => $this->nama_pemohon,
-            'jenis_kelamin' => $this->jenis_kelamin_pemohon,
-            'tempat_tanggal_lahir' => $this->tempat_tanggal_lahir_pemohon,
-            'no_hp' => $this->nomor_telepon_pemohon,
-            'umur' => $this->umur_pemohon,
-            'penghasilan' => $this->penghasilan_pemohon,
-            'status' => $this->status_pemohon,
-            'foto_ktp' => $new_path_foto_ktp,
-            'slip_gaji' => $new_path_slip_gaji_pemohon,
-            'level' => 'kepala_keluarga',
-        ]);
-
-
-
-        /**
-         * Iterating for each anggota keluarga and insert into database
-         */
-        foreach ($this->map_anggota_keluarga() as $anggota_keluarga) {
+        } else if (is_null($pengajuan)) {
+            Pengajuan::create([
+                'no_kk' => $no_kk,
+                'status_pengajuan' => 'proses',
+            ]);
+        } else {
             /**
-             * Generating new path for slip gaji anggota keluarga
+             * If two condition is fail, then dispatch failed alert.
              */
-
-            global $new_path_slip_gaji_anggota;
-
-            if (!is_null($anggota_keluarga->slip_gaji)) {
-                $new_path_slip_gaji_anggota = '/images/kandidat/slip_gaji/' . last(explode('/', $anggota_keluarga->slip_gaji));
-                Storage::move($anggota_keluarga->slip_gaji, $new_path_slip_gaji_anggota);
-            }
-
-            Warga::create([
-                'nik' => $anggota_keluarga->nik,
-                'no_kk' => $this->no_kk,
-                'nama' => $anggota_keluarga->nama,
-                'jenis_kelamin' => $anggota_keluarga->jenis_kelamin,
-                'tempat_tanggal_lahir' => $anggota_keluarga->tempat_tanggal_lahir,
-                'no_hp' => $anggota_keluarga->no_hp,
-                'umur' => $anggota_keluarga->umur,
-                'status' => $anggota_keluarga->status,
-                'penghasilan' => $anggota_keluarga->penghasilan,
-                'slip_gaji' => $new_path_slip_gaji_anggota,
-                'level' => 'anggota',
-            ]);
+            $this->dispatch('showFailPengajuanAlert', 'Gagal, Terdapat pengajuan yang belum dikonfirmasi');
+            return null;
         }
 
         /**
-         * Iterating for each asset of keluarga and insert into database
+         * Create new notification or update if exists
          */
-        foreach ($this->map_aset_keluarga() as $aset_keluarga) {
-            $new_path_aset = '/images/kandidat/aset/' . last(explode('/', $aset_keluarga->foto_aset));
-            Storage::move($aset_keluarga->foto_aset, $new_path_aset);
-
-            Aset::create([
-                'no_kk' => $this->no_kk,
-                'nama_aset' => $aset_keluarga->nama_aset,
-                'harga_jual' => $aset_keluarga->harga_jual,
-                'tahun_beli' => $aset_keluarga->tahun_beli,
-                'image' => $new_path_aset,
-            ]);
-        }
-
-        /**
-         * Remove session for pengajuan
-         */
-        session()->remove('kepala-keluarga');
-        session()->remove('form-keluarga-inputs');
-        session()->remove('form-keluarga-input-index');
-        session()->remove('form-aset-inputs');
-        session()->remove('form-aset-input-index');
-        session()->remove('keluarga');
-        session()->remove('aset-keluarga');
-        session()->remove('kondisi-ekonomi-keluarga');
-        session()->remove('currentStepIndex');
-        session()->remove('form-economy-loan');
-        session()->remove('form-economy-loan-index');
-
-        Storage::disk('local')->deleteDirectory('livewire-tmp');
-        Storage::disk('local')->deleteDirectory('temp');
-
-        /**
-         * If the submiter is rt then redirect to index of candidate
-         */
-        if (Auth::check()) {
-            if (Auth::user()->level == "rt") {
-
-                /**
-                 * Assume that if the user is RT then it is likely that he is adding a new candidate
-                 */
-                Keluarga::find($this->no_kk)->update([
-                    'is_kandidat' => 1,
-                ]);
-
-                /**
-                 * Redirecting to the index of candidate page
-                 */
-                return redirect()->route('rt.kandidat')->with('success', 'Kandidat berhasil ditambahkan!');
-            }
-        }
-
-        /**
-         * Make new pengajuan on table pengajuan
-         */
-        Pengajuan::create([
-            'no_kk' => $this->no_kk,
-            'status_pengajuan' => 'proses',
+        Notification::updateOrCreate([
+            'no_kk' => $no_kk
+        ], [
+            'is_readed_rt' => false,
+            'is_readed_rw' => false,
         ]);
 
-        /**
-         * Generate notification for RT and RW
+        // Remove current form step session.
+        session()->remove('current-form-step');
+
+        // Dispatching web browser to show success alert.
+        $this->dispatch('showAlertSuccess');
+
+        // Sleep for a sec and redirect to landing page.
+        sleep(3);
+        return redirect()->to('/');
+    }
+
+    public function load_data()
+    {
+        $kepala_keluarga = Auth::user()->warga;
+
+        /** 
+         * Map Kepala Keluarga State
          */
-        Notification::create([
-            'no_kk' => $this->no_kk,
-        ]);
+        $this->nik_kepala_keluarga = $kepala_keluarga->nik ?? '';
+        $this->nama_kepala_keluarga = $kepala_keluarga->nama ?? '';
+        $this->jenis_kelamin_kepala_keluarga = $kepala_keluarga->jenis_kelamin ?? '';
+        $this->tempat_tanggal_lahir_kepala_keluarga = $kepala_keluarga->tempat_tanggal_lahir ?? '';
+        $this->umur_kepala_keluarga = $kepala_keluarga->umur ?? 0;
+        $this->nomor_telepon_kepala_keluarga = $kepala_keluarga->no_hp ?? '';
+        $this->status_kepala_keluarga = $kepala_keluarga->status ?? '';
+        $this->penghasilan_kepala_keluarga = $kepala_keluarga->penghasilan ?? 0;
+        $this->foto_slip_gaji_kepala_keluarga = $kepala_keluarga->slip_gaji;
+        $this->foto_ktp_kepala_keluarga = $kepala_keluarga->foto_ktp;
+
+        $family = Keluarga::with(['anggota_keluarga', 'aset', 'hutang'])
+            ->where(['no_kk' => $kepala_keluarga->no_kk])->first();
 
         /**
-         * Redirecting back to first page
+         * Map Families Data
          */
-        return redirect('/pengajuan')->with('success', 'Pengajuan Anda Berhasil!');
-    }
+        $this->no_kk = $family->no_kk;
+        $this->rt = $family->rt;
+        $this->foto_kk = $family->foto_kk;
 
-    /**
-     * Mapping anggota keluarga to be one array
-     */
-    private function map_anggota_keluarga()
-    {
-        return array_map(
-            function ($nik, $nama, $jenis_kelamin, $tempat_tanggal_lahir, $umur, $nomor_telepon, $status,  $penghasilan, $slip_gaji) {
-                return (object) [
-                    'nik' => $nik,
-                    'nama' => $nama,
-                    'jenis_kelamin' => $jenis_kelamin,
-                    'tempat_tanggal_lahir' => $tempat_tanggal_lahir,
-                    'umur' => $umur,
-                    'no_hp' => $nomor_telepon,
-                    'status' => $status,
-                    'penghasilan' => $penghasilan,
-                    'slip_gaji' => $slip_gaji,
-                ];
+        /**
+         * Map Anggota Keluarga
+         */
+        array_map(
+            function ($anggota) {
+                $this->nik[] = $anggota["nik"];
+                $this->nama[] = $anggota["nama"];
+                $this->jenis_kelamin[] = $anggota["jenis_kelamin"];
+                $this->tempat_tanggal_lahir[] = $anggota["tempat_tanggal_lahir"];
+                $this->umur[] = $anggota["umur"];
+                $this->nomor_telepon[] = $anggota["no_hp"];
+                $this->status[] = $anggota["status"];
+                $this->penghasilan[] = $anggota["penghasilan"];
+                $this->slip_gaji[] = $anggota["slip_gaji"];
             },
-            $this->nik,
-            $this->nama,
-            $this->jenis_kelamin,
-            $this->tempat_tanggal_lahir,
-            $this->umur,
-            $this->nomor_telepon,
-            $this->status,
-            $this->penghasilan,
-            $this->slip_gaji,
+            $family->anggota_keluarga->toArray()
         );
-    }
 
-    /**
-     * Mapping asset keluarga to be one array
-     */
-    public function map_aset_keluarga()
-    {
-        return array_map(
-            function ($nama_aset, $tahun_beli, $harga_jual, $foto_aset) {
-                return (object) [
-                    'nama_aset' => $nama_aset,
-                    'tahun_beli' => $tahun_beli,
-                    'harga_jual' => $harga_jual,
-                    'foto_aset' => $foto_aset,
-                ];
+        $this->inputKeluarga = count($family->anggota_keluarga) > 0 ? range(0, count($family->anggota_keluarga) - 1) : [];
+
+        /**
+         * Map Aset Keluarga
+         */
+        array_map(
+            function ($aset) {
+                $this->nama_aset[] = $aset["nama_aset"];
+                $this->harga_jual[] = $aset["harga_jual"];
+                $this->tahun_beli[] = $aset["tahun_beli"];
+                $this->foto_aset[] = $aset["image"];
             },
-            $this->nama_aset,
-            $this->tahun_beli,
-            $this->harga_jual,
-            $this->foto_aset,
+            $family->aset->toArray()
         );
-    }
 
-    function map_hutang_keluarga()
-    {
-        return array_map(
-            function ($hutang, $deskripsi, $foto_hutang) {
-                return (object) [
-                    'jumlah' => $hutang,
-                    'keterangan' => $deskripsi,
-                    'bukti_hutang' => $foto_hutang
-                ];
+        $this->inputAset = count($family->aset) > 0 ? range(0, count($family->aset) - 1) : [];
+
+        /**
+         * Map Family Economy Condition
+         */
+        $this->daya_listrik = $family->daya_listrik;
+        $this->foto_tagihan_listrik = $family->bukti_biaya_listrik;
+        $this->foto_tagihan_air = $family->bukti_biaya_air;
+        $this->biaya_listrik = $family->biaya_listrik;
+        $this->biaya_air = $family->biaya_air;
+        $this->pengeluaran = $family->pengeluaran;
+
+        /**
+         * Map Family Loans
+         */
+        array_map(
+            function ($hutang) {
+                $this->hutang[] = $hutang["jumlah"];
+                $this->deskripsi_hutang[] = $hutang["keterangan"];
+                $this->foto_hutang[] = $hutang["bukti_hutang"];
             },
-            $this->hutang,
-            $this->deskripsi_hutang,
-            $this->foto_hutang,
+            $family->hutang->toArray(),
         );
     }
 

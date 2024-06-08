@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Pengajuan Masuk')
 
 @section('content_header')
     <h1>Data Masuk</h1>
 @endsection
 
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Pengajuan Masuk'
+    ])
+@endsection
+
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         {{ $dataTable->table() }}
     </div>
 
@@ -94,7 +101,13 @@
 
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
+    <style>
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -15px;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')
@@ -117,9 +130,7 @@
         }
 
         function updateInformasiPermohonan(pengajuan) {
-            const kepalaKeluarga = pengajuan.keluarga.anggota_keluarga.filter((anggota) => {
-                return anggota.level === 'kepala_keluarga';
-            })[0];
+            const kepalaKeluarga = pengajuan.keluarga.kepala_keluarga;
 
             $('#modal_no_kk').text(pengajuan.no_kk);
             $('#modal_nik_kepala_keluarga').text(kepalaKeluarga.nik);
@@ -194,9 +205,7 @@
                                 icon: "success"
                             });
                             
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000)
+                            $('#pengajuan_masuk_rt').DataTable().ajax.reload();
                         }
                     })
                 }
@@ -205,34 +214,55 @@
 
         function confirmDecline(no_kk) {
             Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "Apakah yakin untuk menolak pemohon?",
+                text: "Tindakan ini akan menolak pengajuan pemohon!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Tolak"
+                confirmButtonText: "Tolak",
+                cancelButtonText: "Batal"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $.ajax({
-                        type: 'PUT',
-                        url: `{{ url('rt/pengajuan/decline/${no_kk}') }}`,
-                        headers: {
-                            'X-CSRF-TOKEN': "{{csrf_token()}}",
-                            contentType: 'application/json'
+
+                    Swal.fire({
+                        title: "Masukkan Pesan Penolakan",
+                        input: "text",
+                        inputAttributes: {
+                            autocapitalize: "off"
                         },
-                        success: function () {
-                            Swal.fire({
-                                title: "Menolak Pengajuan!",
-                                text: "Data pengajuan berhasil ditolak.",
-                                icon: "success"
+                        showCancelButton: true,
+                        confirmButtonText: "Tolak",
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonText: "Batal",
+                        cancelButtonColor: "#d33",
+                        showLoaderOnConfirm: true,
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            $.ajax({
+                                type: 'PUT',
+                                url: `{{ url('rt/pengajuan/decline/${no_kk}') }}`,
+                                headers: {
+                                    'X-CSRF-TOKEN': "{{csrf_token()}}",
+                                    contentType: 'application/json'
+                                },
+                                data: {
+                                    message: result.value
+                                },
+                                success: function () {
+                                    Swal.fire({
+                                        title: "Menolak Pengajuan!",
+                                        text: "Data pengajuan berhasil ditolak.",
+                                        icon: "success"
+                                    });
+                                    
+                                    $('#pengajuan_masuk_rt').DataTable().ajax.reload();
+                                }
                             });
-                            
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000)
                         }
-                    })
+                    });
                 }
             });
         }

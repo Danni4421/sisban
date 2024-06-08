@@ -3,12 +3,20 @@
 @section('title', 'Ubah Bansos')
 
 @section('content_header')
-    <h1>Edit Bansos</h1>
+    <h4>Edit Bansos</h4>
+@endsection
+
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [
+        ['href' => route('rw.bansos'), 'label' => 'Bantuan Sosial']
+      ],
+      'active' => 'Ubah'
+    ])
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <hr>
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <form class="form" action="{{ url('/rw/bansos/jenis/' . $bansos->id_bansos) }}" method="POST">
             @csrf
             @method('PUT')
@@ -45,8 +53,14 @@
                 @enderror
 
             </div>
-            <button type="submit" class="btn btn-warning">Ubah</button>
-            <a href="{{ url('rw/bansos/jenis') }}" class="btn btn-secondary">Kembali</a>
+            <a href="{{ url('rw/bansos/jenis') }}" class="btn btn-outline-secondary">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="ms-1">Kembali</span>
+            </a>
+            <button type="submit" class="btn btn-warning">
+                <i class="fa-regular fa-pen-to-square"></i>
+                <span class="ms-1">Ubah</span>
+            </button>
         </form>
     </main>
 

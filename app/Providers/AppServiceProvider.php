@@ -31,6 +31,11 @@ class AppServiceProvider extends ServiceProvider
         // Forms
         Blade::component('components.forms.form-data-anggota', 'input.form-anggota');
 
+        // Currency
+        Blade::directive('currency', function ($money) {
+            return "<?php echo number_format($money, 2); ?>";
+        });
+
         // Datatables
         Builder::useVite();
     }

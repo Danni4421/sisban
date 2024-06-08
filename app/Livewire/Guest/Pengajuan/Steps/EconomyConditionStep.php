@@ -15,19 +15,18 @@ class EconomyConditionStep extends StepComponent
 
     public function __construct()
     {
-        $this->load_from_session();
+        $this->load_data();
 
-        $this->hutangIndex = session()->get('form-economy-loan-index') ?? 0;
-
-        if (session()->has('form-economy-loan')) {
-            $this->hutangs = session()->get('form-economy-loan');
+        if (session()->has('form-economy-loan-index')) {
+            $this->hutangIndex = session()->get('form-economy-loan-index');
         }
+
+        $this->hutangs = $this->hutangIndex > 0 ? range(0, $this->hutangIndex - 1) : [];
     }
 
     public function addHutang()
     {
         $this->hutangs[] = $this->hutangIndex;
-        session()->put('form-economy-loan', $this->hutangs);
         session()->put('form-economy-loan-index', $this->hutangIndex);
 
         $this->hutangIndex++;
@@ -36,9 +35,15 @@ class EconomyConditionStep extends StepComponent
     public function save()
     {
         $this->validate();
-        $this->validate_image_request();
+        $this->update_data();
 
-        $this->put_form_session();
+        $this->dispatch('alert', 'Berhasil menyimpan informasi Kondisi Ekonomi');
+    }
+
+    public function saveAndNext()
+    {
+        $this->validate();
+        $this->update_data();
 
         $this->nextStep();
     }

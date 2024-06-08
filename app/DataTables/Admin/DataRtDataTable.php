@@ -58,7 +58,7 @@ class DataRtDataTable extends DataTable
                     ->selectStyleSingle()
                     ->addTableClass('table-striped table-hover')
                     ->language(asset('assets/dataTable/lang/id.json'))
-                    ->buttons([]);;
+                    ->buttons([]);
     }
 
     /**

@@ -6,10 +6,7 @@ use App\Models\PenerimaBansos;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class RecipientDataTable extends DataTable
@@ -60,7 +57,7 @@ class RecipientDataTable extends DataTable
             ->minifiedAjax()
             ->orderBy(1)
             ->selectStyleSingle()
-            ->addTableClass('table-striped')
+            ->addTableClass('table-striped table-hover')
             ->language(asset('assets/dataTable/lang/id.json'))
             ->buttons([]);
     }

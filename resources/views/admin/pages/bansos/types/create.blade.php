@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Tambah Bantuan Sosial')
 
 @section('content_header')
     <h1>Tambah Bansos</h1>

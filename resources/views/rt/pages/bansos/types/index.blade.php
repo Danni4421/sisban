@@ -3,12 +3,18 @@
 @section('title', 'Jenis Bansos')
 
 @section('content_header')
-    <h1>Jenis Bansos</h1>
+    <h4>Jenis Bansos</h4>
+@endsection
+
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Bantuan Sosial'
+    ])
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <hr>
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         @if (isset($message))
             <div class="alert alert-{{ $message->status }} alert-dismissible fade show" role="alert">
                 <strong>{{ $message->title }}!</strong> {{ $message->detail }}
@@ -26,7 +32,7 @@
                                     alt="Gambar Bansos" style="width: 100px; height: 100px;">
                             </div>
                             <div class="flex-grow-1">
-                                <div class="card-header">
+                                <div class="card-header" style="border-bottom: none !important;">
                                     <h5 class="card-title d-flex flex-column">
                                         <a href="{{ route('rt.bansos.alternative', ['id_bansos' => $bs->id_bansos]) }}">
                                             {{ $bs->nama_bansos }}
@@ -52,6 +58,12 @@
     <style>
         .shadow {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -70px;
+            }
         }
     </style>
 @endpush

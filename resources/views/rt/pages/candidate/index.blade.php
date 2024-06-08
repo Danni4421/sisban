@@ -8,8 +8,15 @@
     </header>
 @endsection
 
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Kandidat'
+    ])
+@endsection
+
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Berhasil!</strong> menambahkan kandidat baru.
@@ -126,7 +133,13 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
+    <style>
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -70px;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')

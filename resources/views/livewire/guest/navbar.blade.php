@@ -15,8 +15,27 @@
                     @foreach ($NAVIGATION_ITEMS as $navItem)
                         @if (isset($navItem->children))
                             <li
-                                class="nav-link dropdown @if ($is_user_authed) {{ $navItem->on_user_logged_in }} @endif">
-                                <a href="{{ $navItem->href }}" class="@if ($ACTIVE_ITEM == $navItem->active) active @endif">
+                                class="nav-link 
+
+                                    {{-- Jika user sudah login maka beberapa navigation item akan tidak ditampilkan --}}
+                                    @if ($is_user_authed) 
+                                        {{ $navItem->on_user_logged_in }}
+                                    @endif 
+
+                                    {{-- Jika punya childs, maka navigation item ini merupakan dropdown --}}
+                                    @if (!empty($navItem->children)) 
+                                        dropdown 
+                                    @endif
+                                ">
+                                <a 
+                                    href="{{ $navItem->href }}" 
+                                    class="
+                                        {{-- Jika merupakan item active maka akan memiliki class active --}}
+                                        @if ($ACTIVE_ITEM == $navItem->active) active @endif 
+
+                                        {{-- Jika merupakan dropdown maka akan diberikan toggle untuk menandakan bahwa merupakan item dropdown --}}
+                                        @if (!empty($navItem->children)) dropdown-toggle @endif
+                                    ">
                                     <span>
                                         {{ $navItem->label }}
                                     </span>
@@ -24,8 +43,7 @@
                                 <ul>
                                     @foreach ($navItem->children as $childItem)
                                         <li class="nav-link">
-                                            <a href="dropdown-item {{ $childItem->href }}">{{ $childItem->label }}</a>
-                                            <i class="fas fa-angle-left right"></i>
+                                            <a href="{{ $childItem->href }}" class="dropdown-item">{{ $childItem->label }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -46,7 +64,7 @@
                                 aria-expanded="false">
                                 {{ $user->nama }}
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" style="left: -2rem;">
                                 <li class="nav-link">
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf

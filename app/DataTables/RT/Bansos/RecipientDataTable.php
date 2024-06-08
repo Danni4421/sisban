@@ -3,15 +3,10 @@
 namespace App\DataTables\RT\Bansos;
 
 use App\Models\PenerimaBansos;
-use App\Models\Pengajuan;
-use App\Models\Recipient;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class RecipientDataTable extends DataTable
@@ -64,7 +59,7 @@ class RecipientDataTable extends DataTable
             ->selectStyleSingle()
             ->addTableClass('table-striped table-hover')
             ->language(asset('assets/dataTable/lang/id.json'))
-            ->buttons([]);;
+            ->buttons([]);
     }
 
     /**

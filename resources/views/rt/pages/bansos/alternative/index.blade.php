@@ -3,13 +3,21 @@
 @section('title', 'Jenis Bansos')
 
 @section('content_header')
-    <h1>Alternatif Penerima {{ $bansos->nama_bansos }}</h1>
+    <h4>Alternatif Penerima {{ $bansos->nama_bansos }}</h4>
+@endsection
+
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [
+        ['href' => route('rt.bansos'), 'label' => 'Bantuan Sosial']
+      ],
+      'active' => 'Alternatif'
+    ])
 @endsection
 
 @section('content')
-    <main class="px-3">
-        <hr>
-        <div class="d-flex justify-content-end mb-3">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
+        <div class="d-flex justify-content-end">
             <button 
                 type="button" 
                 class="btn btn-primary"
@@ -19,20 +27,25 @@
                 data-bs-target="#modalAlternative"
             >
                 <i class="fas fa-plus"></i>
-                Tambah Alternatif
+                <span class="ms-1">Tambah Alternatif</span>
             </button>
             <!-- Tombol Perhitungan Topsis -->
             <a href="{{ route('topsis.index', ['id_bansos' => $bansos->id_bansos]) }}" 
                 class="btn btn-success ms-2">
                 <i class="fas fa-calculator"></i>
-                Perhitungan Topsis
+                <span class="ms-1">Perhitungan Topsis</span>
             </a>
         </div>
 
         <div>
             {{ $dataTable->table() }}
         </div>
-    </main>
+
+        <a href="{{ route('rt.bansos') }}" class="btn btn-secondary">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span class="ms-1">Kembali</span>
+        </a>
+    </div>
   
     {{-- Modal Alternative --}}
     <div class="modal fade" id="modalAlternative" tabindex="-1" aria-labelledby="Alternative Modal" aria-hidden="true">
@@ -60,7 +73,13 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
+    <style>
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -70px;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')
@@ -122,6 +141,10 @@
                     }
                 }
             });
+        }
+
+        function deleteAlternative(noKK, idBansos) {
+            const routeUrl = `{{ url('/rt/bansos') }}/${idBansos}/alternative/${noKK}`;
         }
 
         function showImage(name) {

@@ -56,6 +56,7 @@ class KandidatDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->selectStyleSingle()
+            ->addTableClass('table-striped table-hover')
             ->language(asset('assets/dataTable/lang/id.json'))
             ->buttons([]);
     }

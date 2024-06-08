@@ -3,12 +3,20 @@
 @section('title', 'Data RT')
 
 @section('content_header')
-    <h1>Tambah RT</h1>
+    <h4>Tambah RT</h4>
+@endsection
+
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [
+        ['href' => route('rw.data-rt'), 'label' => 'List RT']
+      ],
+      'active' => 'Tambah'
+    ])
 @endsection
 
 @section('content')
-    <main class="px-3 pb-4">
-        <hr>
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <section>
             <form class="form" action="{{ url('rw/data-rt') }}" method="POST">
                 @csrf
@@ -97,12 +105,18 @@
 
                 </div>
                 <div class="table-footer">
-                    <button type="submit" class="btn btn-primary" id="submit_button" disabled>Tambah</button>
-                    <a href="{{ url('rw/data-rt') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ url('rw/data-rt') }}" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span class="ms-1">Kembali</span>
+                    </a>
+                    <button type="submit" class="btn btn-primary" id="submit_button" disabled>
+                        <i class="fa-solid fa-plus"></i>
+                        <span class="ms-1">Tambah</span>
+                    </button>
                 </div>
             </form>
         </section>
-    </main>
+    </div>
 @endsection
 
 @push('styles')

@@ -6,6 +6,13 @@
   <h1>Dashboard</h1>
 @endsection
 
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Dashboard'
+    ])
+@endsection
+
 @section('content')
   <div class="container-fluid">
     <div class="row gap-4">
@@ -79,7 +86,18 @@
         </div>
       </div>
       {{-- END INCOMING DATA PENGAJUAN --}}
-
+      
+    </div>
+    <div>
+      <iframe 
+        src="https://lookerstudio.google.com/embed/reporting/9b38c6a9-92ae-4c2c-9f49-4117b3c0d86f/page/TmU2D?params=%7B%22df4%22:%22include%25EE%2580%25801%25EE%2580%2580IN%25EE%2580%2580{{substr(auth()->user()->pengurus->jabatan, 3)}}%22%7D" 
+        frameborder="0" 
+        width="750px"
+        height="600px"
+        style="border:0" 
+        allowfullscreen 
+        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+      ></iframe>
     </div>
   </div>
 @endsection

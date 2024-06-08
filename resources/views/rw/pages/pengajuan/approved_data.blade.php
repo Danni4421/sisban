@@ -1,11 +1,20 @@
 @extends('layouts.app')
 
+@section('title', 'Pemohon')
+
 @section('content_header')
-    <h1>Data Pemohon</h1>
+    <h4>Data Pemohon</h4>
+@endsection
+
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Pemohon'
+    ])
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid p-3 rounded-lg" style="background: #fff;">
 
     {{ $dataTable->table() }}
 
@@ -92,7 +101,13 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
+    <style>
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -15px;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')
@@ -108,7 +123,6 @@
                     contentType: 'application/json'
                 },
                 success: function(response) {
-                    console.log(response)
                     updateInformasiPermohonan(response);
                     setAnggotaKeluarga(response.keluarga.anggota_keluarga);
                 }
@@ -116,9 +130,7 @@
         }
 
         function updateInformasiPermohonan(pengajuan) {
-            const kepalaKeluarga = pengajuan.keluarga.anggota_keluarga.filter((anggota) => {
-                return anggota.level === 'kepala_keluarga';
-            })[0];
+            const kepalaKeluarga = pengajuan.keluarga.kepala_keluarga;
 
             $('#modal_foto_kk').attr('src', `{{ asset('assets/${pengajuan.keluarga.foto_kk}') }}`)
             $('#modal_no_kk').text(pengajuan.no_kk);

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Warga extends Model
 {
@@ -43,6 +44,14 @@ class Warga extends Model
         'foto_ktp',
         'slip_gaji',
     ];
+
+    /**
+     * @return HasOne
+     */
+    public function account()
+    {
+        return $this->hasOne(User::class, 'id_user', 'id_user');
+    }
 
     /**
      * Model relationship with Keluarga

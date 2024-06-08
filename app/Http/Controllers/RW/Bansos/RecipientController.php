@@ -9,6 +9,7 @@ use App\Models\Keluarga;
 use App\Models\PenerimaBansos;
 use App\Traits\ManageBansos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class RecipientController extends Controller
 {
@@ -64,11 +65,17 @@ class RecipientController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(int $id_bansos, string $nik)
-    {
+    {   
+        $nik = Crypt::decrypt($nik);
         $bansos = Bansos::all();
         $kandidatPenerima = $this->getKandidatPenerimaBansos();
 
         $recipient = $this->getPenerimaBansosById(nik: $nik, idBansos: $id_bansos);
+
+        if (is_null($recipient)) {
+            abort(404);
+        }
+
         return view('rw.pages.bansos.recipient.edit')
             ->with('recipient', $recipient)
             ->with('bansos', $bansos)
@@ -79,7 +86,9 @@ class RecipientController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, int $id_bansos, string $nik)
-    {
+    {   
+        $nik = Crypt::decrypt($nik);
+        
         $this->updatePenerimaBansos(request: $request, nik: $nik, idBansos: $id_bansos);
         return redirect('rw/bansos/penerima');
     }
@@ -89,6 +98,7 @@ class RecipientController extends Controller
      */
     public function destroy(int $id_bansos, string $nik)
     {
+        $nik = Crypt::decrypt($nik);
         $this->deletePenerimaBansos(nik: $nik, idBansos: $id_bansos);
     }
 }

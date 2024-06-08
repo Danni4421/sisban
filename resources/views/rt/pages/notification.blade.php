@@ -11,7 +11,6 @@
 @section('content')
 <div class="container-fluid">
   <hr>
-  @livewire('r-t.notification', ['aplicants' => $aplicants])
 </div> 
 
 

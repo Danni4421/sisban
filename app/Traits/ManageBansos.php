@@ -7,6 +7,7 @@ use App\Models\Keluarga;
 use App\Models\PenerimaBansos;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 trait ManageBansos
 {
@@ -76,9 +77,7 @@ trait ManageBansos
   public function getKandidatPenerimaBansos()
   {
     return Keluarga::select('no_kk')
-      ->with(['anggota_keluarga' => function ($query) {
-        $query->where('level', 'kepala_keluarga');
-      }])
+      ->with('kepala_keluarga')
       ->get();
   }
 
@@ -112,13 +111,16 @@ trait ManageBansos
   public function addPenerimaBansos($request)
   {
     $request->validate([
-      'nik' => ['required', 'string', 'size:16'],
+      'nik' => ['required'],
       'id_bansos' => ['required', 'integer'],
       'tanggal_penerimaan' => ['required', 'date']
     ]);
 
+    $nik = Crypt::decrypt($request->nik);
+
+
     PenerimaBansos::create([
-      'nik' => $request->nik,
+      'nik' => $nik,
       'id_bansos' => $request->id_bansos,
       'tanggal_penerimaan' => $request->tanggal_penerimaan
     ]);
@@ -134,13 +136,15 @@ trait ManageBansos
   public function updatePenerimaBansos($request, $nik, $idBansos)
   {
     $request->validate([
-      'nik' => ['required', 'string', 'size:16'],
+      'nik' => ['required'],
       'id_bansos' => ['required', 'integer'],
       'tanggal_penerimaan' => ['required', 'date']
     ]);
 
+    $update_nik = Crypt::decrypt($request->nik);
+
     PenerimaBansos::where('id_bansos', $idBansos)->where('nik', $nik)->update([
-      'nik' => $request->nik,
+      'nik' => $update_nik,
       'id_bansos' => $request->id_bansos,
       'tanggal_penerimaan' => $request->tanggal_penerimaan
     ]);

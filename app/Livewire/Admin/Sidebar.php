@@ -10,10 +10,12 @@ use Livewire\Component;
 class Sidebar extends Component
 {
     use HasSidebarItem;
+
     /**
      * @var string
      */
     public $brand = 'Sisban';
+
     /**
      * @var User
      */
@@ -38,11 +40,12 @@ class Sidebar extends Component
             if (session()->has('activeSidebarItem')) {
                 $this->activeItem = session()->get('activeSidebarItem');
             }
-            
+
             if (is_null($this->activeItem)) {
                 switch ($this->level) {
                     case "rt" || "rw":
                         $this->activeItem = '/';
+
                         break;
                     case "admin":
                         $this->activeItem = "/data-rw";
@@ -51,7 +54,7 @@ class Sidebar extends Component
                         $this->activeItem = null;
                 }
             }
-            
+
             $this->init(level: $this->level);
         }
     }

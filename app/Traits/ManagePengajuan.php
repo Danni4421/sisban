@@ -31,12 +31,15 @@ trait ManagePengajuan
      *
      * @return void
      */
-    public function updatePengajuanToDeclined($no_kk)
+    public function updatePengajuanToDeclined($no_kk, $message)
     {
         Pengajuan::whereNotIn('status_pengajuan', ['diterima', 'ditolak'])
             ->where('no_kk', $no_kk)
             ->first()
-            ->update(['status_pengajuan' => 'ditolak']);
+            ->update([
+                'status_pengajuan' => 'ditolak',
+                'message' => $message
+            ]);
     }
 
     public function getDataPengajuan()

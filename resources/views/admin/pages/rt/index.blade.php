@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Ketua RT')
+
 @section('content_header')
     <h1>Data Ketua RT</h1>
 @endsection

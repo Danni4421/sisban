@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Aset as AsetModel;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class AsetSeeder extends Seeder
 {
@@ -23,5 +24,18 @@ class AsetSeeder extends Seeder
                 'image' => null
             ]
         ]);
+
+        $json_data = File::get(database_path('seeders/data_rt.json'));
+        $data = json_decode($json_data, true);
+
+        foreach ($data['aset'] as $aset) {
+            AsetModel::insert([
+                'no_kk' => $aset['no_kk'],
+                'nama_aset' => $aset['nama_aset'],
+                'harga_jual' => $aset['harga_jual'],
+                'tahun_beli' => $aset['tahun_beli'],
+                'created_at' => now()
+            ]);
+        }
     }
 }

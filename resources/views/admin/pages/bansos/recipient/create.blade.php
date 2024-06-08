@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Penerima Bantuan Sosial')
+@section('title', 'Tambah Penerima Bantuan Sosial')
 
 @section('content_header')
     <h1>Tambah Penerima Bantuan Sosial</h1>

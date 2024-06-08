@@ -24,13 +24,22 @@ trait HasSidebarItem
                             'href' => '',
                             'active' => ['/'],
                             'func' => 'nav-item',
-                            'icon' => 'far fa-calendar-alt',
-                            'with_level' => true,
+                            'icon' => 'fa-solid fa-calendar',
+                            'with_level' => true
+                        ],
+                        'keluarga' => (object) [
+                            'label' => 'Keluarga',
+                            'href' => 'keluarga',
+                            'icon' => 'fa-solid fa-house',
+                            'active' => [
+                                '/keluarga'
+                            ],
+                            'with_level' => true
                         ],
                         'pengajuan' => (object) [
                             'label' => 'Pengajuan',
                             'href' => 'pengajuan',
-                            'icon' => 'far fa-envelope',
+                            'icon' => 'fa-solid fa-envelope',
                             'with_level' => true,
                             'active' => [
                                 '/pengajuan',
@@ -58,16 +67,16 @@ trait HasSidebarItem
                         'kandidat' => (object) [
                             'label' => 'Kandidat',
                             'href' => 'kandidat',
-                            'icon' => 'fas fa-user-friends',
+                            'icon' => 'fa-solid fa-users',
                             'active' => [
                                 '/kandidat'
                             ],
-                            'with_level' => true,
+                            'with_level' => true
                         ],
                         'bansos' => (object) [
                             'label' => 'Bansos',
                             'href' => 'bansos',
-                            'icon' => 'fas fa-book',
+                            'icon' => 'fa-solid fa-book',
                             'active' => [
                                 '/bansos',
                                 '/bansos/jenis',
@@ -80,7 +89,7 @@ trait HasSidebarItem
                                     'href' => 'bansos/jenis',
                                     'func' => 'nav-item',
                                     'icon' => 'far fa-circle',
-                                    'with_level' => true,
+                                    'with_level' => true
                                 ],
                                 'penerima' => (object) [
                                     'label' => 'Penerima',
@@ -91,14 +100,6 @@ trait HasSidebarItem
                                 ],
                             ],
                         ],
-                        'notifikasi' => (object) [
-                            'label' => 'Notifikasi',
-                            'href' => 'notifikasi',
-                            'func' => 'nav-item',
-                            'icon' => 'far fa-bell',
-                            'active' => ['/notifikasi'],
-                            'with_level' => true,
-                        ]
                     ],
                 ],
                 'other' => (object) [
@@ -109,7 +110,7 @@ trait HasSidebarItem
                             'label' => 'Pengaturan',
                             'href' => 'pengaturan',
                             'func' => 'nav-item',
-                            'icon' => 'fas fa-cog',
+                            'icon' => 'fa-solid fa-gear',
                             'active' => ['/pengaturan'],
                             'with_level' => false,
                         ],
@@ -176,14 +177,6 @@ trait HasSidebarItem
                                 '/bansos',
                                 '/bansos/penerima'
                             ],
-                        ],
-                        'notifikasi' => (object) [
-                            'label' => 'Notifikasi',
-                            'href' => 'notifikasi',
-                            'func' => 'nav-item',
-                            'icon' => 'far fa-bell',
-                            'active' => ['/notifikasi'],
-                            'with_level' => true,
                         ]
                     ],
                 ],
