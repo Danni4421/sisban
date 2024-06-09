@@ -113,7 +113,9 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
         Route::delete('/', [RTAlternativeBansosController::class, 'delete_alternative'])->name('rt.bansos.alternative.delete');
       });
     });
-    Route::resource('/penerima', RTBansosRecipientsController::class);
+    Route::resource('/penerima', RTBansosRecipientsController::class)->names([
+      'index' => 'rt.penerima.bansos'
+    ]);
     Route::delete('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'delete_recipient'])->name('rt.delete.bansos.recipient');
     Route::post('/penerima/{nik}/{id_bansos}', [RTBansosRecipientsController::class, 'show']);
   });
@@ -192,7 +194,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [AccountController::class, 'main'])->name('account.information');
     Route::put('/update/{id}', [AccountController::class, 'update'])->name('account.information.update');
   });
-  Route::get('/notifikasi', [NotificationController::class, 'index'])->name('general.notifikasi');
   Route::get('/pengaturan', [SettingController::class, 'index'])->name('general.pengaturan');
   Route::get('/faq', [FaqController::class, 'index'])->name('general.faq');
   Route::post('/faq', [FaqController::class, 'store'])->name('general.store.faq');

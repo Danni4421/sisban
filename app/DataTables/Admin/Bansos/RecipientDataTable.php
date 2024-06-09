@@ -27,13 +27,16 @@ class RecipientDataTable extends DataTable
                 return "
                     <div>
                         <a href='/admin/bansos/{$penerimaBansos->bansos->id_bansos}/penerima/{$penerimaBansos->warga->nik}/edit'
-                            class='btn btn-warning'>Edit
+                            class='btn btn-warning'>
+                            <i class='fa-regular fa-pen-to-square'></i>
+                            <span class='ms-1'>Ubah</span>
                         </a>
                         <button 
                             type='button' 
                             onclick='confirmDelete({$penerimaBansos->warga->nik},{$penerimaBansos->bansos->id_bansos})' 
                             class='btn btn-danger'>
-                            Hapus
+                            <i class='fa-solid fa-trash'></i> 
+                            <span class='ms-1'>Hapus</span>
                         </button>
                     </div>
                 ";

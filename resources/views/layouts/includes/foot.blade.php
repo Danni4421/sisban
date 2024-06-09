@@ -11,6 +11,12 @@
 @stack('scripts')
 
 <script>
+    $(window).on('load', function () {
+        setTimeout(() => {
+            $('#loading').hide();
+        }, 1000);
+    })
+
     $(document).ready(function() {
         $(document).on('init.dt', function(e, settings) {
             var table = $(settings.nTable);

@@ -23,11 +23,13 @@ class RecipientDataTable extends DataTable
             ->addColumn('aksi', function (PenerimaBansos $penerimaBansos) {
                 return "
                     <div class='d-flex gap-2'>
-                        <button type='button' onclick='confirmDelete({$penerimaBansos->bansos->id_bansos}, {$penerimaBansos->warga->nik})' class='btn btn-danger'>
-                            Hapus
-                        </button>
                         <button type='button' class='btn btn-primary detail_pengajuan_button' onclick='getDetailPenerima({$penerimaBansos->warga->nik}, {$penerimaBansos->bansos->id_bansos})' data-bs-toggle='modal' data-bs-target='#modalInformasiPenerima' data-pengajuan='{$penerimaBansos->warga->nik}' data-bansos='{$penerimaBansos->bansos->id_bansos}'>
-                            <i class='fas fa-search'></i>
+                             <i class='fas fa-search'></i>
+                            <span class='ms-1'>Lihat</span>
+                        </button>
+                        <button type='button' onclick='confirmDelete({$penerimaBansos->bansos->id_bansos}, {$penerimaBansos->warga->nik})' class='btn btn-danger'>
+                           <i class='fa-solid fa-trash'></i> 
+                            <span class='ms-1'>Hapus</span>
                         </button>
                     </div>";
             })

@@ -32,7 +32,7 @@
                             },
                         },
                         title: {
-                            display: true,
+                            display: false,
                             text: "{{ $title }}"
                         },
                     },

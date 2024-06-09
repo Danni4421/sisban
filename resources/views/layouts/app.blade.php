@@ -5,11 +5,10 @@
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
 
-            {{-- Preloader --}}
-            {{-- <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake rounded" src="{{ asset('assets/img/Logo1_RBG.png') }}" alt="SisbanLogo"
-                    height="60" width="60">
-            </div> --}}
+            {{-- Pre loader --}}
+            <div class="loader-container" id="loading">
+                <span class="loader"></span>
+            </div>
 
             {{-- Navbar --}}
             @livewire('admin.navbar')

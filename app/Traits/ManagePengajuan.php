@@ -45,9 +45,7 @@ trait ManagePengajuan
     public function getDataPengajuan()
     {
         return Pengajuan::with(['keluarga' => function ($query) {
-            $query->with(['anggota_keluarga' => function ($query) {
-                $query->where('level', 'kepala_keluarga');
-            }]);
+            $query->with('kepala_keluarga', 'anggota_keluarga');
 
             $query
                 ->leftJoin('hutang', 'hutang.no_kk', '=', 'keluarga.no_kk')

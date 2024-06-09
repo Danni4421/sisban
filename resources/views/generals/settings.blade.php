@@ -7,8 +7,7 @@
 @endsection
 
 @section('content')
-  <div class="container-fluid">
-    <hr>
+  <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
     <ul>
       <li>
         <div class="item-header">

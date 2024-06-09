@@ -7,8 +7,7 @@
 @endsection
 
 @section('content')
-    <main class="px-3 pb-4">
-        <hr>
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <section>
             <form class="form" action="{{ url('admin/data-rt') }}" method="POST">
                 @csrf
@@ -62,12 +61,18 @@
                         required>
                 </div>
                 <div class="table-footer">
-                    <button type="submit" class="btn btn-primary" id="submit_button" disabled>Tambah</button>
-                    <a href="{{ url('admin/data-rt') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ url('admin/data-rt') }}" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span class="ms-1">Kembali</span>
+                    </a>
+                    <button type="submit" class="btn btn-primary" id="submit_button" disabled>
+                        <i class="fa-solid fa-plus"></i>
+                        <span class="ms-1">Tambah</span>
+                    </button>
                 </div>
             </form>
         </section>
-    </main>
+    </div>
 @endsection
 
 @push('styles')

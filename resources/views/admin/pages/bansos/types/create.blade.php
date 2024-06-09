@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <form class="form" action="{{ url('/admin/bansos/jenis') }}" method="POST">
             @csrf
             <div class="mb-3">
@@ -22,8 +22,14 @@
                     {{ old('keterangan') }}
                 </textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Tambah</button>
-            <a href="{{ url('admin/bansos/jenis') }}" class="btn btn-secondary">Kembali</a>
+            <a href="{{ url('admin/bansos/jenis') }}" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="ms-1">Kembali</span>
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i>
+                <span class="ms-1">Tambah</span>
+            </button>
         </form>
     </div>
 

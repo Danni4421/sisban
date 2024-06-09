@@ -7,8 +7,7 @@
 @endsection
 
 @section('content')
-    <main class="px-3 pb-4">
-        <hr>
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <section>
             <form class="form" action="{{ url('admin/bansos/penerima') }}" method="POST">
                 @csrf
@@ -17,8 +16,8 @@
                     <select class="form-select" id="nik" name="nik" aria-label="Penerima Bantuan Sosial">
                         <option selected value="">Pilih Calon Penerima Bansos</option>
                         @foreach ($members as $member)
-                            <option value="{{ $member->anggota_keluarga[0]->nik }}">
-                                {{ $member->no_kk }} - {{ $member->anggota_keluarga[0]->nama }}
+                            <option value="{{ $member->kepala_keluarga->nik }}">
+                                {{ $member->no_kk }} - {{ $member->kepala_keluarga->nama }}
                             </option>
                         @endforeach
                     </select>
@@ -39,12 +38,17 @@
                         required>
                 </div>
                 <div class="table-footer">
-                    <button type="submit" class="btn btn-primary" id="submit_button">Tambah</button>
-                    <a href="{{ url('admin/bansos/penerima') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ url('admin/bansos/penerima') }}" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span class="ms-1">Kembali</span></a>
+                    <button type="submit" class="btn btn-primary" id="submit_button">
+                        <i class="fa-solid fa-plus"></i>
+                        <span class="ms-1">Tambah</span>
+                    </button>
                 </div>
             </form>
         </section>
-    </main>
+    </div>
 @endsection
 
 @push('styles')
