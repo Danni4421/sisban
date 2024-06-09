@@ -11,6 +11,8 @@
 
     {{-- Right Navigation Bar --}}
     <ul class="navbar-nav ml-auto mr-3 align-items-center">
+
+        {{-- If level is not equal 'admin' --}}
         @if (auth()->user()->level != "admin")
                 {{-- Notification Menu --}}
                 <li class="nav-item dropdown">
@@ -63,6 +65,8 @@
                     </ul>
                 </li>
             @else
+                {{-- If level is equal 'admin' --}}
+
                 {{-- Account --}}
                 <li class="nav-item dropdown">
                     <div class="ml-1" id="account_dropdown_menu_link">
@@ -72,7 +76,7 @@
                             class="rounded-circle dropdown-toggle"
                             id="profile_image"
                             alt="Profile Picture" 
-                            role="button" 
+                            role="button"
                             width="36px" 
                             height="36px"
                         >
