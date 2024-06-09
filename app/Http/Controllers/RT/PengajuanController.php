@@ -46,9 +46,16 @@ class PengajuanController extends Controller
                     'biaya_listrik',
                     'biaya_air',
                     'keluarga.pengeluaran',
-                    DB::raw('SUM(hutang.jumlah) as jumlah_hutang')
+                    DB::raw('SUM(hutang.jumlah) as hutang')
                 )
-                ->groupBy('keluarga.no_kk');
+                ->groupBy(
+                    'keluarga.no_kk', 
+                    'keluarga.foto_kk', 
+                    'keluarga.daya_listrik',
+                    'keluarga.biaya_listrik',
+                    'keluarga.biaya_air',
+                    'keluarga.pengeluaran'
+                );
         }])
             ->where('no_kk', $no_kk)
             ->first();
