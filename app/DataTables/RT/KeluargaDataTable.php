@@ -4,6 +4,7 @@ namespace App\DataTables\RT;
 
 use App\Models\Keluarga;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -39,7 +40,8 @@ class KeluargaDataTable extends DataTable
     public function query(Keluarga $model): QueryBuilder
     {
         return $model->newQuery()
-            ->with('kepala_keluarga.account');
+            ->with('kepala_keluarga.account')
+            ->where('rt', substr(auth()->user()->pengurus->jabatan, 2));
     }
 
     /**

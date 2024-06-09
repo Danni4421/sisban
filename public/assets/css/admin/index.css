@@ -8,6 +8,10 @@
     --red-danger: #da4f4a;
 }
 
+body {
+    overflow: hidden;
+}
+
 [data-theme="dark"] {
     .sidebar-account {
         color: var(--bg-account);
@@ -70,9 +74,9 @@
     left: 0;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.5);;
-    z-index: 9999999999;
+    z-index: 9999;
     transition: .5s;
-    animation: fadeIn .4s ease;
+    animation: fadeIn .4s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -81,6 +85,15 @@
     }
     to {
         opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 

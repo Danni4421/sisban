@@ -13,7 +13,11 @@
 <script>
     $(window).on('load', function () {
         setTimeout(() => {
-            $('#loading').hide();
+            $('#loading').css({ animation: 'fadeOut 0.5s ease-in-out forwards' })
+            setTimeout(() => {
+                $('body').css({ 'overflow': 'unset' })
+                $('#loading').hide();
+            }, 400);
         }, 1000);
     })
 
