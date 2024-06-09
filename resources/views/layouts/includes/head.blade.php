@@ -13,7 +13,6 @@
    <link rel="stylesheet" href="{{ asset('assets/css/admin/adminlte.css') }}">
    <link rel="stylesheet" href="{{ asset('assets/css/admin/index.css') }}">
    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
-   <link rel="icon" href="{{ asset('assets/img/Logo1_RBG.png') }}">
 
     @stack('styles')
 </head>

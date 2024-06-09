@@ -115,22 +115,22 @@
             <tr>
                 <td>NIK</td>
                 <td> : </td>
-                <td>{{ $pengajuan->keluarga->kepala_keluarga->nik }}</td>
+                <td>{{ $pengajuan->keluarga->anggota_keluarga[0]->nik }}</td>
             </tr>
             <tr>
                 <td>Nama</td>
                 <td> : </td>
-                <td>{{ $pengajuan->keluarga->kepala_keluarga->nama }}</td>
+                <td>{{ $pengajuan->keluarga->anggota_keluarga[0]->nama }}</td>
             </tr>
             <tr>
                 <td>Tempat, Tanggal Lahir</td>
                 <td> : </td>
-                <td>{{ $pengajuan->keluarga->kepala_keluarga->tempat_tanggal_lahir }}</td>
+                <td>{{ $pengajuan->keluarga->anggota_keluarga[0]->tempat_tanggal_lahir }}</td>
             </tr>
             <tr>
                 <td>Nomor Telp.</td>
                 <td> : </td>
-                <td>{{ $pengajuan->keluarga->kepala_keluarga->no_hp }}</td>
+                <td>{{ $pengajuan->keluarga->anggota_keluarga[0]->no_hp }}</td>
             </tr>
             <tr>
                 <td>RT</td>
