@@ -5,6 +5,11 @@
     @include('layouts.includes.guest.head')
 
     <body>
+        {{-- Pre loader --}}
+        <div class="loader-container" id="loading">
+            <span class="loader"></span>
+        </div>
+        
         <div id="header">
             @livewire('guest.navbar')
         </div>
