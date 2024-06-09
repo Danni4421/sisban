@@ -40,13 +40,20 @@ class PemohonDataTable extends DataTable
                             onclick='getDetailPengajuan({$pengajuan->no_kk})' data-bs-toggle='modal'
                             data-bs-target='#modal_detail_pengajuan' data-pengajuan='{$pengajuan->no_kk}'>
                             <i class='fas fa-search'></i>
+                            <span class='ms-1'>Lihat</span>
                         </button>
                 ";
 
                 if ($pengajuan->status_pengajuan == 'diterima') {
-                    $action .= "<button class='btn btn-success' onclick='downloadPDF({$pengajuan->no_kk})'><i class='fa fa-print'></i> Cetak</button>";
+                    $action .= "<button class='btn btn-success' onclick='downloadPDF({$pengajuan->no_kk})'>
+                            <i class='fa fa-print'></i> 
+                            <span class='ms-1'>Cetak</span>
+                        </button>";
                 } else {
-                    $action .= "<button class='btn btn-success disabled'><i class='fa fa-print'></i> Cetak</button>";
+                    $action .= "<button class='btn btn-success disabled'>
+                            <i class='fa fa-print'></i>
+                            <span class='ms-1'>Cetak</span>
+                        </button>";
                 }
                 
                 return $action . "</div>";
@@ -59,7 +66,15 @@ class PemohonDataTable extends DataTable
      */
     public function query(Pengajuan $model): QueryBuilder
     {
-        return $model->newQuery()->with('keluarga.kepala_keluarga')->orderBy('created_at', 'desc');
+        $query = $model->newQuery()->with('keluarga.kepala_keluarga')->orderBy('created_at', 'desc');
+
+        if (session()->has('redirected_notification_rw_no_kk')) {
+            $data = session()->get('redirected_notification_rw_no_kk');
+            session()->remove('redirected_notification_rw_no_kk');
+            $query->whereIn('pengajuan.no_kk', $data);
+        }
+
+        return $query;
     }
 
     /**
@@ -74,7 +89,7 @@ class PemohonDataTable extends DataTable
                     ->selectStyleSingle()
                     ->addTableClass('table-striped table-hover')
                     ->language(asset('assets/dataTable/lang/id.json'))
-                    ->buttons([]);;
+                    ->buttons([]);
     }
 
     /**

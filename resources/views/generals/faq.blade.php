@@ -7,11 +7,7 @@
 @endsection
 
 @section('content')
-  <div class="container-fluid">
+  <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
     @livewire('admin.faq', ['faqs' => $faqs])
   </div>
 @endsection
-
-@push('scripts')
-    
-@endpush

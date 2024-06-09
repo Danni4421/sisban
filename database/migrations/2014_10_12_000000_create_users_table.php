@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('username', 50)->unique();
             $table->string('email', 100)->unique();
             $table->text('password');
-            $table->enum('level', ['rt', 'rw', 'admin']);
+            $table->enum('level', ['rt', 'rw', 'admin', 'warga']);
             $table->timestamps();
         });
     }

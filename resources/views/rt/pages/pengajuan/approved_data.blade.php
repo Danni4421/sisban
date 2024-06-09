@@ -1,13 +1,22 @@
 @extends('layouts.app')
 
+@section('title', 'Pengajuan Disetujui')
+
 @section('content_header')
     <h1>Data Disetujui</h1>
 @endsection
 
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Pengajuan Disetujui'
+    ])
+@endsection
+
 @section('content')
-    <main class="px-3">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         {{ $dataTable->table() }}
-    </main>
+    </div>
 
     <div class="modal fade" id="modal_detail_pengajuan" tabindex="-1" aria-labelledby="modalPengajuanBansos"
         aria-hidden="true">
@@ -19,10 +28,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <section class="col-12 col-lg-4" id="image">
-                            <img src="" alt="nothing" width="300" height="400">
+                        <section class="col-12 mx-auto" id="image">
+                            <img id="modal_foto_kk" class="w-100">
                         </section>
-                        <section class="col-12 col-lg-8">
+                        <section class="col-12">
                             <table class="table table-striped">
                                 <tr>
                                     <th>No KK</th>
@@ -91,7 +100,13 @@
 @endsection
 
 @push('styles')
-    {{-- Custom styles --}}
+    <style>
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -15px;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')
@@ -114,10 +129,9 @@
         }
 
         function updateInformasiPermohonan(pengajuan) {
-            const kepalaKeluarga = pengajuan.keluarga.anggota_keluarga.filter((anggota) => {
-                return anggota.level === 'kepala_keluarga';
-            })[0];
+            const kepalaKeluarga = pengajuan.keluarga.kepala_keluarga;
 
+            $('#modal_foto_kk').attr('src', `{{ asset('assets/${pengajuan.keluarga.foto_kk}') }}`)
             $('#modal_no_kk').text(pengajuan.no_kk);
             $('#modal_nik_kepala_keluarga').text(kepalaKeluarga.nik);
             $('#modal_nama_kepala_keluarga').text(kepalaKeluarga.nama);
@@ -125,22 +139,17 @@
             $('#modal_daya_listrik').text(pengajuan.keluarga.daya_listrik);
             $('#modal_biaya_listrik').text(pengajuan.keluarga.biaya_listrik);
             $('#modal_biaya_air').text(pengajuan.keluarga.biaya_air);
-            $('#modal_hutang').text(pengajuan.keluarga.hutang);
+            $('#modal_hutang').text(pengajuan.keluarga.jumlah_hutang);
             $('#modal_pengeluaran').text(pengajuan.keluarga.pengeluaran);
         }
 
         function setAnggotaKeluarga(anggota_keluarga) {
             $('#modal_anggota_keluarga').html('');
-
             anggota_keluarga.forEach((anggota) => {
                 $('#modal_anggota_keluarga').append(`
                     <div class="col">
                         <div class="card">
                             <div class="d-flex align-items-center">
-                                <div>
-                                    <img src="${anggota.foto_kk}" class="img-fluid rounded-start"
-                                        alt="Gambar Bansos">
-                                </div>
                                 <div class="flex-grow-1">
                                     <div class="card-body">
                                         <table class="table">

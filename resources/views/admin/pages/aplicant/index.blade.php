@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Pengajuan Masuk')
 
 @section('content_header')
     <h1>Data Masuk</h1>
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         {{-- Tampilkan pesan sukses jika ada --}}
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -135,9 +135,7 @@
         }
 
         function updateInformasiPermohonan(pengajuan) {
-            const kepalaKeluarga = pengajuan.keluarga.anggota_keluarga.filter((anggota) => {
-                return anggota.level === 'kepala_keluarga';
-            })[0];
+            const kepalaKeluarga = pengajuan.keluarga.kepala_keluarga;
 
             $('#modal_no_kk').text(pengajuan.no_kk);
             $('#modal_nik_kepala_keluarga').text(kepalaKeluarga.nik);

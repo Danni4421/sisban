@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Pertanyaan')
 
 @section('content_header')
     <h1>Pertanyaan</h1>
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         {{ $dataTable->table() }}
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -37,6 +37,14 @@
         </div>
     </div>
 @endsection
+
+@push('styles')
+    <style>
+        .dataTables_wrapper {
+            margin-top: -15px;
+        }
+    </style>
+@endpush
 
 @push('scripts')
     <script>

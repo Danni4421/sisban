@@ -2,11 +2,16 @@
 
 namespace App\Traits\Guest\Pengajuan\Forms;
 
+use App\Models\Aset;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Str;
 
-trait FamilyAssetForm {
+trait FamilyAssetForm
+{
 
     #[Validate(
         rule: [
@@ -52,23 +57,79 @@ trait FamilyAssetForm {
     )]
     public $harga_jual = [];
 
-    public function put_form_session()
+    /**
+     * @var array<int, string> | array<int, UploadedFile>
+     */
+    public $foto_aset = [];
+
+    public function update_aset()
     {
-        session()->put('aset-keluarga', [
-            'nama_aset' => $this->nama_aset,
-            'tahun_beli'=> $this->tahun_beli,
-            'harga_jual'=> $this->harga_jual
-        ]);
+        $no_kk = Auth::user()->warga->no_kk;
+
+        for($i = 0; $i < count($this->nama_aset); $i++) {
+            $asset = Aset::where([
+                'no_kk' => $no_kk,
+                'nama_aset' => $this->nama_aset[$i]
+            ])->first();
+
+            if (isset($this->foto_aset[$i]) && $this->foto_aset[$i] instanceof UploadedFile) {
+                Validator::validate(
+                    data: ['foto_aset'. $i => $this->foto_aset[$i]],
+                    rules: [
+                        'foto_aset'.$i => 'required|image|mimetypes:image/*|max:1024',
+                    ],
+                    messages: [
+                        'required' => 'Mohon untuk menambahkan Foto Aset',
+                        'image' => 'Anda hanya boleh menambahkan gambar',
+                        'mimetypes' => 'Anda hanya boleh menambahkan file berupa gambar',
+                        'max' => 'Maksimal ukuran dari foto ktp adalah 2 MB'
+                    ]
+                );
+
+                if ($asset && !is_null($asset->image)) {
+                    Storage::delete($asset->image);
+                }
+
+                $original_image_name = $this->foto_aset[$i]->getClientOriginalName();
+                $image_name = Str::uuid() . '-' . $original_image_name;
+
+                $this->foto_aset[$i] = $this->foto_aset[$i]->storeAs(
+                    path: 'images/assets',
+                    name: $image_name,
+                );
+
+                Aset::updateOrCreate(
+                    [
+                        'no_kk' => $no_kk,
+                        'nama_aset' => $this->nama_aset[$i],
+                    ],
+                    [
+                        'nama_aset' => $this->nama_aset[$i],
+                        'harga_jual' => $this->harga_jual[$i],
+                        'tahun_beli' => $this->tahun_beli[$i],
+                        'image' => $this->foto_aset[$i]
+                    ]
+                );
+            }
+        }
     }
 
-    public function load_from_session()
+    public function load_data()
     {
-        $sessionData = session()->get('aset-keluarga');
+        $assets = Aset::where(['no_kk' => Auth::user()->warga->no_kk])->get()->toArray();
 
-        if (!empty($sessionData)) {
-            $this->nama_aset = $sessionData['nama_aset'];
-            $this->tahun_beli = $sessionData['tahun_beli'];
-            $this->harga_jual = $sessionData['harga_jual'];
+        session()->put('form-asset-input-index', count($assets));
+
+        if (!empty($assets)) {
+            array_map(
+                function($asset) {
+                    $this->nama_aset[] = $asset["nama_aset"];
+                    $this->harga_jual[] = $asset["harga_jual"];
+                    $this->tahun_beli[] = $asset["tahun_beli"];
+                    $this->foto_aset[] = $asset["image"];
+                },
+                $assets
+            );
         }
     }
 }

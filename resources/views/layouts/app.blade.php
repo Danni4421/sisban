@@ -5,10 +5,9 @@
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
 
-            {{-- Preloader --}}
-            <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake rounded" src="{{ asset('assets/img/Logo1_RBG.png') }}" alt="SisbanLogo"
-                    height="60" width="60">
+            {{-- Pre loader --}}
+            <div class="loader-container" id="loading">
+                <span class="loader"></span>
             </div>
 
             {{-- Navbar --}}
@@ -19,14 +18,15 @@
 
 
             <div class="content-wrapper py-4 px-3">
-               <div class="card card-info card-outline p-3">
+               <div>
                 <div class="content-header">
-                    <div class="container-fluid">
+                    <div class="container-fluid d-flex justify-content-between align-items-center pb-3">
                         @yield('content_header')
+                        @yield('breadcrumb')
                     </div>
                </div>
                
-                <section class="content">
+                <section class="content d-flex justify-content-center">
                     @yield('content')
                 </section>
                </div>

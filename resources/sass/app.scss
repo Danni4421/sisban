@@ -14,3 +14,58 @@
 @import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 @import "datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css";
 @import 'datatables.net-select-bs5/css/select.bootstrap5.css';
+
+/*--------------------------------------------------------------
+# Color Pallete
+----------------------------------------------------------------*/
+:root {
+    --magenta: #3f43fd;
+    --magenta-hover: #3235dd;
+    --secondary: #808080;
+}
+
+/*--------------------------------------------------------------
+# Custom Button
+--------------------------------------------------------------*/
+.btn {
+    border: none;
+    padding: 12px 24px !important;
+    border-radius: 8px;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.btn-main {
+    background-color: var(--magenta) !important;
+    border: 1px solid var(--magenta) !important;
+    color: #fff !important;
+}
+
+.btn-main:hover {
+    background-color: var(--magenta-hover) !important;
+}
+
+.btn-outline-main {
+    border: none;
+    padding: 7px 24px;
+    border-radius: 8px;
+    border: 1px solid var(--magenta);
+    background: none;
+    color: var(--magenta);
+    transition: 0.3s;
+}
+
+.btn-outline-main:hover {
+    border: none;
+    padding: 7px 24px;
+    border: 1px solid var(--magenta);
+    background-color: var(--magenta);
+    color: #fff;
+    transition: 0.3s;
+}
+
+.btn-secondary {
+    background-color: var(--secondary) !important;
+    border: 1px solid var(--secondary) !important;
+    color: #fff !important;
+}

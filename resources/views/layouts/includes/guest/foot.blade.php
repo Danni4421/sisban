@@ -5,5 +5,7 @@
 {{-- Dependencies scripts --}}
 <script src="{{ asset('dist/js/app.js') }}"></script>
 <script src="{{ asset('dist/js/datatable.js') }}"></script>
+<script src="{{ asset('dist/js/sweetalert.js') }}"></script>
+
 
 @stack('scripts')

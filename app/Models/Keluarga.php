@@ -36,9 +36,11 @@ class Keluarga extends Model
         'daya_listrik',
         'biaya_listrik',
         'biaya_air',
-        'hutang',
         'pengeluaran',
-        'foto_kk'
+        'foto_kk',
+        'is_kandidat',
+        'bukti_biaya_listrik',
+        'bukti_biaya_air',
     ];
 
     /**
@@ -48,7 +50,7 @@ class Keluarga extends Model
      */
     public function anggota_keluarga()
     {
-        return $this->hasMany(Warga::class, 'no_kk', 'no_kk');
+        return $this->hasMany(Warga::class, 'no_kk', 'no_kk')->where('level', 'anggota');
     }
 
     /**
@@ -79,5 +81,30 @@ class Keluarga extends Model
     public function pengajuan()
     {
         return $this->hasOne(Pengajuan::class, 'no_kk', 'no_kk');
+    }
+
+    /**
+     * Model relationship with Hutang
+     */
+    public function hutang()
+    {
+        return $this->hasMany(Hutang::class, 'no_kk', 'no_kk');
+    }
+
+    /**
+     * Verify is candidate
+     * 
+     * @return bool
+     */
+    public function is_candidate(string $no_kk)
+    {
+        $keluarga = $this->where('no_kk', $no_kk)->load('pengajuan')->first();
+
+
+        if ($keluarga->is_kandidat) {
+            return !$keluarga->pengajuan || $keluarga->pengajuan->status_pengajuan == "diterima";
+        }
+
+        return false;
     }
 }

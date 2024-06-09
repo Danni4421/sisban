@@ -3,23 +3,40 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <header>
-        <h1>Data Penerima Bantuan Sosial</h1>
-    </header>
+    <h4>Data Penerima Bantuan Sosial</h4>
+@endsection
+
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Penerima Bansos'
+    ])
 @endsection
 
 @section('content')
-<div class="container-fluid">
-
-    <div>
+<div class="container-fluid p-3 rounded-lg" style="background: #fff;">
+    <section>
         <div class="d-flex justify-content-end">
-            <a href="{{ url('rw/bansos/penerima/create') }}" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Penerima</a>
+            <a href="{{ url('rw/bansos/penerima/create') }}" class="btn btn-primary">
+                <i class="fas fa-fw fa-plus"></i>
+                <span>Tambah Penerima</span>
+            </a>
         </div>
 
         {{ $dataTable->table() }}
-    </div>
+    </section>
 </div>
 @endsection
+
+@push('styles')
+    <style>
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -70px;
+            }
+        }
+    </style>
+@endpush
 
 @push('scripts')
     <script>
@@ -47,10 +64,6 @@
                                 text: "Penerima bansos berhasil dihapus.",
                                 icon: "success"
                             });
-                            
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000)
                         }
                     })
                 }

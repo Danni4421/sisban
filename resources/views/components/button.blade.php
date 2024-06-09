@@ -1,7 +1,8 @@
 <button 
     type="{{ $type }}" 
     class="btn btn-{{ $buttonColor }} @if (!empty($class)) {{ $class }} @endif"
-    wire:click="{{ $action }}"
+    @if (!empty($action)) wire:click="{{ $action }}" @endif
+    @if (!empty($onclick)) onclick="{{ $onclick }}" @endif  
 >
     {{ $slot }}
 </button>

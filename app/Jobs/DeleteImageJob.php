@@ -28,7 +28,6 @@ class DeleteImageJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Storage::disk('local')->deleteDirectory('livewire-tmp');
         Storage::delete($this->path);
     }
 }

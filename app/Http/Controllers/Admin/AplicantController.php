@@ -26,9 +26,7 @@ class AplicantController extends Controller
 
     public function show(string $no_kk)
     {
-        return Pengajuan::with(['keluarga' => function ($query) {
-            $query->with('anggota_keluarga');
-        }])
+        return Pengajuan::with('keluarga.kepala_keluarga', 'keluarga.anggota_keluarga')
         ->where('no_kk', $no_kk)
         ->first();
     }
@@ -41,7 +39,7 @@ class AplicantController extends Controller
 
     public function decline(string $no_kk)
     {
-        $this->updatePengajuanToDeclined(no_kk: $no_kk);
+        $this->updatePengajuanToDeclined(no_kk: $no_kk, message: "");
         return redirect('admin/pemohon');
     }
 }

@@ -39,7 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -47,15 +47,11 @@ return [
         'temp' => [
             'driver' => 'local',
             'root' => storage_path('app/temp'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
-            // 'prune' => [
-            //     'interval' => 1800,
-            //     'enabled' => true,
-            // ],
         ],
-        
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -82,5 +78,6 @@ return [
 
     'links' => [
         public_path('assets/temp') => storage_path('app/temp'),
+        public_path('assets/images') => storage_path('app/images')
     ],
 ];

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Warga extends Model
 {
@@ -31,17 +32,26 @@ class Warga extends Model
      */
     protected $fillable = [
         'nik',
+        'id_user',
         'no_kk',
         'nama',
         'jenis_kelamin',
         'tempat_tanggal_lahir',
         'umur',
         'no_hp',
-        // 'pekerjaan',
         'penghasilan',
         'level',
-        'foto_ktp'
+        'foto_ktp',
+        'slip_gaji',
     ];
+
+    /**
+     * @return HasOne
+     */
+    public function account()
+    {
+        return $this->hasOne(User::class, 'id_user', 'id_user');
+    }
 
     /**
      * Model relationship with Keluarga

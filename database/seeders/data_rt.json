@@ -1,0 +1,3151 @@
+{
+"users":[
+ {
+  "id_user": 1,
+  "username": "asyik",
+  "email": "asyik@gmail.com",
+  "password": "asyik123",
+  "level": "warga"
+ },
+ {
+  "id_user": 2,
+  "username": "nuraulia",
+  "email": "nurAula@gmail.com",
+  "password": "nurAula123",
+  "level": "warga"
+ },
+ {
+  "id_user": 3,
+  "username": "sukariyah",
+  "email": "sukariyah@gmail.com",
+  "password": "sukariyah123",
+  "level": "warga"
+ },
+ {
+  "id_user": 4,
+  "username": "akhmat",
+  "email": "akhmat@gmail.com",
+  "password": "akhmat123",
+  "level": "warga"
+ },
+ {
+  "id_user": 5,
+  "username": "ali",
+  "email": "ali@gmail.com45",
+  "password": "ali12345",
+  "level": "warga"
+ },
+ {
+  "id_user": 6,
+  "username": "sugeng",
+  "email": "sugeng@gmail.com",
+  "password": "sugeng123",
+  "level": "warga"
+ },
+ {
+  "id_user": 7,
+  "username": "bashori",
+  "email": "bashori@gmail.com",
+  "password": "bashori123",
+  "level": "warga"
+ },
+ {
+  "id_user": 8,
+  "username": "nadhif",
+  "email": "nadhif@gmail.com",
+  "password": "nadhif123",
+  "level": "warga"
+ },
+ {
+  "id_user": 9,
+  "username": "muhsan",
+  "email": "muhsan@gmail.com",
+  "password": "muhsan123",
+  "level": "warga"
+ },
+ {
+  "id_user": 10,
+  "username": "abadi",
+  "email": "abadi@gmail.com",
+  "password": "abadi123",
+  "level": "warga"
+ },
+ {
+  "id_user": 11,
+  "username": "jupri",
+  "email": "jupri@gmail.com",
+  "password": "jupri123",
+  "level": "warga"
+ },
+ {
+  "id_user": 12,
+  "username": "suwandi",
+  "email": "suwandi@gmail.com",
+  "password": "suwandi123",
+  "level": "warga"
+ },
+ {
+  "id_user": 13,
+  "username": "adi",
+  "email": "adi@gmail.com",
+  "password": "adi123",
+  "level": "warga"
+ },
+ {
+  "id_user": 14,
+  "username": "tiari",
+  "email": "tiari@gmail.com",
+  "password": "tiari123",
+  "level": "warga"
+ },
+ {
+  "id_user": 15,
+  "username": "kurdi",
+  "email": "kurdi@gmail.com",
+  "password": "kurdi123",
+  "level": "warga"
+ },
+ {
+  "id_user": 16,
+  "username": "suparto",
+  "email": "suparto@gmail.com",
+  "password": "suparto123",
+  "level": "warga"
+ },
+ {
+  "id_user": 17,
+  "username": "sudarman",
+  "email": "sudarman@gmail.com",
+  "password": "sudarman123",
+  "level": "warga"
+ },
+ {
+  "id_user": 18,
+  "username": "soetedjo",
+  "email": "soetedjo@gmail.com",
+  "password": "soetedjo123",
+  "level": "warga"
+ },
+ {
+  "id_user": 19,
+  "username": "fredy",
+  "email": "fredy@gmail.com",
+  "password": "fredy123",
+  "level": "warga"
+ },
+ {
+  "id_user": 20,
+  "username": "asiyah",
+  "email": "asiyah@gmail.com",
+  "password": "asiyah123",
+  "level": "warga"
+ },
+ {
+  "id_user": 21,
+  "username": "isrofi",
+  "email": "isrofi@gmail.com",
+  "password": "isrofi123",
+  "level": "warga"
+ },
+ {
+  "id_user": 22,
+  "username": "wisnu",
+  "email": "wisnu@gmail.com",
+  "password": "wisnu123",
+  "level": "warga"
+ },
+ {
+  "id_user": 23,
+  "username": "kalimah",
+  "email": "kalimah@gmail.com",
+  "password": "kalimah123",
+  "level": "warga"
+ },
+ {
+  "id_user": 24,
+  "username": "susiyah",
+  "email": "susiyah@gmail.com",
+  "password": "susiyah123",
+  "level": "warga"
+ },
+ {
+  "id_user": 25,
+  "username": "jumirah",
+  "email": "jumirah@gmail.com",
+  "password": "jumirah123",
+  "level": "warga"
+ },
+ {
+  "id_user": 26,
+  "username": "mintono",
+  "email": "minitono@gmail.com",
+  "password": "minitono123",
+  "level": "warga"
+ },
+ {
+  "id_user": 27,
+  "username": "supadi",
+  "email": "supadi@gmail.com",
+  "password": "supadi123",
+  "level": "warga"
+ },
+ {
+  "id_user": 28,
+  "username": "subandi",
+  "email": "subandi@gmail.com",
+  "password": "subandi123",
+  "level": "warga"
+ },
+ {
+  "id_user": 29,
+  "username": "palil",
+  "email": "palil@gmail.com",
+  "password": "palil123",
+  "level": "warga"
+ },
+ {
+  "id_user": 30,
+  "username": "supangkat",
+  "email": "supangkat@gmail.com",
+  "password": "supangkat123",
+  "level": "warga"
+ },
+ {
+  "id_user": 31,
+  "username": "sutrisno",
+  "email": "sutrisno@gmail.com",
+  "password": "sutrisno123",
+  "level": "warga"
+ },
+ {
+  "id_user": 32,
+  "username": "hendra",
+  "email": "hendra@gmail.com",
+  "password": "hendra123",
+  "level": "warga"
+ },
+ {
+  "id_user": 33,
+  "username": "mustofa",
+  "email": "mustofa@gmail.com",
+  "password": "mustofa123",
+  "level": "warga"
+ },
+ {
+  "id_user": 34,
+  "username": "anwar",
+  "email": "anwar@gmail.com",
+  "password": "anwar123",
+  "level": "warga"
+ },
+ {
+  "id_user": 35,
+  "username": "nuryani",
+  "email": "nuryani@gmail.com",
+  "password": "nuryani123",
+  "level": "warga"
+ },
+ {
+  "id_user": 36,
+  "username": "anky",
+  "email": "anky@gmail.com",
+  "password": "anky123",
+  "level": "warga"
+ },
+ {
+  "id_user": 37,
+  "username": "khoirul",
+  "email": "khoirul@gmail.com",
+  "password": "khoirul123",
+  "level": "warga"
+ },
+ {
+  "id_user": 38,
+  "username": "deny",
+  "email": "deny@gmail.com",
+  "password": "deny123",
+  "level": "warga"
+ },
+ {
+  "id_user": 39,
+  "username": "rudi",
+  "email": "rudi@gmail.com",
+  "password": "rudi123",
+  "level": "warga"
+ },
+ {
+  "id_user": 40,
+  "username": "sisyanto",
+  "email": "sisyanto@gmail.com",
+  "password": "sisyanto123",
+  "level": "warga"
+ },
+ {
+  "id_user": 41,
+  "username": "siono",
+  "email": "siono@gmail.com",
+  "password": "siono123",
+  "level": "warga"
+ },
+ {
+  "id_user": 42,
+  "username": "bari",
+  "email": "bari@gmail.com",
+  "password": "bari123",
+  "level": "warga"
+ },
+ {
+  "id_user": 43,
+  "username": "joni",
+  "email": "joni@gmail.com",
+  "password": "joni123",
+  "level": "warga"
+ },
+ {
+  "id_user": 44,
+  "username": "didik",
+  "email": "didik@gmail.com",
+  "password": "didik123",
+  "level": "warga"
+ },
+ {
+  "id_user": 45,
+  "username": "andiar",
+  "email": "andiar@gmail.com",
+  "password": "andiar123",
+  "level": "warga"
+ },
+ {
+  "id_user": 46,
+  "username": "rahmad",
+  "email": "rahmad@gmail.com",
+  "password": "rahmad123",
+  "level": "warga"
+ },
+ {
+  "id_user": 47,
+  "username": "beni",
+  "email": "beni@gmail.com",
+  "password": "beni123",
+  "level": "warga"
+ },
+ {
+  "id_user": 48,
+  "username": "sugianto",
+  "email": "sugianto@gmail.com",
+  "password": "sugianto123",
+  "level": "warga"
+ },
+ {
+  "id_user": 49,
+  "username": "choliq",
+  "email": "choliq@gmail.com",
+  "password": "choliq123",
+  "level": "warga"
+ },
+ {
+  "id_user": 50,
+  "username": "juma'adi",
+  "email": "jumaadi@gmail.com",
+  "password": "jumaadi123",
+  "level": "warga"
+ },
+ {
+  "id_user": 51,
+  "username": "shofi'i",
+  "email": "shofii@gmail.com",
+  "password": "shofii123",
+  "level": "warga"
+ }
+],
+"keluarga":[
+ {
+  "no_kk": "3507232810090332",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 44728,
+  "biaya_air": 0,
+  "pengeluaran": 1200000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "121406090300733",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 35795,
+  "biaya_air": 0,
+  "pengeluaran": 1750000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230211070001",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 20860,
+  "biaya_air": 53000,
+  "pengeluaran": 2000000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040132",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 25390,
+  "biaya_air": 30000,
+  "pengeluaran": 1500000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040122",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 41575,
+  "biaya_air": 0,
+  "pengeluaran": 2300000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "121406090300726",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 31964,
+  "biaya_air": 0,
+  "pengeluaran": 1600000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040120",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 31284,
+  "biaya_air": 47000,
+  "pengeluaran": 1800000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232711150002",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 42118,
+  "biaya_air": 14000,
+  "pengeluaran": 1950000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040137",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 26265,
+  "biaya_air": 0,
+  "pengeluaran": 1300000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232707160003",
+  "rt": 25,
+  "daya_listrik": 450,
+  "biaya_listrik": 36850,
+  "biaya_air": 44000,
+  "pengeluaran": 2100000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231208080123",
+  "rt": 29,
+  "daya_listrik": 450,
+  "biaya_listrik": 24426,
+  "biaya_air": 17000,
+  "pengeluaran": 1400000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231208080127",
+  "rt": 29,
+  "daya_listrik": 450,
+  "biaya_listrik": 41962,
+  "biaya_air": 0,
+  "pengeluaran": 2200000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231108090006",
+  "rt": 29,
+  "daya_listrik": 450,
+  "biaya_listrik": 34423,
+  "biaya_air": 0,
+  "pengeluaran": 1500000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232107160006",
+  "rt": 29,
+  "daya_listrik": 450,
+  "biaya_listrik": 43050,
+  "biaya_air": 0,
+  "pengeluaran": 1250000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231208080131",
+  "rt": 29,
+  "daya_listrik": 450,
+  "biaya_listrik": 31363,
+  "biaya_air": 0,
+  "pengeluaran": 1900000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231208080122",
+  "rt": 29,
+  "daya_listrik": 450,
+  "biaya_listrik": 36023,
+  "biaya_air": 22000,
+  "pengeluaran": 1700000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231208080136",
+  "rt": 29,
+  "daya_listrik": 450,
+  "biaya_listrik": 28322,
+  "biaya_air": 15000,
+  "pengeluaran": 1600000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230705040416",
+  "rt": 29,
+  "daya_listrik": 450,
+  "biaya_listrik": 21685,
+  "biaya_air": 0,
+  "pengeluaran": 1800000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231710190002",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 45856,
+  "biaya_air": 0,
+  "pengeluaran": 1150000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230712220002",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 36735,
+  "biaya_air": 33000,
+  "pengeluaran": 2050000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040013",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 39005,
+  "biaya_air": 0,
+  "pengeluaran": 1090000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231107180006",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 42067,
+  "biaya_air": 0,
+  "pengeluaran": 1350000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232303200002",
+  "rt": 27,
+  "daya_listrik": 450,
+  "biaya_listrik": 33302,
+  "biaya_air": 32000,
+  "pengeluaran": 1465000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232111220003",
+  "rt": 27,
+  "daya_listrik": 450,
+  "biaya_listrik": 47045,
+  "biaya_air": 19000,
+  "pengeluaran": 1200000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "121406090300756",
+  "rt": 27,
+  "daya_listrik": 450,
+  "biaya_listrik": 43998,
+  "biaya_air": 0,
+  "pengeluaran": 1350000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040087",
+  "rt": 27,
+  "daya_listrik": 450,
+  "biaya_listrik": 46574,
+  "biaya_air": 26000,
+  "pengeluaran": 1650000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040093",
+  "rt": 27,
+  "daya_listrik": 450,
+  "biaya_listrik": 51098,
+  "biaya_air": 0,
+  "pengeluaran": 1830000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231208080183",
+  "rt": 28,
+  "daya_listrik": 450,
+  "biaya_listrik": 38923,
+  "biaya_air": 44000,
+  "pengeluaran": 1560000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231511070037",
+  "rt": 28,
+  "daya_listrik": 450,
+  "biaya_listrik": 36889,
+  "biaya_air": 42000,
+  "pengeluaran": 1650000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231208080185",
+  "rt": 28,
+  "daya_listrik": 450,
+  "biaya_listrik": 28009,
+  "biaya_air": 0,
+  "pengeluaran": 1340000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231208080175",
+  "rt": 28,
+  "daya_listrik": 450,
+  "biaya_listrik": 45889,
+  "biaya_air": 0,
+  "pengeluaran": 1240000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231804160005",
+  "rt": 30,
+  "daya_listrik": 450,
+  "biaya_listrik": 37556,
+  "biaya_air": 0,
+  "pengeluaran": 995000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232204190004",
+  "rt": 30,
+  "daya_listrik": 450,
+  "biaya_listrik": 39458,
+  "biaya_air": 18000,
+  "pengeluaran": 1180000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232905190020",
+  "rt": 30,
+  "daya_listrik": 450,
+  "biaya_listrik": 53900,
+  "biaya_air": 39000,
+  "pengeluaran": 2100000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040040",
+  "rt": 30,
+  "daya_listrik": 450,
+  "biaya_listrik": 32005,
+  "biaya_air": 26000,
+  "pengeluaran": 1340000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232812220005",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 69800,
+  "biaya_air": 45000,
+  "pengeluaran": 1500000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231510080001",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 55340,
+  "biaya_air": 54000,
+  "pengeluaran": 2300000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232004210003",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 34023,
+  "biaya_air": 40000,
+  "pengeluaran": 1350000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040101",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 15750,
+  "biaya_air": 0,
+  "pengeluaran": 550000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231511060002",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 79540,
+  "biaya_air": 0,
+  "pengeluaran": 2430000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230101040654",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 35231,
+  "biaya_air": 0,
+  "pengeluaran": 1050000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040029",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 23005,
+  "biaya_air": 19000,
+  "pengeluaran": 1250000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230705040356",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 64078,
+  "biaya_air": 44000,
+  "pengeluaran": 1760000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230503080011",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 54970,
+  "biaya_air": 60000,
+  "pengeluaran": 1950000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230302220009",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 35045,
+  "biaya_air": 35000,
+  "pengeluaran": 1890000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507231210160002",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 55675,
+  "biaya_air": 45000,
+  "pengeluaran": 2150000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232810090319",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 44078,
+  "biaya_air": 63000,
+  "pengeluaran": 2000000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040020",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 67280,
+  "biaya_air": 0,
+  "pengeluaran": 1850000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040017",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 25350,
+  "biaya_air": 0,
+  "pengeluaran": 1100000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507230605040028",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 50075,
+  "biaya_air": 62000,
+  "pengeluaran": 2250000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ },
+ {
+  "no_kk": "3507232810090316",
+  "rt": 31,
+  "daya_listrik": 450,
+  "biaya_listrik": 65750,
+  "biaya_air": 43000,
+  "pengeluaran": 2500000,
+  "is_kandidat": 0,
+  "foto_kk": "NULL"
+ }
+],
+"warga":[
+ {
+  "nik": "3507230106630004",
+  "no_kk": "3507232810090332",
+  "id_user": 1,
+  "nama": "Asyik",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 01-06-1963",
+  "umur": 61,
+  "status": "bekerja",
+  "penghasilan": 2500000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234507890002",
+  "no_kk": "3507232810090332",
+  "id_user": "NULL",
+  "nama": "Siti Komariyah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 05-07-1969",
+  "umur": 54,
+  "status": "bekerja",
+  "penghasilan": 600000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236402980001",
+  "no_kk": "3507232810090332",
+  "id_user": "NULL",
+  "nama": "Sindi Amilia Pradasari",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 24-02-1998",
+  "umur": 26,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "1214060501700901",
+  "no_kk": "121406090300733",
+  "id_user": 2,
+  "nama": "Nur Aula",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 05-01-1970",
+  "umur": 54,
+  "status": "bekerja",
+  "penghasilan": 1400000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "1214066702730901",
+  "no_kk": "121406090300733",
+  "id_user": "NULL",
+  "nama": "Suherni",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 27-02-1973",
+  "umur": 51,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "1214066412950901",
+  "no_kk": "121406090300733",
+  "id_user": "NULL",
+  "nama": "Dita Kurnia Sari",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 24-12-1995",
+  "umur": 28,
+  "status": "bekerja",
+  "penghasilan": 2100000,
+  "level": "anggota"
+ },
+ {
+  "nik": "1214061603040901",
+  "no_kk": "121406090300733",
+  "id_user": "NULL",
+  "nama": "Brenda",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 16-03-2004",
+  "umur": 20,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234101580035",
+  "no_kk": "3507230211070001",
+  "id_user": 3,
+  "nama": "Sukariyah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-01-1958",
+  "umur": 66,
+  "status": "bekerja",
+  "penghasilan": 2600000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507235102330002",
+  "no_kk": "3507230211070001",
+  "id_user": "NULL",
+  "nama": "Liah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 11-02-1933",
+  "umur": 91,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230202720001",
+  "no_kk": "3507230605040132",
+  "id_user": 4,
+  "nama": "Akhmat Fauzi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 02-02-1972",
+  "umur": 52,
+  "status": "bekerja",
+  "penghasilan": 3000000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507235106750001",
+  "no_kk": "3507230605040132",
+  "id_user": "NULL",
+  "nama": "Saropah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 09-10-1974",
+  "umur": 49,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234903950003",
+  "no_kk": "3507230605040132",
+  "id_user": "NULL",
+  "nama": "Siti Fauziyah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 09-03-1995",
+  "umur": 29,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231707010001",
+  "no_kk": "3507230605040132",
+  "id_user": "NULL",
+  "nama": "Musholin Ibnu Ahmad",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 17-07-2001",
+  "umur": 22,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230601680001",
+  "no_kk": "3507230605040122",
+  "id_user": 5,
+  "nama": "Ali",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 06-01-1958",
+  "umur": 66,
+  "status": "bekerja",
+  "penghasilan": 1900000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234704600001",
+  "no_kk": "3507230605040122",
+  "id_user": "NULL",
+  "nama": "Bainah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 07-04-1960",
+  "umur": 64,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232211920001",
+  "no_kk": "3507230605040122",
+  "id_user": "NULL",
+  "nama": "Moch Firmansah",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 22-11-1992",
+  "umur": 31,
+  "status": "bekerja",
+  "penghasilan": 2600000,
+  "level": "anggota"
+ },
+ {
+  "nik": "1214061103980901",
+  "no_kk": "121406090300726",
+  "id_user": 6,
+  "nama": "Sugeng Basuki",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 11-03-1968",
+  "umur": 56,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "1214064910720901",
+  "no_kk": "121406090300726",
+  "id_user": "NULL",
+  "nama": "Kartini",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 09-10-1972",
+  "umur": 51,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "1214062901960901",
+  "no_kk": "121406090300726",
+  "id_user": "NULL",
+  "nama": "Moh Isnaini Nauri",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 29-01-1996",
+  "umur": 28,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "1214061902040901",
+  "no_kk": "121406090300726",
+  "id_user": "NULL",
+  "nama": "Ikhmal Kurnia Aji",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 19-02-2004",
+  "umur": 20,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230712650002",
+  "no_kk": "3507230605040120",
+  "id_user": 7,
+  "nama": "Bashori",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 07-12-1965",
+  "umur": 58,
+  "status": "bekerja",
+  "penghasilan": 2300000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507235205720001",
+  "no_kk": "3507230605040120",
+  "id_user": "NULL",
+  "nama": "Nanik Jubaidah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 12-05-1972",
+  "umur": 52,
+  "status": "bekerja",
+  "penghasilan": 1600000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3515132707760011",
+  "no_kk": "3507232711150002",
+  "id_user": 8,
+  "nama": "Moh Nadhif",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Sidoarjo, 27-07-1976",
+  "umur": 47,
+  "status": "bekerja",
+  "penghasilan": 2700000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3515134605790004",
+  "no_kk": "3507232711150002",
+  "id_user": "NULL",
+  "nama": "Mahmudah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Pasuruan, 06-05-1979",
+  "umur": 45,
+  "status": "bekerja",
+  "penghasilan": 900000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3515131310030001",
+  "no_kk": "3507232711150002",
+  "id_user": "NULL",
+  "nama": "Ahmad Asalu Mushaffa",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Pasuruan, 13-10-2003",
+  "umur": 20,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3515135201060001",
+  "no_kk": "3507232711150002",
+  "id_user": "NULL",
+  "nama": "Nadlira Arava",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Pasuruan, 12-01-2006",
+  "umur": 18,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236501110003",
+  "no_kk": "3507232711150002",
+  "id_user": "NULL",
+  "nama": "Maudy Asyfia",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 25-01-2011",
+  "umur": 13,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230908170002",
+  "no_kk": "3507232711150002",
+  "id_user": "NULL",
+  "nama": "Reza Yusuf Zamakhsyari",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 09-08-2017",
+  "umur": 6,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231409820001",
+  "no_kk": "3507230605040137",
+  "id_user": 9,
+  "nama": "Muhammad Muhsan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 14-09-1982",
+  "umur": 41,
+  "status": "bekerja",
+  "penghasilan": 2500000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234202850002",
+  "no_kk": "3507230605040137",
+  "id_user": "NULL",
+  "nama": "Dwi Nina Andriani",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 02-02-1985",
+  "umur": 39,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232610060002",
+  "no_kk": "3507230605040137",
+  "id_user": "NULL",
+  "nama": "Ahmad Hilmy",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 26-10-2006",
+  "umur": 17,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234707110001",
+  "no_kk": "3507230605040137",
+  "id_user": "NULL",
+  "nama": "Nurizzatul Waarifah Nabila",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 07-07-2011",
+  "umur": 12,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234101420007",
+  "no_kk": "3507230605040137",
+  "id_user": "NULL",
+  "nama": "Sumaiyah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-01-1942",
+  "umur": 82,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3573052412730003",
+  "no_kk": "3507232707160003",
+  "id_user": 10,
+  "nama": "Abadi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 24-12-1973",
+  "umur": 50,
+  "status": "bekerja",
+  "penghasilan": 2500000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3573056910790001",
+  "no_kk": "3507232707160003",
+  "id_user": "NULL",
+  "nama": "Diari",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 29-10-1979",
+  "umur": 44,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3573054209060003",
+  "no_kk": "3507232707160003",
+  "id_user": "NULL",
+  "nama": "Alisya Nabelia Putri",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 02-09-2006",
+  "umur": 17,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507235204090005",
+  "no_kk": "3507232707160003",
+  "id_user": "NULL",
+  "nama": "Dista Jingga Indah Aprilia",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 12-04-2009",
+  "umur": 15,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3573054204400002",
+  "no_kk": "3507232707160003",
+  "id_user": "NULL",
+  "nama": "Sari",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 02-04-1940",
+  "umur": 84,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507233012830002",
+  "no_kk": "3507231208080123",
+  "id_user": 11,
+  "nama": "Jupri Wijayanto",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 30-12-1963",
+  "umur": 60,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234608830007",
+  "no_kk": "3507231208080123",
+  "id_user": "NULL",
+  "nama": "Yanti",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 06-08-1983",
+  "umur": 40,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231505090002",
+  "no_kk": "3507231208080123",
+  "id_user": "NULL",
+  "nama": "Muhammad Hanif Mahmudi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 15-05-2009",
+  "umur": 15,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231212580008",
+  "no_kk": "3507231208080127",
+  "id_user": 12,
+  "nama": "Suwandi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 12-12-1958",
+  "umur": 65,
+  "status": "bekerja",
+  "penghasilan": 1900000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507232501880004",
+  "no_kk": "3507231208080127",
+  "id_user": "NULL",
+  "nama": "Eko Setiawan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 25-01-1988",
+  "umur": 36,
+  "status": "bekerja",
+  "penghasilan": 700000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232205490001",
+  "no_kk": "3507231108090006",
+  "id_user": 13,
+  "nama": "Djumak Adi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 22-05-1949",
+  "umur": 75,
+  "status": "bekerja",
+  "penghasilan": 1800000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236605680002",
+  "no_kk": "3507231108090006",
+  "id_user": "NULL",
+  "nama": "Sunarti",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 26-05-1968",
+  "umur": 56,
+  "status": "bekerja",
+  "penghasilan": 1100000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236712910001",
+  "no_kk": "3507231108090006",
+  "id_user": "NULL",
+  "nama": "Eni Kurniawati",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 27-12-1991",
+  "umur": 32,
+  "status": "bekerja",
+  "penghasilan": 1600000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231911980003",
+  "no_kk": "3507231108090006",
+  "id_user": "NULL",
+  "nama": "Bagus Dwi Prasetiyo",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 19-11-1993",
+  "umur": 30,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232011000003",
+  "no_kk": "3507231108090006",
+  "id_user": "NULL",
+  "nama": "Andi Ramadhan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 20-11-2000",
+  "umur": 23,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234203530001",
+  "no_kk": "3507232107160006",
+  "id_user": 14,
+  "nama": "Tiari",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 02-03-1953",
+  "umur": 71,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507231103800004",
+  "no_kk": "3507232107160006",
+  "id_user": "NULL",
+  "nama": "Wawan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 11-0301980",
+  "umur": 44,
+  "status": "bekerja",
+  "penghasilan": 2200000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230103500005",
+  "no_kk": "3507231208080131",
+  "id_user": 15,
+  "nama": "Kurdi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 01-03-1950",
+  "umur": 74,
+  "status": "bekerja",
+  "penghasilan": 1300000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234105520003",
+  "no_kk": "3507231208080131",
+  "id_user": "NULL",
+  "nama": "Ngarmi",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-05-1952",
+  "umur": 72,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231002530002",
+  "no_kk": "3507231208080122",
+  "id_user": 16,
+  "nama": "Suparto",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 10-02-1953",
+  "umur": 71,
+  "status": "bekerja",
+  "penghasilan": 2300000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234103610027",
+  "no_kk": "3507231208080122",
+  "id_user": "NULL",
+  "nama": "Sumik",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-03-1961",
+  "umur": 63,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230901960005",
+  "no_kk": "3507231208080122",
+  "id_user": "NULL",
+  "nama": "Ahmad Yusni",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 09-01-1996",
+  "umur": 28,
+  "status": "bekerja",
+  "penghasilan": 1900000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230108620019",
+  "no_kk": "3507231208080136",
+  "id_user": 17,
+  "nama": "Sudarman",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 01-08-1962",
+  "umur": 61,
+  "status": "bekerja",
+  "penghasilan": 2300000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234901690003",
+  "no_kk": "3507231208080136",
+  "id_user": "NULL",
+  "nama": "Nur Rahayu",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 09-01-1969",
+  "umur": 55,
+  "status": "bekerja",
+  "penghasilan": 1600000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507235702900003",
+  "no_kk": "3507231208080136",
+  "id_user": "NULL",
+  "nama": "Lisa Tri Lestari",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 17-02-1990",
+  "umur": 34,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236901010003",
+  "no_kk": "3507231208080136",
+  "id_user": "NULL",
+  "nama": "Diftania Shadia Putri",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 29-01-2001",
+  "umur": 23,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231909500001",
+  "no_kk": "3507230705040416",
+  "id_user": 18,
+  "nama": "Soetedjo",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 19-09-1950",
+  "umur": 73,
+  "status": "bekerja",
+  "penghasilan": 2700000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236107540001",
+  "no_kk": "3507230705040416",
+  "id_user": "NULL",
+  "nama": "Tamini",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 21-07-1954",
+  "umur": 69,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232707950003",
+  "no_kk": "3507231710190002",
+  "id_user": 19,
+  "nama": "Mochamad Fredy Yulian Kusuma",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 27-07-1995",
+  "umur": 28,
+  "status": "bekerja",
+  "penghasilan": 2150000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234201950001",
+  "no_kk": "3507231710190002",
+  "id_user": "NULL",
+  "nama": "Silfia Wijayanti",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 02-01-1995",
+  "umur": 29,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507235801190001",
+  "no_kk": "3507231710190002",
+  "id_user": "NULL",
+  "nama": "Rafanda Azizah Putri",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 18-01-2019",
+  "umur": 5,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234303690002",
+  "no_kk": "3507230712220002",
+  "id_user": 20,
+  "nama": "Siti Asiyah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 03-03-1969",
+  "umur": 55,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507231404600001",
+  "no_kk": "3507230605040013",
+  "id_user": 21,
+  "nama": "Isroffi Sofyan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 14-04-1960",
+  "umur": 64,
+  "status": "bekerja",
+  "penghasilan": 2450000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507232706000001",
+  "no_kk": "3507230605040013",
+  "id_user": "NULL",
+  "nama": "Wellyansyah Yolanda Sofyan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 27-06-2000",
+  "umur": 23,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234803430001",
+  "no_kk": "3507230605040013",
+  "id_user": "NULL",
+  "nama": "Chomsatun",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 08-03-1943",
+  "umur": 81,
+  "status": "bekerja",
+  "penghasilan": 1400000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3573011404940005",
+  "no_kk": "3507231107180006",
+  "id_user": 22,
+  "nama": "Wisnu Ardhi Kurniawan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 14-04-1994",
+  "umur": 30,
+  "status": "bekerja",
+  "penghasilan": 2430000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236101990001",
+  "no_kk": "3507231107180006",
+  "id_user": "NULL",
+  "nama": "Nilot Mahesi",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 21-01-1999",
+  "umur": 25,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231807180001",
+  "no_kk": "3507231107180006",
+  "id_user": "NULL",
+  "nama": "Vabzo Meshio Kurniawan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 18-07-2018",
+  "umur": 5,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236109610001",
+  "no_kk": "3507232303200002",
+  "id_user": 23,
+  "nama": "Kalimah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 21-09-1961",
+  "umur": 62,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236412750002",
+  "no_kk": "3507232111220003",
+  "id_user": 24,
+  "nama": "Susiyah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 24-12-1975",
+  "umur": 48,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507232709960001",
+  "no_kk": "3507232111220003",
+  "id_user": "NULL",
+  "nama": "Yoga Bagus Pratama",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 27-09-1996",
+  "umur": 27,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232006040003",
+  "no_kk": "3507232111220003",
+  "id_user": "NULL",
+  "nama": "Lingga Dwi Alfiansyah",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 20-06-2004",
+  "umur": 19,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507235001530003",
+  "no_kk": "3507232111220003",
+  "id_user": "NULL",
+  "nama": "Tiara",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 10-01-1953",
+  "umur": 71,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "1214066106470901",
+  "no_kk": "121406090300756",
+  "id_user": 25,
+  "nama": "Jumirah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 11-05-1947",
+  "umur": 77,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507231001580001",
+  "no_kk": "3507230605040087",
+  "id_user": 26,
+  "nama": "Mintono",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 10-01-1958",
+  "umur": 66,
+  "status": "bekerja",
+  "penghasilan": 2700000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507235103620001",
+  "no_kk": "3507230605040087",
+  "id_user": "NULL",
+  "nama": "Mudrikah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 11-03-1962",
+  "umur": 62,
+  "status": "bekerja",
+  "penghasilan": 1780000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231007610001",
+  "no_kk": "3507230605040093",
+  "id_user": 27,
+  "nama": "Supadi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 10-07-1961",
+  "umur": 62,
+  "status": "bekerja",
+  "penghasilan": 1480000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507235311680004",
+  "no_kk": "3507230605040093",
+  "id_user": "NULL",
+  "nama": "Narti",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 13-11-1968",
+  "umur": 55,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231906880001",
+  "no_kk": "3507230605040093",
+  "id_user": "NULL",
+  "nama": "Bambang Biantoro",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 19-06-1988",
+  "umur": 35,
+  "status": "bekerja",
+  "penghasilan": 2300000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231203550003",
+  "no_kk": "3507231208080183",
+  "id_user": 28,
+  "nama": "Subandi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 12-03-1955",
+  "umur": 69,
+  "status": "bekerja",
+  "penghasilan": 2100000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234902620002",
+  "no_kk": "3507231208080183",
+  "id_user": "NULL",
+  "nama": "Srianah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 09-02-1962",
+  "umur": 62,
+  "status": "bekerja",
+  "penghasilan": 700000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231210570001",
+  "no_kk": "3507231511070037",
+  "id_user": 29,
+  "nama": "Palil",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 12-10-1957",
+  "umur": 66,
+  "status": "bekerja",
+  "penghasilan": 2000000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236001650003",
+  "no_kk": "3507231511070037",
+  "id_user": "NULL",
+  "nama": "Yayuk",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 20-01-1965",
+  "umur": 59,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230902960003",
+  "no_kk": "3507231511070037",
+  "id_user": "NULL",
+  "nama": "Robi Ardiansah",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 09-02-1996",
+  "umur": 28,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234506980003",
+  "no_kk": "3507231511070037",
+  "id_user": "NULL",
+  "nama": "Vitria",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 05-06-1998",
+  "umur": 26,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507233105050001",
+  "no_kk": "3507231511070037",
+  "id_user": "NULL",
+  "nama": "Vilah Saputra",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 31-05-2005",
+  "umur": 19,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230605540004",
+  "no_kk": "3507231208080185",
+  "id_user": 30,
+  "nama": "Supangkat",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 08-05-1954",
+  "umur": 70,
+  "status": "bekerja",
+  "penghasilan": 1900000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234411670001",
+  "no_kk": "3507231208080185",
+  "id_user": "NULL",
+  "nama": "Lasmiati",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 04-11-1967",
+  "umur": 56,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231507740003",
+  "no_kk": "3507231208080175",
+  "id_user": 31,
+  "nama": "Sutrisno",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 15-03-1974",
+  "umur": 50,
+  "status": "bekerja",
+  "penghasilan": 2800000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234203770010",
+  "no_kk": "3507231208080175",
+  "id_user": "NULL",
+  "nama": "Siti Kalimah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 02-03-1977",
+  "umur": 47,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231407960002",
+  "no_kk": "3507231208080175",
+  "id_user": "NULL",
+  "nama": "Fungki Dwi Cahyono",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 14-07-1996",
+  "umur": 27,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231405130002",
+  "no_kk": "3507231208080175",
+  "id_user": "NULL",
+  "nama": "Anggi Pandu Dinata",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 14-05-2013",
+  "umur": 11,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231102860001",
+  "no_kk": "3507231804160005",
+  "id_user": 32,
+  "nama": "Hendra Setiawan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 27-02-1986",
+  "umur": 38,
+  "status": "bekerja",
+  "penghasilan": 1600000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236904940001",
+  "no_kk": "3507231804160005",
+  "id_user": "NULL",
+  "nama": "Aisyah Heni Nuryatim",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 29-04-1994",
+  "umur": 30,
+  "status": "bekerja",
+  "penghasilan": 900000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236201160001",
+  "no_kk": "3507231804160005",
+  "id_user": "NULL",
+  "nama": "Safa Quryatul Ayunda",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Batu, 22-01-2016",
+  "umur": 8,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232905170002",
+  "no_kk": "3507231804160005",
+  "id_user": "NULL",
+  "nama": "Anas Rafa Ramadhani",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Batu, 29-05-2017",
+  "umur": 7,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232201820001",
+  "no_kk": "3507232204190004",
+  "id_user": 33,
+  "nama": "Mochammad Mustofa",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 22-01-1982",
+  "umur": 42,
+  "status": "bekerja",
+  "penghasilan": 2100000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234712870001",
+  "no_kk": "3507232204190004",
+  "id_user": "NULL",
+  "nama": "nur Indah Rahayu",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 07-12-1987",
+  "umur": 36,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232010050002",
+  "no_kk": "3507232204190004",
+  "id_user": "NULL",
+  "nama": "Galih Eka Candra Ramadani",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 20-10-2005",
+  "umur": 18,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236207170005",
+  "no_kk": "3507232204190004",
+  "id_user": "NULL",
+  "nama": "Fannur Anindya Adzkiya",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 22-07-2017",
+  "umur": 6,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230504600001",
+  "no_kk": "3507232905190020",
+  "id_user": 34,
+  "nama": "Anwar",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 05-04-1960",
+  "umur": 64,
+  "status": "bekerja",
+  "penghasilan": 2400000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236008080004",
+  "no_kk": "3507232905190020",
+  "id_user": "NULL",
+  "nama": "Miskha Ananda Safitri",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 20-08-2008",
+  "umur": 15,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507235506620001",
+  "no_kk": "3507230605040040",
+  "id_user": 35,
+  "nama": "Nuryani",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 15-05-1962",
+  "umur": 62,
+  "status": "bekerja",
+  "penghasilan": 800000,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507231208800001",
+  "no_kk": "3507230605040040",
+  "id_user": "NULL",
+  "nama": "Eri Susanto",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 12-08-1980",
+  "umur": 43,
+  "status": "bekerja",
+  "penghasilan": 500000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507233100386001",
+  "no_kk": "3507230605040040",
+  "id_user": "NULL",
+  "nama": "Suli Isnana",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 31-03-1986",
+  "umur": 38,
+  "status": "bekerja",
+  "penghasilan": 2000000,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231012910001",
+  "no_kk": "3507232812220005",
+  "id_user": 36,
+  "nama": "Anky Bathara Adi Krisna",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 10-12-1991",
+  "umur": 32,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234104970003",
+  "no_kk": "3507232812220005",
+  "id_user": "NULL",
+  "nama": "Fifit Sekarsari",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-04-1997",
+  "umur": 27,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232810180002",
+  "no_kk": "3507232812220005",
+  "id_user": "NULL",
+  "nama": "Ibrahima Bathara Narendra",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 28-10-2018",
+  "umur": 5,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231504820007",
+  "no_kk": "3507231510080001",
+  "id_user": 37,
+  "nama": "Khoriul Anam",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 15-04-1982",
+  "umur": 42,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507235007620014",
+  "no_kk": "3507231510080001",
+  "id_user": "NULL",
+  "nama": "Hetik",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 10-07-1982",
+  "umur": 41,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234103070001",
+  "no_kk": "3507231510080001",
+  "id_user": "NULL",
+  "nama": "Martsel Nurun Vika",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-03-2007",
+  "umur": 17,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236306140001",
+  "no_kk": "3507231510080001",
+  "id_user": "NULL",
+  "nama": "Airin Chatalia Anam",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 23-06-2014",
+  "umur": 9,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230412850002",
+  "no_kk": "3507232004210003",
+  "id_user": 38,
+  "nama": "Deny Wahyudi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 04-12-1985",
+  "umur": 38,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3573056109960001",
+  "no_kk": "3507232004210003",
+  "id_user": "NULL",
+  "nama": "Sri Wilujeng",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 21-09-1996",
+  "umur": 27,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231404170001",
+  "no_kk": "3507232004210003",
+  "id_user": "NULL",
+  "nama": "Arvino Nazril Rashad",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 14-04-2017",
+  "umur": 7,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230104190004",
+  "no_kk": "3507232004210003",
+  "id_user": "NULL",
+  "nama": "Muhammad Dzaki Rahmatullah",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 01-04-2019",
+  "umur": 5,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230102770001",
+  "no_kk": "3507230605040101",
+  "id_user": 39,
+  "nama": "Rudi Kriswanto",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 01-02-1977",
+  "umur": 47,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507230706760008",
+  "no_kk": "3507231511060002",
+  "id_user": 40,
+  "nama": "Sisyanto",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 07-08-1975",
+  "umur": 48,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236506770004",
+  "no_kk": "3507231511060002",
+  "id_user": "NULL",
+  "nama": "Kasiati",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 25-06-1977",
+  "umur": 46,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236304040001",
+  "no_kk": "3507231511060002",
+  "id_user": "NULL",
+  "nama": "Shisilia Dwi Apriliyanti",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 23-04-2004",
+  "umur": 20,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234904160002",
+  "no_kk": "3507231511060002",
+  "id_user": "NULL",
+  "nama": "Adelina Fathina Adia",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 09-04-2016",
+  "umur": 8,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230101600090",
+  "no_kk": "3507230101040654",
+  "id_user": 41,
+  "nama": "Siono",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 01-01-1960",
+  "umur": 64,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234101690008",
+  "no_kk": "3507230101040654",
+  "id_user": "NULL",
+  "nama": "Siti Aisah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-01-1969",
+  "umur": 55,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231707620002",
+  "no_kk": "3507230605040029",
+  "id_user": 42,
+  "nama": "Bari",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 17-07-1962",
+  "umur": 61,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507235009670001",
+  "no_kk": "3507230605040029",
+  "id_user": "NULL",
+  "nama": "Suriyah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 10-10-1967",
+  "umur": 56,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232004770001",
+  "no_kk": "3507230705040356",
+  "id_user": 43,
+  "nama": "Joni",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 20-04-1977",
+  "umur": 47,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236607760003",
+  "no_kk": "3507230705040356",
+  "id_user": "NULL",
+  "nama": "Indra Yani",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 26-07-1976",
+  "umur": 47,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232508040002",
+  "no_kk": "3507230705040356",
+  "id_user": "NULL",
+  "nama": "Rafka Yoan Dwi Mahardika",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 25-08-2004",
+  "umur": 19,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231604730003",
+  "no_kk": "3507230503080011",
+  "id_user": 44,
+  "nama": "Much Sidik Didik",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 16-04-1973",
+  "umur": 51,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234703760002",
+  "no_kk": "3507230503080011",
+  "id_user": "NULL",
+  "nama": "Inake Kusumawati",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 07-03-1976",
+  "umur": 48,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236402030001",
+  "no_kk": "3507230503080011",
+  "id_user": "NULL",
+  "nama": "Fisca Febriana S",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 24-02-2003",
+  "umur": 21,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3573050603940004",
+  "no_kk": "3507230302220009",
+  "id_user": 45,
+  "nama": "Andiar Ramadhani",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 06-03-1994",
+  "umur": 30,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507232611950002",
+  "no_kk": "3507230302220009",
+  "id_user": "NULL",
+  "nama": "Tiu Putri Ivo",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 25-12-1996",
+  "umur": 27,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507253112170001",
+  "no_kk": "3507230302220009",
+  "id_user": "NULL",
+  "nama": "Alif Hafid Zakharia",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 31-12-2017",
+  "umur": 6,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230910900002",
+  "no_kk": "3507231210160002",
+  "id_user": 46,
+  "nama": "Rahmad Angga Saputra",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 09-10-1990",
+  "umur": 33,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3575027107910001",
+  "no_kk": "3507231210160002",
+  "id_user": "NULL",
+  "nama": "Yullia Triya Putri",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Pasuruan, 31-07-1991",
+  "umur": 32,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232506160001",
+  "no_kk": "3507231210160002",
+  "id_user": "NULL",
+  "nama": "Adhyastha Ammar Dzaky Saputra",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 25-06-2016",
+  "umur": 7,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230102190003",
+  "no_kk": "3507231210160002",
+  "id_user": "NULL",
+  "nama": "Achmad Adhyastha Attafariz",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 01-02-2019",
+  "umur": 5,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507231808890001",
+  "no_kk": "3507232810090319",
+  "id_user": 47,
+  "nama": "Beni Irwanto",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 18-03-1989",
+  "umur": 35,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507235812880002",
+  "no_kk": "3507232810090319",
+  "id_user": "NULL",
+  "nama": "Misti",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 18-12-1988",
+  "umur": 35,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236011120001",
+  "no_kk": "3507232810090319",
+  "id_user": "NULL",
+  "nama": "Fatma Annida",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 20-11-2012",
+  "umur": 11,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234706630001",
+  "no_kk": "3507232810090319",
+  "id_user": "NULL",
+  "nama": "Sunarsih",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 07-06-1963",
+  "umur": 60,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232302630001",
+  "no_kk": "3507230605040020",
+  "id_user": 48,
+  "nama": "Sugianto",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 23-02-1963",
+  "umur": 61,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507235608700001",
+  "no_kk": "3507230605040020",
+  "id_user": "NULL",
+  "nama": "Siti Maisaroh",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 16-08-1970",
+  "umur": 53,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507236403960001",
+  "no_kk": "3507230605040020",
+  "id_user": "NULL",
+  "nama": "Alivia Mayvitae",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 24-03-1996",
+  "umur": 28,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234108380002",
+  "no_kk": "3507230605040020",
+  "id_user": "NULL",
+  "nama": "Tarminah",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-06-1938",
+  "umur": 86,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230807670001",
+  "no_kk": "3507230605040017",
+  "id_user": 49,
+  "nama": "Choliq",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 08-07-1967",
+  "umur": 56,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507237010720001",
+  "no_kk": "3507230605040017",
+  "id_user": "NULL",
+  "nama": "Siti Rohana",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 30-10-1972",
+  "umur": 51,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230907740001",
+  "no_kk": "3507230605040028",
+  "id_user": 50,
+  "nama": "Juma'adi",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 09-07-1974",
+  "umur": 49,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507236704820001",
+  "no_kk": "3507230605040028",
+  "id_user": "NULL",
+  "nama": "Sulistiowati",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 27-04-1982",
+  "umur": 42,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232007990004",
+  "no_kk": "3507230605040028",
+  "id_user": "NULL",
+  "nama": "Aditya Yudistira Atmojo",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 20-07-1999",
+  "umur": 24,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507233105060003",
+  "no_kk": "3507230605040028",
+  "id_user": "NULL",
+  "nama": "Noval Reza Dwi Pratama",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 31-05-2006",
+  "umur": 18,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507232603100003",
+  "no_kk": "3507230605040028",
+  "id_user": "NULL",
+  "nama": "Muhammad Fadil Afgan",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 26-03-2010",
+  "umur": 14,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230310160001",
+  "no_kk": "3507230605040028",
+  "id_user": "NULL",
+  "nama": "Muhammad Najib Rizal",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 03-10-2016",
+  "umur": 7,
+  "status": "tidak_bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507230605850003",
+  "no_kk": "3507232810090316",
+  "id_user": 51,
+  "nama": "Shofi'i",
+  "jenis_kelamin": "lk",
+  "tempat_tanggal_lahir": "Malang, 05-05-1985",
+  "umur": 39,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "kepala_keluarga"
+ },
+ {
+  "nik": "3507234101890001",
+  "no_kk": "3507232810090316",
+  "id_user": "NULL",
+  "nama": "Erna Susilowati",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-01-1985",
+  "umur": 39,
+  "status": "bekerja",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234412040004",
+  "no_kk": "3507232810090316",
+  "id_user": "NULL",
+  "nama": "Icha Dewi Putriana",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 04-12-2004",
+  "umur": 19,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ },
+ {
+  "nik": "3507234110070001",
+  "no_kk": "3507232810090316",
+  "id_user": "NULL",
+  "nama": "Seril Rima Findi Mailesi",
+  "jenis_kelamin": "pr",
+  "tempat_tanggal_lahir": "Malang, 01-10-2007",
+  "umur": 16,
+  "status": "sekolah",
+  "penghasilan": 0,
+  "level": "anggota"
+ }
+],
+"hutang":[
+ {
+  "no_kk": "3507232810090332",
+  "jumlah": 1200000,
+  "keterangan": "Kredit Motor",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "121406090300733",
+  "jumlah": 800000,
+  "keterangan": "Uang Sekolah Anak",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507230211070001",
+  "jumlah": 1400000,
+  "keterangan": "Hutang Koperasi",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507230605040132",
+  "jumlah": 400000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507230605040122",
+  "jumlah": 550000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "121406090300726",
+  "jumlah": 850000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507230605040120",
+  "jumlah": 750000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507232711150002",
+  "jumlah": 980000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507230605040137",
+  "jumlah": 1400000,
+  "keterangan": "Hutang Tetangga",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507232707160003",
+  "jumlah": 3000000,
+  "keterangan": "Hutang Bank",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507231208080123",
+  "jumlah": 1250000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507231208080127",
+  "jumlah": 900000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507231108090006",
+  "jumlah": 800000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507231208080131",
+  "jumlah": 450000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507231208080122",
+  "jumlah": 670000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507231208080136",
+  "jumlah": 230000,
+  "keterangan": "Servis Motor",
+  "bukti_hutang": "NULL"
+ },
+ {
+  "no_kk": "3507230705040416",
+  "jumlah": 780000,
+  "keterangan": "-",
+  "bukti_hutang": "NULL"
+ }
+],
+"aset":[
+ {
+  "no_kk": "3507232810090332",
+  "nama_aset": "Motor Supra X",
+  "harga_jual": 3000000,
+  "tahun_beli": 2010,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "121406090300733",
+  "nama_aset": "Rumah",
+  "harga_jual": 85000000,
+  "tahun_beli": 2002,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230211070001",
+  "nama_aset": "Sawah",
+  "harga_jual": 150000000,
+  "tahun_beli": 2005,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230605040132",
+  "nama_aset": "Scoopy",
+  "harga_jual": 5000000,
+  "tahun_beli": 2014,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230605040122",
+  "nama_aset": "Rumah",
+  "harga_jual": 90000000,
+  "tahun_beli": 1997,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "121406090300726",
+  "nama_aset": "Rumah",
+  "harga_jual": 98000000,
+  "tahun_beli": 1999,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230605040120",
+  "nama_aset": "Sawah",
+  "harga_jual": 120000000,
+  "tahun_beli": 2001,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507232711150002",
+  "nama_aset": "Rumah",
+  "harga_jual": 90000000,
+  "tahun_beli": 1995,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230605040137",
+  "nama_aset": "Sawah",
+  "harga_jual": 180000000,
+  "tahun_beli": 2008,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507232707160003",
+  "nama_aset": "Mio J",
+  "harga_jual": 3000000,
+  "tahun_beli": 2011,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231208080123",
+  "nama_aset": "Rumah",
+  "harga_jual": 109000000,
+  "tahun_beli": 2005,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231208080127",
+  "nama_aset": "Beat Karbu",
+  "harga_jual": 3500000,
+  "tahun_beli": 2009,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231108090006",
+  "nama_aset": "Rumah",
+  "harga_jual": 120000000,
+  "tahun_beli": 1999,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231208080131",
+  "nama_aset": "Sawah",
+  "harga_jual": 150000000,
+  "tahun_beli": 2000,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231208080122",
+  "nama_aset": "Rumah",
+  "harga_jual": 132000000,
+  "tahun_beli": 1998,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231208080136",
+  "nama_aset": "Vario Old",
+  "harga_jual": 4000000,
+  "tahun_beli": 2011,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230705040416",
+  "nama_aset": "Rumah",
+  "harga_jual": 90000000,
+  "tahun_beli": 2003,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231710190002",
+  "nama_aset": "Sawah",
+  "harga_jual": 50000000,
+  "tahun_beli": 1990,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230712220002",
+  "nama_aset": "Rumah",
+  "harga_jual": 175000000,
+  "tahun_beli": 2010,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230605040013",
+  "nama_aset": "Rumah",
+  "harga_jual": 100000000,
+  "tahun_beli": 2006,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231107180006",
+  "nama_aset": "Rumah",
+  "harga_jual": 120000000,
+  "tahun_beli": 2015,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507232303200002",
+  "nama_aset": "Mio Soul",
+  "harga_jual": 3300000,
+  "tahun_beli": 2014,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507232111220003",
+  "nama_aset": "Rumah",
+  "harga_jual": 95000000,
+  "tahun_beli": 2010,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "121406090300756",
+  "nama_aset": "Rumah",
+  "harga_jual": 108500000,
+  "tahun_beli": 2003,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230605040087",
+  "nama_aset": "Rumah",
+  "harga_jual": 115700000,
+  "tahun_beli": 2002,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230605040093",
+  "nama_aset": "Rumah",
+  "harga_jual": 103650000,
+  "tahun_beli": 2007,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231208080183",
+  "nama_aset": "Rumah",
+  "harga_jual": 98000000,
+  "tahun_beli": 1999,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231511070037",
+  "nama_aset": "Motor Spin",
+  "harga_jual": 3500000,
+  "tahun_beli": 2013,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231208080185",
+  "nama_aset": "Rumah",
+  "harga_jual": 95500000,
+  "tahun_beli": 2000,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231208080175",
+  "nama_aset": "Motor Astrea",
+  "harga_jual": 4500000,
+  "tahun_beli": 2009,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507231804160005",
+  "nama_aset": "Rumah",
+  "harga_jual": 165000000,
+  "tahun_beli": 1989,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507232204190004",
+  "nama_aset": "Rumah",
+  "harga_jual": 144000000,
+  "tahun_beli": 2001,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507232905190020",
+  "nama_aset": "Rumah",
+  "harga_jual": 130000000,
+  "tahun_beli": 2007,
+  "image": "NULL"
+ },
+ {
+  "no_kk": "3507230605040040",
+  "nama_aset": "Rumah",
+  "harga_jual": 136000000,
+  "tahun_beli": 2009,
+  "image": "NULL"
+ }
+]
+}

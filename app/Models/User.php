@@ -55,12 +55,20 @@ class User extends Authenticatable
     ];
 
     /**
-     * Model relationship
+     * Model relationship with Pengurus like ['rt', 'rw', 'admin']
      * 
      * @return HasOne
      */
     public function pengurus()
     {
         return $this->hasOne(Pengurus::class, 'id_user', 'id_user');
+    }
+
+    /**
+     * Model relationship with Kepala Keluarga for authentication
+     */
+    public function warga()
+    {
+        return $this->hasOne(Warga::class, 'id_user', 'id_user');
     }
 }

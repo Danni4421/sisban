@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\PenerimaBansos as PenerimaBansosModel;
 use DateTime;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PenerimaBansosSeeder extends Seeder

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 
 class Pengajuan extends Model
@@ -32,7 +33,8 @@ class Pengajuan extends Model
      */
     protected $fillable = [
         'no_kk',
-        'status_pengajuan'
+        'status_pengajuan',
+        'message',
     ];
 
     /**
@@ -43,6 +45,16 @@ class Pengajuan extends Model
     public function keluarga()
     {
         return $this->belongsTo(Keluarga::class, 'no_kk', 'no_kk');
+    }
+
+    /**
+     * Model relationship with Keluarga
+     * 
+     * @return HasOne
+     */
+    public function notification()
+    {
+        return $this->hasOne(Notification::class, 'no_kk', 'no_kk');
     }
 
     public static function getIncomingDataAmount()

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Penerima Bantuan Sosial')
 
 @section('content_header')
     <header>
@@ -8,8 +8,15 @@
     </header>
 @endsection
 
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Penerima Bansos'
+    ])
+@endsection
+
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         {{ $dataTable->table() }}
     </div>
     <div class="modal fade" id="modalInformasiPenerima" tabindex="-1" aria-labelledby="modalInformasiPenerimaLabel"
@@ -73,7 +80,6 @@
                     </div>
 
                     <div class="row mt-3">
-                        {{-- <div class="col-md-6"> --}}
                         <div class="card">
                             <div class="card-header">
                                 <h5>Data Bantuan Sosial</h5>
@@ -97,7 +103,6 @@
                                 </table>
                             </div>
                         </div>
-                        {{-- </div> --}}
                     </div>
                 </div>
             </div>
@@ -106,7 +111,13 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
+    <style>
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -15px;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')

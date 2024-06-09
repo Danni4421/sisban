@@ -1,13 +1,4 @@
 /*--------------------------------------------------------------
-# Color Pallete
-----------------------------------------------------------------*/
-:root {
-    --magenta: #3f43fd;
-    --magenta-hover: #3235dd;
-    --secondary: #808080;
-}
-
-/*--------------------------------------------------------------
 # Fonts
 --------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -120,52 +111,6 @@ h6 {
     [data-aos-delay] {
         transition-delay: 0 !important;
     }
-}
-
-/*--------------------------------------------------------------
-# Custom Button
---------------------------------------------------------------*/
-.btn {
-    border: none;
-    padding: 12px 24px !important;
-    border-radius: 8px;
-    text-decoration: none !important;
-    cursor: pointer;
-}
-
-.btn-main {
-    background-color: var(--magenta) !important;
-    border: 1px solid var(--magenta) !important;
-    color: #fff !important;
-}
-
-.btn-main:hover {
-    background-color: var(--magenta-hover) !important;
-}
-
-.btn-outline-main {
-    border: none;
-    padding: 7px 24px;
-    border-radius: 8px;
-    border: 1px solid var(--magenta);
-    background: none;
-    color: var(--magenta);
-    transition: 0.3s;
-}
-
-.btn-outline-main:hover {
-    border: none;
-    padding: 7px 24px;
-    border: 1px solid var(--magenta);
-    background-color: var(--magenta);
-    color: #fff;
-    transition: 0.3s;
-}
-
-.btn-secondary {
-    background-color: var(--secondary) !important;
-    border: 1px solid var(--secondary) !important;
-    color: #fff !important;
 }
 
 /*--------------------------------------------------------------
@@ -323,7 +268,8 @@ h6 {
     min-width: 100px;
 }
 
-.navbar .dropdown ul a {
+.navbar .dropdown ul a,
+.navbar .dropdown ul button {
     padding: 10px 20px;
     font-size: 14px;
     font-weight: 500;
@@ -331,13 +277,18 @@ h6 {
     color: #01036f;
 }
 
-.navbar .dropdown ul a i {
+.navbar .dropdown ul a i,
+.navbar .dropdown ul button i {
     font-size: 12px;
 }
 
 .navbar .dropdown ul a:hover,
 .navbar .dropdown ul .active:hover,
-.navbar .dropdown ul li:hover > a {
+.navbar .dropdown ul li:hover > a,
+.navbar .dropdown ul button:hover,
+.navbar .dropdown ul li:hover > button {
+    background: none;
+    transition: .3s;
     color: #1acc8d;
 }
 

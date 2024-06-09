@@ -1,10 +1,22 @@
 (function () {
   const DATA_THEME = localStorage.getItem('theme');
   const DATA_FONT = localStorage.getItem('font');
-  $('html').attr('data-theme', DATA_THEME);
-  $('html').attr('data-font', DATA_FONT);
-  
-  if (DATA_THEME == "light") {
+
+  if (DATA_THEME === null) {
+    $('html').attr('data-theme', 'light');
+  } else {
+    $('html').attr('data-theme', DATA_THEME);
+  }
+
+  if (DATA_FONT === null) {
+    $('html').attr('data-font', 'roboto');
+  } else {
+    $('html').attr('data-font', DATA_FONT);
+  }
+
+  const THEME_ATTR = document.querySelector('html').getAttribute('data-theme');
+
+  if (THEME_ATTR === "light") {
     $('#main-sidebar').removeClass('sidebar-dark-primary')
     $('#main-sidebar').addClass('sidebar-light-primary')
     $('body').removeClass('dark-mode');

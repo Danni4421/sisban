@@ -7,8 +7,7 @@
 @endsection
 
 @section('content')
-  <div class="container-fluid">
-    <hr>
+  <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
     <ul>
       <li>
         <div class="item-header">
@@ -16,7 +15,7 @@
           <span>Tampilan</span>
         </div>
         <div class="py-3">
-          <div class="mb-3 d-flex gap-3 align-items-center w-25">
+          <div class="mb-3 d-flex gap-3 align-items-center w-50">
             <span>Tema</span>
             <select class="form-select" id="form-theme">
               <option value="light">Light</option>
@@ -31,7 +30,7 @@
           <span>Jenis Font</span>
         </div>
         <div class="py-3">
-          <div class="mb-3 d-flex gap-3 align-items-center w-25">
+          <div class="mb-3 d-flex gap-3 align-items-center w-50">
             <span>Font</span>
             <select id="form-font" class="form-select">
               <option value="roboto">Roboto</option>

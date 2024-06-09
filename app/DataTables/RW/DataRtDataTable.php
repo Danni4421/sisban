@@ -27,9 +27,13 @@ class DataRtDataTable extends DataTable
             ->addColumn('aksi', function (Pengurus $pengurus) {
                 return "
                     <div class='d-flex gap-2'>
-                        <a href='data-rt/{$pengurus->id_pengurus}/edit' class='btn btn-warning'>Edit</a>
+                        <a href='data-rt/{$pengurus->id_pengurus}/edit' class='btn btn-warning'>
+                            <i class='fa-regular fa-pen-to-square'></i>
+                            <span class='ms-1'>Edit</span>
+                        </a>
                         <button type='button' onclick='confirmDelete({$pengurus->id_pengurus})' class='btn btn-danger'>
-                            Hapus
+                            <i class='fa-solid fa-trash'></i> 
+                            <span class='ms-1'>Hapus</span>
                         </button>
                     </div>
                 ";
@@ -59,7 +63,7 @@ class DataRtDataTable extends DataTable
                     ->selectStyleSingle()
                     ->addTableClass('table-striped table-hover')
                     ->language(asset('assets/dataTable/lang/id.json'))
-                    ->buttons([]);;
+                    ->buttons([]);
     }
 
     /**

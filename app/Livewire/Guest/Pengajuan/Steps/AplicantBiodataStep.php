@@ -2,28 +2,25 @@
 
 namespace App\Livewire\Guest\Pengajuan\Steps;
 
-use App\Jobs\DeleteImageJob;
 use App\Traits\Guest\Pengajuan\Forms\AplicantForm;
-use Livewire\WithFileUploads;
 use Spatie\LivewireWizard\Components\StepComponent;
+use Livewire\WithFileUploads;
 
 class AplicantBiodataStep extends StepComponent
 {
-    use WithFileUploads, AplicantForm;    
+    use WithFileUploads, AplicantForm;
 
     public function __construct()
     {
-        $this->load_from_session();
+        $this->load_data();
     }
 
     public function save()
     {
         $this->validate();
         $this->validate_image_request();
+        $this->put_data();
 
-        DeleteImageJob::dispatch($this->foto_ktp)->delay(now()->addMinutes(120));
-
-        $this->put_form_session();
 
         $this->nextStep();
     }

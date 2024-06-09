@@ -19,7 +19,8 @@ return new class extends Migration
             $table->smallInteger('tahun_beli');
             $table->timestamps();
 
-            $table->foreign('no_kk')->references('no_kk')->on('keluarga');
+            $table->foreign('no_kk')->references('no_kk')->on('keluarga')
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

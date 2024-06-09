@@ -3,15 +3,10 @@
 namespace App\DataTables\RT\Bansos;
 
 use App\Models\PenerimaBansos;
-use App\Models\Pengajuan;
-use App\Models\Recipient;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class RecipientDataTable extends DataTable
@@ -28,11 +23,13 @@ class RecipientDataTable extends DataTable
             ->addColumn('aksi', function (PenerimaBansos $penerimaBansos) {
                 return "
                     <div class='d-flex gap-2'>
-                        <button type='button' onclick='confirmDelete({$penerimaBansos->bansos->id_bansos}, {$penerimaBansos->warga->nik})' class='btn btn-danger'>
-                            Hapus
-                        </button>
                         <button type='button' class='btn btn-primary detail_pengajuan_button' onclick='getDetailPenerima({$penerimaBansos->warga->nik}, {$penerimaBansos->bansos->id_bansos})' data-bs-toggle='modal' data-bs-target='#modalInformasiPenerima' data-pengajuan='{$penerimaBansos->warga->nik}' data-bansos='{$penerimaBansos->bansos->id_bansos}'>
-                            <i class='fas fa-search'></i>
+                             <i class='fas fa-search'></i>
+                            <span class='ms-1'>Lihat</span>
+                        </button>
+                        <button type='button' onclick='confirmDelete({$penerimaBansos->bansos->id_bansos}, {$penerimaBansos->warga->nik})' class='btn btn-danger'>
+                           <i class='fa-solid fa-trash'></i> 
+                            <span class='ms-1'>Hapus</span>
                         </button>
                     </div>";
             })
@@ -64,7 +61,7 @@ class RecipientDataTable extends DataTable
             ->selectStyleSingle()
             ->addTableClass('table-striped table-hover')
             ->language(asset('assets/dataTable/lang/id.json'))
-            ->buttons([]);;
+            ->buttons([]);
     }
 
     /**

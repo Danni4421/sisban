@@ -16,15 +16,15 @@ class AuthenticationController extends Controller
 
     public function authenticate(Request $request)
     {
-        $validator = Validator::make(request()->all(), 
+        $validator = Validator::make(
+            request()->all(),
             rules: [
-                'email' => 'required|email:dns|exists:users,email',
+                'username' => 'required|exists:users,username',
                 'password' => 'required|min:8|max:20'
             ],
             messages: [
-                'email.required' => 'Wajib untuk mengisi Email.',
-                'email.email' => 'Email tidak valid.',
-                'email.exists' => 'Email tidak valid.',
+                'username.required' => 'Wajib untuk mengisi Email.',
+                'username.exists' => 'Username tidak ditemukan.',
                 'password.required' => 'Wajib untuk mengisi Password.',
                 'password.min' => 'Minimal password harus 8 karakter.',
                 'password.max' => 'Maximal password harus 20 karakter.'
@@ -35,10 +35,10 @@ class AuthenticationController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        $credentials = $request->only('email','password');
+        $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            session()->regenerate();
 
             $authedUser = Auth::user();
 
@@ -46,11 +46,24 @@ class AuthenticationController extends Controller
 
             if ($authedUser->level === 'admin') {
                 return redirect()->intended('/admin/data-rw');
+            } else if($authedUser->level === 'warga') {
+                return redirect()->intended('/');
             }
 
             return redirect()->intended($authedUser->level);
         }
 
-        return redirect()->to('login')->with('error', 'Login gagal.');
+        return redirect()->to('login')->with('error', 'Login gagal');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        session()->invalidate();
+
+        session()->regenerateToken();
+
+        return redirect()->to('/login');
     }
 }

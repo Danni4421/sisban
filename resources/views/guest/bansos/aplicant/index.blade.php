@@ -5,10 +5,10 @@
 
 @section('content')
     <main class="p-md-5 p-1">
-        <div class="pt-5">
+        <div class="p-3">
             <div class="section-title w-100" data-aos="fade-up">
                 <h2>Informasi</h2>
-                <p>Daftar Pemohon Bantuan Sosial</p>
+                <p class="fs-3">Daftar Pemohon Bantuan Sosial</p>
             </div>  
 
             @if (isset($success))
@@ -16,15 +16,13 @@
             @endif
 
 
-            <div>
-                {{ $dataTable->table() }}
-            </div>
+            {{ $dataTable->table() }}
         </div>
     </main>
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/dataTable/css/dataTable.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
 @endpush
 
 @push('scripts')

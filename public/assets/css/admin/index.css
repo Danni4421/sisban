@@ -5,6 +5,7 @@
     --bg-account-hover: #fbfafa;
     --bg-account-dark: #2a2e31;
     --bg-account-dark-hover: #222427;
+    --red-danger: #da4f4a;
 }
 
 [data-theme="dark"] {
@@ -20,29 +21,33 @@
     canvas {
         color: #ffffff !important;
     }
+
+    .content > .container-fluid {
+        background: #343a40 !important;
+    }
 }
 
 [data-theme="light"] {
     #sidebar-navigation {
-        background: #fff;
+        background: #fff !important;
     }
 }
 
 [data-font="roboto"] {
     * {
-        font-family: 'Roboto';
+        font-family: "Roboto";
     }
 }
 
 [data-font="poppins"] {
     * {
-        font-family: 'Poppins';
+        font-family: "Poppins";
     }
 }
 
 [data-font="monserrat"] {
     * {
-        font-family: 'Monserrat';
+        font-family: "Monserrat";
     }
 }
 
@@ -53,6 +58,64 @@
         font-family: "Font Awesome 6 Free" !important;
     }
 }
+
+.loader-container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);;
+    z-index: 9999999999;
+    transition: .5s;
+    animation: fadeIn .4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.loader {
+    width: 64px;
+    height: 64px;
+    position: relative;
+    background-image:
+      linear-gradient(#FFF 16px, transparent 0) ,
+      linear-gradient(#36a2eb 16px, transparent 0) ,
+      linear-gradient(#36a2eb 16px, transparent 0) ,
+      linear-gradient(#FFF 16px, transparent 0);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: left top , left bottom , right top , right bottom;
+    animation: rotate 1s linear infinite;
+  }
+  @keyframes rotate {
+    0% {
+      width: 64px;
+      height: 64px;
+      transform: rotate(0deg)
+    }
+    50% {
+      width: 30px;
+      height: 30px;
+      transform: rotate(180deg)
+    }
+    100% {
+      width: 64px;
+      height: 64px;
+      transform: rotate(360deg)
+    }
+  }
+
 
 .sidebar-account {
     display: flex;
@@ -88,7 +151,6 @@
     bottom: -2.225rem;
 }
 
-
 .sidebar-account:hover {
     background: var(--bg-account-hover);
     cursor: pointer;
@@ -108,4 +170,151 @@
     width: 2.5rem;
     height: 2.5rem;
     box-shadow: none !important;
+}
+
+.badge {
+    padding: 0.5em 0.9em !important;
+    border-radius: 18px !important;
+    font-weight: bolder !important;
+}
+
+.badge.text-bg-warning {
+    color: rgb(185, 147, 22) !important;
+    background-color: rgb(255, 255, 189) !important;
+}
+
+.badge.text-bg-success {
+    color: #1b771b !important;
+    background-color: #cfffcf !important;
+}
+
+.badge.text-bg-danger {
+    color: #c03530 !important;
+    background-color: #ffcccb !important;
+}
+
+.btn {
+    border-radius: 2.3rem !important;
+}
+
+.btn-primary {
+    color: rgb(0, 0, 255);
+    background-color: rgb(235, 235, 255);
+    border: none;
+    transition: .5s !important;
+}
+
+.btn-warning {
+    color: rgb(255, 153, 0);
+    background-color: rgb(250, 236, 189);
+    border: none;
+    transition: .5s !important;
+}
+
+.btn-warning:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 208, 0);
+    border: none;
+    transition: .5s !important;
+}
+
+.btn-danger {
+    color: rgb(190, 19, 19);
+    background-color: rgb(240, 182, 174);
+    border: none;
+    transition: .5s !important;
+}
+
+.btn-success {
+    color: rgb(57, 138, 20);
+    background-color: rgb(179, 240, 174);
+    border: none;
+    transition: .5s !important;
+}
+
+.btn-info {
+    color: rgb(20, 110, 138);
+    background-color: rgb(174, 221, 240);
+    border: none;
+    transition: .5s !important;
+}
+
+.btn-secondary {
+    color: rgb(93, 93, 93) !important;
+    background-color: rgb(225, 225, 225) !important;
+    border: none !important;
+    transition: .5s !important;
+}
+
+.btn-secondary:hover {
+    color: rgb(225, 225, 225) !important;
+    background-color: rgb(93, 93, 93) !important;
+    border: none !important;
+    transition: .5s !important;
+}
+
+.notification_amount {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--red-danger);
+    position: absolute;
+    top: .045rem;
+    right: .175rem;
+    border-radius: 50%;
+    color: white;
+    font-weight: bolder;
+    font-size: .575rem;
+}
+
+.notification_popup {
+    display: none;
+    right: -9rem;
+}
+
+#amount_per_rt {
+    width: 16px;
+    height: 16px;
+    background-color: var(--red-danger);
+    font-size: .6rem;
+    color: var(--bg-account);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#account_dropdown_menu_link {
+    cursor: pointer;
+}
+
+#account_dropdown_menu {
+    position: absolute !important;
+    top: 2.5rem;
+    left: -2.5rem;
+}
+
+.profile_text {
+    font-size: .89rem;
+    color: #3c3c3c;
+}
+
+.profile_text:hover {
+    text-decoration-line: underline;
+}
+
+.is_active_image_profile {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    border-radius: 50%;
+    top: 1.9rem;
+    right: .23rem;
+    background-color: #0ed60e;
+}
+
+#profile_image:hover {
+    filter: brightness(0.8) !important;
+    transition: .3s;
 }

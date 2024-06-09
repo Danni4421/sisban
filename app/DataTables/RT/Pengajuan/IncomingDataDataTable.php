@@ -42,10 +42,19 @@ class IncomingDataDataTable extends DataTable
      */
     public function query(Pengajuan $model): QueryBuilder
     {
-        return $model->newQuery()->with('keluarga.kepala_keluarga')
-        ->whereHas('keluarga', function ($query) {
-            $query->where('rt', substr(auth()->user()->pengurus->jabatan, 2));
-        });
+        $query = $model->newQuery()->with('keluarga.kepala_keluarga');
+
+        if (session()->has('redirected_notification_rt_no_kk')) {
+            $no_kk = session()->get('redirected_notification_rt_no_kk');
+            session()->remove('redirected_notification_rt_no_kk');
+            $query->where('pengajuan.no_kk', $no_kk);
+        } else {
+            $query->whereHas('keluarga', function ($query) {
+                $query->where('rt', substr(auth()->user()->pengurus->jabatan, 2));
+            });
+        }
+
+        return $query;
     }
 
     /**
@@ -54,13 +63,13 @@ class IncomingDataDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('pengajuan_masuk_rt')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->selectStyleSingle()
-                    ->addTableClass('table-striped table-hover')
-                    ->language(asset('assets/dataTable/lang/id.json'))
-                    ->buttons([]);
+            ->setTableId('pengajuan_masuk_rt')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->selectStyleSingle()
+            ->addTableClass('table-striped table-hover')
+            ->language(asset('assets/dataTable/lang/id.json'))
+            ->buttons([]);
     }
 
     /**
@@ -70,9 +79,9 @@ class IncomingDataDataTable extends DataTable
     {
         return [
             Column::make('keluarga.no_kk')->title('Nomor Kartu Keluarga'),
-            Column::make('keluarga.kepala_keluarga.nama')->title('Nama'),
-            Column::make('keluarga.kepala_keluarga.umur')->title('Umur'),
-            Column::make('keluarga.kepala_keluarga.no_hp')->title('Nomor Telepon'),
+            Column::make('keluarga.kepala_keluarga.nama')->title('Nama')->orderable(false),
+            Column::make('keluarga.kepala_keluarga.umur')->title('Umur')->orderable(false),
+            Column::make('keluarga.kepala_keluarga.no_hp')->title('Nomor Telepon')->orderable(false),
             Column::computed('status_pengajuan')->title('Status Pengajuan'),
             Column::computed('aksi')->title('Aksi')
         ];

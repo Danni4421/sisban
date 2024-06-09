@@ -1,18 +1,18 @@
 {
     "emptyTable": "Tidak ada data yang tersedia pada tabel ini",
     "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-    "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
+    "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
     "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
-    "lengthMenu": "Tampilkan _MENU_ entri",
+    "lengthMenu": "Tampilkan _MENU_",
     "loadingRecords": "Sedang memuat...",
     "processing": "Sedang memproses...",
-    "search": "Cari:",
+    "search": "<i class='fa-solid fa-magnifying-glass'></i>",
     "zeroRecords": "Tidak ditemukan data yang sesuai",
     "paginate": {
         "first": "<<",
         "last": ">>",
-        "next": "Selanjutnya",
-        "previous": "Sebelumnya"
+        "next": ">",
+        "previous": "<"
     },
     "aria": {
         "sortAscending": ": aktifkan untuk mengurutkan kolom ke atas",
@@ -228,20 +228,6 @@
         "renameTitle": "Ganti nama State"
     },
     "decimal": ",",
-    "searchPlaceholder": "kata kunci pencarian",
-    "select": {
-        "cells": {
-            "1": "1 sel dipilih",
-            "_": "%d sel dipilih"
-        },
-        "columns": {
-            "1": "1 kolom dirpilih",
-            "_": "%d kolom dipilih"
-        },
-        "rows": {
-            "1": "1 baris dipilih",
-            "_": "%d baris dipilih"
-        }
-    },
+    "searchPlaceholder": "Masukkan Kata Kunci Pencarian",
     "thousands": "."
 } 

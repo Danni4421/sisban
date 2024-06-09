@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PenerimaBansosSeeder::class);
         $this->call(PengajuanSeeder::class);
         $this->call(FaqSeeder::class);
+        $this->call(NotificationSeeder::class);
+        $this->call(AlternativeSeeder::class);
     }
 }

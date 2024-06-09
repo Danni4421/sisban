@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Data RT')
+@section('title', 'Ubah Rukun Tetangga')
 
 @section('content_header')
     <h1>Edit RT</h1>
 @endsection
 
 @section('content')
-    <main class="px-3 pb-4">
-        <hr>
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <section>
             <form class="form" action="{{ url('/admin/data-rt/' . $rt->id_pengurus) }}" method="POST">
                 @csrf
@@ -35,12 +34,18 @@
                         aria-describedby="Alamat Pengurus" maxlength="100" value="{{ old('alamat', $rt->alamat) }}">
                 </div>
                 <div class="table-footer">
-                    <button type="submit" class="btn btn-warning">Ubah</button>
-                    <a href="{{ url('admin/data-rt') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ url('admin/data-rt') }}" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span class="ms-1">Kembali</span>
+                    </a>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        <span class="ms-1">Ubah</span>
+                    </button>
                 </div>
             </form>
         </section>
-    </main>
+    </div>
 
 @endsection
 

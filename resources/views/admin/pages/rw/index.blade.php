@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <form action="{{ url('admin/data-rw/' . $rw->id_pengurus) }}" method="POST">
             @csrf
             @method('PUT')

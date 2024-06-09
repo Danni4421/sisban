@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Penerima Bantuan Sosial')
 
 @section('content_header')
     <header>
@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <div class="d-flex justify-content-end">
             <a href="{{ url('admin/bansos/penerima/create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah
                 Penerima Bansos</a>
@@ -18,6 +18,13 @@
     </div>
 @endsection
 
+@push('styles')
+    <style>
+        .dataTables_wrapper {
+            margin-top: -70px;
+        }
+    </style>
+@endpush
 @push('scripts')
     <script>
         function confirmDelete(idBansos, nik) {
