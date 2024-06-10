@@ -49,25 +49,25 @@ class DashboardController extends Controller
             'rt' => (object) [
                 'title' => 'Jumlah RT',
                 'backgroundColor' => 'primary',
-                'icon' => 'bxs-user',
+                'icon' => 'fa-solid fa-users',
                 'data' => 7
             ],
             'incomingData' => (object) [
                 'title' => 'Data Masuk',
                 'backgroundColor' => 'danger',
-                'icon' => 'bx-book-content',
+                'icon' => 'fa-solid fa-scroll',
                 'data' => $incomingDataAmount
             ],
             'acceptedData' => (object) [
                 'title' => 'Data Disetujui',
                 'backgroundColor' => 'success',
-                'icon' => 'bx-user-pin',
+                'icon' => 'fa-solid fa-book',
                 'data' => $acceptedDataAmount
             ],
             'sendtedData' => (object) [
                 'title' => 'Data Diajukan',
                 'backgroundColor' => 'warning',
-                'icon' => 'bx-file',
+                'icon' => 'fa-solid fa-paper-plane',
                 'data' => $sendtedDataAmount
             ]
         ];
