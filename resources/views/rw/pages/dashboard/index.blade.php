@@ -26,7 +26,7 @@
                 <p>{{ $card->title }}</p>
               </div>
               <div class="icon">
-                <i class="bx {{$card->icon}}"></i>
+                <i class="{{$card->icon}}"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>

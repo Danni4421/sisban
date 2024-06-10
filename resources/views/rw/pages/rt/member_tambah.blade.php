@@ -27,7 +27,7 @@
                         placeholder="Masukkan Username, Contoh: sariadi" required>
 
                     @error('username')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
                     
                 </div>
@@ -38,7 +38,7 @@
                         placeholder="Masukkan Email, Contoh: sariadi@mail.com" required>
 
                     @error('email')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
 
                 </div>
@@ -55,7 +55,7 @@
                     </ul>
 
                     @error('password')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
 
                 </div>
@@ -66,7 +66,7 @@
                         placeholder="Masukkan Jabatan Pengurus Contoh: RT021, RT022" required>
 
                     @error('jabatan')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
 
                 </div>
@@ -77,7 +77,7 @@
                         placeholder="Masukkan Nama Pengurus, Contoh: Sariadi Mulyadi" required>
 
                     @error('nama')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
 
                 </div>
@@ -88,7 +88,7 @@
                         placeholder="Masukkan Nomor Telepon, Contoh: 081234567891" required>
 
                     @error('nomor_telepon')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
 
                 </div>
@@ -100,7 +100,7 @@
                         required>
 
                     @error('alamat')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
 
                 </div>
