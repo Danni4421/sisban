@@ -8,20 +8,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar mt-3">
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                    aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar" style="border-radius: 0 !important;">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <nav class="mt-2" id="sidebar-navigation">
+        <nav id="sidebar-navigation">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 @foreach ($NAVIGATION_ITEM as $menu)

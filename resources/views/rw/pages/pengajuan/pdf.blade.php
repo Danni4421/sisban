@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informasi Pengajuan Bansos</title>
-    <!-- Load CSS Bootstrap jika diperlukan -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
     <style>
         /* CSS untuk desain kop surat */
@@ -51,39 +49,22 @@
 
         <!-- Bagian tanggal surat -->
         <?php
+            use Carbon\Carbon;
+
             $tempat = "Malang";
-            // Daftar nama bulan dalam bahasa Indonesia
-            $bulan = array(
-                1 => "Januari",
-                2 => "Februari",
-                3 => "Maret",
-                4 => "April",
-                5 => "Mei",
-                6 => "Juni",
-                7 => "Juli",
-                8 => "Agustus",
-                9 => "September",
-                10 => "Oktober",
-                11 => "November",
-                12 => "Desember"
-            );
-            // Mendapatkan tanggal saat ini
-            $tanggal = date("d");
-            // Mendapatkan bulan saat ini (dalam angka)
-            $bulanSaatIni = date("n");
-            // Mendapatkan tahun saat ini
-            $tahun = date("Y");
-            // Format tanggal dalam bahasa Indonesia
-            $tanggalSaatIni = $tanggal . " " . $bulan[$bulanSaatIni] . " " . $tahun;
+
+            $romawi = [
+                'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'
+            ];
         ?>
-        <p>{{ $tempat }}, {{ $tanggalSaatIni }}</p>
+        <p>{{ $tempat }}, {{ Carbon::now()->locale('id')->translatedFormat('l, d F Y') }}</p>
 
         <!-- Bagian kiri surat -->
         <table class="table">
             <tr>
                 <td>Nomor</td>
                 <td> : </td>
-                <td>XXX/XXX/XXX</td>
+                <td>{{$pengajuan->nomor_surat}}/SP/{{$romawi[$pengajuan->updated_at->month]}}/{{$pengajuan->updated_at->year}}</td>
             </tr>
             <tr>
                 <td>Lampiran</td>
@@ -144,7 +125,7 @@
         <div class="bagian-kanan">
             <p>Kepala Dusun Ketangi</p>
             <br><br>
-            <strong><u>SISYANTO</u></strong>
+            <strong><u>{{ $rw->nama }}</u></strong>
         </div>
 
         <!-- Lampiran -->
@@ -158,9 +139,13 @@
 
     <div class="foto-lampiran">
         <!-- Foto KK -->
-        <img src="{{ $pengajuan->keluarga->foto_kk }}" alt="Foto KK" style="object-position: center; width: 90%">
+        @if (!is_null($pengajuan->keluarga->foto_kk))
+            <img src="{{ asset($pengajuan->keluarga->foto_kk) }}" alt="Foto KK" style="object-position: center; width: 90%">
+        @endif
         <!-- Foto KTP -->
-        <img src="{{ $pengajuan->keluarga->foto_ktp }}" alt="Foto KTP" style="object-position: center; width: 90%">
+        @if (!is_null($pengajuan->keluarga->foto_ktp))
+            <img src="{{ asset($pengajuan->keluarga->foto_ktp) }}" alt="Foto KTP" style="object-position: center; width: 90%">
+        @endif
     </div>
 
 </body>

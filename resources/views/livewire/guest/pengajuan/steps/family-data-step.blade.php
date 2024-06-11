@@ -1,7 +1,7 @@
 <div>
     @livewire('guest.wizard', ['formIndex' => 2])
 
-    <div class="row mx-auto my-5 form-step">
+    <div class="row mx-auto mt-4 form-step p-3" style="background: #fff">
         <div class="col-12 col-6 mb-3">
             {{-- Input Nomor KK --}}
             <x-form-group errorName="no_kk" class="mb-3">
@@ -116,14 +116,14 @@
             </button>
         </div>
 
-        <div class="row mx-auto mt-3 gap-3">
-            <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
-            <x-button type="button" class="col" action="saveAndNext" buttonColor="main">Selanjutnya</x-button>
-        </div>
-
         <x-button type="button" class="col btn-save shadow-sm" action="save" buttonColor="main">
             <i class='bx bxs-save' ></i>
         </x-button>
+    </div>
+
+    <div class="mx-auto mt-4 row gap-2 form-step">
+        <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
+        <x-button type="button" class="col" action="saveAndNext" buttonColor="main">Selanjutnya</x-button>
     </div>
 
     <script>

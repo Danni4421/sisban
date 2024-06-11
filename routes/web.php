@@ -55,7 +55,7 @@ Route::middleware('guest')->group(function () {
  *****************************************/
 
 
- /*****************************************
+/*****************************************
  * GUEST ROUTES
  *****************************************/
 Route::middleware('guest')->group(function () {
@@ -70,7 +70,7 @@ Route::middleware('guest')->group(function () {
  *****************************************/
 
 
- /*****************************************
+/*****************************************
  * WARGA ROUTES
  *****************************************/
 Route::get('/pengajuan', [GuestPengajuanController::class, 'main'])->middleware(['auth', 'auth.session'])->name('guest.pengajuan');
@@ -108,13 +108,14 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
       Route::get('/alternative', [RTAlternativeBansosController::class, 'main'])->name('rt.bansos.alternative');
       Route::post('/kandidat/list', [RTAlternativeBansosController::class, 'list_candidate'])->name('rt.bansos.kandidat.list');
       Route::post('/kandidat/{no_kk}/to/alternative', [RTAlternativeBansosController::class, 'to_alternative'])->name('rt.bansos.kandidat.to.alternative');
-      Route::prefix('/alternative/{no_kk}')->group(function() {
+      Route::prefix('/alternative/{no_kk}')->group(function () {
         Route::get('/fuzzy', [RTAlternativeBansosController::class, 'fuzzy_calculation'])->name('rt.bansos.fuzzy');
         Route::delete('/', [RTAlternativeBansosController::class, 'delete_alternative'])->name('rt.bansos.alternative.delete');
       });
     });
     Route::resource('/penerima', RTBansosRecipientsController::class)->names([
-      'index' => 'rt.penerima.bansos'
+      'index' => 'rt.penerima.bansos',
+      'create' => 'rt.penerima.bansos.create'
     ]);
     Route::delete('/{id_bansos}/penerima/{nik}', [RTBansosRecipientsController::class, 'delete_recipient'])->name('rt.delete.bansos.recipient');
     Route::post('/penerima/{nik}/{id_bansos}', [RTBansosRecipientsController::class, 'show']);
@@ -185,7 +186,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session', 'level.validate'])->
  * End Admin Routes
  *****************************************/
 
- 
+
 /*****************************************
  * General Routes
  *****************************************/

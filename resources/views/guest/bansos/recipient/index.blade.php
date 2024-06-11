@@ -15,15 +15,10 @@
                 <div>{{ $success }}</div>
             @endif
 
-
             {{ $dataTable->table() }}
         </div>
     </main>
 @endsection
-
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
-@endpush
 
 @push('scripts')
     {{ $dataTable->scripts() }}

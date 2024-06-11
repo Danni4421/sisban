@@ -73,10 +73,10 @@ body {
     top: 0;
     left: 0;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);;
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
-    transition: .5s;
-    animation: fadeIn .4s ease-in-out;
+    transition: 0.5s;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -101,72 +101,31 @@ body {
     width: 64px;
     height: 64px;
     position: relative;
-    background-image:
-      linear-gradient(#FFF 16px, transparent 0) ,
-      linear-gradient(#36a2eb 16px, transparent 0) ,
-      linear-gradient(#36a2eb 16px, transparent 0) ,
-      linear-gradient(#FFF 16px, transparent 0);
+    background-image: linear-gradient(#fff 16px, transparent 0),
+        linear-gradient(#36a2eb 16px, transparent 0),
+        linear-gradient(#36a2eb 16px, transparent 0),
+        linear-gradient(#fff 16px, transparent 0);
     background-repeat: no-repeat;
     background-size: 16px 16px;
-    background-position: left top , left bottom , right top , right bottom;
+    background-position: left top, left bottom, right top, right bottom;
     animation: rotate 1s linear infinite;
-  }
-  @keyframes rotate {
+}
+@keyframes rotate {
     0% {
-      width: 64px;
-      height: 64px;
-      transform: rotate(0deg)
+        width: 64px;
+        height: 64px;
+        transform: rotate(0deg);
     }
     50% {
-      width: 30px;
-      height: 30px;
-      transform: rotate(180deg)
+        width: 30px;
+        height: 30px;
+        transform: rotate(180deg);
     }
     100% {
-      width: 64px;
-      height: 64px;
-      transform: rotate(360deg)
+        width: 64px;
+        height: 64px;
+        transform: rotate(360deg);
     }
-  }
-
-
-.sidebar-account {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 15.625rem;
-    max-height: 4.225rem;
-    height: 40px;
-    padding: 2.4rem 1.2rem;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background: var(--bg-account);
-    font-family: "Roboto", sans-serif;
-    font-size: 0.965rem;
-    font-style: normal;
-}
-
-.collapse-sidebar-account {
-    position: absolute;
-    left: 0;
-    min-width: 15.625rem;
-    min-height: 5rem;
-    transition: bottom 0.2s ease-in-out;
-    bottom: 0;
-}
-
-.collapse-sidebar-account-active {
-    bottom: 4.225rem;
-}
-
-.collapse-sidebar-account-disabled {
-    bottom: -2.225rem;
-}
-
-.sidebar-account:hover {
-    background: var(--bg-account-hover);
-    cursor: pointer;
 }
 
 .user-details {
@@ -214,56 +173,56 @@ body {
     color: rgb(0, 0, 255);
     background-color: rgb(235, 235, 255);
     border: none;
-    transition: .5s !important;
+    transition: 0.5s !important;
 }
 
 .btn-warning {
     color: rgb(255, 153, 0);
     background-color: rgb(250, 236, 189);
     border: none;
-    transition: .5s !important;
+    transition: 0.5s !important;
 }
 
 .btn-warning:hover {
     color: rgb(255, 255, 255);
     background-color: rgb(255, 208, 0);
     border: none;
-    transition: .5s !important;
+    transition: 0.5s !important;
 }
 
 .btn-danger {
     color: rgb(190, 19, 19);
     background-color: rgb(240, 182, 174);
     border: none;
-    transition: .5s !important;
+    transition: 0.5s !important;
 }
 
 .btn-success {
     color: rgb(57, 138, 20);
     background-color: rgb(179, 240, 174);
     border: none;
-    transition: .5s !important;
+    transition: 0.5s !important;
 }
 
 .btn-info {
     color: rgb(20, 110, 138);
     background-color: rgb(174, 221, 240);
     border: none;
-    transition: .5s !important;
+    transition: 0.5s !important;
 }
 
 .btn-secondary {
     color: rgb(93, 93, 93) !important;
     background-color: rgb(225, 225, 225) !important;
     border: none !important;
-    transition: .5s !important;
+    transition: 0.5s !important;
 }
 
 .btn-secondary:hover {
     color: rgb(225, 225, 225) !important;
     background-color: rgb(93, 93, 93) !important;
     border: none !important;
-    transition: .5s !important;
+    transition: 0.5s !important;
 }
 
 .notification_amount {
@@ -274,24 +233,24 @@ body {
     align-items: center;
     background-color: var(--red-danger);
     position: absolute;
-    top: .045rem;
-    right: .175rem;
+    top: 0.045rem;
+    right: 0.175rem;
     border-radius: 50%;
     color: white;
     font-weight: bolder;
-    font-size: .575rem;
+    font-size: 0.575rem;
 }
 
 .notification_popup {
     display: none;
-    right: -9rem;
+    right: -3rem;
 }
 
 #amount_per_rt {
     width: 16px;
     height: 16px;
     background-color: var(--red-danger);
-    font-size: .6rem;
+    font-size: 0.6rem;
     color: var(--bg-account);
     display: flex;
     justify-content: center;
@@ -309,7 +268,7 @@ body {
 }
 
 .profile_text {
-    font-size: .89rem;
+    font-size: 0.89rem;
     color: #3c3c3c;
 }
 
@@ -323,11 +282,11 @@ body {
     position: absolute;
     border-radius: 50%;
     top: 1.9rem;
-    right: .23rem;
+    right: 0.23rem;
     background-color: #0ed60e;
 }
 
 #profile_image:hover {
     filter: brightness(0.8) !important;
-    transition: .3s;
+    transition: 0.3s;
 }

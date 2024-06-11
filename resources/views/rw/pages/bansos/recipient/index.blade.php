@@ -64,8 +64,10 @@
                                 text: "Penerima bansos berhasil dihapus.",
                                 icon: "success"
                             });
+
+                            $('#recipient-table').DataTable.ajax.reload();
                         }
-                    })
+                    });
                 }
             });
         }

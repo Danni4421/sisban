@@ -22,7 +22,7 @@
             <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
         </g>
         <g class="wave3">
-            <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+            <use xlink:href="#wave-path" x="50" y="9" fill="#f6f9fc">
         </g>
     </svg>
 </section>
