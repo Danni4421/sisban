@@ -32,9 +32,9 @@ class PengajuanController extends Controller
 
     public function show(string $no_kk)
     {
-        return Pengajuan::with('keluarga.kepala_keluarga', 'keluarga.anggota_keluarga')
-            ->where('no_kk', $no_kk)
-            ->first();
+        return Pengajuan::with('keluarga.kepala_keluarga', 'keluarga.anggota_keluarga', 'keluarga.hutang')
+        ->where('no_kk', $no_kk)
+        ->first();
     }
 
     public function print_pdf($no_kk)
