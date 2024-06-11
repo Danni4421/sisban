@@ -21,8 +21,8 @@ trait HasSidebarItem
                     'children' => (object) [
                         'beranda' => (object) [
                             'label' => 'Beranda',
-                            'href' => '',
-                            'active' => ['/'],
+                            'href' => '/',
+                            'active' => ['rt'],
                             'func' => 'nav-item',
                             'icon' => 'fa-solid fa-calendar',
                             'with_level' => true
@@ -32,7 +32,7 @@ trait HasSidebarItem
                             'href' => 'keluarga',
                             'icon' => 'fa-solid fa-house',
                             'active' => [
-                                '/keluarga'
+                                'rt/keluarga'
                             ],
                             'with_level' => true
                         ],
@@ -42,10 +42,9 @@ trait HasSidebarItem
                             'icon' => 'fa-solid fa-envelope',
                             'with_level' => true,
                             'active' => [
-                                '/pengajuan',
-                                
-                                '/pengajuan/masuk',
-                                '/pengajuan/disetujui'
+                                'rt/pengajuan',
+                                'rt/pengajuan/masuk',
+                                'rt/pengajuan/disetujui'
                             ],
                             'children' => (object) [
                                 'dataMasuk' => (object) [
@@ -69,7 +68,7 @@ trait HasSidebarItem
                             'href' => 'kandidat',
                             'icon' => 'fa-solid fa-users',
                             'active' => [
-                                '/kandidat'
+                                'rt/kandidat'
                             ],
                             'with_level' => true
                         ],
@@ -78,9 +77,9 @@ trait HasSidebarItem
                             'href' => 'bansos',
                             'icon' => 'fa-solid fa-book',
                             'active' => [
-                                '/bansos',
-                                '/bansos/jenis',
-                                '/bansos/penerima'
+                                'rt/bansos',
+                                'rt/bansos/jenis',
+                                'rt/bansos/penerima'
                             ],
                             'with_level' => true,
                             'children' => (object) [
@@ -111,7 +110,7 @@ trait HasSidebarItem
                             'href' => 'pengaturan',
                             'func' => 'nav-item',
                             'icon' => 'fa-solid fa-gear',
-                            'active' => ['/pengaturan'],
+                            'active' => ['pengaturan'],
                             'with_level' => false,
                         ],
                         'faq' => (object) [
@@ -119,7 +118,7 @@ trait HasSidebarItem
                             'href' => 'faq',
                             'func' => 'nav-item',
                             'icon' => 'far fa-question-circle',
-                            'active' => ['/faq'],
+                            'active' => ['faq'],
                             'with_level' => false,
                         ]
                     ]
@@ -138,7 +137,7 @@ trait HasSidebarItem
                             'href' => '',
                             'func' => 'nav-item',
                             'icon' => 'far fa-calendar-alt',
-                            'active' => ['/'],
+                            'active' => ['rw'],
                             'with_level' => true,
                         ],
                         'data-rt' => (object) [
@@ -146,7 +145,7 @@ trait HasSidebarItem
                             'href' => 'data-rt',
                             'func' => 'nav-item',
                             'icon' => 'fas fa-users',
-                            'active' => ['/data-rt'],
+                            'active' => ['rw/data-rt'],
                             'with_level' => true,
                         ],
                         'pemohon' => (object) [
@@ -154,7 +153,7 @@ trait HasSidebarItem
                             'href' => 'pemohon',
                             'icon' => 'far fa-envelope',
                             'active' => [
-                                '/pemohon',
+                                'rw/pemohon',
                             ],
                             'with_level' => true,
                         ],
@@ -164,8 +163,8 @@ trait HasSidebarItem
                             'icon' => 'fas fa-boxes',
                             'with_level' => true,
                             'active' => [
-                                '/bansos',
-                                '/bansos/jenis'
+                                'rw/bansos',
+                                'rw/bansos/jenis'
                             ],
                         ],
                         'penerima' => (object) [
@@ -174,8 +173,8 @@ trait HasSidebarItem
                             'icon' => 'fas fa-book',
                             'with_level' => true,
                             'active' => [
-                                '/bansos',
-                                '/bansos/penerima'
+                                'rw/bansos',
+                                'rw/bansos/penerima'
                             ],
                         ]
                     ],
@@ -189,7 +188,7 @@ trait HasSidebarItem
                             'href' => 'pengaturan',
                             'func' => 'nav-item',
                             'icon' => 'fas fa-cog',
-                            'active' => ['/pengaturan'],
+                            'active' => ['pengaturan'],
                             'with_level' => false,
                         ],
                         'faq' => (object) [
@@ -197,7 +196,7 @@ trait HasSidebarItem
                             'href' => 'faq',
                             'func' => 'nav-item',
                             'icon' => 'far fa-question-circle',
-                            'active' => ['/faq'],
+                            'active' => ['faq'],
                             'with_level' => false,
                         ]
                     ]
@@ -214,7 +213,7 @@ trait HasSidebarItem
                         'data-rw' => (object) [
                             'label' => 'Data RW',
                             'href' => 'data-rw',
-                            'active' => ['/data-rw'],
+                            'active' => ['admin/data-rw'],
                             'func' => 'nav-item',
                             'icon' => 'far fa-folder',
                             'with_level' => true,
@@ -222,7 +221,7 @@ trait HasSidebarItem
                         'data-rt' => (object) [
                             'label' => 'Data RT',
                             'href' => 'data-rt',
-                            'active' => ['/data-rt'],
+                            'active' => ['admin/data-rt'],
                             'func' => 'nav-item',
                             'icon' => 'fas fa-newspaper',
                             'with_level' => true,
@@ -231,7 +230,7 @@ trait HasSidebarItem
                             'label' => 'Pemohon',
                             'href' => 'pemohon',
                             'icon' => 'far fa-envelope',
-                            'active' => ['/pemohon'],
+                            'active' => ['admin/pemohon'],
                             'with_level' => true,
                         ],
                         'bansos' => (object) [
@@ -239,9 +238,9 @@ trait HasSidebarItem
                             'href' => 'bansos/penerima',
                             'icon' => 'fas fa-book',
                             'active' => [
-                                '/bansos',
-                                '/bansos/jenis',
-                                '/bansos/penerima'
+                                'admin/bansos',
+                                'admin/bansos/jenis',
+                                'admin/bansos/penerima'
                             ],
                             'children' => (object) [
                                 'jenis' => (object) [
@@ -269,7 +268,7 @@ trait HasSidebarItem
                         'pertanyaan' => (object) [
                             'label' => 'Pertanyaan',
                             'href' => 'pertanyaan',
-                            'active' => ['/pertanyaan'],
+                            'active' => ['admin/pertanyaan'],
                             'func' => 'nav-item',
                             'icon' => 'far fa-folder',
                             'with_level' => true,

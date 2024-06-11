@@ -8,6 +8,7 @@ use App\Models\Bansos;
 use App\Models\Keluarga;
 use App\Models\PenerimaBansos;
 use App\Traits\ManageBansos;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -48,7 +49,12 @@ class RecipientController extends Controller
      */
     public function store(Request $request)
     {
-        $this->addPenerimaBansos($request);
+        $response = $this->addPenerimaBansos($request);
+
+        if (!$response->success) {
+            return redirect()->back()->with('error', $response->error);
+        }
+
         return redirect('rw/bansos/penerima');
     }
 
@@ -65,7 +71,7 @@ class RecipientController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(int $id_bansos, string $nik)
-    {   
+    {
         $nik = Crypt::decrypt($nik);
         $bansos = Bansos::all();
         $kandidatPenerima = $this->getKandidatPenerimaBansos();
@@ -86,9 +92,9 @@ class RecipientController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, int $id_bansos, string $nik)
-    {   
+    {
         $nik = Crypt::decrypt($nik);
-        
+
         $this->updatePenerimaBansos(request: $request, nik: $nik, idBansos: $id_bansos);
         return redirect('rw/bansos/penerima');
     }

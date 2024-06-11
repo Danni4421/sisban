@@ -8,9 +8,11 @@ use App\Models\PenerimaBansos;
 use App\Models\Pengajuan;
 use App\Models\Pengurus;
 use App\Traits\ManagePengajuan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 
 class PengajuanController extends Controller
 {
@@ -31,23 +33,24 @@ class PengajuanController extends Controller
     public function show(string $no_kk)
     {
         return Pengajuan::with('keluarga.kepala_keluarga', 'keluarga.anggota_keluarga')
-        ->where('no_kk', $no_kk)
-        ->first();
+            ->where('no_kk', $no_kk)
+            ->first();
     }
 
     public function print_pdf($no_kk)
     {
         $pengajuan = Pengajuan::where('no_kk', $no_kk)->first();
+        $rw = Auth::user()->pengurus;
 
         Pengajuan::where('no_kk', $no_kk)->update(['is_printed' => 1]);
-    
+
         $pdf = new Dompdf();
-        $pdf->loadHtml(view('rw.pages.pengajuan.pdf', compact('pengajuan')));
-    
+        $pdf->loadHtml(view('rw.pages.pengajuan.pdf', compact('pengajuan', 'rw')));
+
         $pdf->render();
 
         $filename = 'dokumen_' . $no_kk . '.pdf';
-    
+
         return $pdf->stream($filename);
-    }    
+    }
 }

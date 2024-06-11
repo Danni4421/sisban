@@ -38,7 +38,7 @@ class AplicantsDataTable extends DataTable
                         break;
                     case "proses":
                         $pengajuanClass = "warning";
-                        break;    
+                        break;
                 }
 
                 return "<span class='badge text-bg-{$pengajuanClass}'>{$pengajuan->status_pengajuan}</span>";
@@ -50,7 +50,7 @@ class AplicantsDataTable extends DataTable
     {
         return $model->newQuery()->with(['keluarga' => function ($query) {
             $query->with('kepala_keluarga');
-        }]);
+        }])->orderBy('created_at', 'desc');
     }
 
     public function html(): HtmlBuilder

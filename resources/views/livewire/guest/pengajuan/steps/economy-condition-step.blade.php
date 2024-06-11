@@ -1,7 +1,7 @@
 <div>
     @livewire('guest.wizard', ['formIndex' => 4])
     
-    <div class="mx-auto my-5 form-step">
+    <div class="mx-auto my-4 form-step p-3" style="background: #fff">
         
         {{-- Form --}}
         <div class="row">
@@ -185,16 +185,16 @@
             <i class="fas fa-plus"></i>
             Tambah Data Hutang
         </button>
-        
-        {{-- Navigation Buttons --}}
-        <div class="row mx-auto mt-3 gap-3">
-            <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
-            <x-button type="button" class="col" action="saveAndNext" buttonColor="main">Ajukan</x-button>
-        </div>
 
         <x-button type="button" class="col btn-save shadow-sm" action="save" buttonColor="main">
             <i class='bx bxs-save' ></i>
         </x-button>
+    </div>
+
+    {{-- Navigation Buttons --}}
+    <div class="mx-auto mt-4 row gap-2 form-step">
+        <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
+        <x-button type="button" class="col" action="saveAndNext" buttonColor="main">Ajukan</x-button>
     </div>
 
     <script>

@@ -6,8 +6,10 @@ use App\Models\Bansos;
 use App\Models\Keluarga;
 use App\Models\PenerimaBansos;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 
 trait ManageBansos
 {
@@ -106,7 +108,7 @@ trait ManageBansos
   /**
    * @param Request $request
    * 
-   * @return void
+   * @return object | void
    */
   public function addPenerimaBansos($request)
   {
@@ -118,12 +120,51 @@ trait ManageBansos
 
     $nik = Crypt::decrypt($request->nik);
 
+    Validator::make(
+      data: [
+        'nik' => $nik,
+      ],
+      rules: [
+        'nik' => 'exists:warga,nik'
+      ],
+      messages: [
+        'nik.exists' => 'Nomor Induk Kependudukan tidak ada.'
+      ]
+    );
+
+    $bansos = Bansos::find($request->id_bansos);
+    $penerimaBansos = PenerimaBansos::where([
+      'id_bansos' => $request->id_bansos,
+    ])->count();
+
+    if (($bansos->jumlah - ($penerimaBansos + 1)) < 0) {
+      return (object) [
+        'success' => false,
+        'error' => 'Penerima bansos melebihi jumlah bansos, Harap hapus salah satu penerima sebelumnya!.'
+      ];
+    }
+
+    $penerimaBansos = PenerimaBansos::where([
+      'nik' => $nik,
+      'id_bansos' => $request->id_bansos
+    ])->first();
+
+    if (!is_null($penerimaBansos)) {
+      return (object) [
+        'success' => false,
+        'error' => 'Penerima sudah menerima bansos tersebut.'
+      ];
+    }
 
     PenerimaBansos::create([
       'nik' => $nik,
       'id_bansos' => $request->id_bansos,
       'tanggal_penerimaan' => $request->tanggal_penerimaan
     ]);
+
+    return (object) [
+      'success' => true,
+    ];
   }
 
   /**

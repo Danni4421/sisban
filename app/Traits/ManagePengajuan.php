@@ -15,10 +15,16 @@ trait ManagePengajuan
      */
     public function updatePengajuanToApproved($no_kk)
     {
+        $last_inserted_nomor_surat = Pengajuan::max('nomor_surat');
+
         Pengajuan::whereNotIn('status_pengajuan', ['diterima', 'ditolak'])
             ->where('no_kk', $no_kk)
             ->first()
-            ->update(['status_pengajuan' => 'diterima']);
+            ->update([
+                'status_pengajuan' => 'diterima',
+                'nomor_surat' => $last_inserted_nomor_surat + 1,
+                'updated_at' => now()
+            ]);
 
         Keluarga::where('no_kk', $no_kk)
             ->update([

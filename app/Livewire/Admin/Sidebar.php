@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Livewire\Admin;
 
 use App\Models\User;
 use App\Traits\HasSidebarItem;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -41,29 +42,16 @@ class Sidebar extends Component
                 $this->activeItem = session()->get('activeSidebarItem');
             }
 
-            if (is_null($this->activeItem)) {
-                switch ($this->level) {
-                    case "rt" || "rw":
-                        $this->activeItem = '/';
-
-                        break;
-                    case "admin":
-                        $this->activeItem = "/data-rw";
-                        break;
-                    default:
-                        $this->activeItem = null;
-                }
-            }
-
+            $this->activeItem = Route::current()->uri();
             $this->init(level: $this->level);
         }
     }
 
     public function updateActiveItem($selectedActiveItem, $withLevel = false)
-    {   
-        $this->activeItem = $selectedActiveItem;
+    {
+        // $this->activeItem = $selectedActiveItem;
 
-        session()->put('activeSidebarItem', $selectedActiveItem);
+        // session()->put('activeSidebarItem', $selectedActiveItem);
 
         return redirect()->to($withLevel ? $this->level . $selectedActiveItem : $selectedActiveItem);
     }

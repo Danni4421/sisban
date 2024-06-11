@@ -3,12 +3,12 @@
     
     @props(['inputs'])
 
-    <div class="mx-auto mb-5 form-step">
+    <div class="mx-auto mt-4 form-step p-3" style="background: #fff">
         @foreach ($inputs as $formIndex)
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 mb-3">
                     {{-- Header Form Per Index --}}
-                    <h6 class="text-secondary mt-5">
+                    <h6 class="text-secondary">
                         Data Aset Keluarga
                         <span>(Aset {{ $formIndex + 1 }})</span>
                     </h6>
@@ -90,16 +90,16 @@
             <i class="fas fa-stream"></i>
             Tambah Data Aset
         </button>
-        
-        {{-- Navigation Buttons --}}
-        <div class="row mx-auto mt-5 gap-3">
-            <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
-            <x-button type="button" class="col" action="saveAndNext" buttonColor="main">Selanjutnya</x-button>
-        </div>
 
         <x-button type="button" class="col btn-save shadow-sm" action="save" buttonColor="main">
-            <i class='bx bxs-save' ></i>
+            <i class='bx bxs-save'></i>
         </x-button>
+    </div>
+
+    {{-- Navigation Buttons --}}
+    <div class="mx-auto mt-4 row gap-2 form-step">
+        <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
+        <x-button type="button" class="col" action="saveAndNext" buttonColor="main">Selanjutnya</x-button>
     </div>
 
     <script>

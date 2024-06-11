@@ -34,6 +34,7 @@ class Pengajuan extends Model
     protected $fillable = [
         'no_kk',
         'status_pengajuan',
+        'nomor_surat',
         'message',
     ];
 

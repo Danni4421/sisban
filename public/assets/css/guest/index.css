@@ -288,7 +288,7 @@ h6 {
 .navbar .dropdown ul button:hover,
 .navbar .dropdown ul li:hover > button {
     background: none;
-    transition: .3s;
+    transition: 0.3s;
     color: #1acc8d;
 }
 
@@ -1736,10 +1736,10 @@ body {
     top: 0;
     left: 0;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);;
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
-    transition: .5s;
-    animation: fadeIn .4s ease-in-out;
+    transition: 0.5s;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -1764,30 +1764,29 @@ body {
     width: 64px;
     height: 64px;
     position: relative;
-    background-image:
-      linear-gradient(#FFF 16px, transparent 0) ,
-      linear-gradient(#383bbd 16px, transparent 0) ,
-      linear-gradient(#383bbd 16px, transparent 0) ,
-      linear-gradient(#FFF 16px, transparent 0);
+    background-image: linear-gradient(#fff 16px, transparent 0),
+        linear-gradient(#383bbd 16px, transparent 0),
+        linear-gradient(#383bbd 16px, transparent 0),
+        linear-gradient(#fff 16px, transparent 0);
     background-repeat: no-repeat;
     background-size: 16px 16px;
-    background-position: left top , left bottom , right top , right bottom;
+    background-position: left top, left bottom, right top, right bottom;
     animation: rotate 1s linear infinite;
-  }
-  @keyframes rotate {
+}
+@keyframes rotate {
     0% {
-      width: 64px;
-      height: 64px;
-      transform: rotate(0deg)
+        width: 64px;
+        height: 64px;
+        transform: rotate(0deg);
     }
     50% {
-      width: 30px;
-      height: 30px;
-      transform: rotate(180deg)
+        width: 30px;
+        height: 30px;
+        transform: rotate(180deg);
     }
     100% {
-      width: 64px;
-      height: 64px;
-      transform: rotate(360deg)
+        width: 64px;
+        height: 64px;
+        transform: rotate(360deg);
     }
-  }
+}

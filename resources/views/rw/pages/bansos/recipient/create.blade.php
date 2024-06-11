@@ -17,6 +17,13 @@
 
 @section('content')
     <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
+        @if (session()->has('error'))
+            @livewire('admin.alert-message', [
+                'class' => 'danger', 
+                'message' => session()->get('error')
+            ])
+        @endif  
+
         <form class="form" action="{{ url('rw/bansos/penerima') }}" method="POST">
             @csrf
             <div class="mb-3">
@@ -24,8 +31,8 @@
                 <select class="form-select" id="nik" name="nik" aria-label="Penerima Bantuan Sosial">
                     <option selected value="">Pilih Calon Penerima Bansos</option>
                     @foreach ($members as $member)
-                        <option value="{{ $member->kepala_keluarga->nik }}">
-                            {{ $member->no_kk }} - {{ $member->kepala_keluarga->nama }}
+                        <option value="{{ Crypt::encrypt($member->kepala_keluarga->nik) }}">
+                            {{ $member->kepala_keluarga->nama }}
                         </option>
                     @endforeach
                 </select>
@@ -61,8 +68,14 @@
 
             </div>
             <div class="table-footer">
-                <button type="submit" class="btn btn-primary" id="submit_button">Tambah</button>
-                <a href="{{ url('rw/bansos/penerima') }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ url('rw/bansos/penerima') }}" class="btn btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span class="ms-1">Kembali</span>
+                </a>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="ms-1">Tambah</span>
+                </button>
             </div>
         </form>
     </div>

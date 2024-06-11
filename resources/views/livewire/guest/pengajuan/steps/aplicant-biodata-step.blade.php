@@ -1,7 +1,7 @@
 <div>
     @livewire('guest.wizard', ['formIndex' => 1])
 
-    <div class="row mx-auto my-5 form-step">
+    <div class="row mx-auto mt-4 form-step p-3" style="background: #fff">
         <div class="col-12 col-sm-6">
             {{-- Input NIK --}}
             <x-form-group errorName="nik" class="mb-4">
@@ -132,9 +132,8 @@
                 </div>
             </div>
         </x-form-group>
-
-        <div class="px-3">
-            <x-button type="button" class="w-100" action="save" buttonColor="main">Selanjutnya</x-button>
-        </div>
+    </div>
+    <div class="mx-auto mt-4 form-step">
+        <x-button type="button" class="w-100" action="save" buttonColor="main">Selanjutnya</x-button>
     </div>
 </div>
