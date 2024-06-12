@@ -47,14 +47,14 @@ input[type="search"] {
 .dataTables_wrapper .row:nth-child(3) {
     overflow: auto !important;
 }
-    
+
 .dataTables_wrapper .row:nth-child(3) div {
-    margin: 0 !important;  
+    margin: 0 !important;
     padding: 0 !important;
     overflow-x: auto;
 }
 
-.dataTables_length  {
+.dataTables_length {
     width: 0 !important;
 }
 
@@ -81,7 +81,7 @@ input[type="search"] {
 .dataTables_filter > label > input {
     width: 285px !important;
     border-radius: 16px;
-    padding: 12px 22px !important;
+    padding: 22px !important;
 }
 
 .dataTables_filter > label > input::placeholder {

@@ -182,7 +182,7 @@
 
         {{-- CTA Button Tambah Hutang --}}
         <button type="button" wire:click="addHutang" class="btn btn-main d-flex align-items-center gap-2">
-            <i class="fas fa-plus"></i>
+            <i class='bx bx-list-plus fs-3'></i>
             Tambah Data Hutang
         </button>
 

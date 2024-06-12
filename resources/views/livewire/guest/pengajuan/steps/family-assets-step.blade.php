@@ -87,7 +87,7 @@
         
         {{-- CTA Button Tambah Form Aset --}}
         <button type="button" wire:click="addInput" class="btn btn-main d-flex align-items-center gap-2">
-            <i class="fas fa-stream"></i>
+            <i class='bx bx-list-plus fs-3'></i>
             Tambah Data Aset
         </button>
 
