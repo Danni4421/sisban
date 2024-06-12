@@ -111,7 +111,7 @@
             </div>
 
             <button type="button" wire:click="addInput" class="btn btn-main d-flex align-items-center gap-2">
-                <i class="fas fa-user-plus"></i>
+                <i class='bx bx-user-plus fs-3'></i>
                 Tambah Data Keluarga
             </button>
         </div>

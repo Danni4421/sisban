@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xl-5 col-lg-6 d-flex justify-content-center align-items-stretch" data-aos="fade-right">
-        <img src="{{ asset('assets/img/details-1.png') }}" style="width: 510px;" class="img-fluid" alt="logo"
+        <img src="{{ asset('assets/img/hero-background.png') }}" style="width: 510px;" class="img-fluid" alt="logo"
             style="margin-left: 100px; margin-top: 80px;">
     </div>
 

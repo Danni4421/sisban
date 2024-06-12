@@ -134,6 +134,8 @@
         </x-form-group>
     </div>
     <div class="mx-auto mt-4 form-step">
-        <x-button type="button" class="w-100" action="save" buttonColor="main">Selanjutnya</x-button>
+        <x-button type="button" class="w-100 d-flex align-items-center justify-content-center" action="save" buttonColor="main">
+            <span>Selanjutnya</span>
+        </x-button>
     </div>
 </div>
