@@ -393,7 +393,7 @@
             </div>
         </div>
 
-        <div class="row mx-auto px-3 gap-3">
+        <div class="row mx-auto gap-3">
             <x-button type="button" class="col" action="previousStep" buttonColor="secondary">Kembali</x-button>
             <x-button type="button" class="col" action="$dispatch('submitPopUp')" buttonColor="main">Submit</x-button>
         </div>

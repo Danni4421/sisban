@@ -28,10 +28,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <section class="col-12 mx-auto" id="image">
-                            <img id="modal_foto_kk" class="w-100">
+                        <section class="col-12 d-flex justify-content-center" id="image">
+                            <img src="{{ asset('assets/img/bansos-box.svg') }}" id="modal_foto_kk" class="mx-auto" width="297px" height="210px">
                         </section>
-                        <section class="col-12">
+                        <section class="col-12 mt-5">
                             <table class="table table-striped">
                                 <tr>
                                     <th>No KK</th>
@@ -131,7 +131,10 @@
         function updateInformasiPermohonan(pengajuan) {
             const kepalaKeluarga = pengajuan.keluarga.kepala_keluarga;
 
-            $('#modal_foto_kk').attr('src', `{{ asset('assets/${pengajuan.keluarga.foto_kk}') }}`)
+            if (pengajuan.keluarga.foto_kk !== "NULL") {
+                $('#modal_foto_kk').attr('src', `{{ asset('assets/${pengajuan.keluarga.foto_kk}') }}`);
+            }
+
             $('#modal_no_kk').text(pengajuan.no_kk);
             $('#modal_nik_kepala_keluarga').text(kepalaKeluarga.nik);
             $('#modal_nama_kepala_keluarga').text(kepalaKeluarga.nama);
@@ -139,15 +142,16 @@
             $('#modal_daya_listrik').text(pengajuan.keluarga.daya_listrik);
             $('#modal_biaya_listrik').text(pengajuan.keluarga.biaya_listrik);
             $('#modal_biaya_air').text(pengajuan.keluarga.biaya_air);
-            $('#modal_hutang').text(pengajuan.keluarga.jumlah_hutang);
+            $('#modal_hutang').text(pengajuan.keluarga.hutang);
             $('#modal_pengeluaran').text(pengajuan.keluarga.pengeluaran);
         }
 
         function setAnggotaKeluarga(anggota_keluarga) {
             $('#modal_anggota_keluarga').html('');
+
             anggota_keluarga.forEach((anggota) => {
                 $('#modal_anggota_keluarga').append(`
-                    <div class="col">
+                    <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">

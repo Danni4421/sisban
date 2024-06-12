@@ -87,10 +87,7 @@ class AlternativeBansosController extends Controller
          * If the alternative is less than equal jumlah bansos, Then save the alternative
          * Else return to calculate the alternative
          */
-        if (count($alternatives) <= $bansos->jumlah) {
-            $new_alternative->save();
-            return response()->json(['success' => true]);
-        }
+        $new_alternative->save();
 
         /**
          * Assign alternative data
@@ -166,7 +163,7 @@ class AlternativeBansosController extends Controller
         ]);
 
         $alternative = Warga::with('keluarga')->where([
-            'no_kk' => $no_kk, 
+            'no_kk' => $no_kk,
             'level' => 'kepala_keluarga'
         ])->first();
 

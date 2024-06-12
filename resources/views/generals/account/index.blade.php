@@ -76,6 +76,11 @@
                             </div>
 
                             <div class="group">
+                                <label for="username">Username</label>
+                                <span>{{ $user->username }}</span>
+                            </div>
+
+                            <div class="group">
                                 <label for="name">Nama</label>
                                 <span>{{ $user->pengurus->nama }}</span>
                             </div>
@@ -111,6 +116,16 @@
                                         @csrf
                                         @method('PUT')
                                         <div class="mb-3">
+                                            <label for="username">Username</label>
+                                            <input 
+                                                type="text" 
+                                                class="form-control" 
+                                                id="username" 
+                                                name="username" 
+                                                value="{{ $user->username }}"
+                                            >
+                                        </div>
+                                        <div class="mb-3">
                                             <label for="nama">Nama</label>
                                             <input 
                                                 type="text" 
@@ -129,6 +144,16 @@
                                                 name="email" 
                                                 value="{{ $user->email }}"
                                             >
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password">Password</label>
+                                            <input 
+                                                type="password" 
+                                                class="form-control" 
+                                                id="password" 
+                                                name="password"
+                                            >
+                                            <div id="password_help" class="form-text">Masukkan password jika ingin mengganti.</div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="nomor_telepon">Nomor Telepon</label>
@@ -153,8 +178,14 @@
                                         </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        <i class="fa-solid fa-x"></i>
+                                        <span class="ms-1">Tutup</span>
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa-regular fa-floppy-disk"></i>
+                                        <span class="ms-1">Simpan</span>
+                                    </button>
                                 </div>
                             </form>
                         </div>

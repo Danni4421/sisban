@@ -42,7 +42,7 @@ class Sidebar extends Component
                 $this->activeItem = session()->get('activeSidebarItem');
             }
 
-            $this->activeItem = Route::current()->uri();
+            $this->activeItem = Route::current()->getName();
             $this->init(level: $this->level);
         }
     }

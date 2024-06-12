@@ -45,14 +45,7 @@
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password"
-                        aria-describedby="Password Pengurus" maxlength="20" value="{{ old('password') }}"
-                        placeholder="Masukkan Password, Contoh: s4riad1._" required>
-                    <ul style="font-family: ubuntu; font-size: .8rem" class="mt-3">
-                        <li id="password_contain_uppercase">Terdiri dari huruf besar</li>
-                        <li id="password_contain_lowercase">Terdiri dari huruf kecil</li>
-                        <li id="password_contain_number">Terdiri dari angka</li>
-                        <li id="password_contain_char">Terdiri dari karakter</li>
-                    </ul>
+                        aria-describedby="Password Pengurus" maxlength="20" value="{{ old('password') }}" />
 
                     @error('password')
                         @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
@@ -109,7 +102,7 @@
                         <i class="fa-solid fa-arrow-left"></i>
                         <span class="ms-1">Kembali</span>
                     </a>
-                    <button type="submit" class="btn btn-primary" id="submit_button" disabled>
+                    <button type="submit" class="btn btn-primary" id="submit_button">
                         <i class="fa-solid fa-plus"></i>
                         <span class="ms-1">Tambah</span>
                     </button>
@@ -118,16 +111,3 @@
         </section>
     </div>
 @endsection
-
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/admin/form.css') }}">
-@endpush
-
-@push('scripts')
-    <script src="{{ asset('assets/js/admin/form/password-validator.js') }}"></script>
-    <script>
-        $('#password').on('input', function(e) {
-            $('#submit_button').prop('disabled', !validatePasswordValue(e.target.value));
-        });
-    </script>
-@endpush

@@ -98,7 +98,8 @@ Route::prefix('rt')->middleware(['auth', 'auth.session', 'level.validate'])->gro
   });
   Route::resource('/keluarga', RTKeluargaController::class)->names([
     'index' => 'rt.keluarga',
-    'create' => 'rt.keluarga.create'
+    'create' => 'rt.keluarga.create',
+    'edit' => 'rt.keluarga.edit'
   ]);
   Route::prefix('/bansos')->group(function () {
     Route::get('/jenis', [RTBansosTypesController::class, 'index'])->name('rt.bansos');
@@ -141,10 +142,13 @@ Route::prefix('rw')->middleware(['auth', 'auth.session', 'level.validate'])->gro
   Route::get('/pengajuan/{no_kk}/cetak', [RWPengajuanController::class, 'print_pdf'])->name('rw.pengajuan.cetak');
   Route::prefix('/bansos')->group(function () {
     Route::resource('/jenis', RWBansosTypeController::class)->names([
-      'index' => 'rw.bansos'
+      'index' => 'rw.bansos',
+      'create' => 'rw.bansos.create',
+      'edit' => 'rw.bansos.edit'
     ]);
     Route::resource('/penerima', RWBansosRecipientsController::class)->names([
-      'index' => 'rw.penerima.bansos'
+      'index' => 'rw.penerima.bansos',
+      'create' => 'rw.penerima.bansos.add'
     ]);
     Route::get('/{id_bansos}/penerima/{nik}/edit', [RWBansosRecipientsController::class, 'edit'])->name('rw.page.edit.bansos.recipient');
     Route::put('/{id_bansos}/penerima/{nik}', [RWBansosRecipientsController::class, 'update'])->name('rw.update.bansos.recipient');

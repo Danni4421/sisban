@@ -55,7 +55,7 @@ class PemohonDataTable extends DataTable
                             <span class='ms-1'>Cetak</span>
                         </button>";
                 }
-                
+
                 return $action . "</div>";
             })
             ->rawColumns(['status_pengajuan', 'aksi']);
@@ -66,7 +66,8 @@ class PemohonDataTable extends DataTable
      */
     public function query(Pengajuan $model): QueryBuilder
     {
-        $query = $model->newQuery()->with('keluarga.kepala_keluarga')->orderBy('created_at', 'desc');
+        $query = $model->newQuery()->with('keluarga.kepala_keluarga')
+            ->orderBy('pengajuan.created_at', 'desc')->distinct();
 
         if (session()->has('redirected_notification_rw_no_kk')) {
             $data = session()->get('redirected_notification_rw_no_kk');
@@ -83,13 +84,13 @@ class PemohonDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('pemohon-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->selectStyleSingle()
-                    ->addTableClass('table-striped table-hover')
-                    ->language(asset('assets/dataTable/lang/id.json'))
-                    ->buttons([]);
+            ->setTableId('pemohon-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->selectStyleSingle()
+            ->addTableClass('table-striped table-hover')
+            ->language(asset('assets/dataTable/lang/id.json'))
+            ->buttons([]);
     }
 
     /**
@@ -98,11 +99,11 @@ class PemohonDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('no_kk')->title('Nomor Kartu Keluarga'),
-            Column::make('keluarga.kepala_keluarga.nama')->title('Nama'),
-            Column::make('keluarga.kepala_keluarga.umur')->title('Umur'),
-            Column::make('keluarga.kepala_keluarga.no_hp')->title('Nomor Telepon'),
-            Column::make('keluarga.rt')->title('RT'),
+            Column::make('no_kk')->title('Nomor Kartu Keluarga')->orderable()->searchable(),
+            Column::make('keluarga.kepala_keluarga.nama')->title('Nama')->orderable(false)->searchable(),
+            Column::make('keluarga.kepala_keluarga.umur')->title('Umur')->orderable(false)->searchable(),
+            Column::make('keluarga.kepala_keluarga.no_hp')->title('Nomor Telepon')->orderable(false)->searchable(),
+            Column::make('keluarga.rt')->title('RT')->orderable(false)->searchable(),
             Column::computed('status_pengajuan')->title('Status Pengajuan'),
             Column::computed('aksi')->title('Aksi')
         ];

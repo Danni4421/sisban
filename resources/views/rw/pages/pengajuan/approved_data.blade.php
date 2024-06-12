@@ -28,8 +28,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <section class="col-12 mx-auto" id="image">
-                            <img id="modal_foto_kk" class="w-100">
+                        <section class="col-12 d-flex justify-content-center" id="image">
+                            <img src="{{ asset('assets/img/bansos-box.svg') }}" id="modal_foto_kk" class="mx-auto" width="297px" height="210px">
                         </section>
                         <section class="col-12">
                             <table class="table table-striped">
@@ -148,7 +148,7 @@
             $('#modal_anggota_keluarga').html('');
             anggota_keluarga.forEach((anggota) => {
                 $('#modal_anggota_keluarga').append(`
-                    <div class="col">
+                    <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">

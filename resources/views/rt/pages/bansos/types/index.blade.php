@@ -28,7 +28,7 @@
                     <div class="card card-primary card-outline shadow-md" style="min-height: 140px;">
                         <div class="d-flex align-items-center">
                             <div>
-                                <img src="{{ asset('assets/img/details-1.png') }}" class="img-fluid rounded-start"
+                                <img src="{{ asset('assets/img/bansos-box.svg') }}" class="img-fluid rounded-start"
                                     alt="Gambar Bansos" style="width: 100px; height: 100px;">
                             </div>
                             <div class="flex-grow-1">

@@ -58,13 +58,13 @@ class AlternativeDataTable extends DataTable
     public function query(Alternative $model): QueryBuilder
     {
         $query = $model->newQuery()
-            ->with('kandidat.kepala_keluarga')
+            ->with('kandidat.kepala_keluarga', 'bansos')
             ->whereHas('kandidat', function ($query) {
                 $query->where('rt', substr(auth()->user()->pengurus->jabatan, 2));
             })
             ->where('id_bansos', $this->id_bansos)
             ->orderByDesc('is_qualified');
-        
+
         foreach ($this->getColumns() as $column) {
             if ($column->orderable) {
                 $query->orderBy($column->data);

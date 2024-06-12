@@ -2,15 +2,11 @@
 
 namespace App\DataTables\RW;
 
-use App\Models\DataRt;
 use App\Models\Pengurus;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class DataRtDataTable extends DataTable
@@ -23,7 +19,7 @@ class DataRtDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->setRowId('')
+            ->setRowId('nama')
             ->addColumn('aksi', function (Pengurus $pengurus) {
                 return "
                     <div class='d-flex gap-2'>
@@ -57,13 +53,14 @@ class DataRtDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('datart-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->selectStyleSingle()
-                    ->addTableClass('table-striped table-hover')
-                    ->language(asset('assets/dataTable/lang/id.json'))
-                    ->buttons([]);
+            ->setTableId('datart-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(1, 'asc')
+            ->selectStyleSingle()
+            ->addTableClass('table-striped table-hover')
+            ->language(asset('assets/dataTable/lang/id.json'))
+            ->buttons([]);
     }
 
     /**
@@ -72,10 +69,10 @@ class DataRtDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('nama')->title('Nama'),
-            Column::make('jabatan')->title('Jabatan'),
-            Column::make('nomor_telepon')->title('Nomor Telepon'),
-            Column::make('alamat')->title('Alamat'),
+            Column::make('nama')->title('Nama')->orderable()->searchable(),
+            Column::make('jabatan')->title('Jabatan')->orderable()->searchable(),
+            Column::make('nomor_telepon')->title('Nomor Telepon')->orderable()->searchable(),
+            Column::make('alamat')->title('Alamat')->orderable()->searchable(),
             Column::computed('aksi')->title('Aksi'),
         ];
     }

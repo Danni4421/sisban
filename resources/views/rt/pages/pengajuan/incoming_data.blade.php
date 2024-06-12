@@ -28,10 +28,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <section class="col-12 col-lg-4" id="image">
-                            <img src="" alt="nothing" width="300" height="400">
+                        <section class="col-12 d-flex justify-content-center" id="image">
+                            <img src="{{ asset('assets/img/bansos-box.svg') }}" id="modal_foto_kk" class="mx-auto" width="297px" height="210px">
                         </section>
-                        <section class="col-12 col-lg-8">
+                        <section class="col-12 mt-5">
                             <table class="table table-striped">
                                 <tr>
                                     <th>No KK</th>
@@ -132,6 +132,10 @@
         function updateInformasiPermohonan(pengajuan) {
             const kepalaKeluarga = pengajuan.keluarga.kepala_keluarga;
 
+            if (pengajuan.keluarga.foto_kk !== "NULL") {
+                $('#modal_foto_kk').attr('src', `{{ asset('assets/${pengajuan.keluarga.foto_kk}') }}`);
+            }
+
             $('#modal_no_kk').text(pengajuan.no_kk);
             $('#modal_nik_kepala_keluarga').text(kepalaKeluarga.nik);
             $('#modal_nama_kepala_keluarga').text(kepalaKeluarga.nama);
@@ -148,13 +152,9 @@
 
             anggota_keluarga.forEach((anggota) => {
                 $('#modal_anggota_keluarga').append(`
-                    <div class="col">
+                    <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="d-flex align-items-center">
-                                <div>
-                                    <img src="${anggota.foto_kk}" class="img-fluid rounded-start"
-                                        alt="Gambar Bansos">
-                                </div>
                                 <div class="flex-grow-1">
                                     <div class="card-body">
                                         <table class="table">

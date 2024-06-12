@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Database\Eloquent\Collection;
 
-trait ManageRT {
+trait ManageRT
+{
 
   /**
    * Getting RT Users
@@ -17,95 +18,95 @@ trait ManageRT {
    * 
    * @return Collection
    */
-   private function getRT($id = null)
-   {
-      $pengurusQuery = Pengurus::select('id_pengurus', 'id_user', 'jabatan', 'nama', 'nomor_telepon', 'alamat')
-          ->with('user')
-          ->whereHas('user', function ($query) {
-              $query->where('level', 'rt');
-          });
+  private function getRT($id = null)
+  {
+    $pengurusQuery = Pengurus::select('id_pengurus', 'id_user', 'jabatan', 'nama', 'nomor_telepon', 'alamat')
+      ->with('user')
+      ->whereHas('user', function ($query) {
+        $query->where('level', 'rt');
+      });
 
-      if (!is_null($id)) {
-        return $pengurusQuery->where('id_pengurus', $id)->first();
-      }
-
-      return $pengurusQuery->get(); 
+    if (!is_null($id)) {
+      return $pengurusQuery->where('id_pengurus', $id)->first();
     }
 
-    /**
-     * Adding pengurus RT
-     * 
-     * @param Request $request
-     * 
-     * @return void
-     */
-    private function storeRT($request)
-    {
-      $user_level = 'rt';
+    return $pengurusQuery->get();
+  }
 
-      $request->validate([
-        'username' => ['required', 'string', 'min:4', 'max:50', 'unique:users,username'],
-        'email' => ['required', 'email:dns', 'max:100', 'unique:users,email'],
-        'password' => ['required', 'min:8', 'max:20'],
-        'jabatan' => ['required', 'string', 'max:11', 'unique:pengurus,jabatan'],
-        'nama' => ['required', 'string', 'max:100'],
-        'nomor_telepon' => ['required', 'max:13', 'unique:pengurus,nomor_telepon'],
-        'alamat' => ['required', 'string', 'max:100']
-      ]);
+  /**
+   * Adding pengurus RT
+   * 
+   * @param Request $request
+   * 
+   * @return void
+   */
+  private function storeRT($request)
+  {
+    $user_level = 'rt';
 
-      $newUser = User::make([
-        'username' => $request->username,
-        'email' => $request->email,
-        'password' => bcrypt($request->password),
-        'level' => $user_level,
-      ]); 
+    $request->validate([
+      'username' => ['required', 'string', 'min:4', 'max:50', 'unique:users,username'],
+      'email' => ['required', 'email:dns', 'max:100', 'unique:users,email'],
+      'password' => ['required', 'min:8', 'max:20', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+      'jabatan' => ['required', 'string', 'max:11', 'unique:pengurus,jabatan'],
+      'nama' => ['required', 'string', 'max:100'],
+      'nomor_telepon' => ['required', 'max:13', 'unique:pengurus,nomor_telepon'],
+      'alamat' => ['required', 'string', 'max:100']
+    ]);
 
-      $newUser->save();
+    $newUser = User::make([
+      'username' => $request->username,
+      'email' => $request->email,
+      'password' => bcrypt($request->password),
+      'level' => $user_level,
+    ]);
 
-      Pengurus::create([
-        'id_user' => $newUser->id_user,
-        'jabatan' => $request->jabatan,
-        'nama' => $request->nama,
-        'nomor_telepon' => $request->nomor_telepon,
-        'alamat' => $request->alamat,
-      ]);
-    }
+    $newUser->save();
 
-    /**
-     * Update pengurus RT
-     * 
-     * @param Request $request
-     * @param int $id
-     * 
-     * @return void
-     */
-    private function updateRT($request, $id)
-    {
-      $request->validate([
-        'jabatan' => ['required', 'string', 'max:11', 'unique:pengurus,jabatan,' . $id . ',id_pengurus'],
-        'nama' => ['required', 'string', 'max:100'],
-        'nomor_telepon' => ['required', 'max:13', 'unique:pengurus,nomor_telepon,' . $id . ',id_pengurus'],
-        'alamat' => ['required', 'string', 'max:100']
-      ]);
+    Pengurus::create([
+      'id_user' => $newUser->id_user,
+      'jabatan' => $request->jabatan,
+      'nama' => $request->nama,
+      'nomor_telepon' => $request->nomor_telepon,
+      'alamat' => $request->alamat,
+    ]);
+  }
 
-      Pengurus::find($id)->update([
-        'jabatan' => $request->jabatan,
-        'nama' => $request->nama,
-        'nomor_telepon' => $request->nomor_telepon,
-        'alamat' => $request->alamat,
-      ]);
-    }
+  /**
+   * Update pengurus RT
+   * 
+   * @param Request $request
+   * @param int $id
+   * 
+   * @return void
+   */
+  private function updateRT($request, $id)
+  {
+    $request->validate([
+      'jabatan' => ['required', 'string', 'max:11', 'unique:pengurus,jabatan,' . $id . ',id_pengurus'],
+      'nama' => ['required', 'string', 'max:100'],
+      'nomor_telepon' => ['required', 'max:13', 'unique:pengurus,nomor_telepon,' . $id . ',id_pengurus'],
+      'alamat' => ['required', 'string', 'max:100']
+    ]);
+
+    Pengurus::find($id)->update([
+      'jabatan' => $request->jabatan,
+      'nama' => $request->nama,
+      'nomor_telepon' => $request->nomor_telepon,
+      'alamat' => $request->alamat,
+    ]);
+  }
 
 
-    /**
-     * Delete pengurus RT
-     * 
-     * @param int $id
-     * 
-     * @return void
-     */
-    private function deleteRT($id)
-    {
-      Pengurus::with('user')->find($id)->delete();
-    }
+  /**
+   * Delete pengurus RT
+   * 
+   * @param int $id
+   * 
+   * @return void
+   */
+  private function deleteRT($id)
+  {
+    Pengurus::with('user')->find($id)->delete();
+  }
 }

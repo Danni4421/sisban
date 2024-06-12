@@ -129,8 +129,7 @@ class PreviewFormStep extends StepComponent
         // Dispatching web browser to show success alert.
         $this->dispatch('showAlertSuccess');
 
-        // Sleep for a sec and redirect to landing page.
-        sleep(3);
+        // Redirect to landing page.
         return redirect()->to('/');
     }
 
