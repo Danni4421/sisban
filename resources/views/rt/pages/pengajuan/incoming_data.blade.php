@@ -135,15 +135,14 @@
             if (pengajuan.keluarga.foto_kk !== "NULL") {
                 $('#modal_foto_kk').attr('src', `{{ asset('assets/${pengajuan.keluarga.foto_kk}') }}`);
             }
-
             $('#modal_no_kk').text(pengajuan.no_kk);
             $('#modal_nik_kepala_keluarga').text(kepalaKeluarga.nik);
             $('#modal_nama_kepala_keluarga').text(kepalaKeluarga.nama);
-            $('#modal_nomor_telepon').text(kepalaKeluarga.no_hp);
+            $('#modal_nomor_telepon').text(kepalaKeluarga.no_hp === null ? 'Tidak ada' : kepalaKeluarga.no_hp);
             $('#modal_daya_listrik').text(pengajuan.keluarga.daya_listrik);
             $('#modal_biaya_listrik').text(pengajuan.keluarga.biaya_listrik);
             $('#modal_biaya_air').text(pengajuan.keluarga.biaya_air);
-            $('#modal_hutang').text(pengajuan.keluarga.hutang);
+            $('#modal_hutang').text(pengajuan.keluarga.hutang === null ? 0 : pengajuan.keluarga.hutang);
             $('#modal_pengeluaran').text(pengajuan.keluarga.pengeluaran);
         }
 
