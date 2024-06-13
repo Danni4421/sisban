@@ -8,17 +8,16 @@
 
 @section('breadcrumb')
     @livewire('admin.bread-crumb', [
-      'links' => [
-        ['href' => route('rw.penerima.bansos'), 'label' => 'Penerima Bansos']
-      ],
-      'active' => 'Ubah'
+        'links' => [['href' => route('rw.penerima.bansos'), 'label' => 'Penerima Bansos']],
+        'active' => 'Ubah',
     ])
 @endsection
 
 @section('content')
     <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <section>
-            <form class="form" action="{{ url('rw/bansos/' . $recipient->id_bansos . '/penerima/' . Crypt::encrypt($recipient->nik)) }}"
+            <form class="form"
+                action="{{ url('rw/bansos/' . $recipient->id_bansos . '/penerima/' . Crypt::encrypt($recipient->nik)) }}"
                 method="POST">
                 @csrf
                 @method('PUT')
@@ -34,9 +33,9 @@
                     </select>
 
                     @error('nik')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message', $message])
                     @enderror
-                
+
                 </div>
                 <div class="mb-3">
                     <label for="penerima" class="form-label">Bansos</label>
@@ -48,7 +47,7 @@
                     </select>
 
                     @error('id_bansos')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message', $message])
                     @enderror
 
                 </div>
@@ -59,7 +58,7 @@
                         required>
 
                     @error('tanggal_penerimaan')
-                        @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message', $message])
                     @enderror
 
                 </div>

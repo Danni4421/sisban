@@ -31,6 +31,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RT\Bansos\TopsisController;
 use Illuminate\Support\Facades\Route;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -185,6 +186,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session', 'level.validate'])->
   Route::get('/pertanyaan', [FaqController::class, 'admin_index'])->name('admin.faq.index');
   Route::post('/pertanyaan/{id_faq}', [FaqController::class, 'admin_show'])->name('admin.faq.show');
   Route::put('/pertanyaan/{id_faq}', [FaqController::class, 'admin_update'])->name('admin.faq.update');
+  Route::get('/view-logs', [LogViewerController::class, 'index'])->name('admin.view.logs');
 });
 /*****************************************
  * End Admin Routes

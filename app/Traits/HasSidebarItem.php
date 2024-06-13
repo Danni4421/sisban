@@ -282,6 +282,16 @@ trait HasSidebarItem
                             'icon' => 'far fa-folder',
                             'with_level' => true,
                         ],
+                        'logs' => (object) [
+                            'label' => 'Logs',
+                            'href' => 'admin/view-logs',
+                            'active' => [
+                                'admin.view.logs'
+                            ],
+                            'func' => 'nav-item',
+                            'icon' => 'fa-solid fa-list',
+                            'with_level' => true
+                        ],
                     ],
                 ],
             ];

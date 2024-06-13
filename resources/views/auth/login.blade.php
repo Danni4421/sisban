@@ -45,7 +45,7 @@
         }
 
         @media (max-width: 576px) {
-            input::placeholder {
+            input::placeholder {    
                 font-size: 0.5rem !important;
             }
         }
