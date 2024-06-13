@@ -10,7 +10,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="row col-12 mb-3">
-        <div class="col-4 rounded-lg">
+        <div class="col-2 rounded-lg">
           @foreach ($folders as $folder)
             <div class="list-group-item">
               <?php

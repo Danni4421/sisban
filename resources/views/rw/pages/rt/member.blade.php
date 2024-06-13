@@ -54,7 +54,7 @@
                         success: function () {
                             Swal.fire({
                                 title: "Menghapus RT!",
-                                text: "Data RT berhasil diterima.",
+                                text: "Berhasil menghapus RT.",
                                 icon: "success"
                             });
                             

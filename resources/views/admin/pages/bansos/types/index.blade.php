@@ -28,12 +28,13 @@
                     <div  class="card card-primary card-outline shadow-md">
                         <div class="d-flex align-items-center">
                             <div>
-                                <img src="{{ asset('assets/img/details-1.png') }}" class="img-fluid rounded-start"
+                                <img src="{{ asset('assets/img/bansos-box.svg') }}" class="img-fluid rounded-start"
                                     alt="Gambar Bansos" style="width: 100px; height: 100px;">
                             </div>
                             <div class="flex-grow-1">
-                                <div class="card-header">
+                                <div class="card-header d-flex flex-column">
                                     <h5 class="card-title">{{ $bs->nama_bansos }}</h5>
+                                    <span>Jumlah: {{ $bs->jumlah }}</span>
                                 </div>
                                 <div class="card-body d-flex gap-2">
                                     <a href="{{ url('admin/bansos/jenis/' . $bs->id_bansos . '/edit') }}"

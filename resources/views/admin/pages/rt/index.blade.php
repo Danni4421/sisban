@@ -41,7 +41,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'DELETE',
-                        url: `{{ url('rw/data-rt/${idPengurus}') }}`,
+                        url: `{{ url('admin/data-rt/${idPengurus}') }}`,
                         headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                             contentType: 'application/json'
@@ -49,7 +49,7 @@
                         success: function () {
                             Swal.fire({
                                 title: "Menghapus RT!",
-                                text: "Data RT berhasil diterima.",
+                                text: "Berhasil menghapus RT.",
                                 icon: "success"
                             });
                             

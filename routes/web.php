@@ -169,7 +169,11 @@ Route::prefix('admin')->middleware(['auth', 'auth.session', 'level.validate'])->
     Route::get('/', [AdminRWController::class, 'index'])->name('admin.data-rw');
     Route::put('/{id}', [AdminRWController::class, 'update'])->name('admin.update.data-rw');
   });
-  Route::resource('/data-rt', AdminRTController::class);
+  Route::resource('/data-rt', AdminRTController::class)->names([
+    'index' => 'admin.data-rt.index',
+    'create' => 'admin.data-rt.create',
+    'edit' => 'admin.data-rt.edit'
+  ]);
   Route::prefix('/pemohon')->group(function () {
     Route::get('/', [AdminAplicantController::class, 'index'])->name('admin.aplicant.index');
     Route::post('/{no_kk}', [AdminAplicantController::class, 'show'])->name('admin.aplicant.show');
@@ -177,8 +181,15 @@ Route::prefix('admin')->middleware(['auth', 'auth.session', 'level.validate'])->
     Route::put('/{no_kk}/decline', [AdminAplicantController::class, 'decline'])->name('admin.aplicant.decline');
   });
   Route::prefix('/bansos')->group(function () {
-    Route::resource('/jenis', AdminBansosTypesController::class);
-    Route::resource('/penerima', AdminBansosRecipientsController::class);
+    Route::resource('/jenis', AdminBansosTypesController::class)->names([
+      'index' => 'admin.bansos.index',
+      'create' => 'admin.bansos.create',
+      'edit' => 'admin.bansos.edit'
+    ]);
+    Route::resource('/penerima', AdminBansosRecipientsController::class)->names([
+      'index' => 'admin.recipient.index',
+      'create' => 'admin.recipient.add',
+    ]);
     Route::get('/{id_bansos}/penerima/{nik}/edit', [AdminBansosRecipientsController::class, 'edit_recipient'])->name('admin.page.edit.bansos.recipient');
     Route::put('/{id_bansos}/penerima/{nik}', [AdminBansosRecipientsController::class, 'update_recipient'])->name('admin.update.bansos.recipient');
     Route::delete('/{id_bansos}/penerima/{nik}', [AdminBansosRecipientsController::class, 'delete_recipient'])->name('admin.delete.bansos.recipient');

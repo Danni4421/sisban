@@ -46,6 +46,7 @@ input[type="search"] {
 
 .dataTables_wrapper .row:nth-child(3) {
     overflow: auto !important;
+    scrollbar-width: none !important;
 }
 
 .dataTables_wrapper .row:nth-child(3) div {

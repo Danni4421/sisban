@@ -197,7 +197,7 @@ trait HasSidebarItem
                             'href' => 'pengaturan',
                             'func' => 'nav-item',
                             'icon' => 'fas fa-cog',
-                            'active' => ['pengaturan'],
+                            'active' => ['general.pengaturan'],
                             'with_level' => false,
                         ],
                         'faq' => (object) [
@@ -205,7 +205,7 @@ trait HasSidebarItem
                             'href' => 'faq',
                             'func' => 'nav-item',
                             'icon' => 'far fa-question-circle',
-                            'active' => ['faq'],
+                            'active' => ['general.faq'],
                             'with_level' => false,
                         ]
                     ]
@@ -222,7 +222,9 @@ trait HasSidebarItem
                         'data-rw' => (object) [
                             'label' => 'Data RW',
                             'href' => 'data-rw',
-                            'active' => ['admin/data-rw'],
+                            'active' => [
+                                'admin.data-rw',
+                            ],
                             'func' => 'nav-item',
                             'icon' => 'far fa-folder',
                             'with_level' => true,
@@ -230,7 +232,11 @@ trait HasSidebarItem
                         'data-rt' => (object) [
                             'label' => 'Data RT',
                             'href' => 'data-rt',
-                            'active' => ['admin/data-rt'],
+                            'active' => [
+                                'admin.data-rt.index',
+                                'admin.data-rt.create',
+                                'admin.data-rt.edit'
+                            ],
                             'func' => 'nav-item',
                             'icon' => 'fas fa-newspaper',
                             'with_level' => true,
@@ -239,7 +245,9 @@ trait HasSidebarItem
                             'label' => 'Pemohon',
                             'href' => 'pemohon',
                             'icon' => 'far fa-envelope',
-                            'active' => ['admin/pemohon'],
+                            'active' => [
+                                'admin.aplicant.index',
+                            ],
                             'with_level' => true,
                         ],
                         'bansos' => (object) [
@@ -247,9 +255,11 @@ trait HasSidebarItem
                             'href' => 'bansos/penerima',
                             'icon' => 'fas fa-book',
                             'active' => [
-                                'admin/bansos',
-                                'admin/bansos/jenis',
-                                'admin/bansos/penerima'
+                                'admin.bansos.index',
+                                'admin.bansos.create',
+                                'admin.bansos.edit',
+                                'admin.recipient.index',
+                                'admin.recipient.add'
                             ],
                             'children' => (object) [
                                 'jenis' => (object) [
@@ -277,14 +287,16 @@ trait HasSidebarItem
                         'pertanyaan' => (object) [
                             'label' => 'Pertanyaan',
                             'href' => 'pertanyaan',
-                            'active' => ['admin/pertanyaan'],
+                            'active' => [
+                                'admin.faq.index'
+                            ],
                             'func' => 'nav-item',
                             'icon' => 'far fa-folder',
                             'with_level' => true,
                         ],
                         'logs' => (object) [
                             'label' => 'Logs',
-                            'href' => 'admin/view-logs',
+                            'href' => 'view-logs',
                             'active' => [
                                 'admin.view.logs'
                             ],

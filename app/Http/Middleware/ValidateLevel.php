@@ -19,8 +19,7 @@ class ValidateLevel
     {
         $requestName = $request->getUri();
 
-        if (preg_match('/\/\/[^\/]+\/([^\/]+)/', $requestName, $matches))
-        {
+        if (preg_match('/\/\/[^\/]+\/([^\/]+)/', $requestName, $matches)) {
             $role = $matches[1];
 
             if ($user_role = $this->validateLevel(role: $role)) {
@@ -33,7 +32,7 @@ class ValidateLevel
                 )->with('routeErrorMessage', 'Kamu tidak bisa mengakses yang bukan hak kamu');
             }
         }
-        
+
         return $next($request);
     }
 
