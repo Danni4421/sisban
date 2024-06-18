@@ -27,9 +27,15 @@ class ValidateLevel
                     return redirect()->to('/');
                 }
 
-                return redirect()->to(
-                    $user_role === "admin" ? "admin/data-rw" : $user_role
-                )->with('routeErrorMessage', 'Kamu tidak bisa mengakses yang bukan hak kamu');
+                $redirect = null;
+
+                if ($user_role === "admin") {
+                    $redirect = redirect()->to('/admin/data-rw');
+                } else {
+                    $redirect = redirect()->to($user_role);
+                }
+
+                return $redirect->with('routeErrorMessage', 'Kamu tidak bisa mengakses yang bukan hak kamu');
             }
         }
 

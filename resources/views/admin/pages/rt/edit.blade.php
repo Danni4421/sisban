@@ -16,22 +16,38 @@
                     <label for="jabatan" class="form-label">Jabatan</label>
                     <input type="text" class="form-control" id="jabatan" name="jabatan"
                         aria-describedby="Jabatan Pengurus" maxlength="100" value="{{ old('jabatan', $rt->jabatan) }}">
+                    
+                    @error('jabatan')
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input type="text" class="form-control" id="nama" name="nama"
                         aria-describedby="Nama Pengurus" maxlength="100" value="{{ old('nama', $rt->nama) }}">
+
+                    @error('nama')
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="nomor_telepon" class="form-label">Nomor Telepon</label>
                     <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon"
                         aria-describedby="Nomor Telepon Pengurus" maxlength="100"
                         value="{{ old('nomor_telepon', $rt->nomor_telepon) }}">
+
+                    @error('nomor_telepon')
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="alamat" class="form-label">Alamat</label>
                     <input type="text" class="form-control" id="alamat" name="alamat"
                         aria-describedby="Alamat Pengurus" maxlength="100" value="{{ old('alamat', $rt->alamat) }}">
+
+                    @error('alamat')
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
+                    @enderror
                 </div>
                 <div class="table-footer">
                     <a href="{{ url('admin/data-rt') }}" class="btn btn-secondary">

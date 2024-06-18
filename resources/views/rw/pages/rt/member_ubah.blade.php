@@ -23,7 +23,7 @@
                 <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->nama }}">
 
                 @error('nama')
-                    @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                 @enderror
             </div>
             <div class="mb-3">
@@ -32,7 +32,7 @@
                     value="{{ $data->jabatan }}">
 
                 @error('jabatan')
-                    @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                 @enderror
             </div>
             <div class="mb-3">
@@ -41,7 +41,7 @@
                     value="{{ $data->nomor_telepon }}">
 
                 @error('nomor_telepon')
-                    @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                 @enderror
             </div>
             <div class="mb-3">
@@ -50,7 +50,7 @@
                     value="{{ $data->alamat }}">
 
                 @error('alamat')
-                    @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                 @enderror
             </div>
             <div>

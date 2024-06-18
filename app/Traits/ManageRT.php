@@ -77,7 +77,6 @@ trait ManageRT
       ],
       'nomor_telepon' => [
         'required',
-        'max:13',
         'numeric',
         'unique:pengurus,nomor_telepon'
       ],
@@ -110,7 +109,6 @@ trait ManageRT
       'nama.string' => 'Nama harus berupa karakter.',
       'nama.max' => 'Nama maksimal adalah 100 karakter.',
       'nomor_telepon.required' => 'Nomor telepon wajib untuk diisi.',
-      'nomor_telepon.max' => 'Nomor telepon maksimal adalah 13 karakter.',
       'nomor_telepon.unique' => 'Nomor telepon sudah dipakai.',
       'nomor_telepon.numeric' => 'Nomor telepon harus berupa angka.',
       'alamat.required' => 'Alamat wajib untuk diisi.',
@@ -162,7 +160,6 @@ trait ManageRT
       ],
       'nomor_telepon' => [
         'required',
-        'max:13',
         'numeric',
         'unique:pengurus,nomor_telepon,' . $id . ',id_pengurus'
       ],
@@ -182,7 +179,6 @@ trait ManageRT
       'nama.string' => 'Nama harus berupa karakter.',
       'nama.max' => 'Nama maksimal adalah 100 karakter.',
       'nomor_telepon.required' => 'Nomor telepon wajib untuk diisi.',
-      'nomor_telepon.max' => 'Nomor telepon maksimal adalah 13 karakter.',
       'nomor_telepon.numeric' => 'Nomor telepon harus berupa angka.',
       'nomor_telepon.unique' => 'Nomor telepon sudah dipakai.',
       'alamat.required' => 'Alamat wajib untuk diisi.',
@@ -210,6 +206,7 @@ trait ManageRT
    */
   private function deleteRT($id)
   {
-    Pengurus::with('user')->find($id)->delete();
+    $rt = Pengurus::find($id);
+    User::find($rt->id_user)->delete();
   }
 }
