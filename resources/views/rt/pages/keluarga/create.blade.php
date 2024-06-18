@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Keluarga')
+@section('title', 'Tambah Keluarga')
 
 @section('content_header')
     <header>

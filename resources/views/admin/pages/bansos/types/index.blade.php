@@ -42,14 +42,10 @@
                                         <i class="fa-regular fa-pen-to-square"></i>
                                         <span class="ms-1">Edit</span>
                                     </a>
-                                    <form action="{{ url('admin/bansos/jenis/' . $bs->id_bansos) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa-solid fa-trash"></i> 
-                                            <span class="ms-1">Hapus</span>
-                                        </button>
-                                    </form>
+                                    <button type="button" class="btn btn-danger" onclick="confirmDelete('{{$bs->id_bansos}}')">
+                                        <i class="fa-solid fa-trash"></i> 
+                                        <span class="ms-1">Hapus</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -61,6 +57,40 @@
 
 @endsection
 
-@push('styles')
-    {{-- Custom styles --}}
+@push('scripts')
+    <script>
+        function confirmDelete(idBansos) {
+            Swal.fire({
+                title: "Yakin menghapus bansos?",
+                text: "Perubahan tidak bisa dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Hapus"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: `{{ url('admin/bansos/jenis/${idBansos}') }}`,
+                        headers: {
+                            'X-CSRF-TOKEN': "{{csrf_token()}}",
+                            contentType: 'application/json'
+                        },
+                        success: function () {
+                            Swal.fire({
+                                title: "Menghapus Penerima Bantuan Sosial!",
+                                text: "Data pengajuan berhasil dihapus.",
+                                icon: "success"
+                            });
+                            
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1000)
+                        }
+                    })
+                }
+            });
+        }
+    </script>
 @endpush

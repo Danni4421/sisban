@@ -44,15 +44,81 @@ trait ManageRT
   {
     $user_level = 'rt';
 
-    $request->validate([
-      'username' => ['required', 'string', 'min:4', 'max:50', 'unique:users,username'],
-      'email' => ['required', 'email:dns', 'max:100', 'unique:users,email'],
-      'password' => ['required', 'min:8', 'max:20', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-      'jabatan' => ['required', 'string', 'max:11', 'unique:pengurus,jabatan'],
-      'nama' => ['required', 'string', 'max:100'],
-      'nomor_telepon' => ['required', 'max:13', 'unique:pengurus,nomor_telepon'],
-      'alamat' => ['required', 'string', 'max:100']
-    ]);
+    $rules = [
+      'username' => [
+        'required',
+        'string',
+        'min:4',
+        'max:50',
+        'unique:users,username'
+      ],
+      'email' => [
+        'required',
+        'email:dns',
+        'max:100',
+        'unique:users,email'
+      ],
+      'password' => [
+        'required',
+        'min:8',
+        'max:20',
+        'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'
+      ],
+      'jabatan' => [
+        'required',
+        'string',
+        'max:11',
+        'unique:pengurus,jabatan'
+      ],
+      'nama' => [
+        'required',
+        'string',
+        'max:100'
+      ],
+      'nomor_telepon' => [
+        'required',
+        'max:13',
+        'numeric',
+        'unique:pengurus,nomor_telepon'
+      ],
+      'alamat' => [
+        'required',
+        'string',
+        'max:100'
+      ]
+    ];
+
+    $messages = [
+      'username.required' => 'Username wajib untuk diisi.',
+      'username.string' => 'Username harus berupa karakter.',
+      'username.min' => 'Username minimal harus terdiri dari 4 karakter.',
+      'username.max' => 'Username maksimal adalah 50 karakter.',
+      'username.unique' => 'Username sudah dipakai.',
+      'email.required' => 'Email wajib untuk diisi.',
+      'email.email' => 'Email harus berupa alamat email yang valid.',
+      'email.max' => 'Email maksimal adalah 100 karakter.',
+      'email.unique' => 'Email sudah dipakai.',
+      'password.required' => 'Password wajib untuk diisi.',
+      'password.min' => 'Password minimal harus terdiri dari 8 karakter.',
+      'password.max' => 'Password maksimal adalah 20 karakter.',
+      'password.regex' => 'Password harus mengandung huruf dan angka.',
+      'jabatan.required' => 'Jabatan wajib untuk diisi.',
+      'jabatan.string' => 'Jabatan harus berupa karakter.',
+      'jabatan.max' => 'Jabatan maksimal adalah 11 karakter.',
+      'jabatan.unique' => 'Jabatan sudah dipakai.',
+      'nama.required' => 'Nama wajib untuk diisi.',
+      'nama.string' => 'Nama harus berupa karakter.',
+      'nama.max' => 'Nama maksimal adalah 100 karakter.',
+      'nomor_telepon.required' => 'Nomor telepon wajib untuk diisi.',
+      'nomor_telepon.max' => 'Nomor telepon maksimal adalah 13 karakter.',
+      'nomor_telepon.unique' => 'Nomor telepon sudah dipakai.',
+      'nomor_telepon.numeric' => 'Nomor telepon harus berupa angka.',
+      'alamat.required' => 'Alamat wajib untuk diisi.',
+      'alamat.string' => 'Alamat harus berupa karakter.',
+      'alamat.max' => 'Alamat maksimal adalah 100 karakter.'
+    ];
+
+    $request->validate($rules, $messages);
 
     $newUser = User::make([
       'username' => $request->username,
@@ -82,12 +148,49 @@ trait ManageRT
    */
   private function updateRT($request, $id)
   {
-    $request->validate([
-      'jabatan' => ['required', 'string', 'max:11', 'unique:pengurus,jabatan,' . $id . ',id_pengurus'],
-      'nama' => ['required', 'string', 'max:100'],
-      'nomor_telepon' => ['required', 'max:13', 'unique:pengurus,nomor_telepon,' . $id . ',id_pengurus'],
-      'alamat' => ['required', 'string', 'max:100']
-    ]);
+    $rules = [
+      'jabatan' => [
+        'required',
+        'string',
+        'max:11',
+        'unique:pengurus,jabatan,' . $id . ',id_pengurus'
+      ],
+      'nama' => [
+        'required',
+        'string',
+        'max:100'
+      ],
+      'nomor_telepon' => [
+        'required',
+        'max:13',
+        'numeric',
+        'unique:pengurus,nomor_telepon,' . $id . ',id_pengurus'
+      ],
+      'alamat' => [
+        'required',
+        'string',
+        'max:100'
+      ]
+    ];
+
+    $messages = [
+      'jabatan.required' => 'Jabatan wajib untuk diisi.',
+      'jabatan.string' => 'Jabatan harus berupa karakter.',
+      'jabatan.max' => 'Jabatan maksimal adalah 11 karakter.',
+      'jabatan.unique' => 'Jabatan sudah dipakai.',
+      'nama.required' => 'Nama wajib untuk diisi.',
+      'nama.string' => 'Nama harus berupa karakter.',
+      'nama.max' => 'Nama maksimal adalah 100 karakter.',
+      'nomor_telepon.required' => 'Nomor telepon wajib untuk diisi.',
+      'nomor_telepon.max' => 'Nomor telepon maksimal adalah 13 karakter.',
+      'nomor_telepon.numeric' => 'Nomor telepon harus berupa angka.',
+      'nomor_telepon.unique' => 'Nomor telepon sudah dipakai.',
+      'alamat.required' => 'Alamat wajib untuk diisi.',
+      'alamat.string' => 'Alamat harus berupa karakter.',
+      'alamat.max' => 'Alamat maksimal adalah 100 karakter.'
+    ];
+
+    $request->validate($rules, $messages);
 
     Pengurus::find($id)->update([
       'jabatan' => $request->jabatan,

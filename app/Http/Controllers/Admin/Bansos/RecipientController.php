@@ -9,6 +9,7 @@ use App\Models\Keluarga;
 use App\Models\PenerimaBansos;
 use App\Traits\ManageBansos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class RecipientController extends Controller
 {
@@ -68,7 +69,7 @@ class RecipientController extends Controller
         $bansos = Bansos::all();
         $kandidatPenerima = $this->getKandidatPenerimaBansos();
 
-        $recipient = $this->getPenerimaBansosById(nik: $nik, idBansos: $id_bansos);
+        $recipient = $this->getPenerimaBansosById(nik: Crypt::decrypt($nik), idBansos: $id_bansos);
         return view('admin.pages.bansos.recipient.edit')
             ->with('recipient', $recipient)
             ->with('bansos', $bansos)
@@ -80,7 +81,7 @@ class RecipientController extends Controller
      */
     public function update_recipient(Request $request, int $id_bansos, string $nik)
     {
-        $this->updatePenerimaBansos(request: $request, nik: $nik, idBansos: $id_bansos);
+        $this->updatePenerimaBansos(request: $request, nik: Crypt::decrypt($nik), idBansos: $id_bansos);
         return redirect('admin/bansos/penerima');
     }
 
@@ -89,7 +90,6 @@ class RecipientController extends Controller
      */
     public function delete_recipient(int $id_bansos, string $nik)
     {
-        $this->deletePenerimaBansos(nik: $nik, idBansos: $id_bansos);
-        return redirect('admin/bansos/penerima');
+        $this->deletePenerimaBansos(nik: Crypt::decrypt($nik), idBansos: $id_bansos);
     }
 }

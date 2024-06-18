@@ -48,7 +48,3 @@
     </div>
 
 @endsection
-
-@push('styles')
-    {{-- Custom styles --}}
-@endpush

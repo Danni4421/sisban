@@ -19,13 +19,39 @@ trait ManageBansos
    * 
    * @return void
    */
-  public function createNewBansos($request)
+  public function createNewBansos(Request $request)
   {
-    $request->validate([
-      'nama_bansos' => ['required', 'string', 'max:100', 'unique:bansos,nama_bansos'],
-      'keterangan' => ['required', 'string'],
-      'jumlah' => ['required', 'numeric', 'min:0']
-    ]);
+    $rules = [
+      'nama_bansos' => [
+        'required',
+        'string',
+        'max:100',
+        'unique:bansos,nama_bansos'
+      ],
+      'keterangan' => [
+        'required',
+        'string'
+      ],
+      'jumlah' => [
+        'required',
+        'numeric',
+        'min:0'
+      ]
+    ];
+
+    $messages = [
+      'nama_bansos.required' => 'Nama bansos wajib untuk diisi.',
+      'nama_bansos.string' => 'Nama bansos harus berupa karakter.',
+      'nama_bansos.max' => 'Maksimal nama bansos adalah 100 karakter.',
+      'nama_bansos.unique' => 'Nama bansos sudah dipakai.',
+      'keterangan.required' => 'Keterangan bansos harus diisi.',
+      'keterangan.string' => 'Keterangan bansos harus berupa karakter.',
+      'jumlah.required' => 'Jumlah bansos wajib untuk diisi.',
+      'jumlah.numeric' => 'Jumlah bansos harus berupa angka.',
+      'jumlah.min' => 'Jumlah bansos tidak boleh kurang dari 0.'
+    ];
+
+    $request->validate($rules, $messages);
 
     Bansos::create([
       'nama_bansos' => $request->nama_bansos,
@@ -40,13 +66,39 @@ trait ManageBansos
    * 
    * @return void
    */
-  public function updateExistingBansos($request, $id)
+  public function updateExistingBansos(Request $request, $id)
   {
-    $request->validate([
-      'nama_bansos' => ['required', 'string', 'max:100', 'unique:bansos,nama_bansos,' . $id . ',id_bansos'],
-      'keterangan' => ['required', 'string'],
-      'jumlah' => ['required', 'numeric', 'min:0']
-    ]);
+    $rules = [
+      'nama_bansos' => [
+        'required',
+        'string',
+        'max:100',
+        'unique:bansos,nama_bansos,' . $id . ',id_bansos'
+      ],
+      'keterangan' => [
+        'required',
+        'string'
+      ],
+      'jumlah' => [
+        'required',
+        'numeric',
+        'min:0'
+      ]
+    ];
+
+    $messages = [
+      'nama_bansos.required' => 'Nama bansos wajib untuk diisi.',
+      'nama_bansos.string' => 'Nama bansos harus berupa karakter.',
+      'nama_bansos.max' => 'Maksimal nama bansos adalah 100 karakter.',
+      'nama_bansos.unique' => 'Nama bansos sudah dipakai.',
+      'keterangan.required' => 'Keterangan bansos harus diisi.',
+      'keterangan.string' => 'Keterangan bansos harus berupa karakter.',
+      'jumlah.required' => 'Jumlah bansos wajib untuk diisi.',
+      'jumlah.numeric' => 'Jumlah bansos harus berupa angka.',
+      'jumlah.min' => 'Jumlah bansos tidak boleh kurang dari 0.'
+    ];
+
+    $request->validate($rules, $messages);
 
     Bansos::find($id)->update([
       'nama_bansos' => $request->nama_bansos,
@@ -176,11 +228,29 @@ trait ManageBansos
    */
   public function updatePenerimaBansos($request, $nik, $idBansos)
   {
-    $request->validate([
-      'nik' => ['required'],
-      'id_bansos' => ['required', 'integer'],
-      'tanggal_penerimaan' => ['required', 'date']
-    ]);
+    $rules = [
+      'nik' => [
+        'required',
+      ],
+      'id_bansos' => [
+        'required',
+        'integer'
+      ],
+      'tanggal_penerimaan' => [
+        'required',
+        'date'
+      ]
+    ];
+
+    $messages = [
+      'nik.required' => 'NIK wajib untuk diisi.',
+      'id_bansos.required' => 'ID Bansos wajib untuk diisi.',
+      'id_bansos.integer' => 'ID Bansos harus berupa angka.',
+      'tanggal_penerimaan.required' => 'Tanggal penerimaan wajib untuk diisi.',
+      'tanggal_penerimaan.date' => 'Tanggal penerimaan harus berupa tanggal yang valid.'
+    ];
+
+    $request->validate($rules, $messages);
 
     $update_nik = Crypt::decrypt($request->nik);
 

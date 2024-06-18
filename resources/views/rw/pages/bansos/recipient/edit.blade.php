@@ -33,7 +33,7 @@
                     </select>
 
                     @error('nik')
-                        @livewire('admin.alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
 
                 </div>
@@ -47,7 +47,7 @@
                     </select>
 
                     @error('id_bansos')
-                        @livewire('admin.alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
 
                 </div>
@@ -58,7 +58,7 @@
                         required>
 
                     @error('tanggal_penerimaan')
-                        @livewire('admin.alert-message', ['class' => 'danger', 'message', $message])
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                     @enderror
 
                 </div>

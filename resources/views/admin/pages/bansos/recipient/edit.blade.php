@@ -9,7 +9,7 @@
 @section('content')
     <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
         <section>
-            <form class="form" action="{{ url('admin/bansos/' . $recipient->id_bansos . '/penerima/' . $recipient->nik) }}"
+            <form class="form" action="{{ url('admin/bansos/' . $recipient->id_bansos . '/penerima/' . Crypt::encrypt($recipient->nik)) }}"
                 method="POST">
                 @csrf
                 @method('PUT')
@@ -17,12 +17,16 @@
                     <label for="penerima" class="form-label">Penerima Bansos</label>
                     <select class="form-select" id="nik" name="nik" aria-label="Penerima Bantuan Sosial">
                         @foreach ($candidates as $candidate)
-                            <option value="{{ $candidate->kepala_keluarga->nik }}"
+                            <option value="{{ Crypt::encrypt($candidate->kepala_keluarga->nik) }}"
                                 @if ($candidate->kepala_keluarga->nik == $recipient->nik) selected @endif>
-                                {{ $candidate->no_kk }} - {{ $candidate->kepala_keluarga->nama }}
+                                {{ $candidate->kepala_keluarga->nama }}
                             </option>
                         @endforeach
                     </select>
+
+                    @error('nik')
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="penerima" class="form-label">Bansos</label>
@@ -32,12 +36,20 @@
                                 {{ $bs->nama_bansos }}</option>
                         @endforeach
                     </select>
+
+                    @error('id_bansos')
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="tanggal_penerimaan" class="form-label">Tanggal Penerimaan</label>
                     <input type="date" class="form-control" id="tanggal_penerimaan" name="tanggal_penerimaan"
                         aria-describedby="Tanggal Penerimaan Bantuan Sosial" value="{{ $recipient->tanggal_penerimaan }}"
                         required>
+
+                    @error('tanggal_penerimaan')
+                        @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
+                    @enderror
                 </div>
                 <div class="table-footer">
                     <a href="{{ url('admin/bansos/penerima') }}" class="btn btn-secondary">
@@ -53,7 +65,3 @@
         </section>
     </div>
 @endsection
-
-@push('styles')
-    {{-- Custom styles --}}
-@endpush

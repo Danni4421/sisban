@@ -83,6 +83,7 @@ trait HasSidebarItem
                                 'topsis.index',
                                 'rt.bansos.alternative',
                                 'rt.bansos.fuzzy',
+                                'rt.penerima.bansos',
                             ],
                             'with_level' => true,
                             'children' => (object) [
@@ -259,7 +260,8 @@ trait HasSidebarItem
                                 'admin.bansos.create',
                                 'admin.bansos.edit',
                                 'admin.recipient.index',
-                                'admin.recipient.add'
+                                'admin.recipient.add',
+                                'admin.page.edit.bansos.recipient'
                             ],
                             'children' => (object) [
                                 'jenis' => (object) [

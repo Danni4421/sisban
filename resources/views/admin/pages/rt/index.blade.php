@@ -53,9 +53,7 @@
                                 icon: "success"
                             });
                             
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000)
+                            $('#datart-table').DataTable().ajax.reload();
                         }
                     })
                 }

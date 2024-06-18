@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Data RT')
+
 @section('content_header')
     <h1>Data Ketua RT</h1>
 @endsection
@@ -58,9 +60,7 @@
                                 icon: "success"
                             });
                             
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000)
+                            $('#datart-table').DataTable().ajax.reload();
                         }
                     })
                 }

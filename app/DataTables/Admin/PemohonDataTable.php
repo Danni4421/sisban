@@ -52,13 +52,13 @@ class PemohonDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('pengajuan_masuk_rt')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->selectStyleSingle()
-                    ->addTableClass('table-striped table-hover')
-                    ->language(asset('assets/dataTable/lang/id.json'))
-                    ->buttons([]);
+            ->setTableId('pemohon_admin')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->selectStyleSingle()
+            ->addTableClass('table-striped table-hover')
+            ->language(asset('assets/dataTable/lang/id.json'))
+            ->buttons([]);
     }
 
     /**

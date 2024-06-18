@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PengajuanController extends Controller
 {
@@ -32,9 +33,29 @@ class PengajuanController extends Controller
 
     public function show(string $no_kk)
     {
-        return Pengajuan::with('keluarga.kepala_keluarga', 'keluarga.anggota_keluarga', 'keluarga.hutang')
-        ->where('no_kk', $no_kk)
-        ->first();
+        return Pengajuan::with(['keluarga' => function ($query) {
+            $query->with('anggota_keluarga', 'kepala_keluarga')
+                ->leftJoin('hutang', 'hutang.no_kk', '=', 'keluarga.no_kk')
+                ->select(
+                    'keluarga.foto_kk',
+                    'keluarga.no_kk',
+                    'daya_listrik',
+                    'biaya_listrik',
+                    'biaya_air',
+                    'keluarga.pengeluaran',
+                    DB::raw('SUM(hutang.jumlah) as hutang')
+                )
+                ->groupBy(
+                    'keluarga.no_kk',
+                    'keluarga.foto_kk',
+                    'keluarga.daya_listrik',
+                    'keluarga.biaya_listrik',
+                    'keluarga.biaya_air',
+                    'keluarga.pengeluaran'
+                );
+        }])
+            ->where('no_kk', $no_kk)
+            ->first();
     }
 
     public function print_pdf($no_kk)

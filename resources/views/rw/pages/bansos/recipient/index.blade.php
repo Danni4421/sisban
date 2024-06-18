@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Penerima')
 
 @section('content_header')
     <h4>Data Penerima Bantuan Sosial</h4>
@@ -65,7 +65,7 @@
                                 icon: "success"
                             });
 
-                            $('#recipient-table').DataTable.ajax.reload();
+                            $('#recipient-table').DataTable().ajax.reload();
                         }
                     });
                 }

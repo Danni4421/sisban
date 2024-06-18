@@ -6,27 +6,16 @@
     <h1>Data Masuk</h1>
 @endsection
 
+@section('breadcrumb')
+    @livewire('admin.bread-crumb', [
+      'links' => [],
+      'active' => 'Pengajuan Masuk'
+    ])
+@endsection
+
 @section('content')
     <div class="container-fluid p-3 rounded-lg" style="background: #fff;">
-        {{-- Tampilkan pesan sukses jika ada --}}
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Berhasil!</strong> {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
-        {{-- Tampilkan pesan error jika ada --}}
-        @error('errorPengajuan')
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Error</strong> {{ $message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @enderror
-        
-        <section>
-            {{ $dataTable->table() }}
-        </section>
+        {{ $dataTable->table() }}
     </div>
 
     <div class="modal fade" id="modal_detail_pengajuan" tabindex="-1" aria-labelledby="modalPengajuanBansos"
@@ -39,10 +28,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <section class="col-12 col-lg-4" id="image">
-                            <img src="" alt="nothing" width="300" height="400">
+                        <section class="col-12 d-flex justify-content-center" id="image">
+                            <img src="{{ asset('assets/img/bansos-box.svg') }}" id="modal_foto_kk" class="mx-auto" width="297px" height="210px">
                         </section>
-                        <section class="col-12 col-lg-8">
+                        <section class="col-12 mt-5">
                             <table class="table table-striped">
                                 <tr>
                                     <th>No KK</th>
@@ -112,7 +101,13 @@
 
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/dataTable/css/dataTable.css') }}">
+    <style>
+        @media (min-width: 576px) {
+            .dataTables_wrapper {
+                margin-top: -15px;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')
@@ -137,14 +132,17 @@
         function updateInformasiPermohonan(pengajuan) {
             const kepalaKeluarga = pengajuan.keluarga.kepala_keluarga;
 
+            if (pengajuan.keluarga.foto_kk !== "NULL") {
+                $('#modal_foto_kk').attr('src', `{{ asset('assets/${pengajuan.keluarga.foto_kk}') }}`);
+            }
             $('#modal_no_kk').text(pengajuan.no_kk);
             $('#modal_nik_kepala_keluarga').text(kepalaKeluarga.nik);
             $('#modal_nama_kepala_keluarga').text(kepalaKeluarga.nama);
-            $('#modal_nomor_telepon').text(kepalaKeluarga.no_hp);
+            $('#modal_nomor_telepon').text(kepalaKeluarga.no_hp === null ? 'Tidak ada' : kepalaKeluarga.no_hp);
             $('#modal_daya_listrik').text(pengajuan.keluarga.daya_listrik);
             $('#modal_biaya_listrik').text(pengajuan.keluarga.biaya_listrik);
             $('#modal_biaya_air').text(pengajuan.keluarga.biaya_air);
-            $('#modal_hutang').text(pengajuan.keluarga.hutang);
+            $('#modal_hutang').text(pengajuan.keluarga.hutang === null ? 0 : pengajuan.keluarga.hutang);
             $('#modal_pengeluaran').text(pengajuan.keluarga.pengeluaran);
         }
 
@@ -153,13 +151,9 @@
 
             anggota_keluarga.forEach((anggota) => {
                 $('#modal_anggota_keluarga').append(`
-                    <div class="col">
+                    <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="d-flex align-items-center">
-                                <div>
-                                    <img src="${anggota.foto_kk}" class="img-fluid rounded-start"
-                                        alt="Gambar Bansos">
-                                </div>
                                 <div class="flex-grow-1">
                                     <div class="card-body">
                                         <table class="table">
@@ -198,7 +192,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'PUT',
-                        url: `{{ url('rt/pengajuan/approve/${no_kk}') }}`,
+                        url: `{{ url('admin/pemohon/${no_kk}/approve') }}`,
                         headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                             contentType: 'application/json'
@@ -210,9 +204,7 @@
                                 icon: "success"
                             });
                             
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000)
+                            $('#pemohon_admin').DataTable().ajax.reload();
                         }
                     })
                 }
@@ -221,34 +213,55 @@
 
         function confirmDecline(no_kk) {
             Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "Apakah yakin untuk menolak pemohon?",
+                text: "Tindakan ini akan menolak pengajuan pemohon!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Tolak"
+                confirmButtonText: "Tolak",
+                cancelButtonText: "Batal"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $.ajax({
-                        type: 'PUT',
-                        url: `{{ url('rt/pengajuan/decline/${no_kk}') }}`,
-                        headers: {
-                            'X-CSRF-TOKEN': "{{csrf_token()}}",
-                            contentType: 'application/json'
+
+                    Swal.fire({
+                        title: "Masukkan Pesan Penolakan",
+                        input: "text",
+                        inputAttributes: {
+                            autocapitalize: "off"
                         },
-                        success: function () {
-                            Swal.fire({
-                                title: "Menolak Pengajuan!",
-                                text: "Data pengajuan berhasil ditolak.",
-                                icon: "success"
+                        showCancelButton: true,
+                        confirmButtonText: "Tolak",
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonText: "Batal",
+                        cancelButtonColor: "#d33",
+                        showLoaderOnConfirm: true,
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            $.ajax({
+                                type: 'PUT',
+                                url: `{{ url('admin/pemohon/${no_kk}/decline') }}`,
+                                headers: {
+                                    'X-CSRF-TOKEN': "{{csrf_token()}}",
+                                    contentType: 'application/json'
+                                },
+                                data: {
+                                    message: result.value
+                                },
+                                success: function () {
+                                    Swal.fire({
+                                        title: "Menolak Pengajuan!",
+                                        text: "Data pengajuan berhasil ditolak.",
+                                        icon: "success"
+                                    });
+                                    
+                                    $('#pemohon_admin').DataTable().ajax.reload();
+                                }
                             });
-                            
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000)
                         }
-                    })
+                    });
                 }
             });
         }

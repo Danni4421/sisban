@@ -27,7 +27,7 @@
 @endpush
 @push('scripts')
     <script>
-        function confirmDelete(idBansos, nik) {
+        function confirmDelete(nik, idBansos) {
             Swal.fire({
                 title: "Yakin menghapus penerima bansos?",
                 text: "Perubahan tidak bisa dikembalikan!",
@@ -40,7 +40,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'DELETE',
-                        url: `{{ url('/rt/bansos/${idBansos}/penerima/${nik}') }}`,
+                        url: `{{ url('/admin/bansos/${idBansos}/penerima/${nik}') }}`,
                         headers: {
                             'X-CSRF-TOKEN': "{{csrf_token()}}",
                             contentType: 'application/json'
@@ -52,9 +52,7 @@
                                 icon: "success"
                             });
                             
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 1000)
+                            $('#recipient-table').DataTable().ajax.reload();
                         }
                     })
                 }

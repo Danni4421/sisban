@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Perhitungan Fuzzy')
+
 @section('content_header')
     <h1>Perhitungan Fuzzy</h1>
     <hr>

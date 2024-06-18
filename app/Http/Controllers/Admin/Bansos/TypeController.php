@@ -72,6 +72,5 @@ class TypeController extends Controller
     public function destroy(string $id)
     {
         $this->deleteExistingBansos(id: $id);
-        return redirect('admin/bansos/jenis');
     }
 }

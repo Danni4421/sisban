@@ -19,16 +19,22 @@
                 <div id="nama_bansos_help" class="form-text">Masukkan nama untuk Bantuan Sosial baru.</div>
 
                 @error('nama_bansos')
-                    @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                 @enderror
 
             </div>
             <div class="mb-3">
                 <label for="keterangan">keterangan</label>
-                <textarea class="form-control" id="keterangan" style="height: 100px" name="keterangan">{{ old('keterangan', $bansos->keterangan) }}</textarea>
+                <input 
+                    class="form-control" 
+                    id="keterangan" 
+                    name="keterangan" 
+                    value="{{ old('keterangan', $bansos->keterangan) }}" 
+                    required 
+                />
 
                 @error('keterangan')
-                    @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                 @enderror
 
             </div>
@@ -40,7 +46,7 @@
                 <div id="jumlah_bansos_help" class="form-text">Masukkan jumlah bantuan sosial.</div>
 
                 @error('jumlah')
-                    @livewire('alert-message', ['class' => 'danger', 'message', $message])
+                    @livewire('admin.alert-message', ['class' => 'danger', 'message' => $message])
                 @enderror
 
             </div>
@@ -56,7 +62,3 @@
     </div>
 
 @endsection
-
-@push('styles')
-    {{-- Custom styles --}}
-@endpush
