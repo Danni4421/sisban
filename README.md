@@ -1,66 +1,58 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<!-- Heading -->
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Sistem Informasi Seputar Bantuan Sosial (SISBAN)
 
-## About Laravel
+<!-- Overview about this project -->
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+In semester 4, we get a project to be able to help the surrounding rw in overcoming the problems that are there with an application of technology. for that we get advice from the rw chairman to make an application that can help in the management of social assistance recipients, so that it can also help in the process of determining the recipients of social assistance for residents in the rw.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Data management that is still done manually causes various problems, such as data inaccuracies, delays in aid distribution, and a high risk of errors. This manual process also hampers efficiency and transparency, which are essential for public trust in the social assistance system.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<!-- Group member's identity -->
 
-## Learning Laravel
+### <u>Group Member : </u>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+> 1. Aji Hamdani Ahmad
+> 2. Icha Dewi Putriana
+> 3. M. Tryo Bagus Anugrah Putra
+> 4. Triyana Dewi Fathmawati
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+To achieve this goal of making application for helping data management social assistance recipients, we created a website for social assistance recipient management.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The first thing we do is analyze what needs are needed by the rw chairman or local residents that will be used on the website that we make later. After analyzing, we then make SRS (Software Requirement Specification). It contains several designs such as Application Flow Diagram (Activity Diagram, Sequence Diagram), Technical Diagram (Entity Relationship Diagram, Class Diagram) etc.<a href=".github/assets/docs/skpl.pdf" target="_blank">
+View the document of Software Requirement Specification
+</a>
 
-## Laravel Sponsors
+Then we made a design for the user interface, which we needed help from the figma platform to make the design of the user interface.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Here are some designs of the application, you can also see it in full through the following link to [see full design]('https://figma.com)
 
-### Premium Partners
+<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+    <a href="https://figma.com">
+        <img src=".github/assets/images/beranda-rw.jpg" alt="Dashboard rw" width="300" height="225"/>
+    </a>
+    <a href="https://figma.com">
+        <img src=".github/assets/images/beranda-rt.jpg" alt="Dashboard rt" width="300" height="225"/>
+    </a>
+    <a href="https://figma.com">
+        <img src=".github/assets/images/landing-page.jpg" alt="Landing page" width="300" height="225" style="object-fit: cover; object-position: top;"/>
+    </a>
+    <a href="https://figma.com">
+        <img src=".github/assets/images/form.jpg" alt="Form Pengajuan" width="300" height="225"/>
+    </a>
+</div>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+After the user interface design was complete, we then started by migrating the database to make it easier to work as a team. The results of the migration can also be seen in the [following database directory](https://github.com/Danni4421/sisban/tree/production/database)
 
-## Contributing
+After the database is complete, we divide several tasks, some of which create functionality through the controller or can be said to make the backend part, there are also several people who do slicing for components that aim to implement the user interface design or can be said to be the frontend part.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+After each part is complete, the next step is to integrate between the backend and frontend, the integration process we do some through AJAX requests, or through the request form.
 
-## Code of Conduct
+And after all these processes we have finished building a website to be able to help the rw chairman in carrying out social assistance management as well as selecting social assistance recipients.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Here is a preview of the results of our website which can actually be seen through [sisban.biz.id](https://sisban.biz.id), but because we do not have enough funds to continue, so for now the domain cannot be accessed.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+And here are the results of our website :
+<a href=".github/assets/docs/user-manual.pdf" target="_blank">
+Document User Manual
+</a>
