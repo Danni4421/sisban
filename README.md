@@ -28,16 +28,16 @@ Then we made a design for the user interface, which we needed help from the figm
 Here are some designs of the application, you can also see it in full through the following link to [see full design]('https://figma.com)
 
 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
-    <a href="https://figma.com">
+    <a href="https://www.figma.com/design/pYkYMYtoLGr22BlalGBMZM/PROYEK-SISBAN?node-id=0-1&t=r9wPWiHLvlbURGuW-0">
         <img src=".github/assets/images/beranda-rw.jpg" alt="Dashboard rw" width="300" height="225"/>
     </a>
-    <a href="https://figma.com">
+    <a href="https://www.figma.com/design/pYkYMYtoLGr22BlalGBMZM/PROYEK-SISBAN?node-id=0-1&t=r9wPWiHLvlbURGuW-0">
         <img src=".github/assets/images/beranda-rt.jpg" alt="Dashboard rt" width="300" height="225"/>
     </a>
-    <a href="https://figma.com">
+    <a href="https://www.figma.com/design/pYkYMYtoLGr22BlalGBMZM/PROYEK-SISBAN?node-id=0-1&t=r9wPWiHLvlbURGuW-0">
         <img src=".github/assets/images/landing-page.jpg" alt="Landing page" width="300" height="225" style="object-fit: cover; object-position: top;"/>
     </a>
-    <a href="https://figma.com">
+    <a href="https://www.figma.com/design/pYkYMYtoLGr22BlalGBMZM/PROYEK-SISBAN?node-id=0-1&t=r9wPWiHLvlbURGuW-0">
         <img src=".github/assets/images/form.jpg" alt="Form Pengajuan" width="300" height="225"/>
     </a>
 </div>
